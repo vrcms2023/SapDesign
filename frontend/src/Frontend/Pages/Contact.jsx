@@ -274,7 +274,7 @@ const Contact = () => {
             {isAdmin && hasPermission && (
               <EditIcon editHandler={() => editHandler("map", true)} />
             )}
-            {mapValues.google_map_url && (
+            {mapValues?.google_map_url && (
               <iframe
                 className="googlemap"
                 src={mapValues?.google_map_url}
