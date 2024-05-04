@@ -18,8 +18,6 @@ export const TeamStyled = styled.div`
   }
 
   img {
-    width: 100%;
-    height: 250px;
     object-fit: cover;
     object-position: top;
     border-radius: 5px !important;

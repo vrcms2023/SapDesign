@@ -42,6 +42,7 @@ export const FooterStyled = styled.div`
     i {
       font-size: 2.5rem;
       margin: 25px 10px 0;
+      color: ${({ theme }) => theme.black};
     }
   }
 

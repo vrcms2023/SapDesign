@@ -10,12 +10,12 @@
   "black": "#000000",
   "gray": "#333333",
   "lightgray": "#e3e3e3",
-  "verylightgray": "#f6f6f6",
+  "verylightgray": "#f3f3f3",
   "error": "#f23838",
 
-  "primaryColor": "#17427f",
+  "primaryColor": "#ffffff",
   "primaryHoverColor": "#2A5CA0",
-  "secondaryColor": "#3CD9D2",
+  "secondaryColor": "#000000",
   "secondaryHoverColor": "#3CD9D2",
   "teritoryColor": "#2A5CA0",
   "teritoryHoverColor": "#2A5CA0",
@@ -82,7 +82,7 @@
   "footerLinkColor": "#ffffff",
   "footerLinkHoverColor": "#748E31",
 
-  "pageTitleColor": "#17427f",
+  "pageTitleColor": "#000000",
 
   "aboutPageBgColor": "",
   "aboutPageTitleColor": "",

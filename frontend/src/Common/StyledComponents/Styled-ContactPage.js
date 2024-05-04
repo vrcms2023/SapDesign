@@ -11,10 +11,12 @@ export const ContactPageStyled = styled.div`
 
   .contactAddress {
     background-color: ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.black};
   }
 
   .contactForm {
     width: 60%;
+    margin: 0 auto;
 
     input,
     textarea {

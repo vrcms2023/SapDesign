@@ -227,7 +227,7 @@ const Team = () => {
               team.map((item, index) => (
                 <div
                   key={item.id}
-                  className={`col-md-4 ${
+                  className={`col-md-6 px-5 ${
                     isAdmin ? "border border-warning position-relative" : ""
                   } ${index % 2 === 0 ? "normalCSS" : "flipCSS"}`}
                 >
