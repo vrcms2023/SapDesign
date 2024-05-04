@@ -34,30 +34,33 @@ const TopStrip = () => {
   }
   return (
     <TopStripStyled>
-      <div className="d-flex justify-content-center justify-content-md-between align-items-center topStrip">
-        <div className="d-none d-md-flex">
-          <Title title="Welcome to SAP Design Studio" cssClass={"fs-6 fw-normal"} />
-        </div>
-        <div className="d-flex justify-content-between gap-4 quickContact">
-          <span className="d-none d-md-flex">
-            {" "}
-            {footerValues?.phonen_number
-              ? footerValues?.phonen_number
-              : ""}{" "}
-          </span>
-
-          {footerValues.emailid ? (
+      {isAdmin && (
+        <div className="d-flex justify-content-center justify-content-md-between align-items-center topStrip">
+          <div className="d-none d-md-flex">
+            <Title
+              title="Welcome to SAP Design Studio"
+              cssClass={"fs-6 fw-normal"}
+            />
+          </div>
+          <div className="d-flex justify-content-between gap-4 quickContact">
             <span className="d-none d-md-flex">
-              <i className="fa fa-paper-plane me-1" aria-hidden="true"></i>
-              <a href={`mailto:${footerValues.emailid}`}>
-                {footerValues.emailid}{" "}
-              </a>
+              {" "}
+              {footerValues?.phonen_number
+                ? footerValues?.phonen_number
+                : ""}{" "}
             </span>
-          ) : (
-            ""
-          )}
 
-          {isAdmin && (
+            {footerValues.emailid ? (
+              <span className="d-none d-md-flex">
+                <i className="fa fa-paper-plane me-1" aria-hidden="true"></i>
+                <a href={`mailto:${footerValues.emailid}`}>
+                  {footerValues.emailid}{" "}
+                </a>
+              </span>
+            ) : (
+              ""
+            )}
+
             <>
               <span className="d-none d-md-flex">
                 <i className="fa fa-user-o" aria-hidden="true"></i> &nbsp;
@@ -70,9 +73,9 @@ const TopStrip = () => {
                 </a>
               </span>
             </>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </TopStripStyled>
   );
 };
