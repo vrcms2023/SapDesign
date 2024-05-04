@@ -43,8 +43,7 @@ const Header = () => {
   const { userInfo, menuList } = useSelector((state) => state.auth);
   const { serviceMenu } = useSelector((state) => state.serviceMenu);
   const dispatch = useDispatch();
-  const onPageLoadAction = useRef(true);
-  
+  const onPageLoadServiceAction = useRef(true);
 
   const pathList = [
     "/login",
@@ -81,8 +80,8 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (serviceMenu.length === 0 && onPageLoadAction.current) {
-      onPageLoadAction.current = false;
+    if (serviceMenu.length === 0 && onPageLoadServiceAction.current) {
+      onPageLoadServiceAction.current = false;
       dispatch(getServiceValues());
     } else {
       setServiceMenuList(serviceMenu);
