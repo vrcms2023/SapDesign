@@ -3,8 +3,7 @@ import BgSymbol from "../../Images/logo-symbol.svg";
 import styled from "styled-components";
 
 export const FooterStyled = styled.div`
-  background-color: ${({ theme }) => theme.footerBgColor};
-  background-image: url(${BgSymbol});
+    background-image: url(${BgSymbol});
   background-repeat: no-repeat;
   background-position: 120% -250px;
   background-size: 40%;
@@ -46,20 +45,31 @@ export const FooterStyled = styled.div`
     }
   }
 
+  .footerDetails {
+    color: ${({ theme }) => theme.black};
+
+    a {
+      color: ${({ theme }) => theme.black};
+    }
+  }
+
   .footerCopyRights {
+    background-color: ${({ theme }) => theme.footerBgColor};
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 1rem !important;
+    font-size: 0.85rem !important;
 
     a {
       color: ${({ theme }) => theme.footerLinkColor};
+      font-size: 0.8rem !important;
       &:hover {
-        color: ${({ theme }) => theme.secondaryColor};
+        color: ${({ theme }) => theme.footerLinkHoverColor};
       }
     }
 
     .dby,
     .dby a {
-      font-size: 0.95rem;
+      font-size: 0.85rem;
+      color: #999999
     }
   }
 

@@ -19,7 +19,7 @@ import ModelBg from "../ModelBg";
 
 // Images
 import EditIcon from "../AdminEditIcon";
-import Logo from "../../../src/Images/logo.svg";
+import Logo from "../../Images/logo.png"
 
 // Styles
 import { FooterStyled } from "../StyledComponents/Styled-Footer";
@@ -163,9 +163,32 @@ const Footer = () => {
             
 
             <hr className="d-block d-md-none" />
+            <div className="col-md-3 text-center text-md-start">
+              <h5>Address</h5>
+              SAP Design Studio, <br />
+              1st Floor, <br />
+              12th Main Road, <br />
+              HAL 2nd Stage, <br />
+              Doopanahalli, <br />
+              Indiranagar, <br />
+              Karnataka,  <br />
+              India
+            </div>
+
+            <hr className="d-block d-md-none" />
+            <div className="col-md-3 text-center text-md-start">
+              <h5>Reach Us</h5>
+              
+              +1 900 897 6264 <br /><br />
+
+              sudheera@sap-designstudio.com <br />
+              praveenkumar@sap-designstudio.com <br />
+            </div>
+
               { <div className="col-md-3 pb-3 pb-md-0">
+              <img src={Logo} alt="VRCMS" />
                 <div className="socialLinks">
-                  <h5>Social Media</h5>
+                  {/* <h5>Social Media</h5> */}
                   {footerValues.facebook_url ? (
                     <Link to={footerValues.facebook_url} target="_blank">
                       <i className="fa fa-facebook-square" aria-hidden="true"></i>
@@ -225,10 +248,9 @@ const Footer = () => {
                
               </div> } 
 
-            <hr className="d-block d-md-none" />
-            <div className="col-md-6 text-center socialLinks d-flex justify-content-end align-items-center">
-              <img src={Logo} alt="VRCMS" style={{ opacity: 0.2 }} />
-            </div>
+            
+
+            
           </div>
         </div>
 
@@ -257,7 +279,7 @@ const Footer = () => {
             </Link>
           </div>
           <span className="d-block mt-2 dby">
-            designed by{" "}
+            designed & developed by{" "}
             <a href="http://www.varadesigns.com">
               <small className="p-1 fw-bold d-inline-block ">
                 VARA-DESIGNS
