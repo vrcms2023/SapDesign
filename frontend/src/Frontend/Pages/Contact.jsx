@@ -26,6 +26,7 @@ import {
 
 // Styles
 import "./Contact.css";
+import { ContactPageStyled } from "../../Common/StyledComponents/Styled-ContactPage";
 
 // images
 import { getAddressList } from "../../features/address/addressActions";
@@ -140,7 +141,7 @@ const Contact = () => {
   };
 
   return (
-    <>
+    <ContactPageStyled>
       {/* Page Banner Component */}
       <div className="position-relative">
         {isAdmin && hasPermission && (
@@ -216,19 +217,32 @@ const Contact = () => {
                       title={item.location_title}
                       cssClass="mb-2 fs-4 text-black"
                     />
-                    <div className="mb-2">
+                    <div className="mb-2 contactAddress">
+                    <p className="m-0 fw-bold">{"SAP Design Studio"}</p>
                       <p className="m-0">{item.address_dr_no}</p>
-                      <p className="m-0">{item.location} </p>
                       <p className="m-0">{item.street} </p>
+                      <p className="m-0">{item.location} </p>
                       <p className="m-0">{item.city} </p>
-                      {/* <p className="m-0">Pincode - {item.postcode}</p> */}
                       <p className="mb-3">{item.state}</p>
+                       {/* <p className="m-0">Pincode - {item.postcode}</p> */}
                       <p className="mt-2">
                         {item.phonen_number && (
                           <>
                             {/* <Title title="Phone Number :" cssClass="mb-2" /> */}
                             <i
-                              className="fa fa-phone-square text-white fs-4 me-2"
+                              className="fa fa-phone-square fs-4 me-2"
+                              aria-hidden="true"
+                            ></i>{" "}
+                            {item.phonen_number}
+                          </>
+                        )}
+                      </p>
+                      <p className="mt-2">
+                        {item.phonen_number && (
+                          <>
+                            {/* <Title title="Phone Number :" cssClass="mb-2" /> */}
+                            <i
+                              className="fa fa-phone-square fs-4 me-2"
                               aria-hidden="true"
                             ></i>{" "}
                             {item.phonen_number}
@@ -239,7 +253,7 @@ const Contact = () => {
                         {item.phonen_number_2 && (
                           <>
                             <i
-                              className="fa fa-whatsapp text-white fs-4 me-2"
+                              className="fa fa-whatsapp fs-4 me-2"
                               aria-hidden="true"
                             ></i>{" "}
                             {item.phonen_number_2}{" "}
@@ -250,7 +264,29 @@ const Contact = () => {
                         {item.emailid && (
                           <>
                             <i
-                              className="fa fa-envelope-o text-white fs-4 me-2"
+                              className="fa fa-envelope-o fs-4 me-2"
+                              aria-hidden="true"
+                            ></i>{" "}
+                            {item.emailid}{" "}
+                          </>
+                        )}
+                      </p>
+                      <p className="mt-0">
+                        {item.emailid && (
+                          <>
+                            <i
+                              className="fa fa-envelope-o fs-4 me-2"
+                              aria-hidden="true"
+                            ></i>{" "}
+                            {item.emailid}{" "}
+                          </>
+                        )}
+                      </p>
+                      <p className="mt-0">
+                        {item.emailid && (
+                          <>
+                            <i
+                              className="fa fa-envelope-o fs-4 me-2"
                               aria-hidden="true"
                             ></i>{" "}
                             {item.emailid}{" "}
@@ -270,6 +306,12 @@ const Contact = () => {
         </div>
 
         <div className="row">
+          <div className="col-md-12 text-center py-4">
+          <Title
+                title="Quick contact"
+                cssClass="text-black fs-3 fw-bold mb-4"
+              />
+          </div>
           <div className="col-md-7 position-relative">
             {isAdmin && hasPermission && (
               <EditIcon editHandler={() => editHandler("map", true)} />
@@ -292,13 +334,10 @@ const Contact = () => {
             )}
 
             <form
-              className="my-5 contactForm"
+              className="my-0 contactForm"
               onSubmit={handleSubmit(onFormSubmit)}
             >
-              <Title
-                title="Quick contact"
-                cssClass="text-black text-center fs-3 fw-bold mb-4"
-              />
+             
               <InputField
                 label="Name"
                 fieldName="firstName"
@@ -329,8 +368,8 @@ const Contact = () => {
               />
 
               <div className="mb-3 row">
-                <div className="col-sm-3"></div>
-                <div className="col-sm-9">
+                
+                <div className="col-sm-12 mt-2">
                   <button
                     type="submit"
                     className="btn btn-primary w-100 text-uppercase py-2"
@@ -357,7 +396,7 @@ const Contact = () => {
       )}
 
       {show && <ModelBg />}
-    </>
+    </ContactPageStyled>
   );
 };
 export default Contact;

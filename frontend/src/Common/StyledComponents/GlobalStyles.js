@@ -3,6 +3,7 @@ import careerBgImg from "../../Images/careers-bg.jpg";
 
 export const GlobalStyles = createGlobalStyle`
 
+
 * {
     margin:0;
     padding: 0;
@@ -91,7 +92,7 @@ body {
 }
 
 .btn {
-    border-radius: 50px !important;
+    border-radius: 0.375rem !important;
     transition: all .35s;
 
     // &:hover svg { transform: rotate(-45deg);}
@@ -103,7 +104,7 @@ body {
     }
 }
 .btn-primary {
-    background-color:${({ theme }) => theme.primaryColor}; 
+    background-color:${({ theme }) => theme.secondaryColor}; 
     color:${({ theme }) => theme.white};
 }
 .btn-primary:hover {

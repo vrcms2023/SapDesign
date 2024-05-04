@@ -186,7 +186,7 @@ const Footer = () => {
             </div>
 
               { <div className="col-md-3 pb-3 pb-md-0">
-              <img src={Logo} alt="VRCMS" />
+              <img src={Logo} alt="SAP Design Studio" />
                 <div className="socialLinks">
                   {/* <h5>Social Media</h5> */}
                   {footerValues.facebook_url ? (

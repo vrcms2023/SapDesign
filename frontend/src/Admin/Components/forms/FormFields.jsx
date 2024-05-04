@@ -205,7 +205,7 @@ export const TextAreaField = ({
     <div className="mb-2 row">
       <label
         htmlFor=""
-        className="col-sm-12 col-form-label text-start text-md-end"
+        className="col-sm-12 col-form-label text-start"
       >
         {label}
       </label>

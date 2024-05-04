@@ -211,24 +211,15 @@ const AddressForm = ({ editHandler, componentType, address }) => {
               <p className="text-dark fw-bold mt-3">Address Form</p>
             <hr className="mb-3 text-dark" /></div>
             <div className="col-md-12 mb-md-0">
+
               <InputField
-                label="Country"
-                fieldName="location_title"
+                label="Company"
+                fieldName="company"
                 register={register}
-                validationObject={fieldValidation.location_title}
-                error={errors?.location_title?.message}
-              />
-              <InputField label="State" fieldName="state" register={register} />
-              <InputField
-                label="City"
-                fieldName="city"
-                register={register}
-                validationObject={fieldValidation.city}
-                error={errors?.city?.message}
               />
               <InputField
-                label="Location"
-                fieldName="location"
+                label="Door Number"
+                fieldName="address_dr_no"
                 register={register}
               />
               <InputField
@@ -237,10 +228,27 @@ const AddressForm = ({ editHandler, componentType, address }) => {
                 register={register}
               />
               <InputField
-                label="Door Number"
-                fieldName="address_dr_no"
+                label="Location"
+                fieldName="location"
                 register={register}
               />
+              <InputField
+                label="City"
+                fieldName="city"
+                register={register}
+                validationObject={fieldValidation.city}
+                error={errors?.city?.message}
+              />
+              <InputField label="State" fieldName="state" register={register} />
+
+              <InputField
+                label="Country"
+                fieldName="location_title"
+                register={register}
+                validationObject={fieldValidation.location_title}
+                error={errors?.location_title?.message}
+              />
+              
 
               {/* <InputField
                 label="Postcode"
@@ -250,14 +258,35 @@ const AddressForm = ({ editHandler, componentType, address }) => {
                 error={errors?.postcode?.message}
               /> */}
               <InputField
-                label="Email"
+                label="Email 1"
                 fieldName="emailid"
                 register={register}
                 validationObject={fieldValidation.emailid}
                 error={errors?.emailid?.message}
               />
               <InputField
-                label="Phone"
+                label="Email 2"
+                fieldName="emailid"
+                register={register}
+                validationObject={fieldValidation.emailid}
+                error={errors?.emailid?.message}
+              />
+              <InputField
+                label="Email 3"
+                fieldName="emailid"
+                register={register}
+                validationObject={fieldValidation.emailid}
+                error={errors?.emailid?.message}
+              />
+              <InputField
+                label="Phone 1"
+                fieldName="phonen_number"
+                register={register}
+                validationObject={fieldValidation.phonen_number}
+                error={errors?.phonen_number?.message}
+              />
+              <InputField
+                label="Phone 2"
                 fieldName="phonen_number"
                 register={register}
                 validationObject={fieldValidation.phonen_number}
