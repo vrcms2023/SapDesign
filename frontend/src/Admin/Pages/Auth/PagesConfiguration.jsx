@@ -20,6 +20,7 @@ const PagesConfiguration = () => {
   const [show, setShow] = useState(false);
   const [editMenu, setEditMenu] = useState({});
   const { userInfo } = useSelector((state) => state.auth);
+  const [selectedID, setselectedID] = useState(null);
 
   const editHandler = (name, value, item) => {
     setEditMenu(item);
@@ -112,22 +113,41 @@ const PagesConfiguration = () => {
     );
   };
 
-  const childContent = (page, isChild) => {
+  const TreeNode = ({ node }) => {
+    const [showChildren, setShowChildren] = useState(false);
+
+    const showChildMenu = () => {
+      setShowChildren(!showChildren);
+    };
     return (
-      <React.Fragment key={page.id}>
-        {showContentPerRole(userInfo, page.is_Admin_menu) && (
-          <tr key={page.id}>
-            <td className="p-2">{page.page_label}</td>
-            <td>{page.page_url}</td>
-            <td>{page.is_Parent ? "Parent Menu" : "Child Menu"}</td>
-            <td className="text-center">{page.page_position}</td>
+      <React.Fragment key={node.id}>
+        {showContentPerRole(userInfo, node.is_Admin_menu) && (
+          <tr key={node.id}>
+            <td className="p-2 ">
+              {node.childMenu?.length > 0 ? (
+                <i
+                  className={`fa ${showChildren ? "fa-minus" : "fa-plus"} mx-2`}
+                  aria-hidden="true"
+                  onClick={showChildMenu}
+                ></i>
+              ) : (
+                <i
+                  className="fa lableIconPlaceholder mx-2"
+                  aria-hidden="true"
+                ></i>
+              )}
+              {node.page_label}
+            </td>
+            <td>{node.page_url}</td>
+            <td>{node.is_Parent ? "Parent Menu" : "Child Menu"}</td>
+            <td className="text-center">{node.page_position}</td>
             <td className="text-center">
               <input
                 type="checkbox"
-                checked={page.page_isActive}
+                checked={node.page_isActive}
                 readOnly
                 onClick={() => {
-                  activeUserMenu(page.id, page, "page_isActive");
+                  activeUserMenu(node.id, node, "page_isActive");
                 }}
                 className="form-check-input border border-secondary"
               />
@@ -135,10 +155,10 @@ const PagesConfiguration = () => {
             <td className="text-center">
               <input
                 type="checkbox"
-                checked={page.is_Client_menu}
+                checked={node.is_Client_menu}
                 readOnly
                 onClick={() => {
-                  activeUserMenu(page.id, page, "is_Client_menu");
+                  activeUserMenu(node.id, node, "is_Client_menu");
                 }}
                 className="form-check-input border border-secondary"
               />
@@ -146,10 +166,10 @@ const PagesConfiguration = () => {
             <td className="text-center">
               <input
                 type="checkbox"
-                checked={page.is_Admin_menu}
+                checked={node.is_Admin_menu}
                 readOnly
                 onClick={() => {
-                  activeUserMenu(page.id, page, "is_Admin_menu");
+                  activeUserMenu(node.id, node, "is_Admin_menu");
                 }}
                 className="form-check-input border border-secondary"
               />
@@ -157,10 +177,10 @@ const PagesConfiguration = () => {
             <td className="text-center">
               <input
                 type="checkbox"
-                checked={page.is_Maintainer_menu}
+                checked={node.is_Maintainer_menu}
                 readOnly
                 onClick={() => {
-                  activeUserMenu(page.id, page, "is_Maintainer_menu");
+                  activeUserMenu(node.id, node, "is_Maintainer_menu");
                 }}
                 className="form-check-input border border-secondary"
               />
@@ -168,7 +188,7 @@ const PagesConfiguration = () => {
             <td className="text-center">
               <Link
                 to=""
-                onClick={() => editHandler("menu", true, page)}
+                onClick={() => editHandler("menu", true, node)}
                 className="p-2"
               >
                 <i
@@ -180,7 +200,7 @@ const PagesConfiguration = () => {
               <Link
                 to=""
                 className=" ms-4"
-                onClick={() => handleUserDelete(page)}
+                onClick={() => handleUserDelete(node)}
               >
                 <i
                   className="fa fa-trash-o fs-4 text-danger"
@@ -191,19 +211,27 @@ const PagesConfiguration = () => {
             </td>
           </tr>
         )}
-        {page.childMenu?.length > 0 ? (
-          <tr>
-            <td colSpan="8" className="p-0">
+        {showChildren && node.childMenu.length > 0 && (
+          <tr className="p-0" id={`${node.id}-page`}>
+            <td colSpan="8" className="p-0 ">
               <table className="table mt-4 mb-4  w-100 border">
                 {tableHeader()}
-                {page.childMenu.map((child) => childContent(child, true))}
+                <Treeview treeData={node.childMenu} />
               </table>
             </td>
           </tr>
-        ) : (
-          ""
         )}
       </React.Fragment>
+    );
+  };
+
+  const Treeview = ({ treeData }) => {
+    return (
+      <>
+        {treeData.map((node) => (
+          <TreeNode node={node} key={node.id} />
+        ))}
+      </>
     );
   };
 
@@ -244,7 +272,7 @@ const PagesConfiguration = () => {
           <table className="table table-striped">
             <thead>{tableHeader()}</thead>
             <tbody>
-              {pagesDetails?.map((page) => childContent(page, false))}
+              {pagesDetails.length > 0 && <Treeview treeData={pagesDetails} />}
             </tbody>
           </table>
         ) : (
