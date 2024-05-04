@@ -63,6 +63,29 @@ class UpdatePageDetails(APIView):
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class UpdateMenuIndex(APIView):
+    """
+    Retrieve, update or delete a address instance.
+    """
+    def get_object(self, pk):
+        try:
+            return PageDetails.objects.get(pk=pk)
+        except PageDetails.DoesNotExist:
+            raise Http404
+
+    def put(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        user = request.user
+        requestObj ={
+            'page_position': request.data['index'],
+            'updated_by' : user.userName
+        }
+        serializer = PagesAdministrationSerializer(snippet, data=requestObj)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"PageDetails": serializer.data}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 

@@ -10,6 +10,7 @@ import ModelBg from "../../../Common/ModelBg";
 import MenuForm from "../../Components/forms/MenuForm";
 import { getMenuObject } from "../../../util/commonUtil";
 import { showContentPerRole } from "../../../util/permissions";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 const PagesConfiguration = () => {
   const editComponentObj = {
@@ -103,7 +104,6 @@ const PagesConfiguration = () => {
         <th>Menu Lable</th>
         <th>URL</th>
         <th>Menu type</th>
-        <th className="text-center">Position</th>
         <th className="text-center">Active status</th>
         <th className="text-center">Client </th>
         <th className="text-center">Admin </th>
@@ -113,125 +113,194 @@ const PagesConfiguration = () => {
     );
   };
 
-  const TreeNode = ({ node }) => {
+  const getItemStyle = (isDragging, draggableStyle) => ({
+    userSelect: "none",
+    background: isDragging ? "lightgreen" : "grey",
+    ...draggableStyle,
+  });
+  const getListStyle = (isDraggingOver) => ({
+    background: isDraggingOver ? "lightblue" : "lightgrey",
+  });
+
+  const TreeNode = ({ node, ind }) => {
     const [showChildren, setShowChildren] = useState(false);
 
     const showChildMenu = () => {
       setShowChildren(!showChildren);
     };
     return (
-      <React.Fragment key={node.id}>
-        {showContentPerRole(userInfo, node.is_Admin_menu) && (
-          <tr key={node.id}>
-            <td className="p-2 ">
-              {node.childMenu?.length > 0 ? (
-                <i
-                  className={`fa ${showChildren ? "fa-minus" : "fa-plus"} mx-2`}
-                  aria-hidden="true"
-                  onClick={showChildMenu}
-                ></i>
-              ) : (
-                <i
-                  className="fa lableIconPlaceholder mx-2"
-                  aria-hidden="true"
-                ></i>
-              )}
-              {node.page_label}
-            </td>
-            <td>{node.page_url}</td>
-            <td>{node.is_Parent ? "Parent Menu" : "Child Menu"}</td>
-            <td className="text-center">{node.page_position}</td>
-            <td className="text-center">
-              <input
-                type="checkbox"
-                checked={node.page_isActive}
-                readOnly
-                onClick={() => {
-                  activeUserMenu(node.id, node, "page_isActive");
-                }}
-                className="form-check-input border border-secondary"
-              />
-            </td>
-            <td className="text-center">
-              <input
-                type="checkbox"
-                checked={node.is_Client_menu}
-                readOnly
-                onClick={() => {
-                  activeUserMenu(node.id, node, "is_Client_menu");
-                }}
-                className="form-check-input border border-secondary"
-              />
-            </td>
-            <td className="text-center">
-              <input
-                type="checkbox"
-                checked={node.is_Admin_menu}
-                readOnly
-                onClick={() => {
-                  activeUserMenu(node.id, node, "is_Admin_menu");
-                }}
-                className="form-check-input border border-secondary"
-              />
-            </td>
-            <td className="text-center">
-              <input
-                type="checkbox"
-                checked={node.is_Maintainer_menu}
-                readOnly
-                onClick={() => {
-                  activeUserMenu(node.id, node, "is_Maintainer_menu");
-                }}
-                className="form-check-input border border-secondary"
-              />
-            </td>
-            <td className="text-center">
-              <Link
-                to=""
-                onClick={() => editHandler("menu", true, node)}
-                className="p-2"
+      <Draggable key={node.id} draggableId={node.id} index={ind} id={node.id}>
+        {(provided, snapshot) => (
+          <>
+            {showContentPerRole(userInfo, node.is_Admin_menu) && (
+              <tr
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                style={getItemStyle(
+                  snapshot.isDragging,
+                  provided.draggableProps.style
+                )}
               >
-                <i
-                  className="fa fa-pencil text-warning cursor-pointer fs-5"
-                  aria-hidden="true"
-                ></i>
-              </Link>
+                <td className="p-2 ">
+                  {node.childMenu?.length > 0 ? (
+                    <i
+                      className={`fa ${
+                        showChildren ? "fa-minus" : "fa-plus"
+                      } mx-2`}
+                      aria-hidden="true"
+                      onClick={showChildMenu}
+                    ></i>
+                  ) : (
+                    <i
+                      className="fa lableIconPlaceholder mx-2"
+                      aria-hidden="true"
+                    ></i>
+                  )}
+                  {node.page_label}
+                </td>
+                <td>{node.page_url}</td>
+                <td>{node.is_Parent ? "Parent Menu" : "Child Menu"}</td>
+                <td className="text-center">
+                  <input
+                    type="checkbox"
+                    checked={node.page_isActive}
+                    readOnly
+                    onClick={() => {
+                      activeUserMenu(node.id, node, "page_isActive");
+                    }}
+                    className="form-check-input border border-secondary"
+                  />
+                </td>
+                <td className="text-center">
+                  <input
+                    type="checkbox"
+                    checked={node.is_Client_menu}
+                    readOnly
+                    onClick={() => {
+                      activeUserMenu(node.id, node, "is_Client_menu");
+                    }}
+                    className="form-check-input border border-secondary"
+                  />
+                </td>
+                <td className="text-center">
+                  <input
+                    type="checkbox"
+                    checked={node.is_Admin_menu}
+                    readOnly
+                    onClick={() => {
+                      activeUserMenu(node.id, node, "is_Admin_menu");
+                    }}
+                    className="form-check-input border border-secondary"
+                  />
+                </td>
+                <td className="text-center">
+                  <input
+                    type="checkbox"
+                    checked={node.is_Maintainer_menu}
+                    readOnly
+                    onClick={() => {
+                      activeUserMenu(node.id, node, "is_Maintainer_menu");
+                    }}
+                    className="form-check-input border border-secondary"
+                  />
+                </td>
+                <td className="text-center">
+                  <Link
+                    to=""
+                    onClick={() => editHandler("menu", true, node)}
+                    className="p-2"
+                  >
+                    <i
+                      className="fa fa-pencil text-warning cursor-pointer fs-5"
+                      aria-hidden="true"
+                    ></i>
+                  </Link>
 
-              <Link
-                to=""
-                className=" ms-4"
-                onClick={() => handleUserDelete(node)}
-              >
-                <i
-                  className="fa fa-trash-o fs-4 text-danger"
-                  aria-hidden="true"
-                  title="Delete"
-                ></i>
-              </Link>
-            </td>
-          </tr>
+                  <Link
+                    to=""
+                    className=" ms-4"
+                    onClick={() => handleUserDelete(node)}
+                  >
+                    <i
+                      className="fa fa-trash-o fs-4 text-danger"
+                      aria-hidden="true"
+                      title="Delete"
+                    ></i>
+                  </Link>
+                </td>
+              </tr>
+            )}
+            {showChildren && node.childMenu.length > 0 && (
+              <tr className="p-0" id={`${node.id}-page`}>
+                <td colSpan="8" className="p-0 ">
+                  <table className="table mt-4 mb-4  w-100 border">
+                    {tableHeader()}
+                    <Treeview treeData={node.childMenu} />
+                  </table>
+                </td>
+              </tr>
+            )}
+          </>
         )}
-        {showChildren && node.childMenu.length > 0 && (
-          <tr className="p-0" id={`${node.id}-page`}>
-            <td colSpan="8" className="p-0 ">
-              <table className="table mt-4 mb-4  w-100 border">
-                {tableHeader()}
-                <Treeview treeData={node.childMenu} />
-              </table>
-            </td>
-          </tr>
-        )}
-      </React.Fragment>
+      </Draggable>
     );
   };
 
   const Treeview = ({ treeData }) => {
+    const parentOnDragEnd = async (result) => {
+      const { source, destination } = result;
+      if (!destination) return true;
+
+      let _arr = [...pagesDetails];
+      console.log(_arr[source.index]);
+      console.log(_arr[destination.index]);
+
+      const sourceobj = await updateObjectIndex(
+        _arr[source.index],
+        destination.index
+      );
+
+      const destinationObj = await updateObjectIndex(
+        _arr[destination.index],
+        source.index
+      );
+      getAllPagesDetails();
+    };
+
+    const updateObjectIndex = async (item, index) => {
+      let data = {};
+      data["index"] = index;
+      try {
+        let response = await axiosServiceApi.put(
+          `/pageMenu/updateindex/${item.id}/`,
+          data
+        );
+        if (response?.data?.PageDetails) {
+          return response.data.PageDetails;
+        }
+      } catch (error) {
+        console.log("unable to save the footer form");
+      }
+    };
+
     return (
-      <>
-        {treeData.map((node) => (
-          <TreeNode node={node} key={node.id} />
+      <DragDropContext onDragEnd={parentOnDragEnd}>
+        {treeData.map((node, ind) => (
+          <Droppable key={ind} droppableId={`${ind}`}>
+            {(provided, snapshot) => (
+              <tbody
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                <TreeNode node={node} key={node.id} ind={ind} />
+                {provided.placeholder}
+              </tbody>
+            )}
+          </Droppable>
         ))}
-      </>
+      </DragDropContext>
     );
   };
 
@@ -271,9 +340,8 @@ const PagesConfiguration = () => {
         {showContentPerRole(userInfo, false) ? (
           <table className="table table-striped">
             <thead>{tableHeader()}</thead>
-            <tbody>
-              {pagesDetails.length > 0 && <Treeview treeData={pagesDetails} />}
-            </tbody>
+
+            {pagesDetails.length > 0 && <Treeview treeData={pagesDetails} />}
           </table>
         ) : (
           <h3>Not authorized to view this page </h3>
