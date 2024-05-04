@@ -27,12 +27,12 @@
   "topStripLinkColor": "#ffffff",
   "topStripLinkHoverColor": "#3CD9D2",
 
-  "navbarBg": "rgba(23, 66, 124, 1)",
+  "navbarBg": "#ffffff",
   "navbarTextColor": "#ffffff",
-  "navbarLinkColor": "#ffffff",
-  "navbarLinkBgColor": "#3cd9d2",
+  "navbarLinkColor": "#000000",
+  "navbarLinkBgColor": "#748E31",
   "navbarLinkActiveColor": "#27AAE1",
-  "navbarLinkHoverColor": "#3cd9d2",
+  "navbarLinkHoverColor": "#748E31",
 
   "navbarChildLinkBgColor": "#3cd9d2",
   "navbarChildLinkColor": "#ffffff",
@@ -76,11 +76,11 @@
   "pageBannerTitleColor": "#ffffff",
   "pageBannerSubTitleColor": "#ffffff",
 
-  "footerBgColor": "#17427f",
+  "footerBgColor": "#000000",
   "footerTextColor": "#ffffff",
   "footerTitleColor": "#ffffff",
   "footerLinkColor": "#ffffff",
-  "footerLinkHoverColor": "#3cd9d2",
+  "footerLinkHoverColor": "#748E31",
 
   "pageTitleColor": "#17427f",
 
