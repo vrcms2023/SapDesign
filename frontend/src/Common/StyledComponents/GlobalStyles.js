@@ -49,7 +49,7 @@ body {
 
 
 .ABrief {
-    background-color:${({ theme }) => theme.ABriefBg}; 
+    background-color:${({ theme }) => theme.verylightgray}; 
     color:${({ theme }) => theme.ABriefTextColor};
 }
 .ABrief h3, .ABrief .title {border-color: ${({ theme }) =>

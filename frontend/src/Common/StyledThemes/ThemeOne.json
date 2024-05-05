@@ -41,8 +41,8 @@
   "carouselSlideTitleColor": "#ffffff",
   "carouselSlideCaptionColor": "#ffffff",
 
-  "ABriefBg": "#2A5CA0",
-  "ABriefTextColor": "#ffffff",
+  "ABriefBg": "#f3f3f3",
+  "ABriefTextColor": "#000000",
   "ABriefTitleBorderColor": "#27AAE1",
 
   "ABriefAboutBg": "#ffffff",
