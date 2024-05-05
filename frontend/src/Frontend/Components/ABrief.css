@@ -22,12 +22,12 @@
   color: #333 !important;
 }
 
-.briefServices {
+/* .briefServices {
   background-image: url("../../Images/logo-symbol.svg");
   background-repeat: no-repeat;
   background-position: 180px -50px;
   background-size: 95%;
-}
+} */
 
 .ABriefImg .servicesList li {
   display: flex;
@@ -48,6 +48,6 @@
 
 @media (max-width: 756px) {
   .ABriefImg img {
-    display: none;
+    /* display: none; */
   }
 }

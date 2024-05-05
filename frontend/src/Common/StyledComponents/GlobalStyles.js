@@ -49,7 +49,7 @@ body {
 
 
 .ABrief {
-    background-color:${({ theme }) => theme.ABriefBg}; 
+    background-color:${({ theme }) => theme.verylightgray}; 
     color:${({ theme }) => theme.ABriefTextColor};
 }
 .ABrief h3, .ABrief .title {border-color: ${({ theme }) =>
@@ -171,6 +171,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border-radius: 30px;
     // padding: 70px 75px !important;
 
     .testimonialImg {

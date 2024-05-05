@@ -98,65 +98,29 @@ const Home = () => {
           </div>
         )}
 
-        {/* Introduction */}
-        {isAdmin && hasPermission && (
-          <EditIcon editHandler={() => editHandler("briefIntro", true)} />
-        )}
-        <div className="row my-4">
-          <BriefIntroFrontend
-            introState={componentEdit.briefIntro}
-            pageType="Home"
-          />
-          <div className="d-flex justify-content-center align-items-center">
-            <Ancher
-              AncherLabel="Know More About"
-              Ancherpath="/about"
-              AncherClass="btn btn-outline d-flex justify-content-center align-items-center gap-3"
-              AnchersvgColor="#17427C"
-            />
-          </div>
-        </div>
-
-        {componentEdit.briefIntro ? (
-          <div className="adminEditTestmonial">
-            <BriefIntroAdmin
-              editHandler={editHandler}
-              componentType="briefIntro"
-              pageType="Home"
-            />
-          </div>
-        ) : (
-          ""
-        )}
-
-        {/* HOME List of Services  */}
-        {/* <div className="container py-5 homeServices">
-          <h2 className="mb-5">What We Do</h2>
-          <HomeServices />
-        </div>
-        */}
-
-        {/* Features */}
-        <Features />
-
-        {/* HOME WHY CHOOSE RISHSYSTEMS */}
-        <div className="row ABriefAbout mb-5">
-          <ABriefAbout
-            cssClass="mb-2 fw-bold title text-black"
-            dimensions={imageDimensionsJson("whoweare")}
-          />
-        </div>
-
         {/*  HOME Services */}
-        <div className="row">
-          <div className="col-md-8 ABrief">
+        <div className="row" style={{background: "#f3f3f3"}}>
+          <div className="col-md-8 offset-md-2" >
+          <div className="container">
+            <div className="row">
+            <div className="col-md-12 ABrief">
             <ABrief
-              cssClass="fw-bold title"
+              cssClass="title"
               dimensions={imageDimensionsJson("homeCareers")}
             />
           </div>
+          
+            </div>
+          </div>
+          </div>
+          
+        </div>
 
-          <div className="col-md-4 p-5 testimonials text-center">
+        <div className="row">
+          <div className="col-md-12">
+          <div className="container">
+            <div className="row">
+            <div className="col-md-12 p-5 testimonials text-center">
             {isAdmin && hasPermission && (
               <EditIcon editHandler={() => editHandler("testmonial", true)} />
             )}
@@ -175,6 +139,9 @@ const Home = () => {
             ) : (
               ""
             )} */}
+          </div>
+            </div>
+          </div>
           </div>
         </div>
 
