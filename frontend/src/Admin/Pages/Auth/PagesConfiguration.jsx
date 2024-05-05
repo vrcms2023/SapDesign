@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Title from "../../../Common/Title";
-import { useSelector } from "react-redux";
 import { axiosServiceApi } from "../../../util/axiosUtil";
 import { toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
 import DeleteDialog from "../../../Common/DeleteDialog";
 import ModelBg from "../../../Common/ModelBg";
 import MenuForm from "../../Components/forms/MenuForm";
-import { getMenuObject } from "../../../util/commonUtil";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getMenuObject,
+  reorder,
+  updateArrIndex,
+} from "../../../util/commonUtil";
 import { showContentPerRole } from "../../../util/permissions";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { getMenu } from "../../../features/auth/authActions";
 
 const PagesConfiguration = () => {
   const editComponentObj = {
@@ -22,6 +27,7 @@ const PagesConfiguration = () => {
   const [editMenu, setEditMenu] = useState({});
   const { userInfo } = useSelector((state) => state.auth);
   const [selectedID, setselectedID] = useState(null);
+  const dispatch = useDispatch();
 
   const editHandler = (name, value, item) => {
     setEditMenu(item);
@@ -252,28 +258,33 @@ const PagesConfiguration = () => {
       const { source, destination } = result;
       if (!destination) return true;
 
-      let _arr = [...pagesDetails];
-      console.log(_arr[source.index]);
-      console.log(_arr[destination.index]);
+      const _items = reorder(pagesDetails, source.index, destination.index);
+      const _parentObjects = updateArrIndex(_items, "page_position");
+      const _finalObject = [];
+      _parentObjects.forEach((element) => {
+        _finalObject.push(element);
+        if (element.childMenu?.length > 0) {
+          const childObjs = updateArrIndex(
+            element.childMenu,
+            "page_position",
+            element.page_position
+          );
+          _finalObject.push(...childObjs);
+        }
+      });
 
-      const sourceobj = await updateObjectIndex(
-        _arr[source.index],
-        destination.index
-      );
-
-      const destinationObj = await updateObjectIndex(
-        _arr[destination.index],
-        source.index
-      );
-      getAllPagesDetails();
+      const response = await updateObjectsIndex(_finalObject);
+      if (response.length > 0) {
+        const result = getMenuObject(response);
+        setPagesDetails(result);
+      }
+      dispatch(getMenu());
     };
 
-    const updateObjectIndex = async (item, index) => {
-      let data = {};
-      data["index"] = index;
+    const updateObjectsIndex = async (data) => {
       try {
         let response = await axiosServiceApi.put(
-          `/pageMenu/updateindex/${item.id}/`,
+          `/pageMenu/updateindex/`,
           data
         );
         if (response?.data?.PageDetails) {
