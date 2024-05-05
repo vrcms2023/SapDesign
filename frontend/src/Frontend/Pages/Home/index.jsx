@@ -20,6 +20,8 @@ import {
   getTestimonialsFields,
   imageDimensionsJson,
 } from "../../../util/dynamicFormFields";
+import ImagesGallery from "../ImagesGallery";
+
 
 import { useAdminLoginStatus } from "../../../Common/customhook/useAdminLoginStatus";
 // Styles
@@ -115,6 +117,17 @@ const Home = () => {
           </div>
           
         </div>
+
+
+{/* Service Offered */}
+<h1>Service Offered</h1>
+{/* <div><ImagesGallery /></div> */}
+
+
+{/* Clients */}
+<h1>Clients</h1>
+
+<div>List of clients</div>
 
         <div className="row">
           <div className="col-md-12">
