@@ -117,7 +117,10 @@ const Home = () => {
         </div>
 
         <div className="row">
-        <div className="col-md-12 p-5 testimonials text-center">
+          <div className="col-md-12">
+          <div className="container">
+            <div className="row">
+            <div className="col-md-12 p-5 testimonials text-center">
             {isAdmin && hasPermission && (
               <EditIcon editHandler={() => editHandler("testmonial", true)} />
             )}
@@ -136,6 +139,9 @@ const Home = () => {
             ) : (
               ""
             )} */}
+          </div>
+            </div>
+          </div>
           </div>
         </div>
 

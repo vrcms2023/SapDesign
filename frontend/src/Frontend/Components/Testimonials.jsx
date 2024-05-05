@@ -79,7 +79,7 @@ const Testimonials = ({ testimonis }) => {
             alt="User"
           />
         )}
-        <p className="mt-3 mb-5 px-3 px-md-5 fs-6">
+        <p className="w-75 m-auto mt-3 mb-5 px-3 px-md-5 fs-6">
           {item.testimonial_description}
         </p>
         <div className="d-flex justify-content-center gap-5">

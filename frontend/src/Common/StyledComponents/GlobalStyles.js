@@ -171,6 +171,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border-radius: 30px;
     // padding: 70px 75px !important;
 
     .testimonialImg {
