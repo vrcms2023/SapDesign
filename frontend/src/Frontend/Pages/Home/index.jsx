@@ -23,7 +23,6 @@ import {
 } from "../../../util/dynamicFormFields";
 import ImagesGallery from "../ImagesGallery";
 
-
 import { useAdminLoginStatus } from "../../../Common/customhook/useAdminLoginStatus";
 // Styles
 
@@ -33,6 +32,8 @@ import { ImageGalleryStyled } from "../../../Common/StyledComponents/Styled-Imag
 import { Link } from "react-router-dom";
 import Banner from "../../../Common/Banner";
 import ImageInputsForm from "../../../Admin/Components/forms/ImgTitleIntoForm";
+import { ClientListComponent } from "../../Components/ClientListComponent";
+import { sortCreatedDateByDesc } from "../../../util/dataFormatUtil";
 
 const Home = () => {
   const editComponentObj = {
@@ -49,6 +50,7 @@ const Home = () => {
   const [componentEdit, SetComponentEdit] = useState(editComponentObj);
   const [show, setShow] = useState(false);
   const [news, setNews] = useState([]);
+  const [clientsList, setClientsList] = useState([]);
 
   const editHandler = (name, value) => {
     SetComponentEdit((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -78,34 +80,54 @@ const Home = () => {
     }
   }, [componentEdit.testmonial]);
 
+  useEffect(() => {
+    const getCAseStutiesvalues = async () => {
+      try {
+        const response = await axiosClientServiceApi.get(
+          `/client/getAllClientLogos/`
+        );
+        if (response?.status === 200) {
+          setClientsList(
+            response?.data?.results?.length > 0
+              ? sortCreatedDateByDesc(response.data.results)
+              : []
+          );
+        }
+      } catch (error) {
+        console.log("unable to access ulr because of server is down");
+      }
+    };
+
+    getCAseStutiesvalues();
+  }, []);
+
   return (
     <>
       <div className="container-fluid">
-
-      <div className="position-relative">
-        {isAdmin && hasPermission && (
-          <EditIcon editHandler={() => editHandler("banner", true)} />
-        )}
-        <Banner
-          getBannerAPIURL={`banner/clientBannerIntro/${pageType}-banner/`}
-          bannerState={componentEdit.banner}
-        />
-      </div>
-      {componentEdit.banner ? (
-        <div className="adminEditTestmonial">
-          <ImageInputsForm
-            editHandler={editHandler}
-            componentType="banner"
-            pageType={`${pageType}-banner`}
-            imageLabel="Banner Image"
-            showDescription={false}
-            showExtraFormFields={getFormDynamicFields(`${pageType}-banner`)}
-            dimensions={imageDimensionsJson("banner")}
+        <div className="position-relative">
+          {isAdmin && hasPermission && (
+            <EditIcon editHandler={() => editHandler("banner", true)} />
+          )}
+          <Banner
+            getBannerAPIURL={`banner/clientBannerIntro/${pageType}-banner/`}
+            bannerState={componentEdit.banner}
           />
         </div>
-      ) : (
-        ""
-      )}
+        {componentEdit.banner ? (
+          <div className="adminEditTestmonial">
+            <ImageInputsForm
+              editHandler={editHandler}
+              componentType="banner"
+              pageType={`${pageType}-banner`}
+              imageLabel="Banner Image"
+              showDescription={false}
+              showExtraFormFields={getFormDynamicFields(`${pageType}-banner`)}
+              dimensions={imageDimensionsJson("banner")}
+            />
+          </div>
+        ) : (
+          ""
+        )}
         {/* Carousel */}
         {/* <div className="row">
           <div className="col-md-12 p-0 carousel">
@@ -132,85 +154,83 @@ const Home = () => {
         )} */}
 
         {/*  HOME Services */}
-        <div className="row" style={{background: "#f3f3f3"}}>
-          <div className="col-md-8 offset-md-2" >
-          <div className="container">
-            <div className="row">
-            <div className="col-md-12 ABrief">
-            <ABrief
-              cssClass="title"
-              dimensions={imageDimensionsJson("homeCareers")}
-            />
-          </div>
-          
+        <div className="row" style={{ background: "#f3f3f3" }}>
+          <div className="col-md-8 offset-md-2">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12 ABrief">
+                  <ABrief
+                    cssClass="title"
+                    dimensions={imageDimensionsJson("homeCareers")}
+                  />
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Service Offered */}
+        {/* <h1>Service Offered</h1> */}
+
+        {/* Image Gallery Carousel */}
+
+        <ImageGalleryStyled>
+          <div className="text-center my-5">
+            <span>View Gallery</span>
           </div>
-          
-        </div>
+          <div className="row ">
+            <div className="col-md-10 offset-md-1 homeGalleryCarousel">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-10 offset-md-1">
+                    <Carousel carouselState={componentEdit.carousel} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="text-center py-4 viewAllLink">
+            <Link to="/imageGallery">View All</Link>
+          </div>
+        </ImageGalleryStyled>
 
-
-{/* Service Offered */}
-{/* <h1>Service Offered</h1> */}
-
-
-{/* Image Gallery Carousel */}
-
-
-<ImageGalleryStyled>
-<div className="text-center my-5">
-  <span>View Gallery</span>
-</div>
-<div className="row ">
-  <div className="col-md-10 offset-md-1 homeGalleryCarousel">
-    <div className="container">
-      <div className="row">
-        <div className="col-md-10 offset-md-1">
-          <Carousel carouselState={componentEdit.carousel} />
-        </div>
-      </div>
-    </div>
-   
-  </div>
-</div>
-<div className="text-center py-4 viewAllLink">
-  <Link to="/imageGallery">View All</Link>
-</div>
-</ImageGalleryStyled>
-
-
-
-{/* Clients */}
-{/* <h1>Clients</h1> */}
-
-<div>List of clients</div>
+        <h1>Clients</h1>
+        <div>List of clients</div>
+        <ClientListComponent
+          clientsList={clientsList}
+          deleteAboutSection={""}
+          editHandler={""}
+        />
+        {/* Clients */}
 
         <div className="row">
           <div className="col-md-12">
-          <div className="container">
-            <div className="row">
-            <div className="col-md-12 p-5 testimonials text-center">
-            {isAdmin && hasPermission && (
-              <EditIcon editHandler={() => editHandler("testmonial", true)} />
-            )}
-            {/* Testimonials */}
-            {testimonis.length < 1 ? (
-              (testimonis.length, "No Testimonials Found")
-            ) : testimonis.length === 1 ? (
-              <h4>Please add 2 or more testimonials.</h4>
-            ) : testimonis.length > 1 ? (
-              <Testimonials testimonis={testimonis} />
-            ) : (
-              ""
-            )}
-            {/* {testimonis.length > 0 ? (
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12 p-5 testimonials text-center">
+                  {isAdmin && hasPermission && (
+                    <EditIcon
+                      editHandler={() => editHandler("testmonial", true)}
+                    />
+                  )}
+                  {/* Testimonials */}
+                  {testimonis.length < 1 ? (
+                    (testimonis.length, "No Testimonials Found")
+                  ) : testimonis.length === 1 ? (
+                    <h4>Please add 2 or more testimonials.</h4>
+                  ) : testimonis.length > 1 ? (
+                    <Testimonials testimonis={testimonis} />
+                  ) : (
+                    ""
+                  )}
+                  {/* {testimonis.length > 0 ? (
               <Testimonials testimonis={testimonis} />
             ) : (
               ""
             )} */}
-          </div>
+                </div>
+              </div>
             </div>
-          </div>
           </div>
         </div>
 

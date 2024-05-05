@@ -203,7 +203,7 @@ export const getTeamMemberFields = () => {
     },
     team_member_about_us: {
       label: "About ",
-      type: "textarea",
+      type: "richText",
       fieldName: "team_member_about_us",
     },
     twitter_url: {

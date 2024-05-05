@@ -19,7 +19,7 @@ import ModelBg from "../ModelBg";
 
 // Images
 import EditIcon from "../AdminEditIcon";
-import Logo from "../../Images/logo.png"
+import Logo from "../../Images/logo.png";
 
 // Styles
 import { FooterStyled } from "../StyledComponents/Styled-Footer";
@@ -160,7 +160,6 @@ const Footer = () => {
               </ul>
             </div>
             <hr className="d-block d-md-none" />
-            
 
             <hr className="d-block d-md-none" />
             <div className="col-md-3 text-center text-md-start">
@@ -171,38 +170,40 @@ const Footer = () => {
               HAL 2nd Stage, <br />
               Doopanahalli, <br />
               Indiranagar, <br />
-              Karnataka,  <br />
+              Karnataka, <br />
               India
             </div>
 
             <hr className="d-block d-md-none" />
             <div className="col-md-3 text-center text-md-start">
               <h5>Reach Us</h5>
-              
-              +1 900 897 6264 <br /><br />
-
+              +1 900 897 6264 <br />
+              <br />
               sudheera@sap-designstudio.com <br />
               praveenkumar@sap-designstudio.com <br />
             </div>
 
-              { <div className="col-md-3 pb-3 pb-md-0">
-              <img src={Logo} alt="SAP Design Studio" />
+            {
+              <div className="col-md-3 pb-3 pb-md-0">
+                <img src={Logo} alt="SAP Design Studio" />
                 <div className="socialLinks">
                   {/* <h5>Social Media</h5> */}
-                  {footerValues.facebook_url ? (
+                  {footerValues.facebook_url && (
                     <Link to={footerValues.facebook_url} target="_blank">
-                      <i className="fa fa-facebook-square" aria-hidden="true"></i>
+                      <i
+                        className="fa fa-facebook-square"
+                        aria-hidden="true"
+                      ></i>
                     </Link>
-                  ) : (
-                    ""
                   )}
 
-                  {footerValues.twitter_url ? (
+                  {footerValues.twitter_url && (
                     <Link to={footerValues.twitter_url} target="_blank">
-                      <i className="fa fa-twitter-square" aria-hidden="true"></i>
+                      <i
+                        className="fa fa-twitter-square"
+                        aria-hidden="true"
+                      ></i>
                     </Link>
-                  ) : (
-                    ""
                   )}
 
                   {footerValues.youtube_url ? (
@@ -213,44 +214,40 @@ const Footer = () => {
                     ""
                   )}
 
-                  {footerValues.linkedIn_url ? (
+                  {footerValues.linkedIn_url && (
                     <Link to={footerValues.linkedIn_url} target="_blank">
-                      <i className="fa fa-linkedin-square" aria-hidden="true"></i>
+                      <i
+                        className="fa fa-linkedin-square"
+                        aria-hidden="true"
+                      ></i>
                     </Link>
-                  ) : (
-                    ""
                   )}
 
-                  {footerValues.instagram_url ? (
+                  {footerValues.instagram_url && (
                     <Link to={footerValues.instagram_url} target="_blank">
                       <i className="fa fa-instagram" aria-hidden="true"></i>
                     </Link>
-                  ) : (
-                    ""
                   )}
 
-                  {footerValues.vimeo_url ? (
+                  {footerValues.vimeo_url && (
                     <Link to={footerValues.vimeo_url} target="_blank">
                       <i className="fa fa-vimeo" aria-hidden="true"></i>
                     </Link>
-                  ) : (
-                    ""
                   )}
 
-                  {footerValues.pinterest_url ? (
+                  {footerValues.pinterest_url && (
                     <Link to={footerValues.pinterest_url} target="_blank">
                       <i className="fa fa-pinterest" aria-hidden="true"></i>
                     </Link>
-                  ) : (
-                    ""
+                  )}
+                  {isAdmin && (
+                    <EditIcon
+                      editHandler={() => editHandler("address", true)}
+                    />
                   )}
                 </div>
-               
-              </div> } 
-
-            
-
-            
+              </div>
+            }
           </div>
         </div>
 

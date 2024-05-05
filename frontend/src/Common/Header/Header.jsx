@@ -30,7 +30,7 @@ import {
 import { getServiceValues } from "../../features/services/serviceActions";
 import { isAppAccess } from "../../util/permissions";
 
-import Logo from "../../Images/logo.png"
+import Logo from "../../Images/logo.png";
 
 const Header = () => {
   const editComponentObj = {
@@ -145,7 +145,6 @@ const Header = () => {
         <div className="container">
           <Link to={isHideMenu ? "#" : "/"} className="navbar-brand logo">
             <img src={Logo} alt="" />
-            
           </Link>
 
           {!isHideBurgetIcon ? (
@@ -175,7 +174,7 @@ const Header = () => {
 
 export const ClientMenu = ({ serviceMenuList }) => {
   const { menuList } = useSelector((state) => state.auth);
-  console.log(menuList, "menuList")
+
   const getSelectedServiceMenu = (menu) => {
     const tempService = _.filter(serviceMenuList, (item) => {
       return item.services_page_title === menu.page_label;
