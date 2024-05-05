@@ -14,12 +14,13 @@ const Carousel = ({ carouselState }) => {
   const { isLoading } = useSelector((state) => state.loader);
   const [carousel, setCarousel] = useState([]);
   const baseURL = getBaseURL();
+  const pageType = "imageGallery";
 
   useEffect(() => {
     const getCarousels = async () => {
       try {
         const response = await axiosClientServiceApi.get(
-          `carousel/clientCarousel/`,
+          `imgGallery/clientImageVidoeGallery/${pageType}/`,
         );
 
         if (response?.status == 200) {

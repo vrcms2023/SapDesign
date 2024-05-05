@@ -17,6 +17,7 @@ import { axiosClientServiceApi } from "../../../util/axiosUtil";
 import { removeActiveClass } from "../../../util/ulrUtil";
 import {
   getCarouselFields,
+  getFormDynamicFields,
   getTestimonialsFields,
   imageDimensionsJson,
 } from "../../../util/dynamicFormFields";
@@ -28,10 +29,15 @@ import { useAdminLoginStatus } from "../../../Common/customhook/useAdminLoginSta
 
 import "./Home.css";
 import Features from "../../Components/Features";
+import { ImageGalleryStyled } from "../../../Common/StyledComponents/Styled-ImageGallery";
+import { Link } from "react-router-dom";
+import Banner from "../../../Common/Banner";
+import ImageInputsForm from "../../../Admin/Components/forms/ImgTitleIntoForm";
 
 const Home = () => {
   const editComponentObj = {
-    carousel: false,
+    banner: false,
+    // carousel: false,
     briefIntro: false,
     projects: false,
     testmonial: false,
@@ -75,8 +81,33 @@ const Home = () => {
   return (
     <>
       <div className="container-fluid">
+
+      <div className="position-relative">
+        {isAdmin && hasPermission && (
+          <EditIcon editHandler={() => editHandler("banner", true)} />
+        )}
+        <Banner
+          getBannerAPIURL={`banner/clientBannerIntro/${pageType}-banner/`}
+          bannerState={componentEdit.banner}
+        />
+      </div>
+      {componentEdit.banner ? (
+        <div className="adminEditTestmonial">
+          <ImageInputsForm
+            editHandler={editHandler}
+            componentType="banner"
+            pageType={`${pageType}-banner`}
+            imageLabel="Banner Image"
+            showDescription={false}
+            showExtraFormFields={getFormDynamicFields(`${pageType}-banner`)}
+            dimensions={imageDimensionsJson("banner")}
+          />
+        </div>
+      ) : (
+        ""
+      )}
         {/* Carousel */}
-        <div className="row">
+        {/* <div className="row">
           <div className="col-md-12 p-0 carousel">
             {isAdmin && hasPermission && <EditIcon editHandler={editHandler} />}
             <Carousel carouselState={componentEdit.carousel} />
@@ -98,7 +129,7 @@ const Home = () => {
               dimensions={imageDimensionsJson("carousel")}
             />
           </div>
-        )}
+        )} */}
 
         {/*  HOME Services */}
         <div className="row" style={{background: "#f3f3f3"}}>
@@ -120,12 +151,37 @@ const Home = () => {
 
 
 {/* Service Offered */}
-<h1>Service Offered</h1>
-{/* <div><ImagesGallery /></div> */}
+{/* <h1>Service Offered</h1> */}
+
+
+{/* Image Gallery Carousel */}
+
+
+<ImageGalleryStyled>
+<div className="text-center my-5">
+  <span>View Gallery</span>
+</div>
+<div className="row ">
+  <div className="col-md-10 offset-md-1 homeGalleryCarousel">
+    <div className="container">
+      <div className="row">
+        <div className="col-md-10 offset-md-1">
+          <Carousel carouselState={componentEdit.carousel} />
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
+<div className="text-center py-4 viewAllLink">
+  <Link to="/imageGallery">View All</Link>
+</div>
+</ImageGalleryStyled>
+
 
 
 {/* Clients */}
-<h1>Clients</h1>
+{/* <h1>Clients</h1> */}
 
 <div>List of clients</div>
 
