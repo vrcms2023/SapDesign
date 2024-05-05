@@ -10,11 +10,13 @@ const DCarousel = ({ obj, all, closeCarousel }) => {
   const uniqueImgsArray = imgs.filter(function (item, pos) {
     return imgs.indexOf(item) === pos;
   });
+  console.log(uniqueImgsArray, "uniqueImgsArray")
   return (
     <div
       id="carouselExampleIndicators"
       className="dcarousel carousel slide shadow-lg"
       data-bs-ride="carousel"
+      // style={{background: `url(${baseURL}${uniqueImgsArray[0].path})`}}
     >
       <span
         className="closeCarousel"

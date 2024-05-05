@@ -110,7 +110,7 @@ const AdminBanner = ({
       <div className="container">
         <div className="row d-flex flex-row-reverse">
           {carousel?.length > 0 ? (
-            <div className="col-md-12 my-3">
+            <div className="col-md-12 my-3" style={{height: "120px", overflowY: "scroll"}}>
               <div className="container">
                 {carousel?.map((item, index) => (
                   <div className="row mb-4 slideItem" key={index}>
