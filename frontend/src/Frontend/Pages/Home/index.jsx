@@ -38,6 +38,8 @@ import ServiceOfferedComponent from "../../Components/ServiceOfferedComponent";
 
 import { ClientListComponent } from "../../Components/ClientListComponent";
 import { sortCreatedDateByDesc } from "../../../util/dataFormatUtil";
+import HomeClients from "../../Components/HomeClients";
+import { HomeClientsStyled } from "../../../Common/StyledComponents/Styled-HomeClients";
 
 
 const Home = () => {
@@ -57,6 +59,7 @@ const Home = () => {
   const [show, setShow] = useState(false);
   const [news, setNews] = useState([]);
   const [clientsList, setClientsList] = useState([]);
+
 
   const editHandler = (name, value) => {
     SetComponentEdit((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -87,7 +90,7 @@ const Home = () => {
   }, [componentEdit.testmonial]);
 
   useEffect(() => {
-    const getCAseStutiesvalues = async () => {
+    const getClientList = async () => {
       try {
         const response = await axiosClientServiceApi.get(
           `/client/getAllClientLogos/`
@@ -98,14 +101,17 @@ const Home = () => {
               ? sortCreatedDateByDesc(response.data.results)
               : []
           );
+          console.log(response.data.results, "Ck]lients")
         }
       } catch (error) {
         console.log("unable to access ulr because of server is down");
       }
     };
 
-    getCAseStutiesvalues();
+    getClientList();
   }, []);
+  
+
 
   return (
     <>
@@ -209,20 +215,6 @@ const Home = () => {
           </div>
 )}
 
-{/* Image Gallery Carousel  */}
-<ImageGalleryStyled>
-<div className="text-center my-5">
-  <span>View Gallery</span>
-</div>
-<div className="row ">
-  <div className="col-md-10 offset-md-1 homeGalleryCarousel">
-    <div className="container">
-      <div className="row">
-        <div className="col-md-10 offset-md-1">
-          <Carousel carouselState={componentEdit.carousel} />
-
-        </div>
-
         {/* Service Offered */}
         {/* <h1>Service Offered</h1> */}
 
@@ -249,12 +241,23 @@ const Home = () => {
         </ImageGalleryStyled>
 
         <h1>Clients</h1>
-        <div>List of clients</div>
-        <ClientListComponent
+      <HomeClientsStyled>
+      <div class="slider">
+      <div class="slide-track">
+        {clientsList.map(client => {
+          return(
+                <HomeClients client={client} key={client.id}/>
+          )
+        })}
+        </div>
+        </div>
+        </HomeClientsStyled>
+
+        {/* <ClientListComponent
           clientsList={clientsList}
           deleteAboutSection={""}
           editHandler={""}
-        />
+        /> */}
         {/* Clients */}
 
         <div className="row">
@@ -318,7 +321,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      
 
       {componentEdit.testmonial ? (
         <div className="adminEditTestmonial">
@@ -353,6 +356,8 @@ const Home = () => {
       {/* {showEditPop && <ModelBg />} */}
     </>
   );
+
+  
 };
 
 export default Home;
