@@ -11,6 +11,7 @@ import DynamicCarousel from "../Components/DynamicCarousel";
 import { getImagePath } from "../../util/commonUtil";
 import { axiosClientServiceApi } from "../../util/axiosUtil";
 import { ImageGalleryStyled } from "../../Common/StyledComponents/Styled-ImageGallery";
+import ImageGalleryComponent from "../Components/ImageGalleryComponent";
 
 const ImagesGallery = () => {
   const editComponentObj = {
@@ -92,53 +93,7 @@ const ImagesGallery = () => {
           </div>
         </div>
 
-        <div className="row gallery">
-        
-            <div className="col-md-10 offset-md-1">
-              <div className="container">
-              <div className="text-center my-5">
-                <sapn className="fs-1">View Gallery</sapn>
-              </div>
-                <div className="row">
-                {imageGallery.length > 0 &&
-            imageGallery?.map((item, index) => (
-              <div className="col-4 mb-4" key={item.id}>
-                <img
-                  src={getImagePath(item.path)}
-                  alt={item.alternitivetext}
-                  className="d-block w-100 img-fluid"
-                  onClick={() => findThumbHandler(item.id)}
-                />
-
-                {/* <div className="carousel-caption ">
-                  {item.image_title && (
-                    <h1 className="fw-bold">{item.image_title}</h1>
-                  )}
-
-                  {item.image_description && (
-                    <p className="fw-normal description fs-5">
-                      {item.image_description}
-                    </p>
-                  )}
-                </div> */}
-              </div>
-            ))}
-                </div>
-              </div>
-            </div>
-
-          
-          
-        </div>
-        {show && <ModelBg />}
-        {showModal && (
-          <DynamicCarousel
-            obj={img}
-            all={imageGallery}
-            closeCarousel={closeModel}
-          />
-        )}
-        {showModal && <ModelBg closeModel={closeModel} />}
+        <ImageGalleryComponent pageType={pageType} componentEdit={componentEdit} />
       </div>
     </ImageGalleryStyled>
   );
