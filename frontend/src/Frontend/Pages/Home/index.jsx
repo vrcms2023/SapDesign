@@ -41,7 +41,6 @@ import { sortCreatedDateByDesc } from "../../../util/dataFormatUtil";
 import HomeClients from "../../Components/HomeClients";
 import { HomeClientsStyled } from "../../../Common/StyledComponents/Styled-HomeClients";
 
-
 const Home = () => {
   const editComponentObj = {
     banner: false,
@@ -59,7 +58,6 @@ const Home = () => {
   const [show, setShow] = useState(false);
   const [news, setNews] = useState([]);
   const [clientsList, setClientsList] = useState([]);
-
 
   const editHandler = (name, value) => {
     SetComponentEdit((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -101,7 +99,7 @@ const Home = () => {
               ? sortCreatedDateByDesc(response.data.results)
               : []
           );
-          console.log(response.data.results, "Ck]lients")
+          console.log(response.data.results, "Ck]lients");
         }
       } catch (error) {
         console.log("unable to access ulr because of server is down");
@@ -110,8 +108,6 @@ const Home = () => {
 
     getClientList();
   }, []);
-  
-
 
   return (
     <>
@@ -146,9 +142,9 @@ const Home = () => {
             {isAdmin && hasPermission && <EditIcon editHandler={editHandler} />}
             <Carousel carouselState={componentEdit.carousel} />
           </div>
-        </div>
+        </div> */}
 
-        {componentEdit.carousel && (
+        {/* {componentEdit.carousel && (
           <div className="adminEditTestmonial">
             <AdminBanner
               editHandler={editHandler}
@@ -157,6 +153,7 @@ const Home = () => {
               deleteImageURL="carousel/updateCarousel/"
               imagePostURL="carousel/createCarousel/"
               imageUpdateURL="carousel/updateCarousel/"
+              carouselIndexURL="carousel/updateCarouselindex/"
               imageLabel="Add Carousel Image"
               showDescription={false}
               showExtraFormFields={getCarouselFields("carousel")}
@@ -179,149 +176,148 @@ const Home = () => {
               </div>
             </div>
           </div>
-
-          </div>
-          
         </div>
+      </div>
 
+      {/* Service Offered */}
+      {/* <h1>Service Offered</h1> */}
+      {/* <ImageGalleryComponent pageType={"imageGallery"} /> */}
+      {/* <ServiceOfferedComponent pageType={"serviceOffered"} /> */}
+      <div className="row">
+        <div className="col-md-12 p-0 carousel">
+          {isAdmin && hasPermission && (
+            <EditIcon editHandler={() => editHandler("serviceOffered", true)} />
+          )}
 
-{/* Service Offered */}
-{/* <h1>Service Offered</h1> */}
-{/* <ImageGalleryComponent pageType={"imageGallery"} /> */}
-{/* <ServiceOfferedComponent pageType={"serviceOffered"} /> */}
-        <div className="row">
-          <div className="col-md-12 p-0 carousel">
-            {isAdmin && hasPermission && <EditIcon editHandler={() => editHandler("serviceOffered", true)} />}
-            
-            {/* <Carousel carouselState={componentEdit.serviceOffered} /> */}
-            <ServiceOfferedComponent pageType={"serviceOffered"} componentEdit={componentEdit}/>
-          </div>
+          {/* <Carousel carouselState={componentEdit.serviceOffered} /> */}
+          <ServiceOfferedComponent
+            pageType={"serviceOffered"}
+            componentEdit={componentEdit}
+          />
         </div>
+      </div>
 
-        {componentEdit.serviceOffered && (
-          <div className="adminEditTestmonial">
-            <AdminBanner
-              editHandler={editHandler}
-              componentType="serviceOffered"
-              getImageListURL="carousel/createCarousel/"
-              deleteImageURL="carousel/updateCarousel/"
-              imagePostURL="carousel/createCarousel/"
-              imageUpdateURL="carousel/updateCarousel/"
-              imageLabel="Add Service Offered"
-              showDescription={false}
-              showExtraFormFields={getCarouselFields("carousel")}
-              dimensions={imageDimensionsJson("carousel")}
-            />
-          </div>
-)}
+      {componentEdit.serviceOffered && (
+        <div className="adminEditTestmonial">
+          <AdminBanner
+            editHandler={editHandler}
+            componentType="serviceOffered"
+            getImageListURL="carousel/createCarousel/"
+            deleteImageURL="carousel/updateCarousel/"
+            imagePostURL="carousel/createCarousel/"
+            imageUpdateURL="carousel/updateCarousel/"
+            imageLabel="Add Service Offered"
+            showDescription={false}
+            showExtraFormFields={getCarouselFields("carousel")}
+            dimensions={imageDimensionsJson("carousel")}
+          />
+        </div>
+      )}
 
-        {/* Service Offered */}
-        {/* <h1>Service Offered</h1> */}
+      {/* Service Offered */}
+      {/* <h1>Service Offered</h1> */}
 
-        {/* Image Gallery Carousel */}
+      {/* Image Gallery Carousel */}
 
-        <ImageGalleryStyled>
-          <div className="text-center my-5">
-            <span>View Gallery</span>
-          </div>
-          <div className="row ">
-            <div className="col-md-10 offset-md-1 homeGalleryCarousel">
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-10 offset-md-1">
-                    <Carousel carouselState={componentEdit.carousel} />
-                  </div>
+      <ImageGalleryStyled>
+        <div className="text-center my-5">
+          <span>View Gallery</span>
+        </div>
+        <div className="row ">
+          <div className="col-md-10 offset-md-1 homeGalleryCarousel">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-10 offset-md-1">
+                  <Carousel carouselState={componentEdit.carousel} />
                 </div>
               </div>
             </div>
           </div>
-          <div className="text-center py-4 viewAllLink">
-            <Link to="/imageGallery">View All</Link>
-          </div>
-        </ImageGalleryStyled>
+        </div>
+        <div className="text-center py-4 viewAllLink">
+          <Link to="/imageGallery">View All</Link>
+        </div>
+      </ImageGalleryStyled>
 
-        <h1>Clients</h1>
+      <h1>Clients</h1>
       <HomeClientsStyled>
-      <div class="slider">
-      <div class="slide-track">
-        {clientsList.map(client => {
-          return(
-                <HomeClients client={client} key={client.id}/>
-          )
-        })}
+        <div class="slider">
+          <div class="slide-track">
+            {clientsList.map((client) => {
+              return <HomeClients client={client} key={client.id} />;
+            })}
+          </div>
         </div>
-        </div>
-        </HomeClientsStyled>
+      </HomeClientsStyled>
 
-        {/* <ClientListComponent
+      {/* <ClientListComponent
           clientsList={clientsList}
           deleteAboutSection={""}
           editHandler={""}
         /> */}
-        {/* Clients */}
+      {/* Clients */}
 
-        <div className="row">
-          <div className="col-md-12">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-12 p-5 testimonials text-center">
-                  {isAdmin && hasPermission && (
-                    <EditIcon
-                      editHandler={() => editHandler("testmonial", true)}
-                    />
-                  )}
-                  {/* Testimonials */}
-                  {testimonis.length < 1 ? (
-                    (testimonis.length, "No Testimonials Found")
-                  ) : testimonis.length === 1 ? (
-                    <h4>Please add 2 or more testimonials.</h4>
-                  ) : testimonis.length > 1 ? (
-                    <Testimonials testimonis={testimonis} />
-                  ) : (
-                    ""
-                  )}
-                  {/* {testimonis.length > 0 ? (
+      <div className="row">
+        <div className="col-md-12">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12 p-5 testimonials text-center">
+                {isAdmin && hasPermission && (
+                  <EditIcon
+                    editHandler={() => editHandler("testmonial", true)}
+                  />
+                )}
+                {/* Testimonials */}
+                {testimonis.length < 1 ? (
+                  (testimonis.length, "No Testimonials Found")
+                ) : testimonis.length === 1 ? (
+                  <h4>Please add 2 or more testimonials.</h4>
+                ) : testimonis.length > 1 ? (
+                  <Testimonials testimonis={testimonis} />
+                ) : (
+                  ""
+                )}
+                {/* {testimonis.length > 0 ? (
               <Testimonials testimonis={testimonis} />
             ) : (
               ""
             )} */}
-                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* HOME News */}
-        <div className="row py-5 homeNews">
-          <div className="col-md-12 d-flex justify-content-center align-items-center">
-            <div className="container">
-              <h2 className="mb-5 fw-bold">News</h2>
-              <div className="row">
-                <HomeNews news={news} setNews={setNews} pagetype={pageType} />
-              </div>
+      {/* HOME News */}
+      <div className="row py-5 homeNews">
+        <div className="col-md-12 d-flex justify-content-center align-items-center">
+          <div className="container">
+            <h2 className="mb-5 fw-bold">News</h2>
+            <div className="row">
+              <HomeNews news={news} setNews={setNews} pagetype={pageType} />
             </div>
           </div>
         </div>
+      </div>
 
-        {/* HOME Careers */}
-        <div className="row homeCareers py-5">
-          <div className="col-lg-6"></div>
-          <div className="col-md-12 col-lg-6 pe-lg-5">
-            <BriefIntroFrontend
-              introState={componentEdit.briefIntro}
-              pageType="careers"
+      {/* HOME Careers */}
+      <div className="row homeCareers py-5">
+        <div className="col-lg-6"></div>
+        <div className="col-md-12 col-lg-6 pe-lg-5">
+          <BriefIntroFrontend
+            introState={componentEdit.briefIntro}
+            pageType="careers"
+          />
+          <div className="bg-white px-5 pb-4 d-flex justify-content-center align-items-center">
+            <Ancher
+              AncherLabel="Careers"
+              Ancherpath="/careers"
+              AncherClass="btn btn-primary d-flex justify-content-center align-items-center gap-3 w-50"
+              AnchersvgColor="#ffffff"
             />
-            <div className="bg-white px-5 pb-4 d-flex justify-content-center align-items-center">
-              <Ancher
-                AncherLabel="Careers"
-                Ancherpath="/careers"
-                AncherClass="btn btn-primary d-flex justify-content-center align-items-center gap-3 w-50"
-                AnchersvgColor="#ffffff"
-              />
-            </div>
           </div>
         </div>
-      
+      </div>
 
       {componentEdit.testmonial ? (
         <div className="adminEditTestmonial">
@@ -356,8 +352,6 @@ const Home = () => {
       {/* {showEditPop && <ModelBg />} */}
     </>
   );
-
-  
 };
 
 export default Home;

@@ -69,6 +69,30 @@ class CarouselUpdateAndDeleteView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class UpdateCarouselIndex(APIView):
+    """
+    Retrieve, update or delete a Carousel instance.
+    """
+
+    def get_object(self, obj_id):
+        try:
+            return Carousel.objects.get(id=obj_id)
+        except (Carousel.DoesNotExist):
+            raise status.HTTP_400_BAD_REQUEST
+        
+    def put(self, request, *args, **kwargs):
+        obj_list = request.data
+        instances = []
+        user = request.user
+        for item in obj_list:
+            obj = self.get_object(obj_id=item["id"])
+            obj.updated_by = user.userName
+            obj.carouse_position = item["carouse_position"]
+            obj.save()
+            instances.append(obj)
+
+        serializer = CarouselSerializer(instances,  many=True)
+        return Response({"carousel": serializer.data}, status=status.HTTP_200_OK)
    
 class ClientCarouselView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]

@@ -21,7 +21,6 @@ export const ClientListComponent = ({
   setClientsList,
   deleteAboutSection,
   editHandler,
-  getClinetDetails,
 }) => {
   const { isLoading } = useSelector((state) => state.loader);
 
