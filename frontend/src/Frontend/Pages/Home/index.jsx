@@ -33,6 +33,8 @@ import { ImageGalleryStyled } from "../../../Common/StyledComponents/Styled-Imag
 import { Link } from "react-router-dom";
 import Banner from "../../../Common/Banner";
 import ImageInputsForm from "../../../Admin/Components/forms/ImgTitleIntoForm";
+import ImageGalleryComponent from "../../Components/ImageGalleryComponent";
+import ServiceOfferedComponent from "../../Components/ServiceOfferedComponent";
 
 const Home = () => {
   const editComponentObj = {
@@ -41,6 +43,7 @@ const Home = () => {
     briefIntro: false,
     projects: false,
     testmonial: false,
+    serviceOffered: false,
   };
 
   const pageType = "home";
@@ -152,11 +155,35 @@ const Home = () => {
 
 {/* Service Offered */}
 {/* <h1>Service Offered</h1> */}
+{/* <ImageGalleryComponent pageType={"imageGallery"} /> */}
+{/* <ServiceOfferedComponent pageType={"serviceOffered"} /> */}
+        <div className="row">
+          <div className="col-md-12 p-0 carousel">
+            {isAdmin && hasPermission && <EditIcon editHandler={() => editHandler("serviceOffered", true)} />}
+            
+            {/* <Carousel carouselState={componentEdit.serviceOffered} /> */}
+            <ServiceOfferedComponent pageType={"serviceOffered"} componentEdit={componentEdit}/>
+          </div>
+        </div>
 
+        {componentEdit.serviceOffered && (
+          <div className="adminEditTestmonial">
+            <AdminBanner
+              editHandler={editHandler}
+              componentType="serviceOffered"
+              getImageListURL="carousel/createCarousel/"
+              deleteImageURL="carousel/updateCarousel/"
+              imagePostURL="carousel/createCarousel/"
+              imageUpdateURL="carousel/updateCarousel/"
+              imageLabel="Add Service Offered"
+              showDescription={false}
+              showExtraFormFields={getCarouselFields("carousel")}
+              dimensions={imageDimensionsJson("carousel")}
+            />
+          </div>
+)}
 
-{/* Image Gallery Carousel */}
-
-
+{/* Image Gallery Carousel  */}
 <ImageGalleryStyled>
 <div className="text-center my-5">
   <span>View Gallery</span>
