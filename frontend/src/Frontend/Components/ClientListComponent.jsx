@@ -99,7 +99,13 @@ export const ClientListComponent = ({
 const Client = ({ item, index, editHandler, deleteAboutSection }) => {
   const { isAdmin, hasPermission } = useAdminLoginStatus();
   return (
-    <Draggable key={item.id} draggableId={item.id} index={index} id={item.id}>
+    <Draggable
+      isDragDisabled={isAdmin ? false : true}
+      key={item.id}
+      draggableId={item.id}
+      index={index}
+      id={item.id}
+    >
       {(provided) => (
         <div
           ref={provided.innerRef}
