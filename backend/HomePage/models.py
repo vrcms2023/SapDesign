@@ -18,3 +18,4 @@ class HomeIntro(BaseModel):
 class ClientLogo(ImageModel):
     client_title =    models.CharField(max_length=500, null=True, blank=True)
     client_description = models.CharField(max_length=5000, null=True, blank=True)
+    client_position = models.IntegerField(null=True, blank=True, default=0)

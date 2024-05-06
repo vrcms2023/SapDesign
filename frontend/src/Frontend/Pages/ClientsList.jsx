@@ -10,7 +10,11 @@ import {
 } from "../../util/dynamicFormFields";
 import useAdminLoginStatus from "../../Common/customhook/useAdminLoginStatus";
 import { axiosClientServiceApi, axiosServiceApi } from "../../util/axiosUtil";
-import { getImagePath, paginationDataFormat } from "../../util/commonUtil";
+import {
+  getImagePath,
+  paginationDataFormat,
+  sortByFieldName,
+} from "../../util/commonUtil";
 import Title from "../../Common/Title";
 import { Link } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
@@ -49,29 +53,32 @@ const ClientsList = () => {
 
   const setResponseData = (data) => {
     setClientsList(
-      data.results.length > 0 ? sortCreatedDateByDesc(data.results) : []
+      data.results.length > 0
+        ? sortByFieldName(data.results, "client_position")
+        : []
     );
     setPaginationData(paginationDataFormat(data));
     setCurrentPage(1);
   };
 
   useEffect(() => {
-    const getCAseStutiesvalues = async () => {
-      try {
-        const response = await axiosClientServiceApi.get(
-          `/client/getAllClientLogos/`
-        );
-        if (response?.status === 200) {
-          setResponseData(response.data);
-        }
-      } catch (error) {
-        console.log("unable to access ulr because of server is down");
-      }
-    };
     if (!componentEdit.addSection || !componentEdit.editSection) {
-      getCAseStutiesvalues();
+      getClinetDetails();
     }
   }, [componentEdit.addSection, componentEdit.editSection]);
+
+  const getClinetDetails = async () => {
+    try {
+      const response = await axiosClientServiceApi.get(
+        `/client/getAllClientLogos/`
+      );
+      if (response?.status === 200) {
+        setResponseData(response.data);
+      }
+    } catch (error) {
+      console.log("unable to access ulr because of server is down");
+    }
+  };
 
   useEffect(() => {
     const id = document.getElementById("KnowledgeHubnavbarDropdown");
@@ -234,8 +241,10 @@ const ClientsList = () => {
 
         <ClientListComponent
           clientsList={clientsList}
+          setClientsList={setClientsList}
           deleteAboutSection={deleteAboutSection}
           editHandler={editHandler}
+          getClinetDetails={getClinetDetails}
         />
         {paginationData?.total_count ? (
           <CustomPagination
