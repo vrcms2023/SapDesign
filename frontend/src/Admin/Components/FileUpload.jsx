@@ -153,6 +153,8 @@ const FileUpload = ({
             formData.append("news_description", editorState);
           } else if (key === "aboutus_description") {
             formData.append("aboutus_description", editorState);
+          } else if (key === "team_member_about_us") {
+            formData.append("team_member_about_us", editorState);
           } else if (key === "case_studies_description") {
             formData.append("case_studies_description", editorState);
           } else if (key === "client_description") {
@@ -428,6 +430,8 @@ const FileUpload = ({
                       ? editImage?.client_description
                       : editImage?.case_studies_description
                       ? editImage?.case_studies_description
+                      : editImage?.team_member_about_us
+                      ? editImage?.team_member_about_us
                       : ""
                   }
                 />

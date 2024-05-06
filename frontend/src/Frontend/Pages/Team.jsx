@@ -66,7 +66,7 @@ const Team = () => {
     const getTeamMemberDetails = async () => {
       try {
         const response = await axiosClientServiceApi.get(
-          `/ourteam/clentViewOurTeamDetails/`,
+          `/ourteam/clentViewOurTeamDetails/`
         );
         console.log("team response", response);
         if (response?.status === 200) {
@@ -87,7 +87,7 @@ const Team = () => {
 
     const deleteSection = async () => {
       const response = await axiosServiceApi.delete(
-        `/ourteam/UpdateOurteamDetail/${id}/`,
+        `/ourteam/UpdateOurteamDetail/${id}/`
       );
       if (response.status === 204) {
         const list = team.filter((list) => list.id !== id);
@@ -256,50 +256,36 @@ const Team = () => {
                   />
 
                   <div className="p-3">
-                    {item.team_member_name ? (
+                    {item.team_member_name && (
                       <Title
                         title={item.team_member_name}
                         cssClass="fs-4 mt-2 title fw-bolder"
                       />
-                    ) : (
-                      ""
                     )}
 
-                    {item.team_member_designation ? (
+                    {item.team_member_designation && (
                       <small className="mb-1">
                         {item.team_member_designation}
                       </small>
-                    ) : (
-                      ""
                     )}
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: item.team_member_about_us,
+                      }}
+                    />
 
-                    {item.team_member_about_us ? (
-                      <p className="aboutMe lineClamp lc3">
-                        {item.team_member_about_us}
-                      </p>
-                    ) : (
-                      ""
-                    )}
+                    {item.team_member_phone_number ||
+                      (item.team_member_email && <hr />)}
 
-                    {item.team_member_phone_number || item.team_member_email ? (
-                      <hr />
-                    ) : (
-                      ""
-                    )}
-
-                    {item.team_member_email ? (
+                    {item.team_member_email && (
                       <div className="mb-2">
                         <a href={`mailto:${item.team_member_email}`}>
                           {item.team_member_email}
                         </a>
                       </div>
-                    ) : (
-                      ""
                     )}
-                    {item.team_member_phone_number ? (
+                    {item.team_member_phone_number && (
                       <p>{item.team_member_phone_number}</p>
-                    ) : (
-                      ""
                     )}
                     {item.team_member_phone_number || item.team_member_email ? (
                       <hr />
@@ -308,72 +294,58 @@ const Team = () => {
                     )}
 
                     <div className="social">
-                      {item.facebook_url ? (
+                      {item.facebook_url && (
                         <Link to={item.facebook_url} target="_blank">
                           <i
                             className="fa fa-facebook-square"
                             aria-hidden="true"
                           ></i>
                         </Link>
-                      ) : (
-                        ""
                       )}
 
-                      {item.twitter_url ? (
+                      {item.twitter_url && (
                         <Link to={item.twitter_url} target="_blank">
                           <i
                             className="fa fa-twitter-square"
                             aria-hidden="true"
                           ></i>
                         </Link>
-                      ) : (
-                        ""
                       )}
 
-                      {item.youtube_url ? (
+                      {item.youtube_url && (
                         <Link to={item.youtube_url} target="_blank">
                           <i
                             className="fa fa-youtube-play"
                             aria-hidden="true"
                           ></i>
                         </Link>
-                      ) : (
-                        ""
                       )}
 
-                      {item.linkedIn_url ? (
+                      {item.linkedIn_url && (
                         <Link to={item.linkedIn_url} target="_blank">
                           <i
                             className="fa fa-linkedin-square"
                             aria-hidden="true"
                           ></i>
                         </Link>
-                      ) : (
-                        ""
                       )}
 
-                      {item.instagram_url ? (
+                      {item.instagram_url && (
                         <Link to={item.instagram_url} target="_blank">
                           <i className="fa fa-instagram" aria-hidden="true"></i>
                         </Link>
-                      ) : (
-                        ""
                       )}
 
-                      {item.vimeo_url ? (
+                      {item.vimeo_url && (
                         <Link to={item.vimeo_url} target="_blank">
                           <i className="fa fa-vimeo" aria-hidden="true"></i>
                         </Link>
-                      ) : (
-                        ""
                       )}
 
-                      {item.pinterest_url ? (
+                      {item.pinterest_url && (
                         <Link to={item.pinterest_url} target="_blank">
                           <i className="fa fa-pinterest" aria-hidden="true"></i>
                         </Link>
-                      ) : (
-                        ""
                       )}
                     </div>
                   </div>

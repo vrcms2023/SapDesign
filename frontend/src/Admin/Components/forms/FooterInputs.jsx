@@ -37,7 +37,7 @@ const FooterAdminFeilds = ({ editHandler, componentType, footerValues }) => {
         data["updated_by"] = userName;
         response = await axiosServiceApi.put(
           `/footer/updateAddress/${data.id}/`,
-          data,
+          data
         );
       } else {
         data["created_by"] = userName;
@@ -60,7 +60,7 @@ const FooterAdminFeilds = ({ editHandler, componentType, footerValues }) => {
       <form className="" onSubmit={handleSubmit(onSubmit)}>
         <div className="container">
           <div className="row p-4">
-            <div className="col-md-6 mb-md-0">
+            {/* <div className="col-md-6 mb-md-0">
               <InputField
                 label="Door Number"
                 fieldName="address_dr_no"
@@ -98,9 +98,9 @@ const FooterAdminFeilds = ({ editHandler, componentType, footerValues }) => {
                 fieldName="phonen_number_2"
                 register={register}
               />
-            </div>
+            </div> */}
 
-            <div className="col-md-6 mb-md-0">
+            <div className="col-md-12 mb-md-0">
               <InputField
                 label="Facebook"
                 fieldName="facebook_url"
