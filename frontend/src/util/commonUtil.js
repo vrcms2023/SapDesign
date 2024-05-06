@@ -172,3 +172,12 @@ export const updateArrIndex = (list, property, parentIndex) => {
     return item;
   });
 };
+
+export const getItemStyle = (isDragging, draggableStyle) => ({
+  userSelect: "none",
+  background: isDragging ? "lightgreen" : "white",
+  ...draggableStyle,
+});
+export const getListStyle = (isDraggingOver) => ({
+  background: isDraggingOver ? "lightblue" : "white",
+});

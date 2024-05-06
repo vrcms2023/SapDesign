@@ -9,6 +9,8 @@ import ModelBg from "../../../Common/ModelBg";
 import MenuForm from "../../Components/forms/MenuForm";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  getItemStyle,
+  getListStyle,
   getMenuObject,
   reorder,
   updateArrIndex,
@@ -16,6 +18,7 @@ import {
 import { showContentPerRole } from "../../../util/permissions";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { getMenu } from "../../../features/auth/authActions";
+import useAdminLoginStatus from "../../../Common/customhook/useAdminLoginStatus";
 
 const PagesConfiguration = () => {
   const editComponentObj = {
@@ -28,6 +31,7 @@ const PagesConfiguration = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const [selectedID, setselectedID] = useState(null);
   const dispatch = useDispatch();
+  const { isAdmin, hasPermission } = useAdminLoginStatus();
 
   const editHandler = (name, value, item) => {
     setEditMenu(item);
@@ -118,15 +122,6 @@ const PagesConfiguration = () => {
       </tr>
     );
   };
-
-  const getItemStyle = (isDragging, draggableStyle) => ({
-    userSelect: "none",
-    background: isDragging ? "lightgreen" : "grey",
-    ...draggableStyle,
-  });
-  const getListStyle = (isDraggingOver) => ({
-    background: isDraggingOver ? "lightblue" : "lightgrey",
-  });
 
   const TreeNode = ({ node, ind }) => {
     const [showChildren, setShowChildren] = useState(false);
@@ -291,7 +286,7 @@ const PagesConfiguration = () => {
           return response.data.PageDetails;
         }
       } catch (error) {
-        console.log("unable to save the footer form");
+        console.log("unable to save menu position");
       }
     };
 

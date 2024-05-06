@@ -264,3 +264,32 @@ class ClientLogoSearchAPIView(generics.ListAPIView):
 
         serializer = ClientLogoSerializer(snippet, many=True)
         return Response({"clientLogo": serializer.data}, status=status.HTTP_200_OK)
+    
+
+
+class UpdateClientIndex(APIView):
+    """
+    Retrieve, update or delete a address instance.
+    """
+
+    def get_object(self, obj_id):
+        try:
+            return ClientLogo.objects.get(id=obj_id)
+        except (ClientLogo.DoesNotExist):
+            raise status.HTTP_400_BAD_REQUEST
+        
+    def put(self, request, *args, **kwargs):
+        obj_list = request.data
+        instances = []
+        user = request.user
+        for item in obj_list:
+            obj = self.get_object(obj_id=item["id"])
+            obj.updated_by = user.userName
+            obj.client_position = item["client_position"]
+            obj.save()
+            instances.append(obj)
+
+        serializer = ClientLogoSerializer(instances,  many=True)
+        
+        return Response({"clientLogo": serializer.data}, status=status.HTTP_200_OK)
+       

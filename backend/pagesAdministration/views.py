@@ -67,11 +67,6 @@ class UpdateMenuIndex(APIView):
     """
     Retrieve, update or delete a address instance.
     """
-    # def get_object(self, pk):
-    #     try:
-    #         return PageDetails.objects.get(pk=pk)
-    #     except PageDetails.DoesNotExist:
-    #         raise Http404
 
     def get_object(self, obj_id):
         try:
