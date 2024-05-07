@@ -146,8 +146,6 @@ const Home = () => {
           ""
         )}
 
-       
-
         {/* Carousel */}
         {/* <div className="row">
           <div className="col-md-12 p-0 carousel">
@@ -174,7 +172,6 @@ const Home = () => {
           </div>
         )} */}
 
-
         {/*  HOME Services */}
         <div className="row" style={{ background: "#f3f3f3" }}>
           <div className="col-md-8 offset-md-2">
@@ -189,7 +186,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -197,9 +193,14 @@ const Home = () => {
       <h1>Service Offered</h1>
       {/* <ImageGalleryComponent pageType={"imageGallery"} /> */}
       {/* <ServiceOfferedComponent pageType={"serviceOffered"} /> */}
-      <div className="text-center mb-5" style={{marginTop: "100px"}}>
-            <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>Services Offered</span>
-          </div>
+      <div className="text-center mb-5" style={{ marginTop: "100px" }}>
+        <span
+          className="fs-1 px-4 py-2"
+          style={{ borderBottom: "1px solid #444444" }}
+        >
+          Services Offered
+        </span>
+      </div>
       <div className="row">
         <div className="col-md-12 p-0 carousel">
           {isAdmin && hasPermission && (
@@ -211,10 +212,8 @@ const Home = () => {
             getBannerAPIURL={`carousel/clientCarouselbyCategory/${serviceOffered}/`}
             componentEdit={componentEdit}
           />
-
         </div>
       </div>
-
 
       {componentEdit.serviceOffered && (
         <div className="adminEditTestmonial">
@@ -234,51 +233,55 @@ const Home = () => {
         </div>
       )}
 
-
       {/* Service Offered */}
       {/* <h1>Service Offered</h1> */}
-
 
       {/* Image Gallery Carousel */}
 
       <ImageGalleryStyled>
-        <div className="text-center mb-5" style={{marginTop: "100px"}}>
-            <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>View Gallery</span>
-          </div>
+        <div className="text-center mb-5" style={{ marginTop: "100px" }}>
+          <span
+            className="fs-1 px-4 py-2"
+            style={{ borderBottom: "1px solid #444444" }}
+          >
+            View Gallery
+          </span>
+        </div>
         <div className="row ">
           <div className="col-md-10 offset-md-1 homeGalleryCarousel">
             <div className="container">
               <div className="row">
                 <div className="col-md-10 offset-md-1">
                   <Carousel carouselState={componentEdit.carousel} />
-
                 </div>
-                
               </div>
-              
             </div>
           </div>
-
         </div>
         <div className="text-center py-4 position-relative viewAllBtn">
-                <Link to="/imageGallery" className="btn btn-outline">View All</Link>
-              </div> 
+          <Link to="/imageGallery" className="btn btn-outline">
+            View All
+          </Link>
+        </div>
       </ImageGalleryStyled>
 
- 
       <HomeClientsStyled>
-
-       <div className="text-center mb-5" style={{marginTop: "100px"}}>
-        <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>Clients</span>
-      </div>
- 
+        <div className="text-center mb-5" style={{ marginTop: "100px" }}>
+          <span
+            className="fs-1 px-4 py-2"
+            style={{ borderBottom: "1px solid #444444" }}
+          >
+            Clients
+          </span>
+        </div>
+        <div class="slider">
+          <div class="slide-track">
             {clientsList.map((client) => {
               return <HomeClients client={client} key={client.id} />;
             })}
           </div>
         </div>
       </HomeClientsStyled>
-
 
       {/* <ClientListComponent
           clientsList={clientsList}
@@ -287,8 +290,13 @@ const Home = () => {
         /> */}
 
       {/* Clients */}
-<div className="text-center mb-5" style={{marginTop: "100px"}}>
-        <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>Testimonials</span>
+      <div className="text-center mb-5" style={{ marginTop: "100px" }}>
+        <span
+          className="fs-1 px-4 py-2"
+          style={{ borderBottom: "1px solid #444444" }}
+        >
+          Testimonials
+        </span>
       </div>
       <div className="row">
         <div className="col-md-12">
@@ -333,28 +341,26 @@ const Home = () => {
           </div>
         </div>
 
-
-      {componentEdit.testmonial && (
-
-        <div className="adminEditTestmonial">
-          <AdminBanner
-            editHandler={editHandler}
-            componentType="testmonial"
-            getImageListURL="testimonials/clientTestimonials/"
-            deleteImageURL="testimonials/updateTestimonials/"
-            imagePostURL="testimonials/createTestimonials/"
-            imageUpdateURL="testimonials/updateTestimonials/"
-            imageIndexURL="testimonials/updateTestimonialsindex/"
-            imageLabel="Add your Image"
-            titleTitle="Testmonial Name"
-            descriptionTitle="Testimonial Writeup "
-            showDescription={false}
-            showExtraFormFields={getTestimonialsFields("testmonial")}
-            dimensions={imageDimensionsJson("testimonial")}
-          />
-        </div>
-      )}
-</div>
+        {componentEdit.testmonial && (
+          <div className="adminEditTestmonial">
+            <AdminBanner
+              editHandler={editHandler}
+              componentType="testmonial"
+              getImageListURL="testimonials/clientTestimonials/"
+              deleteImageURL="testimonials/updateTestimonials/"
+              imagePostURL="testimonials/createTestimonials/"
+              imageUpdateURL="testimonials/updateTestimonials/"
+              imageIndexURL="testimonials/updateTestimonialsindex/"
+              imageLabel="Add your Image"
+              titleTitle="Testmonial Name"
+              descriptionTitle="Testimonial Writeup "
+              showDescription={false}
+              showExtraFormFields={getTestimonialsFields("testmonial")}
+              dimensions={imageDimensionsJson("testimonial")}
+            />
+          </div>
+        )}
+      </div>
       {show && <ModelBg />}
       {/* {showEditPop && <ModelBg />} */}
     </>
