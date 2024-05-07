@@ -83,6 +83,7 @@ const ImagesGallery = () => {
                   deleteImageURL="imgGallery/updateImageVidoeGallery/"
                   imagePostURL="imgGallery/createImageVidoeGallery/"
                   imageUpdateURL="imgGallery/updateImageVidoeGallery/"
+                  imageIndexURL=""
                   imageLabel="Add Image"
                   showDescription={false}
                   showExtraFormFields={getImageGalleryFields("imageGallery")}
@@ -93,7 +94,10 @@ const ImagesGallery = () => {
           </div>
         </div>
 
-        <ImageGalleryComponent pageType={pageType} componentEdit={componentEdit} />
+        <ImageGalleryComponent
+          pageType={pageType}
+          componentEdit={componentEdit}
+        />
       </div>
     </ImageGalleryStyled>
   );
