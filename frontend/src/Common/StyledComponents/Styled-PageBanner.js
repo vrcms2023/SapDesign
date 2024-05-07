@@ -28,7 +28,7 @@ export const PageBannerStyled = styled.div`
 
       .title,
       .description {
-        width: 50%;
+        // width: 50%;
       }
     }
 
@@ -40,15 +40,19 @@ export const PageBannerStyled = styled.div`
       .titleCaption {
         padding: 10px 50px 40px;
 
-        .title {
-          overflow: hidden;
-          display: -webkit-box !important;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-        }
+        // .title {
+        //   overflow: hidden;
+        //   display: -webkit-box !important;
+        //   -webkit-box-orient: vertical;
+        //   -webkit-line-clamp: 2;
+        // }
 
-        .subTitle {
-          display: none;
+        // .subTitle {
+        //   display: none;
+        // }
+
+        .title {
+          font-size: 2.5rem !important;
         }
 
         .description {

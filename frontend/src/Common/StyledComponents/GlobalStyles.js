@@ -31,7 +31,7 @@ body {
 .navbar {
     background-color:${({ theme }) => theme.navbarBg}; 
     box-shadow: 0px 5px 30px #111111;
-    height: 100px;
+    
 
     .nav-Link {
         color:${({ theme }) => theme.navbarLinkColor}; 

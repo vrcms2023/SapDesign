@@ -88,4 +88,39 @@
   border-bottom: 1px solid #ddd;
 }
 
+
+.homePage .pageBanner .title {
+  letter-spacing: 0.25rem;
+  font-size: 3.5rem !important;
+  margin: 0px;
+  font-family: "PT Sans Narrow", sans-serif;
+  font-weight: 700 !important;
+  font-style: normal;
+  text-shadow: 0px 4px 0 rgba(0,0,0, .3)
+}
+
+.homePage .pageBanner .subTitle {
+  color: #DDFF86 !important;
+  letter-spacing: .3rem;
+  text-transform: uppercase !important;
+  font-weight: normal !important;
+  font-family: "PT Sans Narrow", sans-serif;
+}
+
+.homePage .pageBanner img {
+  height: calc(100vh - 100px);
+  object-fit: cover;
+}
+
+.homePage .pageBanner .titleCaption {
+  padding: 10px 120px 150px !important;
+}
+
+@media (max-width: 576px) {
+  .homePage .pageBanner .titleCaption {
+    padding: 10px 50px 120px !important;
+  }
+}
+
+
 /*  End of Eight Blocks */
