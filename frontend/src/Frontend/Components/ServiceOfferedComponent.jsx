@@ -53,7 +53,7 @@ const ServiceOfferedComponent = ({ getBannerAPIURL, componentEdit }) => {
         <div className="col-md-10 offset-md-1">
           <div className="container">
             <div className="text-center my-5">
-              <sapn className="fs-1">View Gallery</sapn>
+              <span className="fs-1">View Gallery</span>
             </div>
             <div className="row">
               {imageGallery.length > 0 &&

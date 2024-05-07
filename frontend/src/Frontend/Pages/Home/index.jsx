@@ -251,8 +251,8 @@ const Home = () => {
 
       <h1>Clients</h1>
       <HomeClientsStyled>
-        <div class="slider">
-          <div class="slide-track">
+        <div className="slider">
+          <div className="slide-track">
             {clientsList.map((client) => {
               return <HomeClients client={client} key={client.id} />;
             })}

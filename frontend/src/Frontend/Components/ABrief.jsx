@@ -38,7 +38,7 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
   const [bannerdata, setBannerData] = useState([]);
   const { serviceMenu } = useSelector((state) => state.serviceMenu);
 
-    const editHandler = (name, value) => {
+  const editHandler = (name, value) => {
     SetComponentEdit((prevFormData) => ({ ...prevFormData, [name]: value }));
     setShow(!show);
     document.body.style.overflow = "hidden";
@@ -48,7 +48,7 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
     const getBannerData = async () => {
       try {
         const response = await axiosClientServiceApi.get(
-          `banner/clientBannerIntro/${pageType}/`,
+          `banner/clientBannerIntro/${pageType}/`
         );
         if (response?.status === 200) {
           setBannerData(response.data.imageModel);
@@ -68,7 +68,11 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
 
       <div className="col-lg-6 p-5 ABriefImg d-md-flex justify-content-center align-items-center">
         <img
-          src={bannerdata?.path ? getImagePath(bannerdata.path) : getImagePath('/media/images/dummy-image-square.png')}
+          src={
+            bannerdata?.path
+              ? getImagePath(bannerdata.path)
+              : getImagePath("/media/images/dummy-image-square.png")
+          }
           alt=""
           className="img-fluid"
         />
@@ -77,11 +81,13 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
         {isAdmin && hasPermission && (
           <EditIcon editHandler={() => editHandler("homecareers", true)} />
         )}
-        
-        
+
         <div className="d-flex align-items-center mb-5">
-        <i class="fa fa-angle-left text-muted fs-1 me-2" aria-hidden="true"></i>
-        <Title title={"OUR WORK LOCATIONS"} cssClass={"fs-4 fw-medium"} />
+          <i
+            className="fa fa-angle-left text-muted fs-1 me-2"
+            aria-hidden="true"
+          ></i>
+          <Title title={"OUR WORK LOCATIONS"} cssClass={"fs-4 fw-medium"} />
         </div>
 
         {bannerdata ? (
@@ -106,7 +112,7 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
           <Link to="/about">
             <img src={circleArrow} />
           </Link>
-      
+
           {/* <Ancher
             AncherLabel="More services"
             url
