@@ -13,17 +13,28 @@ from common.CustomPagination import CustomPagination
 
 # Create your views here.
 
+
+
 class CarouselAPIView(generics.CreateAPIView):
      permission_classes = [permissions.IsAuthenticated]
      serializer_class = CarouselSerializer
      queryset = Carousel.objects.all()
 
+     def get_object(self, category):
+        try:
+              return Carousel.objects.filter(
+                Q(category__icontains=category)
+            )
+        except (Carousel.DoesNotExist):
+            raise status.HTTP_400_BAD_REQUEST
+        
+
      """
      List all Carousel, or create a new Carousel.
      """
-
-     def get(self, request, format=None):
-        snippets = Carousel.objects.all()
+        
+     def get(self, request, category, format=None):
+        snippets = self.get_object(category)
         serializer = CarouselSerializer(snippets, many=True)
         return Response({"carousel": serializer.data}, status=status.HTTP_200_OK)
         
@@ -102,9 +113,32 @@ class ClientCarouselView(generics.CreateAPIView):
     """
     List all carousel, or create a new carousel.
     """
-
+ 
     def get(self, request, format=None):
         snippets = Carousel.objects.all()
+        serializer = CarouselSerializer(snippets, many=True)
+        return Response({"carousel": serializer.data}, status=status.HTTP_200_OK)
+    
+class ClientCarouselViewByCategory(generics.CreateAPIView):
+    permission_classes = [permissions.AllowAny]
+    queryset = Carousel.objects.all()
+    serializer_class = CarouselSerializer
+
+    """
+    List all carousel, or create a new carousel.
+    """
+    def get_object(self, category):
+        try:
+              return Carousel.objects.filter(
+                Q(category__icontains=category)
+            )
+        except (Carousel.DoesNotExist):
+            raise status.HTTP_400_BAD_REQUEST
+        
+
+
+    def get(self, request, category, format=None):
+        snippets = self.get_object(category)
         serializer = CarouselSerializer(snippets, many=True)
         return Response({"carousel": serializer.data}, status=status.HTTP_200_OK)
 

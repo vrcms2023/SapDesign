@@ -14,6 +14,8 @@ import {
   getListStyle,
   reorder,
   updateArrIndex,
+  getObjectPositionKey,
+  sortByFieldName,
 } from "../../../util/commonUtil";
 import {
   axiosFileUploadServiceApi,
@@ -29,7 +31,7 @@ const AdminBanner = ({
   deleteImageURL,
   imagePostURL,
   imageUpdateURL,
-  carouselIndexURL,
+  imageIndexURL,
   imageLabel = "Add Images",
   extraFormParamas,
   titleTitle = "Title",
@@ -64,9 +66,19 @@ const AdminBanner = ({
         if (response?.status === 200) {
           let key = Object.keys(response.data);
           if (key.length > 1) {
-            setcarouseData(response.data.results);
+            const _positionKey = getObjectPositionKey(response.data.results[0]);
+            const _carouselList = sortByFieldName(
+              response.data.results,
+              _positionKey
+            );
+            setcarouseData(_carouselList);
           } else {
-            setcarouseData(response.data[key]);
+            const _positionKey = getObjectPositionKey(response.data[key][0]);
+            const _carouselList = sortByFieldName(
+              response.data[key],
+              _positionKey
+            );
+            setcarouseData(_carouselList);
           }
         }
       } catch (e) {
@@ -115,20 +127,22 @@ const AdminBanner = ({
   const onDragEnd = async (result) => {
     const { source, destination } = result;
     if (!destination) return true;
+    const _positionKey = getObjectPositionKey(carousel[0]);
 
     const _items = reorder(carousel, source.index, destination.index);
-    const _parentObjects = updateArrIndex(_items, "carouse_position");
+    const _parentObjects = updateArrIndex(_items, _positionKey);
     const response = await updateObjectsIndex(_parentObjects);
-    if (response.length > 0) {
+    if (response?.length > 0) {
       setcarouseData(response);
     }
   };
 
   const updateObjectsIndex = async (data) => {
     try {
-      let response = await axiosServiceApi.put(carouselIndexURL, data);
-      if (response?.data?.carousel) {
-        return response.data.carousel;
+      let response = await axiosServiceApi.put(imageIndexURL, data);
+      let key = Object.keys(response?.data);
+      if (key.length > 0) {
+        return response.data[key];
       }
     } catch (error) {
       console.log("unable to save clinet position");

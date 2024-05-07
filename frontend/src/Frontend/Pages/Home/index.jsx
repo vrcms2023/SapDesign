@@ -19,6 +19,7 @@ import {
   getCarouselFields,
   getFormDynamicFields,
   getTestimonialsFields,
+  getserviceOfferedFields,
   imageDimensionsJson,
 } from "../../../util/dynamicFormFields";
 import ImagesGallery from "../ImagesGallery";
@@ -40,6 +41,7 @@ import { ClientListComponent } from "../../Components/ClientListComponent";
 import { sortCreatedDateByDesc } from "../../../util/dataFormatUtil";
 import HomeClients from "../../Components/HomeClients";
 import { HomeClientsStyled } from "../../../Common/StyledComponents/Styled-HomeClients";
+import { sortByFieldName } from "../../../util/commonUtil";
 
 const Home = () => {
   const editComponentObj = {
@@ -52,6 +54,7 @@ const Home = () => {
   };
 
   const pageType = "home";
+  const serviceOffered = "serviceOffered";
   const [testimonis, setTestmonis] = useState([]);
   const { isAdmin, hasPermission } = useAdminLoginStatus();
   const [componentEdit, SetComponentEdit] = useState(editComponentObj);
@@ -76,7 +79,11 @@ const Home = () => {
           `/testimonials/clientTestimonials/`
         );
         if (response?.status === 200) {
-          setTestmonis(response.data.results);
+          const _testimonialsList = sortByFieldName(
+            response.data.results,
+            "testimonial_position"
+          );
+          setTestmonis(_testimonialsList);
         }
       } catch (e) {
         console.log("unable to access ulr because of server is down");
@@ -94,12 +101,12 @@ const Home = () => {
           `/client/getAllClientLogos/`
         );
         if (response?.status === 200) {
-          setClientsList(
-            response?.data?.results?.length > 0
-              ? sortCreatedDateByDesc(response.data.results)
-              : []
+          const _clientList = sortByFieldName(
+            response.data.results,
+            "client_position"
           );
-          console.log(response.data.results, "Ck]lients");
+
+          setClientsList(_clientList);
         }
       } catch (error) {
         console.log("unable to access ulr because of server is down");
@@ -137,12 +144,12 @@ const Home = () => {
           ""
         )}
         {/* Carousel */}
-        {/* <div className="row">
+        <div className="row">
           <div className="col-md-12 p-0 carousel">
             {isAdmin && hasPermission && <EditIcon editHandler={editHandler} />}
             <Carousel carouselState={componentEdit.carousel} />
           </div>
-        </div> */}
+        </div>
 
         {/* {componentEdit.carousel && (
           <div className="adminEditTestmonial">
@@ -153,7 +160,7 @@ const Home = () => {
               deleteImageURL="carousel/updateCarousel/"
               imagePostURL="carousel/createCarousel/"
               imageUpdateURL="carousel/updateCarousel/"
-              carouselIndexURL="carousel/updateCarouselindex/"
+              imageIndexURL="carousel/updateCarouselindex/"
               imageLabel="Add Carousel Image"
               showDescription={false}
               showExtraFormFields={getCarouselFields("carousel")}
@@ -180,7 +187,7 @@ const Home = () => {
       </div>
 
       {/* Service Offered */}
-      {/* <h1>Service Offered</h1> */}
+      <h1>Service Offered</h1>
       {/* <ImageGalleryComponent pageType={"imageGallery"} /> */}
       {/* <ServiceOfferedComponent pageType={"serviceOffered"} /> */}
       <div className="row">
@@ -191,7 +198,7 @@ const Home = () => {
 
           {/* <Carousel carouselState={componentEdit.serviceOffered} /> */}
           <ServiceOfferedComponent
-            pageType={"serviceOffered"}
+            getBannerAPIURL={`carousel/clientCarouselbyCategory/${serviceOffered}/`}
             componentEdit={componentEdit}
           />
         </div>
@@ -202,13 +209,14 @@ const Home = () => {
           <AdminBanner
             editHandler={editHandler}
             componentType="serviceOffered"
-            getImageListURL="carousel/createCarousel/"
+            getImageListURL={`carousel/getCarousel/${serviceOffered}/`}
             deleteImageURL="carousel/updateCarousel/"
             imagePostURL="carousel/createCarousel/"
             imageUpdateURL="carousel/updateCarousel/"
+            imageIndexURL="carousel/updateCarouselindex/"
             imageLabel="Add Service Offered"
             showDescription={false}
-            showExtraFormFields={getCarouselFields("carousel")}
+            showExtraFormFields={getserviceOfferedFields(serviceOffered)}
             dimensions={imageDimensionsJson("carousel")}
           />
         </div>
@@ -319,7 +327,7 @@ const Home = () => {
         </div>
       </div>
 
-      {componentEdit.testmonial ? (
+      {componentEdit.testmonial && (
         <div className="adminEditTestmonial">
           <AdminBanner
             editHandler={editHandler}
@@ -328,6 +336,7 @@ const Home = () => {
             deleteImageURL="testimonials/updateTestimonials/"
             imagePostURL="testimonials/createTestimonials/"
             imageUpdateURL="testimonials/updateTestimonials/"
+            imageIndexURL="testimonials/updateTestimonialsindex/"
             imageLabel="Add your Image"
             titleTitle="Testmonial Name"
             descriptionTitle="Testimonial Writeup "
@@ -336,16 +345,6 @@ const Home = () => {
             dimensions={imageDimensionsJson("testimonial")}
           />
         </div>
-      ) : (
-        ""
-      )}
-
-      {componentEdit.projects ? (
-        <div className="adminEditTestmonial">
-          <AdminBanner editHandler={editHandler} componentType="projects" />
-        </div>
-      ) : (
-        ""
       )}
 
       {show && <ModelBg />}

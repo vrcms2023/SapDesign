@@ -45,7 +45,8 @@ export const getObjectTitle = (type, item) => {
   const carouse_Field = "carouse_title";
   const testimonial_Field = "testimonial_title";
   const imageGallery_Field = "image_title";
-  if (type === "carousel") return item[carouse_Field];
+  if (type === "carousel" || type === "serviceOffered")
+    return item[carouse_Field];
   if (type === "testmonial") return item[testimonial_Field];
   if (type === "gallery") return item[imageGallery_Field];
 };
@@ -178,6 +179,16 @@ export const getItemStyle = (isDragging, draggableStyle) => ({
   background: isDragging ? "lightgreen" : "white",
   ...draggableStyle,
 });
+
 export const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? "lightblue" : "white",
 });
+
+export const getObjectPositionKey = (item) => {
+  const _keys = Object.keys(item);
+  return _keys.filter((key) => {
+    if (key.indexOf("position") !== -1) {
+      return key;
+    }
+  })[0];
+};
