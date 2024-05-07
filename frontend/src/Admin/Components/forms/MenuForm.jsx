@@ -23,22 +23,22 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
   });
   const [error, setError] = useState(false);
   const [isParentVal, setisParentVal] = useState(
-    editMenu ? (editMenu?.is_Parent ? true : false) : true,
+    editMenu ? (editMenu?.is_Parent ? true : false) : true
   );
   const [isActiveMenu, setisActiveMenu] = useState(
-    editMenu ? (editMenu?.page_isActive ? true : false) : true,
+    editMenu ? (editMenu?.page_isActive ? true : false) : true
   );
 
   const [isAdminmenuActive, setisAdminmenuActive] = useState(
-    editMenu ? (editMenu?.is_Admin_menu ? true : false) : true,
+    editMenu ? (editMenu?.is_Admin_menu ? true : false) : true
   );
 
   const [isClientMenuActive, setIsClientMenuActive] = useState(
-    editMenu ? (editMenu?.is_Client_menu ? true : false) : true,
+    editMenu ? (editMenu?.is_Client_menu ? true : false) : true
   );
   const [optionMenulist, setOptionMenuList] = useState([]);
   const [menuIndexValues, setMenuIndexValues] = useState(
-    generateOptionLength(15),
+    generateOptionLength(15)
   );
 
   const updateMenuIndexValues = (menuOptinList) => {
@@ -129,12 +129,12 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
       if (data?.id) {
         response = await axiosServiceApi.patch(
           `/pageMenu/updatePageMenu/${data?.id}/`,
-          body,
+          body
         );
       } else {
         response = await axiosServiceApi.post(
           `/pageMenu/createPageMenu/`,
-          body,
+          body
         );
       }
       if (
@@ -229,7 +229,7 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
               ) : (
                 ""
               )}
-              {isParentVal ? (
+              {/* {isParentVal ? (
                 <SelectField
                   label={"Menu Position"}
                   fieldName={"page_position"}
@@ -238,7 +238,7 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
                 />
               ) : (
                 ""
-              )}
+              )} */}
 
               <div className="mb-3 row">
                 <label

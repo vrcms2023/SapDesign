@@ -57,10 +57,7 @@ export const InputFields = ({
     case "textarea":
       return (
         <div className="mb-2 row">
-          <label
-            htmlFor=""
-            className="col-sm-12 col-form-label"
-          >
+          <label htmlFor="" className="col-sm-12 col-form-label">
             {label}
           </label>
           <div className="col-sm-12">
@@ -172,7 +169,7 @@ export const SelectField = ({
     <div className="mb-2 row">
       <label
         htmlFor=""
-        className="col-sm-12 col-form-label text-start text-md-end text-capitalize"
+        className="col-sm-12 col-form-label text-start text-capitalize"
       >
         {label}
       </label>
@@ -203,10 +200,7 @@ export const TextAreaField = ({
 }) => {
   return (
     <div className="mb-2 row">
-      <label
-        htmlFor=""
-        className="col-sm-12 col-form-label text-start"
-      >
+      <label htmlFor="" className="col-sm-12 col-form-label text-start">
         {label}
       </label>
       <div className="col-sm-12">
