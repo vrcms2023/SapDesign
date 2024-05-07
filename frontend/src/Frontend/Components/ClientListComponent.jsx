@@ -9,7 +9,6 @@ import {
   getImagePath,
   getListStyle,
   reorder,
-  sortByFieldName,
   updateArrIndex,
 } from "../../util/commonUtil";
 import useAdminLoginStatus from "../../Common/customhook/useAdminLoginStatus";
@@ -52,7 +51,7 @@ export const ClientListComponent = ({
       <ClientStyled>
         <div className="clients my-5">
           {isLoading && (
-            <div className="row">
+            <div className="">
               {[1, 2, 3, 4].map((item, index) => (
                 <div className="col-12" key={index}>
                   <SkeletonImage />
@@ -61,15 +60,16 @@ export const ClientListComponent = ({
             </div>
           )}
           <DragDropContext onDragEnd={onDragEnd}>
-            {clientsList.length > 0 ? (
-              clientsList.map((item, index) => (
-                <Droppable key={index} droppableId={item.id}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      style={getListStyle(snapshot.isDraggingOver)}
-                      {...provided.droppableProps}
-                    >
+            <Droppable droppableId={"clientList"} id="clientList">
+              {(provided, snapshot) => (
+                <div
+                  className="row"
+                  ref={provided.innerRef}
+                  style={getListStyle(snapshot.isDraggingOver)}
+                  {...provided.droppableProps}
+                >
+                  {clientsList.length > 0 ? (
+                    clientsList.map((item, index) => (
                       <Client
                         item={item}
                         key={index}
@@ -77,17 +77,17 @@ export const ClientListComponent = ({
                         editHandler={editHandler}
                         deleteAboutSection={deleteAboutSection}
                       />
-
-                      {provided.placeholder}
+                    ))
+                  ) : (
+                    <div className="text-center text-muted py-5">
+                      {!isLoading && <p>Please add page contents...</p>}
                     </div>
                   )}
-                </Droppable>
-              ))
-            ) : (
-              <div className="text-center text-muted py-5">
-                {!isLoading && <p>Please add page contents...</p>}
-              </div>
-            )}
+
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
           </DragDropContext>
         </div>
       </ClientStyled>
@@ -107,13 +107,14 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
     >
       {(provided) => (
         <div
+          className="col-4"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
           <div
             key={item.id}
-            className={`row mb-2 ${
+            className={`col-12 mb-2 ${
               isAdmin ? "border border-warning mb-3 position-relative" : ""
             } ${index % 2 === 0 ? "normalCSS" : "flipCSS"}`}
           >

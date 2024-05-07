@@ -184,6 +184,10 @@ export const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? "lightblue" : "white",
 });
 
+export const getClinetListStyle = (isDraggingOver) => ({
+  background: isDraggingOver ? "lightblue" : "white",
+});
+
 export const getObjectPositionKey = (item) => {
   const _keys = Object.keys(item);
   return _keys.filter((key) => {

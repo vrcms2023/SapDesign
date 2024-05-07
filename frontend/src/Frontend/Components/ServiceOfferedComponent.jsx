@@ -54,7 +54,7 @@ const ServiceOfferedComponent = ({ getBannerAPIURL, componentEdit }) => {
           <div className="container">
 
             <div className="text-center my-5">
-              <sapn className="fs-1">View Gallery</sapn>
+              <span className="fs-1">View Gallery</span>
             </div>
 
             <div className="row">

@@ -267,11 +267,11 @@ const Home = () => {
 
  
       <HomeClientsStyled>
+
        <div className="text-center mb-5" style={{marginTop: "100px"}}>
         <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>Clients</span>
       </div>
-        <div class="slider">
-          <div class="slide-track">
+ 
             {clientsList.map((client) => {
               return <HomeClients client={client} key={client.id} />;
             })}
