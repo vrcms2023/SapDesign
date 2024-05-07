@@ -111,12 +111,11 @@ const Home = () => {
     getClientList();
   }, []);
   
-
-
   return (
     <>
       <div className="container-fluid">
-        <div className="position-relative">
+        <div className="row">
+        <div className="col-md-12 p-0 position-relative homePage">
           {isAdmin && hasPermission && (
             <EditIcon editHandler={() => editHandler("banner", true)} />
           )}
@@ -124,6 +123,7 @@ const Home = () => {
             getBannerAPIURL={`banner/clientBannerIntro/${pageType}-banner/`}
             bannerState={componentEdit.banner}
           />
+        </div>
         </div>
         {componentEdit.banner ? (
           <div className="adminEditTestmonial">
