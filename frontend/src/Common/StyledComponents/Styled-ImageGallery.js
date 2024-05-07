@@ -17,9 +17,6 @@ export const ImageGalleryStyled = styled.div`
         border: 3px solid ${({ theme }) => theme.black};
     }
   }
-  .viewAllLink {
-    margin-top: 200px;
-}
 
   .homeGalleryCarousel {
     background: ${({ theme }) => theme.black};
@@ -52,6 +49,10 @@ export const ImageGalleryStyled = styled.div`
         border-radius: 50px;
         background-size: 20px;
     }
+  }
+
+  .viewAllBtn {
+    margin-top: 170px
   }
 
     

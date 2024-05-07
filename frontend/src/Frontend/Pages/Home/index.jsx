@@ -140,30 +140,7 @@ const Home = () => {
         ) : (
           ""
         )}
-        {/* Carousel */}
-        {/* <div className="row">
-          <div className="col-md-12 p-0 carousel">
-            {isAdmin && hasPermission && <EditIcon editHandler={editHandler} />}
-            <Carousel carouselState={componentEdit.carousel} />
-          </div>
-        </div>
-
-        {componentEdit.carousel && (
-          <div className="adminEditTestmonial">
-            <AdminBanner
-              editHandler={editHandler}
-              componentType="carousel"
-              getImageListURL="carousel/createCarousel/"
-              deleteImageURL="carousel/updateCarousel/"
-              imagePostURL="carousel/createCarousel/"
-              imageUpdateURL="carousel/updateCarousel/"
-              imageLabel="Add Carousel Image"
-              showDescription={false}
-              showExtraFormFields={getCarouselFields("carousel")}
-              dimensions={imageDimensionsJson("carousel")}
-            />
-          </div>
-        )} */}
+       
 
         {/*  HOME Services */}
         <div className="row" style={{ background: "#f3f3f3" }}>
@@ -179,21 +156,23 @@ const Home = () => {
               </div>
             </div>
           </div>
-
           </div>
-          
-        </div>
+        
 
 
 {/* Service Offered */}
 {/* <h1>Service Offered</h1> */}
 {/* <ImageGalleryComponent pageType={"imageGallery"} /> */}
 {/* <ServiceOfferedComponent pageType={"serviceOffered"} /> */}
+
+        {/* 
+        <div className="text-center mb-5" style={{marginTop: "100px"}}>
+            <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>Services Offered</span>
+          </div>
         <div className="row">
           <div className="col-md-12 p-0 carousel">
             {isAdmin && hasPermission && <EditIcon editHandler={() => editHandler("serviceOffered", true)} />}
             
-            {/* <Carousel carouselState={componentEdit.serviceOffered} /> */}
             <ServiceOfferedComponent pageType={"serviceOffered"} componentEdit={componentEdit}/>
           </div>
         </div>
@@ -213,17 +192,17 @@ const Home = () => {
               dimensions={imageDimensionsJson("carousel")}
             />
           </div>
-)}
+        )} */}
 
         {/* Service Offered */}
         {/* <h1>Service Offered</h1> */}
 
         {/* Image Gallery Carousel */}
-
-        <ImageGalleryStyled>
-          <div className="text-center my-5">
-            <span>View Gallery</span>
+               <ImageGalleryStyled>
+          <div className="text-center mb-5" style={{marginTop: "100px"}}>
+            <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>View Gallery</span>
           </div>
+          
           <div className="row ">
             <div className="col-md-10 offset-md-1 homeGalleryCarousel">
               <div className="container">
@@ -232,16 +211,22 @@ const Home = () => {
                     <Carousel carouselState={componentEdit.carousel} />
                   </div>
                 </div>
+                
               </div>
+              
             </div>
           </div>
-          <div className="text-center py-4 viewAllLink">
-            <Link to="/imageGallery">View All</Link>
-          </div>
+          <div className="text-center py-4 position-relative viewAllBtn">
+                <Link to="/imageGallery" className="btn btn-outline">View All</Link>
+              </div> 
         </ImageGalleryStyled>
+        
 
-        <h1>Clients</h1>
       <HomeClientsStyled>
+      <div className="text-center mb-5" style={{marginTop: "100px"}}>
+        <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>Clients</span>
+      </div>
+
       <div class="slider">
       <div class="slide-track">
         {clientsList.map(client => {
@@ -251,6 +236,9 @@ const Home = () => {
         })}
         </div>
         </div>
+        <div className="text-center py-4 viewAllLink">
+            <Link to="/clients" className="btn btn-outline">View All</Link>
+          </div>
         </HomeClientsStyled>
 
         {/* <ClientListComponent
@@ -260,6 +248,9 @@ const Home = () => {
         /> */}
         {/* Clients */}
 
+        <div className="text-center mb-5" style={{marginTop: "100px"}}>
+        <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>Testimonials</span>
+      </div>
         <div className="row">
           <div className="col-md-12">
             <div className="container">
@@ -303,26 +294,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* HOME Careers */}
-        <div className="row homeCareers py-5">
-          <div className="col-lg-6"></div>
-          <div className="col-md-12 col-lg-6 pe-lg-5">
-            <BriefIntroFrontend
-              introState={componentEdit.briefIntro}
-              pageType="careers"
-            />
-            <div className="bg-white px-5 pb-4 d-flex justify-content-center align-items-center">
-              <Ancher
-                AncherLabel="Careers"
-                Ancherpath="/careers"
-                AncherClass="btn btn-primary d-flex justify-content-center align-items-center gap-3 w-50"
-                AnchersvgColor="#ffffff"
-              />
-            </div>
-          </div>
-        </div>
-      
-
       {componentEdit.testmonial ? (
         <div className="adminEditTestmonial">
           <AdminBanner
@@ -351,7 +322,7 @@ const Home = () => {
       ) : (
         ""
       )}
-
+</div>
       {show && <ModelBg />}
       {/* {showEditPop && <ModelBg />} */}
     </>
