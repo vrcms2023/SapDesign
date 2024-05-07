@@ -120,15 +120,15 @@ const Home = () => {
     <>
       <div className="container-fluid">
         <div className="row">
-        <div className="col-md-12 p-0 position-relative homePage">
-          {isAdmin && hasPermission && (
-            <EditIcon editHandler={() => editHandler("banner", true)} />
-          )}
-          <Banner
-            getBannerAPIURL={`banner/clientBannerIntro/${pageType}-banner/`}
-            bannerState={componentEdit.banner}
-          />
-        </div>
+          <div className="col-md-12 p-0 position-relative homePage">
+            {isAdmin && hasPermission && (
+              <EditIcon editHandler={() => editHandler("banner", true)} />
+            )}
+            <Banner
+              getBannerAPIURL={`banner/clientBannerIntro/${pageType}-banner/`}
+              bannerState={componentEdit.banner}
+            />
+          </div>
         </div>
         {componentEdit.banner ? (
           <div className="adminEditTestmonial">
@@ -146,12 +146,12 @@ const Home = () => {
           ""
         )}
         {/* Carousel */}
-        <div className="row">
+        {/* <div className="row">
           <div className="col-md-12 p-0 carousel">
             {isAdmin && hasPermission && <EditIcon editHandler={editHandler} />}
             <Carousel carouselState={componentEdit.carousel} />
           </div>
-        </div>
+        </div> */}
 
         {/* {componentEdit.carousel && (
           <div className="adminEditTestmonial">
