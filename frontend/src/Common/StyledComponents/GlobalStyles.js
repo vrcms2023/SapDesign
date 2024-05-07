@@ -123,11 +123,14 @@ body {
 }
 
 .btn-outline {
-    border: 3px solid ${({ theme }) => theme.secondaryColor} !important; 
-    color:${({ theme }) => theme.primaryColor};
+    border: 1px solid ${({ theme }) => theme.gray888} !important; 
+    color:${({ theme }) => theme.black};
 }
 
-.btn-outline:hover { }
+.btn-outline:hover { 
+    border: 1px solid ${({ theme }) => theme.black} !important; 
+    color:${({ theme }) => theme.gray888};
+}
 
 .btn-more {
   border: 1px solid ${({ theme }) => theme.lightgray} !important; 

@@ -145,6 +145,9 @@ const Home = () => {
         ) : (
           ""
         )}
+
+       
+
         {/* Carousel */}
         {/* <div className="row">
           <div className="col-md-12 p-0 carousel">
@@ -171,6 +174,7 @@ const Home = () => {
           </div>
         )} */}
 
+
         {/*  HOME Services */}
         <div className="row" style={{ background: "#f3f3f3" }}>
           <div className="col-md-8 offset-md-2">
@@ -185,6 +189,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -192,6 +197,9 @@ const Home = () => {
       <h1>Service Offered</h1>
       {/* <ImageGalleryComponent pageType={"imageGallery"} /> */}
       {/* <ServiceOfferedComponent pageType={"serviceOffered"} /> */}
+      <div className="text-center mb-5" style={{marginTop: "100px"}}>
+            <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>Services Offered</span>
+          </div>
       <div className="row">
         <div className="col-md-12 p-0 carousel">
           {isAdmin && hasPermission && (
@@ -203,8 +211,10 @@ const Home = () => {
             getBannerAPIURL={`carousel/clientCarouselbyCategory/${serviceOffered}/`}
             componentEdit={componentEdit}
           />
+
         </div>
       </div>
+
 
       {componentEdit.serviceOffered && (
         <div className="adminEditTestmonial">
@@ -224,35 +234,44 @@ const Home = () => {
         </div>
       )}
 
+
       {/* Service Offered */}
       {/* <h1>Service Offered</h1> */}
+
 
       {/* Image Gallery Carousel */}
 
       <ImageGalleryStyled>
-        <div className="text-center my-5">
-          <span>View Gallery</span>
-        </div>
+        <div className="text-center mb-5" style={{marginTop: "100px"}}>
+            <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>View Gallery</span>
+          </div>
         <div className="row ">
           <div className="col-md-10 offset-md-1 homeGalleryCarousel">
             <div className="container">
               <div className="row">
                 <div className="col-md-10 offset-md-1">
                   <Carousel carouselState={componentEdit.carousel} />
+
                 </div>
+                
               </div>
+              
             </div>
           </div>
+
         </div>
-        <div className="text-center py-4 viewAllLink">
-          <Link to="/imageGallery">View All</Link>
-        </div>
+        <div className="text-center py-4 position-relative viewAllBtn">
+                <Link to="/imageGallery" className="btn btn-outline">View All</Link>
+              </div> 
       </ImageGalleryStyled>
 
-      <h1>Clients</h1>
+ 
       <HomeClientsStyled>
-        <div className="slider">
-          <div className="slide-track">
+
+       <div className="text-center mb-5" style={{marginTop: "100px"}}>
+        <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>Clients</span>
+      </div>
+ 
             {clientsList.map((client) => {
               return <HomeClients client={client} key={client.id} />;
             })}
@@ -260,13 +279,17 @@ const Home = () => {
         </div>
       </HomeClientsStyled>
 
+
       {/* <ClientListComponent
           clientsList={clientsList}
           deleteAboutSection={""}
           editHandler={""}
         /> */}
-      {/* Clients */}
 
+      {/* Clients */}
+<div className="text-center mb-5" style={{marginTop: "100px"}}>
+        <span className="fs-1 px-4 py-2" style={{borderBottom: "1px solid #444444"}}>Testimonials</span>
+      </div>
       <div className="row">
         <div className="col-md-12">
           <div className="container">
@@ -288,6 +311,7 @@ const Home = () => {
                   ""
                 )}
                 {/* {testimonis.length > 0 ? (
+
               <Testimonials testimonis={testimonis} />
             ) : (
               ""
@@ -308,28 +332,10 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* HOME Careers */}
-      <div className="row homeCareers py-5">
-        <div className="col-lg-6"></div>
-        <div className="col-md-12 col-lg-6 pe-lg-5">
-          <BriefIntroFrontend
-            introState={componentEdit.briefIntro}
-            pageType="careers"
-          />
-          <div className="bg-white px-5 pb-4 d-flex justify-content-center align-items-center">
-            <Ancher
-              AncherLabel="Careers"
-              Ancherpath="/careers"
-              AncherClass="btn btn-primary d-flex justify-content-center align-items-center gap-3 w-50"
-              AnchersvgColor="#ffffff"
-            />
-          </div>
-        </div>
-      </div>
 
       {componentEdit.testmonial && (
+
         <div className="adminEditTestmonial">
           <AdminBanner
             editHandler={editHandler}
@@ -348,7 +354,7 @@ const Home = () => {
           />
         </div>
       )}
-
+</div>
       {show && <ModelBg />}
       {/* {showEditPop && <ModelBg />} */}
     </>
