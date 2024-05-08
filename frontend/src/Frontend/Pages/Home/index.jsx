@@ -257,7 +257,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="text-center py-4 position-relative viewAllBtn">
+        <div className="text-center py-4 position-relative " style={{ marginTop: "200px" }}>
           <Link to="/imageGallery" className="btn btn-outline">
             View All
           </Link>
@@ -273,15 +273,33 @@ const Home = () => {
             Clients
           </span>
         </div>
-        <div class="slider">
+        {/* <div class="slider">
           <div class="slide-track">
             {clientsList.map((client) => {
               return <HomeClients client={client} key={client.id} />;
             })}
           </div>
+        </div> */}
+        <div className=" position-relative">
+        <div class="scroll-container">
+            <div class="carousel-primary">
+              {clientsList.map((client) => {
+                  return (
+                    <img src={client.path} alt={client.client_title}  key={client.id} />
+                  );
+              })}
+            </div>
+            <div class="carousel-primary carousel-secondary">
+              {clientsList.map((client) => {
+                  return (
+                    <img src={client.path} alt={client.client_title}  key={client.id} />
+                  );
+              })}
+            </div>
         </div>
-        <div className="text-center py-4 position-relative viewAllBtn">
-        <Link to="/clients" className="btn btn-outline">
+        </div>
+        <div className="text-center py-4 position-relative viewAllBtn" style={{ marginTop: "250px" }}>
+          <Link to="/clients" className="btn btn-outline">
             View All
           </Link>
           </div>

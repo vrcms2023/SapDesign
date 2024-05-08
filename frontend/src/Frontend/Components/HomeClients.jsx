@@ -1,10 +1,11 @@
 import React from 'react'
 
-const HomeClients = ({client}) => {
+const HomeClients = ({clients}) => {
   return (
     <div className='slide'>
-        <img src={client.path} alt={client.client_title}  key={client.id} />
+        <img src={clients.path} alt={clients.client_title}  key={clients.id} />
     </div>
+    
   )
 }
 
