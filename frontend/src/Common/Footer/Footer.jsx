@@ -44,17 +44,13 @@ const Footer = () => {
   const { addressList } = useSelector((state) => state.addressList);
   const dispatch = useDispatch();
 
+  const { menuList } = useSelector((state) => state.auth);
+
   const date = new Date();
   const fullYear = date.getFullYear();
 
   useEffect(() => {
-    if (footerData?.length === 0) {
-      dispatch(getFooterValues());
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!componentEdit.address && footerData?.address?.length > 0) {
+    if (!componentEdit.address || footerData?.length === 0) {
       dispatch(getFooterValues());
     }
   }, [componentEdit.address]);
@@ -72,8 +68,8 @@ const Footer = () => {
   }, []);
 
   useEffect(() => {
-    if (addressList?.addressList?.length > 0) {
-      setAddress(addressList.addressList[0]);
+    if (addressList?.length > 0) {
+      setAddress(addressList[0]);
     }
   }, [addressList]);
   const showModel = (type) => {
@@ -126,7 +122,11 @@ const Footer = () => {
             <div className="col-md-3 text-center text-md-start">
               <h5>Company</h5>
               <ul className="">
-                <li>
+                {menuList?.map((menu) => {
+                  return <ChildMenuContent menu={menu} />;
+                })}
+
+                {/* <li>
                   <Link to="/" className="ms-0">
                     Home
                   </Link>
@@ -151,7 +151,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link to="/contact">Contact Us</Link>
-                </li>
+                </li> */}
                 {/* <li>
                   <Link to="" onClick={showModel}>
                     Privacy Policy
@@ -163,24 +163,63 @@ const Footer = () => {
 
             <hr className="d-block d-md-none" />
             <div className="col-md-3 text-center text-md-start">
-              <h5>Address</h5>
-              SAP Design Studio, <br />
-              1st Floor, <br />
-              12th Main Road, <br />
-              HAL 2nd Stage, <br />
-              Doopanahalli, <br />
-              Indiranagar, <br />
-              Karnataka, <br />
-              India
+              {address && (
+                <>
+                  <h5>Address</h5>
+                  <p className="m-0 fw-bold">{address.company_name}</p>
+                  <p className="m-0">{address.address_dr_no}</p>
+                  <p className="m-0">{address.street} </p>
+                  <p className="m-0">{address.location} </p>
+                  <p className="m-0">{address.city} </p>
+                  <p className="m-0">{address.state}</p>
+                  <p className="m-0">{address.location_title}</p>
+                </>
+              )}
             </div>
 
             <hr className="d-block d-md-none" />
             <div className="col-md-3 text-center text-md-start">
               <h5>Reach Us</h5>
-              +1 900 897 6264 <br />
+              <p className="m-0 ">
+                <i
+                  className="fa fa-phone-square fs-4 me-2"
+                  aria-hidden="true"
+                ></i>
+                {address?.phonen_number}
+              </p>
+              <p className="m-0 ">
+                <i
+                  className="fa fa-phone-square fs-4 me-2"
+                  aria-hidden="true"
+                ></i>
+                {address?.phonen_number_2}
+              </p>
+              <p className="m-0 ">
+                <i className="fa fa-whatsapp fs-4 me-2" aria-hidden="true"></i>
+                {address?.phonen_number_3}
+              </p>
               <br />
-              sudheera@sap-designstudio.com <br />
-              praveenkumar@sap-designstudio.com <br />
+              <p className="m-0 ">
+                <i
+                  className="fa fa-envelope-o fs-4 me-2"
+                  aria-hidden="true"
+                ></i>
+                {address?.emailid}
+              </p>
+              <p className="m-0 ">
+                <i
+                  className="fa fa-envelope-o fs-4 me-2"
+                  aria-hidden="true"
+                ></i>
+                {address?.emailid_2}
+              </p>
+              <p className="m-0 ">
+                <i
+                  className="fa fa-envelope-o fs-4 me-2"
+                  aria-hidden="true"
+                ></i>
+                {address?.emailid_3}
+              </p>
             </div>
 
             {
@@ -332,3 +371,13 @@ const Footer = () => {
   );
 };
 export default Footer;
+
+const ChildMenuContent = ({ menu }) => {
+  return (
+    <li>
+      <Link to={menu?.page_url} className="ms-0">
+        {menu?.page_label}
+      </Link>
+    </li>
+  );
+};

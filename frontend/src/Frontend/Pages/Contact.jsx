@@ -218,25 +218,13 @@ const Contact = () => {
                       cssClass="mb-2 fs-4 text-black"
                     />
                     <div className="mb-2 contactAddress">
-                    <p className="m-0 fw-bold">{"SAP Design Studio"}</p>
+                      <p className="m-0 fw-bold">{item.company_name}</p>
                       <p className="m-0">{item.address_dr_no}</p>
                       <p className="m-0">{item.street} </p>
                       <p className="m-0">{item.location} </p>
                       <p className="m-0">{item.city} </p>
                       <p className="mb-3">{item.state}</p>
-                       {/* <p className="m-0">Pincode - {item.postcode}</p> */}
-                      <p className="mt-2">
-                        {item.phonen_number && (
-                          <>
-                            {/* <Title title="Phone Number :" cssClass="mb-2" /> */}
-                            <i
-                              className="fa fa-phone-square fs-4 me-2"
-                              aria-hidden="true"
-                            ></i>{" "}
-                            {item.phonen_number}
-                          </>
-                        )}
-                      </p>
+                      {/* <p className="m-0">Pincode - {item.postcode}</p> */}
                       <p className="mt-2">
                         {item.phonen_number && (
                           <>
@@ -252,44 +240,45 @@ const Contact = () => {
                       <p className="mt-2">
                         {item.phonen_number_2 && (
                           <>
+                            {/* <Title title="Phone Number :" cssClass="mb-2" /> */}
+                            <i
+                              className="fa fa-phone-square fs-4 me-2"
+                              aria-hidden="true"
+                            ></i>{" "}
+                            {item.phonen_number_2}
+                          </>
+                        )}
+                      </p>
+                      <p className="mt-2">
+                        {item.phonen_number_3 && (
+                          <>
                             <i
                               className="fa fa-whatsapp fs-4 me-2"
                               aria-hidden="true"
                             ></i>{" "}
-                            {item.phonen_number_2}{" "}
+                            {item.phonen_number_3}{" "}
                           </>
                         )}
                       </p>
                       <p className="mt-0">
-                        {item.emailid && (
+                        {item.emailid_2 && (
                           <>
                             <i
                               className="fa fa-envelope-o fs-4 me-2"
                               aria-hidden="true"
                             ></i>{" "}
-                            {item.emailid}{" "}
+                            {item.emailid_2}{" "}
                           </>
                         )}
                       </p>
                       <p className="mt-0">
-                        {item.emailid && (
+                        {item.emailid_3 && (
                           <>
                             <i
                               className="fa fa-envelope-o fs-4 me-2"
                               aria-hidden="true"
                             ></i>{" "}
-                            {item.emailid}{" "}
-                          </>
-                        )}
-                      </p>
-                      <p className="mt-0">
-                        {item.emailid && (
-                          <>
-                            <i
-                              className="fa fa-envelope-o fs-4 me-2"
-                              aria-hidden="true"
-                            ></i>{" "}
-                            {item.emailid}{" "}
+                            {item.emailid_3}{" "}
                           </>
                         )}
                       </p>
@@ -307,10 +296,10 @@ const Contact = () => {
 
         <div className="row">
           <div className="col-md-12 text-center py-4">
-          <Title
-                title="Quick contact"
-                cssClass="text-black fs-3 fw-bold mb-4"
-              />
+            <Title
+              title="Quick contact"
+              cssClass="text-black fs-3 fw-bold mb-4"
+            />
           </div>
           <div className="col-md-7 position-relative">
             {isAdmin && hasPermission && (
@@ -337,7 +326,6 @@ const Contact = () => {
               className="my-0 contactForm"
               onSubmit={handleSubmit(onFormSubmit)}
             >
-             
               <InputField
                 label="Name"
                 fieldName="firstName"
@@ -368,7 +356,6 @@ const Contact = () => {
               />
 
               <div className="mb-3 row">
-                
                 <div className="col-sm-12 mt-2">
                   <button
                     type="submit"

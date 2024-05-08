@@ -135,6 +135,7 @@ export const InputField = ({
   cssClass,
   validationObject,
   error,
+  isRequired,
 }) => {
   return (
     <div className="mb-2 row">
@@ -144,7 +145,7 @@ export const InputField = ({
           cssClass ? cssClass : ""
         }`}
       >
-        {label}
+        {label} {isRequired && <span className="error">*</span>}
       </label>
       <div className="col-sm-12">
         <input
@@ -152,6 +153,7 @@ export const InputField = ({
           type={type}
           className="form-control p-2"
         />
+
         <span className="error">{error}</span>
       </div>
     </div>
