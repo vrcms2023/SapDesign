@@ -62,30 +62,30 @@ export const ClientListComponent = ({
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId={"clientList"} id="clientList">
               {(provided, snapshot) => (
-                  <div
-                    className="row"
-                    ref={provided.innerRef}
-                    style={getListStyle(snapshot.isDraggingOver)}
-                    {...provided.droppableProps}
-                  >
-                    {clientsList.length > 0 ? (
-                      clientsList.map((item, index) => (
-                        <Client
-                          item={item}
-                          key={index}
-                          index={index}
-                          editHandler={editHandler}
-                          deleteAboutSection={deleteAboutSection}
-                        />
-                      ))
-                    ) : (
-                      <div className="text-center text-muted py-5">
-                        {!isLoading && <p>Please add page contents...</p>}
-                      </div>
-                    )}
+                <div
+                  className="row"
+                  ref={provided.innerRef}
+                  style={getListStyle(snapshot.isDraggingOver)}
+                  {...provided.droppableProps}
+                >
+                  {clientsList.length > 0 ? (
+                    clientsList.map((item, index) => (
+                      <Client
+                        item={item}
+                        key={index}
+                        index={index}
+                        editHandler={editHandler}
+                        deleteAboutSection={deleteAboutSection}
+                      />
+                    ))
+                  ) : (
+                    <div className="text-center text-muted py-5">
+                      {!isLoading && <p>Please add page contents...</p>}
+                    </div>
+                  )}
 
-                    {provided.placeholder}
-                  </div>
+                  {provided.placeholder}
+                </div>
               )}
             </Droppable>
           </DragDropContext>
@@ -107,7 +107,7 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
     >
       {(provided) => (
         <div
-          className="col-md-3 image"
+          className={`${isAdmin ? "col-12" : "col-md-3"} image`}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -115,7 +115,9 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
           <div
             key={item.id}
             className={`mb-3 ${
-              isAdmin ? "border border-warning mb-3 position-relative" : "clientFrontend overlayContainer border p-3"
+              isAdmin
+                ? "border border-warning mb-3 position-relative"
+                : "clientFrontend overlayContainer border p-3"
             } ${index % 2 === 0 ? "normalCSS" : "flipCSS"}`}
           >
             {isAdmin && hasPermission && (
@@ -143,10 +145,14 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
             </div>
             <div className="mt-3 d-flex justify-content-center align-items-center flex-column clientDetails">
               {item.client_title && (
-                <Title title={item.client_title} cssClass="fs-5 mb-2 text-center" />
+                <Title
+                  title={item.client_title}
+                  cssClass="fs-5 mb-2 text-center"
+                />
               )}
 
-                <div className={`details ${ isAdmin ? "" : "overlay" }`}
+              <div
+                className={`details ${isAdmin ? "" : "overlay"}`}
                 dangerouslySetInnerHTML={{
                   __html: item.client_description,
                 }}
