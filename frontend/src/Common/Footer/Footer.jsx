@@ -123,7 +123,7 @@ const Footer = () => {
               <h5>Company</h5>
               <ul className="">
                 {menuList?.map((menu) => {
-                  return <ChildMenuContent menu={menu} />;
+                  return <ChildMenuContent menu={menu} key={menu.id} />;
                 })}
 
                 {/* <li>
