@@ -15,7 +15,12 @@ import _ from "lodash";
 import { fieldValidation } from "../../../util/validationUtil";
 import DraggableAddress from "../AddressList/DraggableAddress";
 import DraggableAddressList from "../AddressList/DraggableAddressList";
-import { sortByFieldName } from "../../../util/commonUtil";
+import {
+  getObjectPositionKey,
+  reorder,
+  sortByFieldName,
+  updateArrIndex,
+} from "../../../util/commonUtil";
 import { getAddressList } from "../../../features/address/addressActions";
 
 const AddressForm = ({ editHandler, componentType, address }) => {
@@ -108,15 +113,14 @@ const AddressForm = ({ editHandler, componentType, address }) => {
   };
 
   const updateAddressList = (data) => {
-    const item = listofAddress.filter((item) => item.id === data.id);
-    let list = [...listofAddress];
-    if (item.length > 0) {
-      list.splice(item[0].address_position, 1);
-      list.splice(list.length, 0, data);
+    let _arr = JSON.parse(JSON.stringify(listofAddress));
+    let foundIndex = _arr.findIndex((x) => x.id == data.id);
+    if (foundIndex > 0) {
+      _arr[foundIndex] = data;
     } else {
-      list.push(data);
+      _arr.push(data);
     }
-    const _list = sortByFieldName(list, "address_position");
+    const _list = sortByFieldName(_arr, "address_position");
     setListofAddress(_list);
   };
 
@@ -126,18 +130,14 @@ const AddressForm = ({ editHandler, componentType, address }) => {
   const dragEnded = async (param) => {
     const { source, destination } = param;
     if (!destination) return true;
-    let _arr = [...listofAddress];
-
-    const sourceobj = await updateObjectIndex(
-      _arr[source.index],
-      destination.index
-    );
-
-    const destinationObj = await updateObjectIndex(
-      _arr[destination.index],
-      source.index
-    );
-    dispatch(getAddressList());
+    let _arr = JSON.parse(JSON.stringify(listofAddress));
+    const _positionKey = getObjectPositionKey(_arr[0]);
+    const _items = reorder(_arr, source.index, destination.index);
+    const _parentObjects = updateArrIndex(_items, _positionKey);
+    const response = await updateObjectsIndex(_parentObjects);
+    if (response?.length > 0) {
+      setListofAddress(response);
+    }
   };
 
   useEffect(() => {
@@ -146,15 +146,9 @@ const AddressForm = ({ editHandler, componentType, address }) => {
     }
   }, [addressList]);
 
-  const updateObjectIndex = async (item, index) => {
-    let data = {};
-    data["updated_by"] = userName;
-    data["index"] = index;
+  const updateObjectsIndex = async (data) => {
     try {
-      let response = await axiosServiceApi.put(
-        `/address/updateindex/${item.id}/`,
-        data
-      );
+      let response = await axiosServiceApi.put(`/address/updateindex/`, data);
       if (response?.data?.addressList) {
         return response.data.addressList;
       }
@@ -170,8 +164,10 @@ const AddressForm = ({ editHandler, componentType, address }) => {
       <form className="" onSubmit={handleSubmit(onSubmit)}>
         <div className="container my-3">
           <div className="row">
-          <div className="col-md-12 mb-md-0  ">
-            <p className="text-dark fw-bold fs-6">Use drag option to shuffle the addresses</p>
+            <div className="col-md-12 mb-md-0  ">
+              <p className="text-dark fw-bold fs-6">
+                Use drag option to shuffle the addresses
+              </p>
               <DragDropContext onDragEnd={dragEnded}>
                 <Droppable droppableId="address-wrapper">
                   {(provided, snapshot) => (
@@ -206,20 +202,40 @@ const AddressForm = ({ editHandler, componentType, address }) => {
                 </Droppable>
               </DragDropContext>
             </div>
-            
+
             <div className="col-md-12">
               <p className="text-dark fw-bold mt-3">Address Form</p>
-            <hr className="mb-3 text-dark" /></div>
+              <hr className="mb-3 text-dark" />
+            </div>
             <div className="col-md-12 mb-md-0">
-
               <InputField
-                label="Company"
-                fieldName="company"
+                label="Company Name"
+                fieldName="company_name"
                 register={register}
+                validationObject={fieldValidation.company_name}
+                error={errors?.company_name?.message}
+                isRequired={true}
               />
               <InputField
-                label="Door Number"
-                fieldName="address_dr_no"
+                label="Country"
+                fieldName="location_title"
+                register={register}
+                validationObject={fieldValidation.location_title}
+                error={errors?.location_title?.message}
+                isRequired={true}
+              />
+              <InputField label="State" fieldName="state" register={register} />
+              <InputField
+                label="City"
+                fieldName="city"
+                register={register}
+                validationObject={fieldValidation.city}
+                error={errors?.city?.message}
+                isRequired={true}
+              />
+              <InputField
+                label="Location"
+                fieldName="location"
                 register={register}
               />
               <InputField
@@ -228,27 +244,10 @@ const AddressForm = ({ editHandler, componentType, address }) => {
                 register={register}
               />
               <InputField
-                label="Location"
-                fieldName="location"
+                label="Door Number"
+                fieldName="address_dr_no"
                 register={register}
               />
-              <InputField
-                label="City"
-                fieldName="city"
-                register={register}
-                validationObject={fieldValidation.city}
-                error={errors?.city?.message}
-              />
-              <InputField label="State" fieldName="state" register={register} />
-
-              <InputField
-                label="Country"
-                fieldName="location_title"
-                register={register}
-                validationObject={fieldValidation.location_title}
-                error={errors?.location_title?.message}
-              />
-              
 
               {/* <InputField
                 label="Postcode"
@@ -258,50 +257,51 @@ const AddressForm = ({ editHandler, componentType, address }) => {
                 error={errors?.postcode?.message}
               /> */}
               <InputField
-                label="Email 1"
+                label="Email"
                 fieldName="emailid"
                 register={register}
                 validationObject={fieldValidation.emailid}
                 error={errors?.emailid?.message}
+                isRequired={true}
               />
               <InputField
                 label="Email 2"
-                fieldName="emailid"
+                fieldName="emailid_2"
                 register={register}
-                validationObject={fieldValidation.emailid}
-                error={errors?.emailid?.message}
+                validationObject={fieldValidation.emailid_2}
+                error={errors?.emailid_2?.message}
+                isRequired={false}
               />
               <InputField
                 label="Email 3"
-                fieldName="emailid"
+                fieldName="emailid_3"
                 register={register}
-                validationObject={fieldValidation.emailid}
-                error={errors?.emailid?.message}
+                validationObject={fieldValidation.emailid_2}
+                error={errors?.emailid_2?.message}
               />
               <InputField
-                label="Phone 1"
+                label="Phone"
                 fieldName="phonen_number"
                 register={register}
                 validationObject={fieldValidation.phonen_number}
                 error={errors?.phonen_number?.message}
+                isRequired={true}
               />
               <InputField
-                label="Phone 2"
-                fieldName="phonen_number"
-                register={register}
-                validationObject={fieldValidation.phonen_number}
-                error={errors?.phonen_number?.message}
-              />
-              <InputField
-                label="WhatsApp No."
+                label="Phone Number 2"
                 fieldName="phonen_number_2"
                 register={register}
                 validationObject={fieldValidation.phonen_number_2}
                 error={errors?.phonen_number_2?.message}
               />
+              <InputField
+                label="WhatsApp No."
+                fieldName="phonen_number_3"
+                register={register}
+                validationObject={fieldValidation.phonen_number_2}
+                error={errors?.phonen_number_2?.message}
+              />
             </div>
-
-            
           </div>
           <div className="row">
             <div className="d-flex justify-content-center align-items-center gap-1 gap-md-3 mb-4">

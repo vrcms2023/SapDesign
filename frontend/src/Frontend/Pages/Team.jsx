@@ -13,7 +13,15 @@ import BriefIntroFrontend from "../../Common/BriefIntro";
 import useAdminLoginStatus from "../../Common/customhook/useAdminLoginStatus";
 import AdminBriefIntro from "../../Admin/Components/BriefIntro/index";
 import AddEditTeam from "../../Admin/Components/News";
-import { getImagePath, paginationDataFormat } from "../../util/commonUtil";
+import {
+  getImagePath,
+  getListStyle,
+  getObjectPositionKey,
+  paginationDataFormat,
+  reorder,
+  sortByFieldName,
+  updateArrIndex,
+} from "../../util/commonUtil";
 import { sortCreatedDateByDesc } from "../../util/dataFormatUtil";
 import { axiosClientServiceApi, axiosServiceApi } from "../../util/axiosUtil";
 import { confirmAlert } from "react-confirm-alert";
@@ -23,6 +31,7 @@ import Search from "../../Common/Search";
 import CustomPagination from "../../Common/CustomPagination";
 import { removeActiveClass } from "../../util/ulrUtil";
 import { TeamStyled } from "../../Common/StyledComponents/Styled-Team";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 const Team = () => {
   const editComponentObj = {
@@ -56,7 +65,9 @@ const Team = () => {
   };
 
   const setResponseData = (data) => {
-    setTeam(data.results.length > 0 ? sortCreatedDateByDesc(data.results) : []);
+    const _positionKey = getObjectPositionKey(data.results[0]);
+    const _teamlList = sortByFieldName(data.results, _positionKey);
+    setTeam(_teamlList);
 
     setPaginationData(paginationDataFormat(data));
     setCurrentPage(1);
@@ -111,6 +122,33 @@ const Team = () => {
   useEffect(() => {
     removeActiveClass();
   }, []);
+
+  const onDragEnd = async (result) => {
+    const { source, destination } = result;
+    if (!destination) return true;
+
+    const _items = reorder(team, source.index, destination.index);
+    const _parentObjects = updateArrIndex(_items, "team_member_position");
+    const response = await updateObjectsIndex(_parentObjects);
+    if (response.length > 0) {
+      setTeam(_items);
+    }
+  };
+
+  const updateObjectsIndex = async (data) => {
+    try {
+      let response = await axiosServiceApi.put(
+        `/ourteam/updateTeamindex/`,
+        data
+      );
+      if (response?.data?.team) {
+        return response.data.team;
+      }
+    } catch (error) {
+      console.log("unable to save clinet position");
+    }
+  };
+
   return (
     <>
       <div className="position-relative">
@@ -223,139 +261,35 @@ const Team = () => {
 
         <TeamStyled>
           <div className="row">
-            {team.length > 0 ? (
-              team.map((item, index) => (
-                <div
-                  key={item.id}
-                  className={`col-md-6 px-5 ${
-                    isAdmin ? "border border-warning position-relative" : ""
-                  } ${index % 2 === 0 ? "normalCSS" : "flipCSS"}`}
-                >
-                  {isAdmin && hasPermission && (
-                    <>
-                      <EditIcon
-                        editHandler={() =>
-                          editHandler("editSection", true, item)
-                        }
-                      />
-                      <Link
-                        className="deleteSection"
-                        onClick={() => deleteAboutSection(item)}
-                      >
-                        <i
-                          className="fa fa-trash-o text-danger fs-4"
-                          aria-hidden="true"
-                        ></i>
-                      </Link>
-                    </>
-                  )}
-                  <img
-                    src={getImagePath(item.path)}
-                    alt=""
-                    className="img-fluid"
-                  />
-
-                  <div className="p-3">
-                    {item.team_member_name && (
-                      <Title
-                        title={item.team_member_name}
-                        cssClass="fs-4 mt-2 title fw-bolder"
-                      />
-                    )}
-
-                    {item.team_member_designation && (
-                      <small className="mb-1">
-                        {item.team_member_designation}
-                      </small>
-                    )}
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: item.team_member_about_us,
-                      }}
-                    />
-
-                    {item.team_member_phone_number ||
-                      (item.team_member_email && <hr />)}
-
-                    {item.team_member_email && (
-                      <div className="mb-2">
-                        <a href={`mailto:${item.team_member_email}`}>
-                          {item.team_member_email}
-                        </a>
-                      </div>
-                    )}
-                    {item.team_member_phone_number && (
-                      <p>{item.team_member_phone_number}</p>
-                    )}
-                    {item.team_member_phone_number || item.team_member_email ? (
-                      <hr />
+            <DragDropContext onDragEnd={onDragEnd}>
+              <Droppable droppableId={"teamList"} id="teamList">
+                {(provided, snapshot) => (
+                  <div
+                    className="row"
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}
+                    {...provided.droppableProps}
+                  >
+                    {team.length > 0 ? (
+                      team.map((item, index) => (
+                        <TeamItem
+                          key={index}
+                          item={item}
+                          index={index}
+                          editHandler={editHandler}
+                          deleteAboutSection={deleteAboutSection}
+                        />
+                      ))
                     ) : (
-                      ""
+                      <p className="text-center text-muted py-5">
+                        Please add page contents...
+                      </p>
                     )}
-
-                    <div className="social">
-                      {item.facebook_url && (
-                        <Link to={item.facebook_url} target="_blank">
-                          <i
-                            className="fa fa-facebook-square"
-                            aria-hidden="true"
-                          ></i>
-                        </Link>
-                      )}
-
-                      {item.twitter_url && (
-                        <Link to={item.twitter_url} target="_blank">
-                          <i
-                            className="fa fa-twitter-square"
-                            aria-hidden="true"
-                          ></i>
-                        </Link>
-                      )}
-
-                      {item.youtube_url && (
-                        <Link to={item.youtube_url} target="_blank">
-                          <i
-                            className="fa fa-youtube-play"
-                            aria-hidden="true"
-                          ></i>
-                        </Link>
-                      )}
-
-                      {item.linkedIn_url && (
-                        <Link to={item.linkedIn_url} target="_blank">
-                          <i
-                            className="fa fa-linkedin-square"
-                            aria-hidden="true"
-                          ></i>
-                        </Link>
-                      )}
-
-                      {item.instagram_url && (
-                        <Link to={item.instagram_url} target="_blank">
-                          <i className="fa fa-instagram" aria-hidden="true"></i>
-                        </Link>
-                      )}
-
-                      {item.vimeo_url && (
-                        <Link to={item.vimeo_url} target="_blank">
-                          <i className="fa fa-vimeo" aria-hidden="true"></i>
-                        </Link>
-                      )}
-
-                      {item.pinterest_url && (
-                        <Link to={item.pinterest_url} target="_blank">
-                          <i className="fa fa-pinterest" aria-hidden="true"></i>
-                        </Link>
-                      )}
-                    </div>
+                    {provided.placeholder}
                   </div>
-                </div>
-              ))
-            ) : (
-              <p className="text-center text-muted py-5">
-                Please add page contents...
-              </p>
-            )}
+                )}
+              </Droppable>
+            </DragDropContext>
           </div>
         </TeamStyled>
         <div className="row mb-4">
@@ -390,3 +324,131 @@ const Team = () => {
 };
 
 export default Team;
+
+const TeamItem = ({ item, index, deleteAboutSection, editHandler }) => {
+  const { isAdmin, hasPermission } = useAdminLoginStatus();
+  return (
+    <Draggable
+      isDragDisabled={isAdmin ? false : true}
+      key={item.id}
+      draggableId={item.id}
+      index={index}
+      id={item.id}
+    >
+      {(provided) => (
+        <div
+          className="col-6"
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <div
+            key={item.id}
+            className={`px-5 ${
+              isAdmin ? "border border-warning position-relative" : ""
+            } ${index % 2 === 0 ? "normalCSS" : "flipCSS"}`}
+          >
+            {isAdmin && hasPermission && (
+              <>
+                <EditIcon
+                  editHandler={() => editHandler("editSection", true, item)}
+                />
+                <Link
+                  className="deleteSection"
+                  onClick={() => deleteAboutSection(item)}
+                >
+                  <i
+                    className="fa fa-trash-o text-danger fs-4"
+                    aria-hidden="true"
+                  ></i>
+                </Link>
+              </>
+            )}
+            <img src={getImagePath(item.path)} alt="" className="img-fluid" />
+
+            <div className="p-3">
+              {item.team_member_name && (
+                <Title
+                  title={item.team_member_name}
+                  cssClass="fs-4 mt-2 title fw-bolder"
+                />
+              )}
+
+              {item.team_member_designation && (
+                <small className="mb-1">{item.team_member_designation}</small>
+              )}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item.team_member_about_us,
+                }}
+              />
+
+              {item.team_member_phone_number ||
+                (item.team_member_email && <hr />)}
+
+              {item.team_member_email && (
+                <div className="mb-2">
+                  <a href={`mailto:${item.team_member_email}`}>
+                    {item.team_member_email}
+                  </a>
+                </div>
+              )}
+              {item.team_member_phone_number && (
+                <p>{item.team_member_phone_number}</p>
+              )}
+              {item.team_member_phone_number || item.team_member_email ? (
+                <hr />
+              ) : (
+                ""
+              )}
+
+              <div className="social">
+                {item.facebook_url && (
+                  <Link to={item.facebook_url} target="_blank">
+                    <i className="fa fa-facebook-square" aria-hidden="true"></i>
+                  </Link>
+                )}
+
+                {item.twitter_url && (
+                  <Link to={item.twitter_url} target="_blank">
+                    <i className="fa fa-twitter-square" aria-hidden="true"></i>
+                  </Link>
+                )}
+
+                {item.youtube_url && (
+                  <Link to={item.youtube_url} target="_blank">
+                    <i className="fa fa-youtube-play" aria-hidden="true"></i>
+                  </Link>
+                )}
+
+                {item.linkedIn_url && (
+                  <Link to={item.linkedIn_url} target="_blank">
+                    <i className="fa fa-linkedin-square" aria-hidden="true"></i>
+                  </Link>
+                )}
+
+                {item.instagram_url && (
+                  <Link to={item.instagram_url} target="_blank">
+                    <i className="fa fa-instagram" aria-hidden="true"></i>
+                  </Link>
+                )}
+
+                {item.vimeo_url && (
+                  <Link to={item.vimeo_url} target="_blank">
+                    <i className="fa fa-vimeo" aria-hidden="true"></i>
+                  </Link>
+                )}
+
+                {item.pinterest_url && (
+                  <Link to={item.pinterest_url} target="_blank">
+                    <i className="fa fa-pinterest" aria-hidden="true"></i>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </Draggable>
+  );
+};
