@@ -190,7 +190,6 @@ const Home = () => {
       </div>
 
       {/* Service Offered */}
-      <h1>Service Offered</h1>
       {/* <ImageGalleryComponent pageType={"imageGallery"} /> */}
       {/* <ServiceOfferedComponent pageType={"serviceOffered"} /> */}
       <div className="text-center mb-5" style={{ marginTop: "100px" }}>
@@ -281,6 +280,11 @@ const Home = () => {
             })}
           </div>
         </div>
+        <div className="text-center py-4 position-relative viewAllBtn">
+        <Link to="/clients" className="btn btn-outline">
+            View All
+          </Link>
+          </div>
       </HomeClientsStyled>
 
       {/* <ClientListComponent
