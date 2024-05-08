@@ -238,14 +238,15 @@ const ClientsList = () => {
         ) : (
           ""
         )}
-
-        <ClientListComponent
-          clientsList={clientsList}
-          setClientsList={setClientsList}
-          deleteAboutSection={deleteAboutSection}
-          editHandler={editHandler}
-          getClinetDetails={getClinetDetails}
-        />
+        <ClientStyled>
+          <ClientListComponent
+            clientsList={clientsList}
+            setClientsList={setClientsList}
+            deleteAboutSection={deleteAboutSection}
+            editHandler={editHandler}
+            getClinetDetails={getClinetDetails}
+          />
+        </ClientStyled>
         {paginationData?.total_count ? (
           <CustomPagination
             paginationData={paginationData}

@@ -7,6 +7,7 @@ import {
 import ModelBg from "../../Common/ModelBg";
 import DynamicCarousel from "./DynamicCarousel";
 import { axiosClientServiceApi } from "../../util/axiosUtil";
+import { HomeServieOfferedStyled } from "../../Common/StyledComponents/Styled-HomeServiceOffered";
 
 const ServiceOfferedComponent = ({ getBannerAPIURL, componentEdit }) => {
   const [show, setShow] = useState(false);
@@ -48,25 +49,21 @@ const ServiceOfferedComponent = ({ getBannerAPIURL, componentEdit }) => {
   };
 
   return (
-    <div>
+    <HomeServieOfferedStyled>
       <div className="row serviceOffered">
         <div className="col-md-10 offset-md-1">
           <div className="container">
-
-            <div className="text-center my-5">
-              <span className="fs-1">View Gallery</span>
-            </div>
-
             <div className="row">
               {imageGallery.length > 0 &&
                 imageGallery?.map((item, index) => (
-                  <div className="col-4 mb-4" key={item.id}>
+                  <div className="col-4 mb-4 text-center" key={item.id}>
                     <img
                       src={getImagePath(item.path)}
                       alt={item.alternitivetext}
-                      className="d-block w-100 img-fluid"
                       onClick={() => findThumbHandler(item.id)}
                     />
+
+                    <h4 className="my-3 text-uppercase">{item.carouse_title}</h4>
                   </div>
                 ))}
             </div>
@@ -82,7 +79,7 @@ const ServiceOfferedComponent = ({ getBannerAPIURL, componentEdit }) => {
         />
       )}
       {showModal && <ModelBg closeModel={closeModel} />}
-    </div>
+    </HomeServieOfferedStyled>
   );
 };
 
