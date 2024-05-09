@@ -107,7 +107,7 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
     >
       {(provided) => (
         <div
-          className={`${isAdmin ? "col-12" : "col-md-3"} image`}
+          className={`${isAdmin ? "col-12 clientAdmin" : "col-md-3 clientFrontend"} image`}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

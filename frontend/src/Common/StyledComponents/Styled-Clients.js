@@ -5,7 +5,7 @@ export const ClientStyled = styled.div`
   //   display: none;
   // }
   .clientAvatar img {
-    width: 50%;
+    width: 100px;
   }
  
   .clientFrontend  {
@@ -50,5 +50,10 @@ export const ClientStyled = styled.div`
     }
   }
 
+  .clientAdmin .details {
+    display: flex;
+    flex-direction: row;
+    gap: 15px
+  }
   
 `;
