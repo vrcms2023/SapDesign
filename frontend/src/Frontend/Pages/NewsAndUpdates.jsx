@@ -56,7 +56,7 @@ const NewsAndUpdates = () => {
   });
 
   const setResponseData = (data) => {
-    setNews(data.length > 0 ? sortCreatedDateByDesc(data) : []);
+    setNews(data.length > 0 ? data : []);
     setPaginationData(paginationDataFormat(data));
     setCurrentPage(1);
   };

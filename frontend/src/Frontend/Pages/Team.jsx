@@ -79,7 +79,6 @@ const Team = () => {
         const response = await axiosClientServiceApi.get(
           `/ourteam/clentViewOurTeamDetails/`
         );
-        console.log("team response", response);
         if (response?.status === 200) {
           setResponseData(response.data);
         }
@@ -260,7 +259,7 @@ const Team = () => {
         )}
 
         <TeamStyled>
-          <div className={`${isAdmin ? "" : "teamFrontend" }`}>
+          <div className={`${isAdmin ? "" : "teamFrontend"}`}>
             <DragDropContext onDragEnd={onDragEnd}>
               <Droppable droppableId={"teamList"} id="teamList">
                 {(provided, snapshot) => (
@@ -367,20 +366,18 @@ const TeamItem = ({ item, index, deleteAboutSection, editHandler }) => {
             <img src={getImagePath(item.path)} alt="" className="img-fluid" />
 
             <div className="p-3 px-lg-5 text-start memberDetails">
-              
-            {item.team_member_designation && (
-                <small className="mb-1 fw-bold">{item.team_member_designation}</small>
+              {item.team_member_designation && (
+                <small className="mb-1 fw-bold">
+                  {item.team_member_designation}
+                </small>
               )}
 
               {item.team_member_name && (
-                <Title
-                  title={item.team_member_name}
-                  cssClass="fs-4 title "
-                />
+                <Title title={item.team_member_name} cssClass="fs-4 title " />
               )}
 
-              
-              <div className="strengths my-3"
+              <div
+                className="strengths my-3"
                 dangerouslySetInnerHTML={{
                   __html: item.team_member_about_us,
                 }}
