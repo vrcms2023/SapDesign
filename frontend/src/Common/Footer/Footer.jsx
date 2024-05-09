@@ -180,39 +180,52 @@ const Footer = () => {
             <hr className="d-block d-md-none" />
             <div className="col-md-3 text-center text-md-start">
               <h5>Reach Us</h5>
+              {address.phonen_number ?
               <p className="m-0 ">
                 <i
                   className="fa fa-phone-square fs-4 me-2"
                   aria-hidden="true"
                 ></i>
                 {address?.phonen_number}
-              </p>
+              </p> : "" }
+              {address.phonen_number_2 ? 
               <p className="m-0 ">
                 <i
                   className="fa fa-phone-square fs-4 me-2"
                   aria-hidden="true"
                 ></i>
                 {address?.phonen_number_2}
-              </p>
+              </p>: "" }
+              {address.phonen_number_3 ? 
               <p className="m-0 ">
                 <i className="fa fa-whatsapp fs-4 me-2" aria-hidden="true"></i>
                 {address?.phonen_number_3}
-              </p>
+              </p>: "" }
               <br />
-              <p className="m-0 ">
+              {address.emailid ? 
+              <>
+                <p className="m-0 ">
                 <i
                   className="fa fa-envelope-o fs-4 me-2"
                   aria-hidden="true"
                 ></i>
                 {address?.emailid}
               </p>
-              <p className="m-0 ">
-                <i
-                  className="fa fa-envelope-o fs-4 me-2"
-                  aria-hidden="true"
-                ></i>
-                {address?.emailid_2}
-              </p>
+              </>
+               : "" }
+              {address.emailid_2 ? 
+              <>
+                <p className="m-0 ">
+              <i
+                className="fa fa-envelope-o fs-4 me-2"
+                aria-hidden="true"
+              ></i>
+              {address?.emailid_2}
+            </p>
+              </>
+              : "" }
+            {address.emailid_3 ? 
+              <>
               <p className="m-0 ">
                 <i
                   className="fa fa-envelope-o fs-4 me-2"
@@ -220,6 +233,8 @@ const Footer = () => {
                 ></i>
                 {address?.emailid_3}
               </p>
+              </>
+              : "" }
             </div>
 
             {

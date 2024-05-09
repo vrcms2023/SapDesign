@@ -212,7 +212,7 @@ const Contact = () => {
             <div className="container">
               <div className="row">
                 {addressList?.map((item, index) => (
-                  <div className="col-md-3 my-4 my-nd-0" key={index}>
+                  <div className={`my-4 my-nd-0 ${addressList.length === 1 ? "col-md-12 text-center" : addressList.length === 2 ? "col-md-6": addressList.length === 3 ? "col-md-4": "col-md-3"}`} key={index}>
                     <Title
                       title={item.location_title}
                       cssClass="mb-2 fs-4 text-black"
