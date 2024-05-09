@@ -69,7 +69,7 @@ const HomeNews = ({ addNewsState, news, setNews, pagetype }) => {
     if (!componentEdit.news || !addNewsState) {
       getNews();
     }
-  }, [componentEdit.news, addNewsState, pagetype, setNews]);
+  }, [componentEdit.news, addNewsState, pagetype]);
 
   /**
    *
