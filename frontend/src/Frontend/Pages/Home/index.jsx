@@ -144,7 +144,7 @@ const Home = () => {
           </div>
         ) : (
           ""
-        )}
+        )} 
 
         {/* Carousel */}
         {/* <div className="row">
@@ -173,7 +173,7 @@ const Home = () => {
         )} */}
 
         {/*  HOME Services */}
-        <div className="row" style={{ background: "#f3f3f3" }}>
+         <div className="row" style={{ background: "#f3f3f3" }}>
           <div className="col-md-8 offset-md-2">
             <div className="container">
               <div className="row">
@@ -186,12 +186,9 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> 
+      
 
-      {/* Service Offered */}
-      {/* <ImageGalleryComponent pageType={"imageGallery"} /> */}
-      {/* <ServiceOfferedComponent pageType={"serviceOffered"} /> */}
       <div className="text-center mb-5" style={{ marginTop: "100px" }}>
         <span
           className="fs-1 px-4 py-2"
@@ -201,12 +198,11 @@ const Home = () => {
         </span>
       </div>
       <div className="row">
-        <div className="col-md-12 p-0 carousel">
+        <div className="col-md-12 carousel">
           {isAdmin && hasPermission && (
             <EditIcon editHandler={() => editHandler("serviceOffered", true)} />
           )}
 
-          {/* <Carousel carouselState={componentEdit.serviceOffered} /> */}
           <ServiceOfferedComponent
             getBannerAPIURL={`carousel/clientCarouselbyCategory/${serviceOffered}/`}
             componentEdit={componentEdit}
@@ -232,11 +228,8 @@ const Home = () => {
         </div>
       )}
 
-      {/* Service Offered */}
-      {/* <h1>Service Offered</h1> */}
 
       {/* Image Gallery Carousel */}
-
       <ImageGalleryStyled>
         <div className="text-center mb-5" style={{ marginTop: "100px" }}>
           <span
@@ -385,6 +378,7 @@ const Home = () => {
       </div>
       {show && <ModelBg />}
       {/* {showEditPop && <ModelBg />} */}
+      </div>
     </>
   );
 };

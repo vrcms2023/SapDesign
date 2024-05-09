@@ -28,19 +28,7 @@ body {
 }
 
 
-.navbar {
-    background-color:${({ theme }) => theme.navbarBg}; 
-    box-shadow: 0px 5px 30px #111111;
-    
 
-    .nav-Link {
-        color:${({ theme }) => theme.navbarLinkColor}; 
-
-        &:hover {
-            color:${({ theme }) => theme.navbarLinkHoverColor};
-        }
-    }
-}
 
 .carousel-caption {
     h1 { color:${({ theme }) => theme.carouselSlideTitleColor};     }
