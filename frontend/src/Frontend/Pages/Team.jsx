@@ -248,7 +248,7 @@ const Team = () => {
               deleteImageURL="ourteam/UpdateOurteamDetail/"
               imagePostURL="ourteam/createteam/"
               imageUpdateURL="ourteam/UpdateOurteamDetail/"
-              imageLabel="Add Profile Image"
+              imageLabel="Add Image"
               showDescription={false}
               showExtraFormFields={getTeamMemberFields()}
               dimensions={imageDimensionsJson("teams")}

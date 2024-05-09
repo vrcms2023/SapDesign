@@ -13,9 +13,6 @@ import { useAdminLoginStatus } from "../customhook/useAdminLoginStatus";
 // Styled Components
 import { StyledMenu } from "../StyledComponents/Styled-NavMenu";
 
-// Styles
-import "./Styles.css";
-
 // import { axiosClientServiceApi } from "../../util/axiosUtil";
 import {
   getMenu,
@@ -127,7 +124,7 @@ const Header = () => {
   //   navigate("/");
   // }
   return (
-    <>
+    <StyledMenu>
       {componentEdit.menu ? (
         <div className="adminEditTestmonial">
           <AdminHeader editHandler={editHandler} />
@@ -168,7 +165,7 @@ const Header = () => {
         </div>
       </nav>
       {show && <ModalBg />}
-    </>
+    </StyledMenu>
   );
 };
 
@@ -226,7 +223,7 @@ export const ClientMenu = ({ serviceMenuList }) => {
   };
 
   return (
-    <StyledMenu>
+    <>
       {/* <ul className="navbar-nav ms-auto mb-2 mb-lg-0 menu">
         <li className="nav-item">
           <NavLink
@@ -483,7 +480,7 @@ export const ClientMenu = ({ serviceMenuList }) => {
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 menu">
         {menuList?.map((menu) => ChildMenuContent(menu, false))}
       </ul>
-    </StyledMenu>
+    </>
   );
 };
 

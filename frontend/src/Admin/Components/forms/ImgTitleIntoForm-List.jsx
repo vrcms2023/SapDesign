@@ -152,12 +152,14 @@ const AdminBanner = ({
 
   return (
     <div>
-      {/* <NoteComponent note="Use drag option to shuffle the addresses" /> */}
       <EditAdminPopupHeader closeHandler={closeHandler} title={componentType} />
 
       <hr className="m-0" />
 
       <div className="container mt-4">
+
+      <NoteComponent note="Use drag option to shuffle the addresses" />
+
         <div className="row d-flex flex-row-reverse">
           {carousel?.length > 0 ? (
             <div className="heightCtrl">
@@ -222,6 +224,7 @@ const AdminBanner = ({
               closeHandler={closeHandler}
             />
           </div>
+
         </div>
       </div>
     </div>
