@@ -168,6 +168,7 @@ const AddressForm = ({ editHandler, componentType, address }) => {
               <p className="text-dark fw-bold fs-6">
                 Use drag option to shuffle the addresses
               </p>
+              <div style={{hyphenateCharactereight: "250px", overflow: "auto", overflowX: "hidden", resize: "vertical"}}>
               <DragDropContext onDragEnd={dragEnded}>
                 <Droppable droppableId="address-wrapper">
                   {(provided, snapshot) => (
@@ -201,6 +202,7 @@ const AddressForm = ({ editHandler, componentType, address }) => {
                   )}
                 </Droppable>
               </DragDropContext>
+              </div>
             </div>
 
             <div className="col-md-12">
@@ -208,6 +210,7 @@ const AddressForm = ({ editHandler, componentType, address }) => {
               <hr className="mb-3 text-dark" />
             </div>
             <div className="col-md-12 mb-md-0">
+            <div style={{height: "250px", overflow: "auto", overflowX: "hidden", resize: "vertical"}}>
               <InputField
                 label="Company Name"
                 fieldName="company_name"
@@ -301,6 +304,7 @@ const AddressForm = ({ editHandler, componentType, address }) => {
                 validationObject={fieldValidation.phonen_number_2}
                 error={errors?.phonen_number_2?.message}
               />
+            </div>
             </div>
           </div>
           <div className="row">
