@@ -316,7 +316,7 @@ const AddressForm = ({ editHandler, componentType, address }) => {
               </button>
               <Button
                 type="submit"
-                cssClass="btn btn-outline"
+                cssClass="btn btn-more"
                 label={"Close"}
                 handlerChange={closeHandler}
               />
