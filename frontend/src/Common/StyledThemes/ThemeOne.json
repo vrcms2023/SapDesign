@@ -58,11 +58,11 @@
   "testimonialsLinkHoverColor": "#DDFF86",
 
   "teamBg": "#ffffff",
-  "teamTitleColor": "#17427f",
+  "teamTitleColor": "#000000",
   "teamTextColor": "#000000",
   "teamLinkColor": "#27AAE1",
   "teamHoverColor": "#ffffff",
-  "teamIconColor": "#27AAE1",
+  "teamIconColor": "#000000",
 
   "briefIntroBg": "#ffffff",
   "briefIntroTitleColor": "#006690",
