@@ -23,6 +23,7 @@ import {
 } from "../../../util/axiosUtil";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import useAdminLoginStatus from "../../../Common/customhook/useAdminLoginStatus";
+import NoteComponent from "../../../Common/NoteComponent";
 
 const AdminBanner = ({
   editHandler,
@@ -151,15 +152,17 @@ const AdminBanner = ({
 
   return (
     <div>
+      {/* <NoteComponent note="Use drag option to shuffle the addresses" /> */}
       <EditAdminPopupHeader closeHandler={closeHandler} title={componentType} />
+      
       <hr className="m-0" />
-      <div className="container">
+      
+      <div className="container mt-4">
+        
         <div className="row d-flex flex-row-reverse">
+        
           {carousel?.length > 0 ? (
-            <div
-              className="col-md-12 my-3"
-              style={{ height: "120px", overflowY: "scroll" }}
-            >
+            <div className="heightCtrl">
               <div className="container">
                 <DragDropContext onDragEnd={onDragEnd}>
                   {carousel?.map((item, index) => (
@@ -190,11 +193,13 @@ const AdminBanner = ({
             ""
           )}
           <hr className="" />
+          <div className="heightCtrl">
           <div
             className={`mb-5 mb-md-0 ${
               carousel?.length > 0 ? "col-md-12" : "col-md-12"
             }`}
           >
+            
             <FileUpload
               title={imageLabel}
               project={project}
@@ -219,6 +224,7 @@ const AdminBanner = ({
               dimensions={dimensions}
               closeHandler={closeHandler}
             />
+          </div>
           </div>
         </div>
       </div>
@@ -248,7 +254,7 @@ const AdminCarouselItem = ({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <div className="row mb-4 slideItem" key={index}>
+          <div className="row mb-4 p-2 slideItem" key={index}>
             <div className="col-2 col-md-2">
               <i
                 className="fa fa-picture-o fs-2 d-lg-none"

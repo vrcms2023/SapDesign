@@ -22,6 +22,7 @@ import {
   updateArrIndex,
 } from "../../../util/commonUtil";
 import { getAddressList } from "../../../features/address/addressActions";
+import NoteComponent from "../../../Common/NoteComponent";
 
 const AddressForm = ({ editHandler, componentType, address }) => {
   const { addressList } = useSelector((state) => state.addressList);
@@ -165,9 +166,7 @@ const AddressForm = ({ editHandler, componentType, address }) => {
         <div className="container my-3">
           <div className="row">
             <div className="col-md-12 mb-md-0  ">
-              <div className="p-2 fw-bold text-dark bg-warning text-center mb-2 rounded">
-                <small>Note : Use drag option to shuffle the addresses</small>
-              </div>
+              <NoteComponent note="Use drag option to shuffle the addresses" />
               <div className="heightCtrl">
               <DragDropContext onDragEnd={dragEnded}>
                 <Droppable droppableId="address-wrapper">
