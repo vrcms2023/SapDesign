@@ -52,6 +52,7 @@ export const News = ({
         <div className="row py-0 pb-md-5">
           <div className="col-md-12 mb-5 mb-md-0">
             <div className="container">
+            <div className="fullHeightCtrl">
               <FileUpload
                 title={imageLabel}
                 project={project}
@@ -76,6 +77,7 @@ export const News = ({
                 dimensions={dimensions}
                 closeHandler={closeHandler}
               />
+            </div>
             </div>
           </div>
         </div>

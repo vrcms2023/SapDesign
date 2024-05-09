@@ -72,3 +72,10 @@
   overflow-x: hidden; 
   resize: vertical
 }
+
+.fullHeightCtrl {
+  height: 80vh !important; 
+  overflow: auto;
+  overflow-x: hidden; 
+  resize: vertical
+}

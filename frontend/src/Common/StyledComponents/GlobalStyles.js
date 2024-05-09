@@ -104,37 +104,42 @@ body {
     }
 }
 .btn-primary {
-    background-color:${({ theme }) => theme.secondaryColor}; 
-    color:${({ theme }) => theme.white};
+    background-color:${({ theme }) => theme.primaryColor}; 
+    color:${({ theme }) => theme.black};
 }
 .btn-primary:hover {
-    background-color:${({ theme }) => theme.secondaryColor}; 
-    color:${({ theme }) => theme.primaryColor};
+    background-color:${({ theme }) => theme.primaryHoverColor}; 
+    color:${({ theme }) => theme.white};
 }
 
 .btn-secondary {
     background-color:${({ theme }) => theme.secondaryColor}; 
-    color:${({ theme }) => theme.white};
+    color:${({ theme }) => theme.black};
 }
 
 .btn-secondary:hover {
-    background-color:${({ theme }) => theme.primaryColor}; 
-    color:${({ theme }) => theme.secondaryColor};
+    background-color:${({ theme }) => theme.secondaryHoverColor}; 
+    color:${({ theme }) => theme.lightgray};
 }
 
 .btn-outline {
-    border: 1px solid ${({ theme }) => theme.gray888} !important; 
-    color:${({ theme }) => theme.black};
+    border: 1px solid ${({ theme }) => theme.black} !important; 
+    color:${({ theme }) => theme.black} !important; 
 }
 
 .btn-outline:hover { 
     border: 1px solid ${({ theme }) => theme.black} !important; 
-    color:${({ theme }) => theme.gray888};
+    color:${({ theme }) => theme.black};
 }
 
 .btn-more {
-  border: 1px solid ${({ theme }) => theme.lightgray} !important; 
-  color:${({ theme }) => theme.primaryColor};
+  border: 1px solid ${({ theme }) => theme.gray} !important; 
+  color:${({ theme }) => theme.gray};
+}
+.btn-more:hover {
+  background-color:${({ theme }) => theme.verylightgray}; 
+  border: 1px solid ${({ theme }) => theme.black} !important; 
+  color:${({ theme }) => theme.black};
 }
 
 .homeCareers {

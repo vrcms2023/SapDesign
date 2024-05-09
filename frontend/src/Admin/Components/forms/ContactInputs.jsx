@@ -45,7 +45,7 @@ const ContactInputs = ({ editHandler, componentType }) => {
                 <button className="btn btn-primary">Save</button>
                 <Button
                   type="submit"
-                  cssClass="btn border"
+                  cssClass="btn btn-more"
                   label={"Close"}
                   handlerChange={closeHandler}
                 />
