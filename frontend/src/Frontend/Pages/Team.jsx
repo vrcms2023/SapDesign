@@ -260,12 +260,12 @@ const Team = () => {
         )}
 
         <TeamStyled>
-          <div className="row">
+          <div className={`${isAdmin ? "" : "teamFrontend" }`}>
             <DragDropContext onDragEnd={onDragEnd}>
               <Droppable droppableId={"teamList"} id="teamList">
                 {(provided, snapshot) => (
                   <div
-                    className="row"
+                    className="row d-flex justify-content-evenly"
                     ref={provided.innerRef}
                     style={getListStyle(snapshot.isDraggingOver)}
                     {...provided.droppableProps}
@@ -292,7 +292,7 @@ const Team = () => {
             </DragDropContext>
           </div>
         </TeamStyled>
-        <div className="row mb-4">
+        <div className="row my-5">
           {paginationData?.total_count ? (
             <CustomPagination
               paginationData={paginationData}
@@ -337,14 +337,14 @@ const TeamItem = ({ item, index, deleteAboutSection, editHandler }) => {
     >
       {(provided) => (
         <div
-          className="col-6"
+          className="col-md-6 text-center"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
           <div
             key={item.id}
-            className={`px-5 ${
+            className={`mx-md-4 mx-lg-5 p-md-5 p-lg-3 memberCard ${
               isAdmin ? "border border-warning position-relative" : ""
             } ${index % 2 === 0 ? "normalCSS" : "flipCSS"}`}
           >
@@ -366,18 +366,21 @@ const TeamItem = ({ item, index, deleteAboutSection, editHandler }) => {
             )}
             <img src={getImagePath(item.path)} alt="" className="img-fluid" />
 
-            <div className="p-3">
+            <div className="p-3 px-lg-5 text-start memberDetails">
+              
+            {item.team_member_designation && (
+                <small className="mb-1 fw-bold">{item.team_member_designation}</small>
+              )}
+
               {item.team_member_name && (
                 <Title
                   title={item.team_member_name}
-                  cssClass="fs-4 mt-2 title fw-bolder"
+                  cssClass="fs-4 title "
                 />
               )}
 
-              {item.team_member_designation && (
-                <small className="mb-1">{item.team_member_designation}</small>
-              )}
-              <div
+              
+              <div className="strengths my-3"
                 dangerouslySetInnerHTML={{
                   __html: item.team_member_about_us,
                 }}
