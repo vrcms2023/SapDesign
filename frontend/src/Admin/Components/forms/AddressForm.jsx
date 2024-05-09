@@ -116,7 +116,7 @@ const AddressForm = ({ editHandler, componentType, address }) => {
   const updateAddressList = (data) => {
     let _arr = JSON.parse(JSON.stringify(listofAddress));
     let foundIndex = _arr.findIndex((x) => x.id == data.id);
-    if (foundIndex > 0) {
+    if (foundIndex > -1) {
       _arr[foundIndex] = data;
     } else {
       _arr.push(data);
