@@ -65,3 +65,10 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+
+.heightCtrl {
+  height: 280px; 
+  overflow: auto;
+  overflow-x: hidden; 
+  resize: vertical
+}
