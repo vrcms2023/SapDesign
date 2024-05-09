@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 // Comonents
 import EditAdminPopupHeader from "../EditAdminPopupHeader";
 import Button from "../../../Common/Button";
-import { InputFields, SelectField } from "./FormFields";
+import { CheckboxField, InputFields, SelectField } from "./FormFields";
 import Error from "../Error";
 import { generateOptionLength } from "../../../util/commonUtil";
 import { axiosServiceApi } from "../../../util/axiosUtil";
@@ -30,6 +30,10 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
   );
 
   const [isAdminmenuActive, setisAdminmenuActive] = useState(
+    editMenu ? (editMenu?.is_Admin_menu ? true : false) : true
+  );
+
+  const [isMaintainerMenuActive, setisMaintainermenuActive] = useState(
     editMenu ? (editMenu?.is_Admin_menu ? true : false) : true
   );
 
@@ -96,10 +100,6 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
       setError("Menu url should be starting with /");
       return true;
     }
-    if (parseInt(data?.page_position) === 0 && data.is_Parent) {
-      setError("Please select the menu position");
-      return true;
-    }
 
     if (!data.is_Parent) {
       if (parseInt(data?.page_parent_ID) === 0) {
@@ -164,6 +164,10 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
     setisAdminmenuActive(!isAdminmenuActive);
   };
 
+  const isMaintainerHandler = () => {
+    setisMaintainermenuActive(!isMaintainerMenuActive);
+  };
+
   const isClientMenuHandler = () => {
     setIsClientMenuActive(!isClientMenuActive);
   };
@@ -200,34 +204,49 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
                 register={register}
                 onChange={onChangeHanlder}
               />
-              <div className="mb-3 row">
-                <label
-                  htmlFor=""
-                  className="col-sm-3 col-form-label text-start text-md-end text-capitalize"
-                >
-                  is Parent Menu
-                </label>
-                <div className="col-sm-1">
-                  <input
-                    name="is_Parent"
-                    type="checkbox"
-                    {...register("is_Parent")}
-                    onChange={isParentHandler}
-                    checked={isParentVal}
-                    className="form-check-input mr-4"
-                  />
-                </div>
-                <div className="col-sm-8">{isParentVal ? "YES" : "NO"}</div>
-              </div>
-              {!isParentVal ? (
+              <br />
+              <CheckboxField
+                label="is Parent Menu"
+                fieldName={"is_Parent"}
+                register={register}
+                onChange={isParentHandler}
+                isChecked={isParentVal}
+              />
+              <CheckboxField
+                label="Active Menu"
+                fieldName={"page_isActive"}
+                register={register}
+                onChange={isActiveMenuHandler}
+                isChecked={isActiveMenu}
+              />
+              <CheckboxField
+                label="is Admin Menu"
+                fieldName={"is_Admin_menu"}
+                register={register}
+                onChange={isAdminMenuHandler}
+                isChecked={isAdminmenuActive}
+              />
+              <CheckboxField
+                label="is Maintainer Menu"
+                fieldName={"is_Maintainer_menu"}
+                register={register}
+                onChange={isMaintainerHandler}
+                isChecked={isMaintainerMenuActive}
+              />
+              <CheckboxField
+                label="is Client Menu"
+                fieldName={"is_Client_menu"}
+                register={register}
+                onChange={isClientMenuHandler}
+                isChecked={isClientMenuActive}
+              />
+              {!isParentVal && (
                 <SelectField
                   label="Parent Menu list"
                   fieldName="page_parent_ID"
                   register={register}
                   options={optionMenulist}
                 />
-              ) : (
-                ""
               )}
               {/* {isParentVal ? (
                 <SelectField
@@ -239,61 +258,6 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
               ) : (
                 ""
               )} */}
-
-              <div className="mb-3 row">
-                <label
-                  htmlFor=""
-                  className="col-sm-3 col-form-label text-start text-md-end text-capitalize"
-                >
-                  Active Menu
-                </label>
-                <div className="col-sm-9">
-                  <input
-                    name="page_isActive"
-                    type="checkbox"
-                    {...register("page_isActive")}
-                    onChange={isActiveMenuHandler}
-                    checked={isActiveMenu}
-                    className="form-check-input mr-4"
-                  />
-                </div>
-              </div>
-              <div className="mb-3 row">
-                <label
-                  htmlFor=""
-                  className="col-sm-3 col-form-label text-start text-md-end text-capitalize"
-                >
-                  is Admin Menu
-                </label>
-                <div className="col-sm-9">
-                  <input
-                    name="is_Admin_menu"
-                    type="checkbox"
-                    {...register("is_Admin_menu")}
-                    onChange={isAdminMenuHandler}
-                    checked={isAdminmenuActive}
-                    className="form-check-input mr-4"
-                  />
-                </div>
-              </div>
-              <div className="mb-3 row">
-                <label
-                  htmlFor=""
-                  className="col-sm-3 col-form-label text-start text-md-end text-capitalize"
-                >
-                  is Client Menu
-                </label>
-                <div className="col-sm-9">
-                  <input
-                    name="is_Client_menu"
-                    type="checkbox"
-                    {...register("is_Client_menu")}
-                    onChange={isClientMenuHandler}
-                    checked={isClientMenuActive}
-                    className="form-check-input mr-4"
-                  />
-                </div>
-              </div>
 
               <div className="d-flex justify-content-center align-items-center gap-1 gap-md-3 mt-5">
                 <button className="btn btn-secondary mx-3">save</button>

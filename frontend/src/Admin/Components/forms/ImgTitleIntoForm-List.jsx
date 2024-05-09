@@ -154,13 +154,11 @@ const AdminBanner = ({
     <div>
       {/* <NoteComponent note="Use drag option to shuffle the addresses" /> */}
       <EditAdminPopupHeader closeHandler={closeHandler} title={componentType} />
-      
+
       <hr className="m-0" />
-      
+
       <div className="container mt-4">
-        
         <div className="row d-flex flex-row-reverse">
-        
           {carousel?.length > 0 ? (
             <div className="heightCtrl">
               <div className="container">
@@ -193,13 +191,12 @@ const AdminBanner = ({
             ""
           )}
           <hr className="" />
-          <div className="heightCtrl">
+
           <div
             className={`mb-5 mb-md-0 ${
               carousel?.length > 0 ? "col-md-12" : "col-md-12"
             }`}
           >
-            
             <FileUpload
               title={imageLabel}
               project={project}
@@ -224,7 +221,6 @@ const AdminBanner = ({
               dimensions={dimensions}
               closeHandler={closeHandler}
             />
-          </div>
           </div>
         </div>
       </div>

@@ -216,3 +216,52 @@ export const TextAreaField = ({
     </div>
   );
 };
+
+export const CheckboxField = ({
+  label,
+  fieldName,
+  register,
+  validationObject,
+  error,
+  ...rest
+}) => {
+  return (
+    <div className="mb-2 row">
+      <div class="form-check">
+        <input
+          name={fieldName}
+          type="checkbox"
+          {...register(fieldName, validationObject)}
+          onChange={rest.onChange}
+          checked={rest.isChecked}
+          className="form-check-input mr-4"
+        />
+        <label
+          class="form-check-label col-form-label text-start text-md-end text-capitalize"
+          for="flexCheckDefault"
+        >
+          {label}
+        </label>
+      </div>
+
+      {/* <div className="mb-3 row">
+                <label
+                  htmlFor=""
+                  className="col-sm-3 col-form-label text-start text-md-end text-capitalize"
+                >
+                  Active Menu
+                </label>
+                <div className="col-sm-9">
+                  <input
+                    name="page_isActive"
+                    type="checkbox"
+                    {...register("page_isActive")}
+                    onChange={isActiveMenuHandler}
+                    checked={isActiveMenu}
+                    className="form-check-input mr-4"
+                  />
+                </div>
+              </div> */}
+    </div>
+  );
+};
