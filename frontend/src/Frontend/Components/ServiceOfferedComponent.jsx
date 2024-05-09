@@ -56,11 +56,12 @@ const ServiceOfferedComponent = ({ getBannerAPIURL, componentEdit }) => {
             <div className="row">
               {imageGallery.length > 0 &&
                 imageGallery?.map((item, index) => (
-                  <div className="col-4 mb-4 text-center" key={item.id}>
+                  <div className="col-sm-6 col-md-4 mb-4 text-center" key={item.id}>
                     <img
                       src={getImagePath(item.path)}
                       alt={item.alternitivetext}
                       onClick={() => findThumbHandler(item.id)}
+                      className="img-fluid"
                     />
 
                     <h4 className="my-3 text-uppercase">{item.carouse_title}</h4>

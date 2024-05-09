@@ -22,6 +22,7 @@ import {
   updateArrIndex,
 } from "../../../util/commonUtil";
 import { getAddressList } from "../../../features/address/addressActions";
+import NoteComponent from "../../../Common/NoteComponent";
 
 const AddressForm = ({ editHandler, componentType, address }) => {
   const { addressList } = useSelector((state) => state.addressList);
@@ -165,9 +166,8 @@ const AddressForm = ({ editHandler, componentType, address }) => {
         <div className="container my-3">
           <div className="row">
             <div className="col-md-12 mb-md-0  ">
-              <p className="text-dark fw-bold fs-6">
-                Use drag option to shuffle the addresses
-              </p>
+              <NoteComponent note="Use drag option to shuffle the addresses" />
+              <div className="heightCtrl">
               <DragDropContext onDragEnd={dragEnded}>
                 <Droppable droppableId="address-wrapper">
                   {(provided, snapshot) => (
@@ -201,6 +201,7 @@ const AddressForm = ({ editHandler, componentType, address }) => {
                   )}
                 </Droppable>
               </DragDropContext>
+              </div>
             </div>
 
             <div className="col-md-12">
@@ -208,6 +209,7 @@ const AddressForm = ({ editHandler, componentType, address }) => {
               <hr className="mb-3 text-dark" />
             </div>
             <div className="col-md-12 mb-md-0">
+            <div className="heightCtrl">
               <InputField
                 label="Company Name"
                 fieldName="company_name"
@@ -302,9 +304,10 @@ const AddressForm = ({ editHandler, componentType, address }) => {
                 error={errors?.phonen_number_2?.message}
               />
             </div>
+            </div>
           </div>
           <div className="row">
-            <div className="d-flex justify-content-center align-items-center gap-1 gap-md-3 mb-4">
+            <div className="d-flex justify-content-center align-items-center gap-1 gap-md-3 my-3">
               <button type="reset" className="btn btn-secondary">
                 Clear
               </button>

@@ -224,7 +224,7 @@ const Home = () => {
             imagePostURL="carousel/createCarousel/"
             imageUpdateURL="carousel/updateCarousel/"
             imageIndexURL="carousel/updateCarouselindex/"
-            imageLabel="Add Service Offered"
+            imageLabel="Add Images"
             showDescription={false}
             showExtraFormFields={getserviceOfferedFields(serviceOffered)}
             dimensions={imageDimensionsJson("carousel")}
@@ -284,8 +284,10 @@ const Home = () => {
           </div>
         </div> */}
         <div className=" position-relative">
+
           <div className="scroll-container">
             <div className="carousel-primary">
+
               {clientsList.map((client) => {
                 return (
                   <img
@@ -307,12 +309,14 @@ const Home = () => {
                 );
               })}
             </div>
+
           </div>
         </div>
         <div
           className="text-center py-4 position-relative viewAllBtn"
           style={{ marginTop: "250px" }}
         >
+
           <Link to="/clients" className="btn btn-outline">
             View All
           </Link>
