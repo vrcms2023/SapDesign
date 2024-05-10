@@ -159,7 +159,7 @@ const JobPost = ({ editHandler, componentType, type, editPost }) => {
               </div>
 
               <div className="row">
-                <div className="d-flex justify-content-center align-items-center gap-2">
+                <div className="d-flex justify-content-center flex-wrap flex-column flex-sm-row align-items-center gap-2">
                   {!editPost?.id ? (
                     <button
                       className="btn btn-secondary m-3"

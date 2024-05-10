@@ -139,7 +139,7 @@ const FooterAdminFeilds = ({ editHandler, componentType, footerValues }) => {
             </div>
           </div>
           <div className="row">
-            <div className="d-flex justify-content-center align-items-center gap-2 mb-4">
+            <div className="d-flex justify-content-center flex-wap flex-column flex-sm-row align-items-center gap-2 mb-4">
               <button type="reset" className="btn btn-secondary">
                 Clear
               </button>

@@ -105,7 +105,7 @@ const AdminTermsAndPrivacy = ({
           </div>
 
           <div className="row">
-          <div className="d-flex justify-content-center align-items-center gap-2 my-5">
+          <div className="d-flex justify-content-center flex-wrap flex-column flex-md-row align-items-center gap-2 my-5">
             {/* <button onClick={resetForm} type="reset" className="btn btn-secondary mx-3">
                   Clear
                 </button> */}

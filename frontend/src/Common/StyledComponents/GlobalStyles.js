@@ -90,6 +90,10 @@ body {
     &:hover svg { 
       transform: translateX(10px);
     }
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
 }
 .btn-primary {
     background-color:${({ theme }) => theme.primaryColor}; 

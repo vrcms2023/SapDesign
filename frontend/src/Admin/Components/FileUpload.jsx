@@ -457,7 +457,7 @@ const FileUpload = ({
           </div>
         </div>
         <div className="row">
-          <div className="d-flex justify-content-center align-items-center gap-1 ">
+          <div className="d-flex justify-content-center flex-wrap flex-column flex-sm-row align-items-center gap-2 my-3">
             {!editImage?.id ? (
               <button
                 type="button"
@@ -514,7 +514,7 @@ const FileUpload = ({
               </>
             </div>
             <div className="row">
-              <div className="d-flex gap-2 justify-content-center align-items-center">
+              <div className="d-flex gap-2 justify-content-center flex-wrap flex-column flex-sm-row align-items-center my-3">
                 <button
                   type="button"
                   className="btn btn-secondary mx-3"
