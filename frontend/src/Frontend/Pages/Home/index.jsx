@@ -116,6 +116,17 @@ const Home = () => {
     getClientList();
   }, []);
 
+  const [clientDescription, setClientDescription] = useState(false);
+  const [filteredClient, setFilteredClient] = useState({});
+
+  const imgMouseOverHandler = (id) => {
+    // console.log("Hello", id);
+    const filtered = clientsList.filter(client => client.id === id)
+    console.log('filtered', filtered)
+    setFilteredClient(filtered);
+    setClientDescription(!clientDescription)
+  }
+
   return (
     <>
       <div className="container-fluid">
@@ -269,52 +280,37 @@ const Home = () => {
             Clients
           </span>
         </div>
-        {/* <div class="slider">
-          <div class="slide-track">
-            {clientsList.map((client) => {
-              return <HomeClients client={client} key={client.id} />;
-            })}
-          </div>
-        </div> */}
-        <div className=" position-relative">
-
-          <div className="scroll-container">
-            <div className="carousel-primary">
-
-              {clientsList.map((client) => {
+        <div className="image-slider">
+        <div className="image-slider-track">
+        {clientsList.map((client) => {
                 return (
-                  <img
-                    src={client.path}
-                    alt={client.client_title}
-                    key={client.id}
-                  />
+                  <div className="position-relative">
+                  <div className="slide">
+                    <img
+                      src={client.path}
+                      alt={client.client_title}
+                      key={client.id}
+                      onMouseOver={()=>imgMouseOverHandler(client.id)}
+                    />
+                  </div>
+                  { clientDescription ? 
+                    <div className="position-absolute">{filteredClient[0].client_description}</div>
+                  : ""}
+                  </div>
                 );
               })}
-            </div>
-            <div className="carousel-primary carousel-secondary">
-              {clientsList.map((client) => {
-                return (
-                  <img
-                    src={client.path}
-                    alt={client.client_title}
-                    key={client.id}
-                  />
-                );
-              })}
-            </div>
-
-          </div>
         </div>
-        <div
-          className="text-center py-4 position-relative viewAllBtn"
-          style={{ marginTop: "250px" }}
-        >
-
+    </div>
+    <div className="text-center py-4 position-relative viewAllBtn" >
           <Link to="/clients" className="btn btn-outline">
             View All
           </Link>
         </div>
       </HomeClientsStyled>
+
+       
+
+        
 
       {/* <ClientListComponent
           clientsList={clientsList}
