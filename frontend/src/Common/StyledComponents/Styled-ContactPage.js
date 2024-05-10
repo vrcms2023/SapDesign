@@ -10,7 +10,7 @@ export const ContactPageStyled = styled.div`
   }
 
   .contactAddress {
-    background-color: ${({ theme }) => theme.verylightgray};
+    background-color: ${({ theme }) => theme.white};
     color: ${({ theme }) => theme.black};
   }
 

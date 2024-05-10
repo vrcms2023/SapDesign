@@ -120,7 +120,7 @@ const Footer = () => {
         <div className="container py-5 footerDetails">
           <div className="row">
             <div className="col-md-3 text-center text-md-start">
-              <h5>Company</h5>
+              <h5 className="text-center text-md-start">Company</h5>
               <ul className="">
                 {menuList?.map((menu) => {
                   return <ChildMenuContent menu={menu} key={menu.id} />;
@@ -159,13 +159,13 @@ const Footer = () => {
                 </li> */}
               </ul>
             </div>
-            <hr className="d-block d-md-none" />
+            <hr className="d-block d-md-none mt-3" />
 
-            <hr className="d-block d-md-none" />
+            
             <div className="col-md-3 text-center text-md-start">
               {address && (
                 <>
-                  <h5>Address</h5>
+                  <h5 className="text-center text-md-start">Address</h5>
                   <p className="m-0 fw-bold">{address.company_name}</p>
                   <p className="m-0">{address.address_dr_no}</p>
                   <p className="m-0">{address.street} </p>
@@ -177,9 +177,9 @@ const Footer = () => {
               )}
             </div>
 
-            <hr className="d-block d-md-none" />
-            <div className="col-md-3 text-center text-md-start">
-              <h5>Reach Us</h5>
+            
+            <div className="col-md-3 text-center text-md-start mb-3 reachUs">
+              <h5 className="d-none d-sm-block">Reach Us</h5>
               {address.phonen_number ?
               <p className="m-0 ">
                 <i
@@ -236,10 +236,10 @@ const Footer = () => {
               </>
               : "" }
             </div>
-
+            <hr className="d-block d-md-none" />
             {
               <div className="col-md-3 pb-3 pb-md-0">
-                <img src={Logo} alt="SAP Design Studio" />
+                <img src={Logo} alt="SAP Design Studio" className="footerLogo" />
                 <div className="socialLinks">
                   {/* <h5>Social Media</h5> */}
                   {footerValues.facebook_url && (
