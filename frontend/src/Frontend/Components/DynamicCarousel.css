@@ -25,6 +25,8 @@
   margin: 0 auto;
 }
 
+
+
 .dcarousel .closeCarousel {
   position: absolute;
   top: 15px;
@@ -40,6 +42,42 @@
   /* text-align: center; */
   /* line-height: 45px; */
   /* box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.6); */
+}
+
+@media (max-width: 991px) {
+  .dcarousel {
+    width: 100%;
+  }
+  .dcarousel .carousel-inner {
+    width: 90%;
+    margin: auto;
+  }
+
+  .dcarousel .carousel-item img {
+    width: 100%;
+  }
+  
+  .dcarousel .closeCarousel {
+    right:unset;
+    right: 60px;
+  }
+
+  .dcarousel .closeCarousel {
+    right:unset;
+    right: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .dcarousel .closeCarousel {
+    right:unset;
+    right: 30px;
+  }
+
+  .carousel-control-next, .carousel-control-prev {
+    height: 50vh;
+    width: 20%;
+  }
 }
 
 .dcarousel .closeCarousel:hover i {
