@@ -47,7 +47,7 @@ const AboutImageInputsForm = ({
     const getBannerData = async () => {
       try {
         const response = await axiosFileUploadServiceApi.get(
-          `${imageGetURL}${pageType}/`,
+          `${imageGetURL}${pageType}/`
         );
         if (response?.status === 200 && response.data.imageModel) {
           setcarouseData(response.data.imageModel);
@@ -68,7 +68,7 @@ const AboutImageInputsForm = ({
   const thumbDelete = (id, name) => {
     const deleteImageByID = async () => {
       const response = await axiosFileUploadServiceApi.delete(
-        `${imageDeleteURL}${id}/`,
+        `${imageDeleteURL}${id}/`
       );
       if (response.status == 204) {
         setcarouseData("");
@@ -123,6 +123,7 @@ const AboutImageInputsForm = ({
                   extraFormParamas={extraFormParamas}
                   showExtraFormFields={showExtraFormFields}
                   dimensions={dimensions}
+                  scrollEnable={false}
                 />
               </div>
             </div>

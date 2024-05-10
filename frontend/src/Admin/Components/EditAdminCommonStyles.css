@@ -74,7 +74,7 @@
 }
 
 .fullHeightCtrl {
-  height: 80vh !important; 
+  height: 75vh !important; 
   overflow: auto;
   overflow-x: hidden; 
   resize: vertical

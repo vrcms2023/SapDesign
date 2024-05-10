@@ -168,39 +168,39 @@ const AddressForm = ({ editHandler, componentType, address }) => {
             <div className="col-md-12 mb-md-0  ">
               <NoteComponent note="Use drag option to shuffle the addresses" />
               <div className="heightCtrl">
-              <DragDropContext onDragEnd={dragEnded}>
-                <Droppable droppableId="address-wrapper">
-                  {(provided, snapshot) => (
-                    <DraggableAddressList
-                      ref={provided.innerRef}
-                      {...provided.droppableProps}
-                    >
-                      {listofAddress.map((_address, index) => {
-                        return (
-                          <Draggable
-                            draggableId={`${_address.id}`}
-                            index={index}
-                            key={_address.id}
-                          >
-                            {(_provided, _snapshot) => (
-                              <DraggableAddress
-                                ref={_provided.innerRef}
-                                dragHandleProps={_provided.dragHandleProps}
-                                {..._provided.draggableProps}
-                                snapshot={_snapshot}
-                                item={_address}
-                                thumbDelete={thumbDelete}
-                                handleCarouselEdit={handleCarouselEdit}
-                              />
-                            )}
-                          </Draggable>
-                        );
-                      })}
-                      {provided.placeholder}
-                    </DraggableAddressList>
-                  )}
-                </Droppable>
-              </DragDropContext>
+                <DragDropContext onDragEnd={dragEnded}>
+                  <Droppable droppableId="address-wrapper">
+                    {(provided, snapshot) => (
+                      <DraggableAddressList
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                      >
+                        {listofAddress.map((_address, index) => {
+                          return (
+                            <Draggable
+                              draggableId={`${_address.id}`}
+                              index={index}
+                              key={_address.id}
+                            >
+                              {(_provided, _snapshot) => (
+                                <DraggableAddress
+                                  ref={_provided.innerRef}
+                                  dragHandleProps={_provided.dragHandleProps}
+                                  {..._provided.draggableProps}
+                                  snapshot={_snapshot}
+                                  item={_address}
+                                  thumbDelete={thumbDelete}
+                                  handleCarouselEdit={handleCarouselEdit}
+                                />
+                              )}
+                            </Draggable>
+                          );
+                        })}
+                        {provided.placeholder}
+                      </DraggableAddressList>
+                    )}
+                  </Droppable>
+                </DragDropContext>
               </div>
             </div>
 
@@ -209,101 +209,105 @@ const AddressForm = ({ editHandler, componentType, address }) => {
               <hr className="mb-3 text-dark" />
             </div>
             <div className="col-md-12 mb-md-0">
-            <div className="heightCtrl">
-              <InputField
-                label="Company Name"
-                fieldName="company_name"
-                register={register}
-                validationObject={fieldValidation.company_name}
-                error={errors?.company_name?.message}
-                isRequired={true}
-              />
-              <InputField
-                label="Country"
-                fieldName="location_title"
-                register={register}
-                validationObject={fieldValidation.location_title}
-                error={errors?.location_title?.message}
-                isRequired={true}
-              />
-              <InputField label="State" fieldName="state" register={register} />
-              <InputField
-                label="City"
-                fieldName="city"
-                register={register}
-                validationObject={fieldValidation.city}
-                error={errors?.city?.message}
-                isRequired={true}
-              />
-              <InputField
-                label="Location"
-                fieldName="location"
-                register={register}
-              />
-              <InputField
-                label="Street"
-                fieldName="street"
-                register={register}
-              />
-              <InputField
-                label="Door Number"
-                fieldName="address_dr_no"
-                register={register}
-              />
+              <div className="heightCtrl">
+                <InputField
+                  label="Company Name"
+                  fieldName="company_name"
+                  register={register}
+                  validationObject={fieldValidation.company_name}
+                  error={errors?.company_name?.message}
+                  isRequired={true}
+                />
+                <InputField
+                  label="Country"
+                  fieldName="location_title"
+                  register={register}
+                  validationObject={fieldValidation.location_title}
+                  error={errors?.location_title?.message}
+                  isRequired={true}
+                />
+                <InputField
+                  label="State"
+                  fieldName="state"
+                  register={register}
+                />
+                <InputField
+                  label="City"
+                  fieldName="city"
+                  register={register}
+                  validationObject={fieldValidation.city}
+                  error={errors?.city?.message}
+                  isRequired={true}
+                />
+                <InputField
+                  label="Location"
+                  fieldName="location"
+                  register={register}
+                />
+                <InputField
+                  label="Street"
+                  fieldName="street"
+                  register={register}
+                />
+                <InputField
+                  label="Door Number"
+                  fieldName="address_dr_no"
+                  register={register}
+                />
 
-              {/* <InputField
+                {/* <InputField
                 label="Postcode"
                 fieldName="postcode"
                 register={register}
                 validationObject={fieldValidation.postcode}
                 error={errors?.postcode?.message}
               /> */}
-              <InputField
-                label="Email"
-                fieldName="emailid"
-                register={register}
-                validationObject={fieldValidation.emailid}
-                error={errors?.emailid?.message}
-                isRequired={true}
-              />
-              <InputField
-                label="Email 2"
-                fieldName="emailid_2"
-                register={register}
-                validationObject={fieldValidation.emailid_2}
-                error={errors?.emailid_2?.message}
-                isRequired={false}
-              />
-              <InputField
-                label="Email 3"
-                fieldName="emailid_3"
-                register={register}
-                validationObject={fieldValidation.emailid_2}
-                error={errors?.emailid_2?.message}
-              />
-              <InputField
-                label="Phone"
-                fieldName="phonen_number"
-                register={register}
-                validationObject={fieldValidation.phonen_number}
-                error={errors?.phonen_number?.message}
-                isRequired={true}
-              />
-              <InputField
-                label="Phone Number 2"
-                fieldName="phonen_number_2"
-                register={register}
-                validationObject={fieldValidation.phonen_number_2}
-                error={errors?.phonen_number_2?.message}
-              />
-              <InputField
-                label="WhatsApp No."
-                fieldName="phonen_number_3"
-                register={register}
-                validationObject={fieldValidation.phonen_number_2}
-                error={errors?.phonen_number_2?.message}
-              />
-            </div>
+                <InputField
+                  label="Email"
+                  fieldName="emailid"
+                  register={register}
+                  validationObject={fieldValidation.emailid}
+                  error={errors?.emailid?.message}
+                  isRequired={true}
+                />
+                <InputField
+                  label="Email 2"
+                  fieldName="emailid_2"
+                  register={register}
+                  validationObject={fieldValidation.emailid_2}
+                  error={errors?.emailid_2?.message}
+                  isRequired={false}
+                />
+                <InputField
+                  label="Email 3"
+                  fieldName="emailid_3"
+                  register={register}
+                  validationObject={fieldValidation.emailid_2}
+                  error={errors?.emailid_2?.message}
+                />
+                <InputField
+                  label="Phone"
+                  fieldName="phonen_number"
+                  register={register}
+                  validationObject={fieldValidation.phonen_number}
+                  error={errors?.phonen_number?.message}
+                  isRequired={true}
+                />
+                <InputField
+                  label="Phone Number 2"
+                  fieldName="phonen_number_2"
+                  register={register}
+                  validationObject={fieldValidation.phonen_number_2}
+                  error={errors?.phonen_number_2?.message}
+                />
+                <InputField
+                  label="WhatsApp No."
+                  fieldName="phonen_number_3"
+                  register={register}
+                  validationObject={fieldValidation.phonen_number_2}
+                  error={errors?.phonen_number_2?.message}
+                />
+              </div>
             </div>
           </div>
           <div className="row">

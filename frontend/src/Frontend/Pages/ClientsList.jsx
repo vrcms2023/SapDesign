@@ -30,6 +30,7 @@ import SkeletonImage from "../../Common/Skeltons/SkeletonImage";
 import { ClientStyled } from "../../Common/StyledComponents/Styled-Clients";
 import { useSelector } from "react-redux";
 import { ClientListComponent } from "../Components/ClientListComponent";
+import NoteComponent from "../../Common/NoteComponent";
 
 const ClientsList = () => {
   const editComponentObj = {
@@ -233,11 +234,14 @@ const ClientsList = () => {
               showDescription={false}
               showExtraFormFields={getClinetLogsFields()}
               dimensions={imageDimensionsJson("aboutus")}
+              scrollEnable={false}
             />
           </div>
         ) : (
           ""
         )}
+        <br />
+        <NoteComponent note="Use drag option to shuffle the Items" />
         <ClientStyled>
           <ClientListComponent
             clientsList={clientsList}
