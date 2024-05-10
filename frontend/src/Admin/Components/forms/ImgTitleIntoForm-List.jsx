@@ -157,12 +157,11 @@ const AdminBanner = ({
       <hr className="m-0" />
 
       <div className="container mt-4">
-
-      <NoteComponent note="Use drag option to shuffle the addresses" />
+        <NoteComponent note="Use drag option to shuffle the addresses" />
 
         <div className="row d-flex flex-row-reverse">
           {carousel?.length > 0 ? (
-            <div className="heightCtrl">
+            <div className="heightCtrl imglist">
               <div className="container">
                 <DragDropContext onDragEnd={onDragEnd}>
                   {carousel?.map((item, index) => (
@@ -222,9 +221,9 @@ const AdminBanner = ({
               showExtraFormFields={showExtraFormFields}
               dimensions={dimensions}
               closeHandler={closeHandler}
+              scrollEnable={true}
             />
           </div>
-
         </div>
       </div>
     </div>

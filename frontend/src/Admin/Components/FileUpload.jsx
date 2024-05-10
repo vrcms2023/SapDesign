@@ -59,6 +59,7 @@ const FileUpload = ({
   extraFormParamas = [],
   dimensions,
   closeHandler,
+  scrollEnable = false,
 }) => {
   const [files, setFiles] = useState([]);
   const [extTypes, setExtTypes] = useState([]);
@@ -352,7 +353,7 @@ const FileUpload = ({
   return (
     <>
       <form className="" onSubmit={handleSubmit(uploadFile)}>
-        <div className="heightCtrl">
+        <div className={`${scrollEnable ? "heightCtrl" : "fullHeightCtrl"}`}>
           <div className="mb-2 row">
             <label className="col-sm-12 col-form-label">
               <Title title={title} cssClass="requiredField" />
@@ -484,7 +485,9 @@ const FileUpload = ({
 
         {showDescription ? (
           <>
-            <div className="heightCtrl">
+            <div
+              className={`${scrollEnable ? "heightCtrl" : "fullHeightCtrl"}`}
+            >
               <InputField
                 label={titleTitle}
                 fieldName={imageTitleFieldName}
