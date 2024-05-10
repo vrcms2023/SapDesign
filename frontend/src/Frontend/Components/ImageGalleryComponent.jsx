@@ -52,7 +52,7 @@ const ImageGalleryComponent = ({ pageType, componentEdit }) => {
             <div className="row">
               {imageGallery.length > 0 &&
                 imageGallery?.map((item, index) => (
-                  <div className="col-4 mb-4" key={item.id}>
+                  <div className="col-sm-6 col-md-4 mb-4" key={item.id}>
                     <img
                       src={getImagePath(item.path)}
                       alt={item.alternitivetext}
