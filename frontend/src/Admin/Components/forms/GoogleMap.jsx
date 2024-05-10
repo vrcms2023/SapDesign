@@ -91,7 +91,7 @@ const GoogleMap = ({ editHandler, componentType, mapValues }) => {
           </div>
 
           <div className="row mt-3">
-            <div className="d-flex justify-content-center align-items-center gap-2">
+            <div className="d-flex justify-content-center flex-wrap flex-column flex-sm-row align-items-center gap-2">
               <button onClick={saveGoogleMapUrl} className="btn btn-primary">
                 Save
               </button>

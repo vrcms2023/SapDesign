@@ -203,7 +203,7 @@ export const BriefIntroAdmin = ({ editHandler, componentType, pageType }) => {
               </div>
             </div> */}
 
-            <div className="d-flex justify-content-center align-items-center gap-3 mt-4">
+            <div className="d-flex justify-content-center flex-column flex-sm-row align-items-center gap-3 mt-4">
               {/* <Button
                 type="submit"
                 cssClass="btn btn-secondary mx-3"
