@@ -34,14 +34,11 @@ import { Link } from "react-router-dom";
 import Banner from "../../../Common/Banner";
 import ImageInputsForm from "../../../Admin/Components/forms/ImgTitleIntoForm";
 
-import ImageGalleryComponent from "../../Components/ImageGalleryComponent";
 import ServiceOfferedComponent from "../../Components/ServiceOfferedComponent";
 
-import { ClientListComponent } from "../../Components/ClientListComponent";
-import { sortCreatedDateByDesc } from "../../../util/dataFormatUtil";
-import HomeClients from "../../Components/HomeClients";
 import { HomeClientsStyled } from "../../../Common/StyledComponents/Styled-HomeClients";
 import { sortByFieldName } from "../../../util/commonUtil";
+import { HomeClientItem } from "../../Components/HomeClientItem";
 
 const Home = () => {
   const editComponentObj = {
@@ -116,17 +113,6 @@ const Home = () => {
     getClientList();
   }, []);
 
-  const [clientDescription, setClientDescription] = useState(false);
-  const [filteredClient, setFilteredClient] = useState({});
-
-  const imgMouseOverHandler = (id) => {
-    // console.log("Hello", id);
-    const filtered = clientsList.filter(client => client.id === id)
-    console.log('filtered', filtered)
-    setFilteredClient(filtered);
-    setClientDescription(!clientDescription)
-  }
-
   return (
     <>
       <div className="container-fluid">
@@ -155,7 +141,7 @@ const Home = () => {
           </div>
         ) : (
           ""
-        )} 
+        )}
 
         {/* Carousel */}
         {/* <div className="row">
@@ -184,7 +170,7 @@ const Home = () => {
         )} */}
 
         {/*  HOME Services */}
-         <div className="row" style={{ background: "#f3f3f3" }}>
+        <div className="row" style={{ background: "#f3f3f3" }}>
           <div className="col-md-8 offset-md-2">
             <div className="container">
               <div className="row">
@@ -197,201 +183,183 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div> 
-      
-
-      <div className="text-center mb-5" style={{ marginTop: "100px" }}>
-        <span
-          className="fs-1 px-4 py-2"
-          style={{ borderBottom: "1px solid #444444" }}
-        >
-          Services Offered
-        </span>
-      </div>
-      <div className="row">
-        <div className="col-md-12 carousel">
-          {isAdmin && hasPermission && (
-            <EditIcon editHandler={() => editHandler("serviceOffered", true)} />
-          )}
-
-          <ServiceOfferedComponent
-            getBannerAPIURL={`carousel/clientCarouselbyCategory/${serviceOffered}/`}
-            componentEdit={componentEdit}
-          />
         </div>
-      </div>
 
-      {componentEdit.serviceOffered && (
-        <div className="adminEditTestmonial">
-          <AdminBanner
-            editHandler={editHandler}
-            componentType="serviceOffered"
-            getImageListURL={`carousel/getCarousel/${serviceOffered}/`}
-            deleteImageURL="carousel/updateCarousel/"
-            imagePostURL="carousel/createCarousel/"
-            imageUpdateURL="carousel/updateCarousel/"
-            imageIndexURL="carousel/updateCarouselindex/"
-            imageLabel="Add Images"
-            showDescription={false}
-            showExtraFormFields={getserviceOfferedFields(serviceOffered)}
-            dimensions={imageDimensionsJson("carousel")}
-          />
-        </div>
-      )}
-
-
-      {/* Image Gallery Carousel */}
-      <ImageGalleryStyled>
         <div className="text-center mb-5" style={{ marginTop: "100px" }}>
           <span
             className="fs-1 px-4 py-2"
             style={{ borderBottom: "1px solid #444444" }}
           >
-            View Gallery
+            Services Offered
           </span>
         </div>
-        <div className="row ">
-          <div className="col-md-10 offset-md-1 homeGalleryCarousel">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-10 offset-md-1">
-                  <Carousel carouselState={componentEdit.carousel} />
+        <div className="row">
+          <div className="col-md-12 carousel">
+            {isAdmin && hasPermission && (
+              <EditIcon
+                editHandler={() => editHandler("serviceOffered", true)}
+              />
+            )}
+
+            <ServiceOfferedComponent
+              getBannerAPIURL={`carousel/clientCarouselbyCategory/${serviceOffered}/`}
+              componentEdit={componentEdit}
+            />
+          </div>
+        </div>
+
+        {componentEdit.serviceOffered && (
+          <div className="adminEditTestmonial">
+            <AdminBanner
+              editHandler={editHandler}
+              componentType="serviceOffered"
+              getImageListURL={`carousel/getCarousel/${serviceOffered}/`}
+              deleteImageURL="carousel/updateCarousel/"
+              imagePostURL="carousel/createCarousel/"
+              imageUpdateURL="carousel/updateCarousel/"
+              imageIndexURL="carousel/updateCarouselindex/"
+              imageLabel="Add Images"
+              showDescription={false}
+              showExtraFormFields={getserviceOfferedFields(serviceOffered)}
+              dimensions={imageDimensionsJson("carousel")}
+            />
+          </div>
+        )}
+
+        {/* Image Gallery Carousel */}
+        <ImageGalleryStyled>
+          <div className="text-center mb-5" style={{ marginTop: "100px" }}>
+            <span
+              className="fs-1 px-4 py-2"
+              style={{ borderBottom: "1px solid #444444" }}
+            >
+              View Gallery
+            </span>
+          </div>
+          <div className="row ">
+            <div className="col-md-10 offset-md-1 homeGalleryCarousel">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-10 offset-md-1">
+                    <Carousel carouselState={componentEdit.carousel} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          className="text-center py-4 position-relative "
-          style={{ marginTop: "200px" }}
-        >
-          <Link to="/imageGallery" className="btn btn-outline">
-            View All
-          </Link>
-        </div>
-      </ImageGalleryStyled>
-
-      <HomeClientsStyled>
-        <div className="text-center mb-5" style={{ marginTop: "100px" }}>
-          <span
-            className="fs-1 px-4 py-2"
-            style={{ borderBottom: "1px solid #444444" }}
+          <div
+            className="text-center py-4 position-relative "
+            style={{ marginTop: "200px" }}
           >
-            Clients
-          </span>
-        </div>
-        <div className="image-slider">
-        <div className="image-slider-track">
-        {clientsList.map((client) => {
-                return (
-                  <div className="position-relative">
-                  <div className="slide">
-                    <img
-                      src={client.path}
-                      alt={client.client_title}
-                      key={client.id}
-                      onMouseOver={()=>imgMouseOverHandler(client.id)}
-                    />
-                  </div>
-                  { clientDescription ? 
-                    <div className="position-absolute">{filteredClient[0].client_description}</div>
-                  : ""}
-                  </div>
-                );
+            <Link to="/imageGallery" className="btn btn-outline">
+              View All
+            </Link>
+          </div>
+        </ImageGalleryStyled>
+
+        <HomeClientsStyled>
+          <div className="text-center mb-5" style={{ marginTop: "100px" }}>
+            <span
+              className="fs-1 px-4 py-2"
+              style={{ borderBottom: "1px solid #444444" }}
+            >
+              Clients
+            </span>
+          </div>
+          <div className="image-slider">
+            <div className="image-slider-track">
+              {clientsList.map((client) => {
+                return <HomeClientItem client={client} key={client.id} />;
               })}
-        </div>
-    </div>
-    <div className="text-center py-4 position-relative viewAllBtn" >
-          <Link to="/clients" className="btn btn-outline">
-            View All
-          </Link>
-        </div>
-      </HomeClientsStyled>
+            </div>
+          </div>
+          <div className="text-center py-4 position-relative viewAllBtn">
+            <Link to="/clients" className="btn btn-outline">
+              View All
+            </Link>
+          </div>
+        </HomeClientsStyled>
 
-       
-
-        
-
-      {/* <ClientListComponent
+        {/* <ClientListComponent
           clientsList={clientsList}
           deleteAboutSection={""}
           editHandler={""}
         /> */}
 
-      {/* Clients */}
-      <div className="text-center mb-5" style={{ marginTop: "100px" }}>
-        <span
-          className="fs-1 px-4 py-2"
-          style={{ borderBottom: "1px solid #444444" }}
-        >
-          Testimonials
-        </span>
-      </div>
-      <div className="row">
-        <div className="col-md-12">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 p-5 testimonials text-center">
-                {isAdmin && hasPermission && (
-                  <EditIcon
-                    editHandler={() => editHandler("testmonial", true)}
-                  />
-                )}
-                {/* Testimonials */}
-                {testimonis.length < 1 ? (
-                  (testimonis.length, "No Testimonials Found")
-                ) : testimonis.length === 1 ? (
-                  <h4>Please add 2 or more testimonials.</h4>
-                ) : testimonis.length > 1 ? (
-                  <Testimonials testimonis={testimonis} />
-                ) : (
-                  ""
-                )}
-                {/* {testimonis.length > 0 ? (
+        {/* Clients */}
+        <div className="text-center mb-5" style={{ marginTop: "100px" }}>
+          <span
+            className="fs-1 px-4 py-2"
+            style={{ borderBottom: "1px solid #444444" }}
+          >
+            Testimonials
+          </span>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12 p-5 testimonials text-center">
+                  {isAdmin && hasPermission && (
+                    <EditIcon
+                      editHandler={() => editHandler("testmonial", true)}
+                    />
+                  )}
+                  {/* Testimonials */}
+                  {testimonis.length < 1 ? (
+                    (testimonis.length, "No Testimonials Found")
+                  ) : testimonis.length === 1 ? (
+                    <h4>Please add 2 or more testimonials.</h4>
+                  ) : testimonis.length > 1 ? (
+                    <Testimonials testimonis={testimonis} />
+                  ) : (
+                    ""
+                  )}
+                  {/* {testimonis.length > 0 ? (
 
               <Testimonials testimonis={testimonis} />
             ) : (
               ""
             )} */}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* HOME News */}
-      <div className="row py-5 homeNews">
-        <div className="col-md-12 d-flex justify-content-center align-items-center">
-          <div className="container">
-            <h2 className="mb-5 fw-bold">News</h2>
-            <div className="row">
-              <HomeNews news={news} setNews={setNews} pagetype={pageType} />
+        {/* HOME News */}
+        <div className="row py-5 homeNews">
+          <div className="col-md-12 d-flex justify-content-center align-items-center">
+            <div className="container">
+              <h2 className="mb-5 fw-bold">News</h2>
+              <div className="row">
+                <HomeNews news={news} setNews={setNews} pagetype={pageType} />
+              </div>
             </div>
           </div>
-        </div>
 
-        {componentEdit.testmonial && (
-          <div className="adminEditTestmonial">
-            <AdminBanner
-              editHandler={editHandler}
-              componentType="testmonial"
-              getImageListURL="testimonials/clientTestimonials/"
-              deleteImageURL="testimonials/updateTestimonials/"
-              imagePostURL="testimonials/createTestimonials/"
-              imageUpdateURL="testimonials/updateTestimonials/"
-              imageIndexURL="testimonials/updateTestimonialsindex/"
-              imageLabel="Add your Image"
-              titleTitle="Testmonial Name"
-              descriptionTitle="Testimonial Writeup "
-              showDescription={false}
-              showExtraFormFields={getTestimonialsFields("testmonial")}
-              dimensions={imageDimensionsJson("testimonial")}
-            />
-          </div>
-        )}
-      </div>
-      {show && <ModelBg />}
-      {/* {showEditPop && <ModelBg />} */}
+          {componentEdit.testmonial && (
+            <div className="adminEditTestmonial">
+              <AdminBanner
+                editHandler={editHandler}
+                componentType="testmonial"
+                getImageListURL="testimonials/clientTestimonials/"
+                deleteImageURL="testimonials/updateTestimonials/"
+                imagePostURL="testimonials/createTestimonials/"
+                imageUpdateURL="testimonials/updateTestimonials/"
+                imageIndexURL="testimonials/updateTestimonialsindex/"
+                imageLabel="Add your Image"
+                titleTitle="Testmonial Name"
+                descriptionTitle="Testimonial Writeup "
+                showDescription={false}
+                showExtraFormFields={getTestimonialsFields("testmonial")}
+                dimensions={imageDimensionsJson("testimonial")}
+              />
+            </div>
+          )}
+        </div>
+        {show && <ModelBg />}
+        {/* {showEditPop && <ModelBg />} */}
       </div>
     </>
   );
