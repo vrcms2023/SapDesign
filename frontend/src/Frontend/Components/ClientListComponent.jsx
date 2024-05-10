@@ -107,7 +107,9 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
     >
       {(provided) => (
         <div
-          className={`${isAdmin ? "col-12 clientAdmin" : "col-md-3 clientFrontend"} image`}
+          className={`${
+            isAdmin ? "col-12 clientAdmin" : "col-md-3 clientFrontend"
+          } image`}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -138,28 +140,28 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
             )}
 
             <div className={`${isAdmin ? "d-md-flex p-3" : ""}`}>
-            <div className="text-center clientAvatar">
-              <img
-                src={getImagePath(item.path)}
-                alt=""
-                className="img-fluid shadow-lg img-thumbnail"
-              />
-            </div>
-            <div className="mt-3 d-flex justify-content-center align-items-center justify-content-md-start align-items-md-start flex-column  clientDetails ms-3">
-              {item.client_title && (
-                <Title
-                  title={item.client_title}
-                  cssClass="fs-5 mb-2 text-center"
+              <div className="text-center clientAvatar">
+                <img
+                  src={getImagePath(item.path)}
+                  alt=""
+                  className="img-fluid shadow-lg img-thumbnail"
                 />
-              )}
+              </div>
+              <div className="mt-3 d-flex justify-content-center align-items-center justify-content-md-start align-items-md-start flex-column  clientDetails ms-3">
+                {item.client_title && (
+                  <Title
+                    title={item.client_title}
+                    cssClass="fs-5 mb-2 text-center"
+                  />
+                )}
 
-              <div
-                className={`details ${isAdmin ? "" : "overlay"}`}
-                dangerouslySetInnerHTML={{
-                  __html: item.client_description,
-                }}
-              />
-            </div>
+                <div
+                  className={`details ${isAdmin ? "" : "overlay"}`}
+                  dangerouslySetInnerHTML={{
+                    __html: item.client_description,
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>

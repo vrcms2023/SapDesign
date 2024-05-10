@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { toast } from "react-toastify";
 // Components
 import LoadingSpinner from "./Common/LoadingSpinner";
 import { HideFooterForAdmin } from "./util/commonUtil";
@@ -86,6 +86,17 @@ function App() {
 
   const isHideMenu = HideFooterForAdmin();
   const [flashAdd, setFlashAdd] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+    toast.error("Right Click is diabled");
+  };
 
   useEffect(() => {
     setFlashAdd(false);
