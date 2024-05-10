@@ -136,6 +136,8 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
                 </Link>
               </>
             )}
+
+            <div className={`${isAdmin ? "d-md-flex p-3" : ""}`}>
             <div className="text-center clientAvatar">
               <img
                 src={getImagePath(item.path)}
@@ -143,7 +145,7 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
                 className="img-fluid shadow-lg img-thumbnail"
               />
             </div>
-            <div className="mt-3 d-flex justify-content-center align-items-center flex-column clientDetails">
+            <div className="mt-3 d-flex justify-content-center align-items-center justify-content-md-start align-items-md-start flex-column  clientDetails ms-3">
               {item.client_title && (
                 <Title
                   title={item.client_title}
@@ -157,6 +159,7 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
                   __html: item.client_description,
                 }}
               />
+            </div>
             </div>
           </div>
         </div>

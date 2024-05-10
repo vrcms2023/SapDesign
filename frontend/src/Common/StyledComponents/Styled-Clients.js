@@ -31,6 +31,7 @@ export const ClientStyled = styled.div`
     .overlay {
       position: absolute;
       bottom: 0;
+      left: 0;
       background: rgb(0, 0, 0);
       background: rgba(0, 0, 0, .8); /* Black see-through */
       color: #f1f1f1;
@@ -53,7 +54,8 @@ export const ClientStyled = styled.div`
   .clientAdmin .details {
     display: flex;
     flex-direction: row;
-    gap: 15px
+    gap: 15px;
+    flex-wrap: wrap;
   }
   
 `;
