@@ -193,7 +193,7 @@ const Contact = () => {
 
       <div className="container-fluid">
         <div className="row">
-          <div className="contactAddress position-relative col-md-12 text-white blueBg-500 p-5 py-3 p-md-5">
+          <div className="contactAddress position-relative col-md-12 text-white blueBg-500 p-3 p-md-5">
             {isAdmin && hasPermission && (
               <EditIcon editHandler={() => editHandler("address", true)} />
             )}

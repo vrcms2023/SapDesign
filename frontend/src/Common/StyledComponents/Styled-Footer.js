@@ -3,7 +3,7 @@ import BgSymbol from "../../Images/logo-symbol.svg";
 import styled from "styled-components";
 
 export const FooterStyled = styled.div`
-    background-image: url(${BgSymbol});
+  background-image: url(${BgSymbol});
   background-repeat: no-repeat;
   background-position: 120% -250px;
   background-size: 40%;
@@ -32,11 +32,28 @@ export const FooterStyled = styled.div`
     text-align: left
   }
 
+  .reachUs p {
+    word-wrap: break-word;
+  }
+
+  @media (max-width: 991px ) {
+    .footerLogo {
+      width: 95%;
+    }
+  }
+
+  @media (max-width: 768px ) {
+    .footerLogo {
+      width: 50%;
+    }
+  }
+  
+
   .socialLinks {
     // padding: 15px 0;
 
     img {
-      width: 80%;
+      width: 70%;
     }
 
     i {
