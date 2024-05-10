@@ -17,7 +17,8 @@ export const HomeClientItem = ({ client }) => {
       </div>
       {hover && (
         <div
-          className="position-absolute"
+          className="position-absolute p-3 w-100 rounded-3 bg-dark text-white" 
+          style={{top: 0, zIndex: "999", opacity: ".8"}}
           dangerouslySetInnerHTML={{
             __html: client?.client_description,
           }}
