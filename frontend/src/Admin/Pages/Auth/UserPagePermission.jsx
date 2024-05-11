@@ -318,7 +318,11 @@ const UserPagePermission = () => {
             </li>
           </ul>
           <ul className="list-group list-group-flush">
-            {menuDetails?.map((menu) => childContent(menu, false))}
+            {menuDetails?.map((menu) => {
+              if (menu.is_Maintainer_menu) {
+                return childContent(menu, false);
+              }
+            })}
           </ul>
         </div>
       </div>
