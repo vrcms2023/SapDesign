@@ -42,15 +42,15 @@ img{
   animation-play-state: paused;
 }
 
-// @keyframes play{
-//     0%{
-//         transform: translateX(100%);
-//     }
+@keyframes play{
+    0%{
+        transform: translateX(100%);
+    }
 
-//     100%{
-//         transform: translateX(-120%);
-//     }
-// }
+    100%{
+        transform: translateX(-120%);
+    }
+}
 
   .image-slider::before,
   .image-slider::after{
