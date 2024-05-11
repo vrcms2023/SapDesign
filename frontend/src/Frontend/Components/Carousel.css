@@ -17,9 +17,8 @@
 }
 
 .carousel-item {
- 
   overflow: hidden;
-  box-shadow: 0 15px 0px #3cd9d2;
+  /* box-shadow: 0 15px 0px #3cd9d2; */
 }
 .carousel-item img {
   height: 85vh;

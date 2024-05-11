@@ -115,9 +115,9 @@ const PagesConfiguration = () => {
         <th>URL</th>
         <th>Menu type</th>
         <th className="text-center">Active status</th>
-        <th className="text-center">Client </th>
-        <th className="text-center">Admin </th>
-        <th className="text-center">Maintainer</th>
+        <th className="text-center">End User View </th>
+        {/* <th className="text-center">Super Admin </th> */}
+        <th className="text-center">Admin Pages to View</th>
         <th className="text-center">Action</th>
       </tr>
     );
@@ -184,7 +184,7 @@ const PagesConfiguration = () => {
                     className="form-check-input border border-secondary"
                   />
                 </td>
-                <td className="text-center">
+                {/* <td className="text-center">
                   <input
                     type="checkbox"
                     checked={node.is_Admin_menu}
@@ -194,7 +194,7 @@ const PagesConfiguration = () => {
                     }}
                     className="form-check-input border border-secondary"
                   />
-                </td>
+                </td> */}
                 <td className="text-center">
                   <input
                     type="checkbox"
