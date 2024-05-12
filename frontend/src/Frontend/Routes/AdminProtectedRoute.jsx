@@ -12,12 +12,6 @@ const AdminProtectedRoute = () => {
     ? JSON.parse(getCookie("is_admin"))
     : false;
 
-  // if (is_appAccess && userToken && is_admin) {
-  //   return <Outlet />;
-  // } else {
-  //   return <Navigate to="/unauthorized" />;
-  // }
-
   if (is_appAccess && userToken && is_admin) {
     return <Outlet />;
   } else if (!is_appAccess && !is_admin && userToken) {
