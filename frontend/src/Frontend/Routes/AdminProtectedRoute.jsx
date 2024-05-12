@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+
 import { getCookie } from "../../util/cookieUtil";
 
-const AdminProtectedRoute = (props) => {
-  const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { userInfo } = useSelector((state) => state.auth);
+const AdminProtectedRoute = () => {
+  const userToken = getCookie("access");
+  let is_appAccess = getCookie("is_appAccess")
+    ? JSON.parse(getCookie("is_appAccess"))
+    : false;
+  let is_admin = getCookie("is_admin")
+    ? JSON.parse(getCookie("is_admin"))
+    : false;
 
-  useEffect(() => {
-    const checkUserToken = () => {
-      const userToken = getCookie("access");
-      let is_appAccess = getCookie("is_appAccess")
-        ? JSON.parse(getCookie("is_appAccess"))
-        : false;
+  // if (is_appAccess && userToken && is_admin) {
+  //   return <Outlet />;
+  // } else {
+  //   return <Navigate to="/unauthorized" />;
+  // }
 
-      if (!is_appAccess) {
-        setIsLoggedIn(false);
-        return navigate("/unauthorized");
-      }
-
-      if (!userInfo && !userToken && !userInfo?.is_admin) {
-        setIsLoggedIn(false);
-        return navigate("/login");
-      }
-
-      setIsLoggedIn(true);
-    };
-
-    checkUserToken();
-  }, [isLoggedIn]);
-
-  return <React.Fragment>{isLoggedIn ? props.children : ""}</React.Fragment>;
+  if (is_appAccess && userToken && is_admin) {
+    return <Outlet />;
+  } else if (!is_appAccess && !is_admin && userToken) {
+    return <Navigate to="/unauthorized" />;
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 export default AdminProtectedRoute;
