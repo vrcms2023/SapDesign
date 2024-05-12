@@ -5,6 +5,7 @@ import { axiosServiceApi } from "../../../util/axiosUtil";
 import { toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
 import DeleteDialog from "../../../Common/DeleteDialog";
+import _ from "lodash";
 import ModelBg from "../../../Common/ModelBg";
 import MenuForm from "../../Components/forms/MenuForm";
 import { useDispatch, useSelector } from "react-redux";
@@ -93,6 +94,22 @@ const PagesConfiguration = () => {
    * @param {*} menu
    */
   const activeUserMenu = async (id, data, name) => {
+    if (!data.is_Parent) {
+      const _parentMenu = _.filter(
+        pagesDetails,
+        (item) => item.id == data.page_parent_ID
+      )[0];
+      if (!_parentMenu[name]) {
+        await updatePageIndex(_parentMenu.id, _parentMenu, name);
+        await updatePageIndex(id, data, name);
+      } else {
+        await updatePageIndex(id, data, name);
+      }
+    } else {
+      await updatePageIndex(id, data, name);
+    }
+  };
+  const updatePageIndex = async (id, data, name) => {
     data[name] = !data[name];
     try {
       const response = await axiosServiceApi.patch(
@@ -110,16 +127,18 @@ const PagesConfiguration = () => {
 
   const tableHeader = () => {
     return (
-      <tr>
-        <th>Menu Lable</th>
-        <th>URL</th>
-        <th>Menu type</th>
-        <th className="text-center">Active status</th>
-        <th className="text-center">End User View </th>
-        {/* <th className="text-center">Super Admin </th> */}
-        <th className="text-center">Admin Pages to View</th>
-        <th className="text-center">Action</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Menu Lable</th>
+          <th>URL</th>
+          <th>Menu type</th>
+          {/* <th className="text-center">Active status</th> */}
+          <th className="text-center">End User View </th>
+          {/* <th className="text-center">Super Admin </th> */}
+          <th className="text-center">Admin Pages to View</th>
+          <th className="text-center">Action</th>
+        </tr>
+      </thead>
     );
   };
 
@@ -162,7 +181,7 @@ const PagesConfiguration = () => {
                 </td>
                 <td>{node.page_url}</td>
                 <td>{node.is_Parent ? "Parent Menu" : "Child Menu"}</td>
-                <td className="text-center">
+                {/* <td className="text-center">
                   <input
                     type="checkbox"
                     checked={node.page_isActive}
@@ -172,7 +191,7 @@ const PagesConfiguration = () => {
                     }}
                     className="form-check-input border border-secondary"
                   />
-                </td>
+                </td> */}
                 <td className="text-center">
                   <input
                     type="checkbox"
@@ -345,7 +364,7 @@ const PagesConfiguration = () => {
       <div className="row px-3 px-lg-5 py-4 table-responsive">
         {showContentPerRole(userInfo, false) ? (
           <table className="table table-striped">
-            <thead>{tableHeader()}</thead>
+            {tableHeader()}
 
             {pagesDetails.length > 0 && <Treeview treeData={pagesDetails} />}
           </table>
