@@ -198,7 +198,7 @@ const UserPagePermission = () => {
     }
   };
 
-  const childContent = (menu, isChild) => {
+  const childContent = (menu) => {
     return (
       <React.Fragment key={menu.id}>
         <li
@@ -229,7 +229,11 @@ const UserPagePermission = () => {
 
           {menu.childMenu?.length > 0 ? (
             <ul className="list-group">
-              {menu.childMenu.map((childMenu) => childContent(childMenu, true))}
+              {menu.childMenu.map((childMenu) => {
+                if (childMenu.is_Maintainer_menu) {
+                  return childContent(childMenu);
+                }
+              })}
             </ul>
           ) : (
             ""
@@ -320,7 +324,7 @@ const UserPagePermission = () => {
           <ul className="list-group list-group-flush">
             {menuDetails?.map((menu) => {
               if (menu.is_Maintainer_menu) {
-                return childContent(menu, false);
+                return childContent(menu);
               }
             })}
           </ul>
