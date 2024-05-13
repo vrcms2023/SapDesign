@@ -121,20 +121,21 @@ const Header = () => {
     function scrollFunction() {
       const navbar = document.getElementsByClassName("navbar")[0]; // Get the first element with the class name
       const logo = document.getElementsByClassName("logo")[0]; // Get the first element with the class name
-      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        navbar.style.position= "fixed";
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
+        navbar.style.position = "fixed";
         navbar.style.top = 0;
         navbar.style.width = "100%";
         navbar.style.transition = "0.4s";
       } else {
-        navbar.style.position= "static";
+        navbar.style.position = "static";
       }
     }
 
-
-    window.addEventListener('scroll', scrollFunction);
-  })
-    
+    window.addEventListener("scroll", scrollFunction);
+  });
 
   // function logOutHandler() {
   //   removeAllCookies();
@@ -200,7 +201,7 @@ export const ClientMenu = ({ serviceMenuList }) => {
     }
   };
 
-  const ChildMenuContent = (menu) => {
+  const ChildMenuContent = ({ menu }) => {
     return (
       <React.Fragment key={menu.id}>
         <li className={`nav-item ${menu.childMenu ? "dropdown" : ""}`}>
@@ -231,9 +232,9 @@ export const ClientMenu = ({ serviceMenuList }) => {
               className="dropdown-menu"
               aria-labelledby={`${menu.page_label}navbarDropdown`}
             >
-              {menu.childMenu.map((childMenu) =>
-                ChildMenuContent(childMenu, true)
-              )}
+              {menu.childMenu.map((childMenu) => (
+                <ChildMenuContent menu={childMenu} />
+              ))}
             </ul>
           )}
         </li>
@@ -242,264 +243,11 @@ export const ClientMenu = ({ serviceMenuList }) => {
   };
 
   return (
-    <>
-      {/* <ul className="navbar-nav ms-auto mb-2 mb-lg-0 menu">
-        <li className="nav-item">
-          <NavLink
-            to="/"
-            className={useCallback(({ isActive }) =>
-              isActive ? "nav-Link active" : "nav-Link"
-            )}
-          >
-            Home
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive ? "nav-Link active" : "nav-Link"
-            }
-          >
-            AboutUs
-          </NavLink>
-        </li>
-
-        <li className="nav-item dropdown">
-          <NavLink
-            id="ServicesnavbarDropdown"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            role="button"
-            to="/rishservices"
-            className={useCallback(({ isActive }) =>
-              isActive
-                ? "nav-Link dropdown-toggle isChildAvailable active"
-                : "nav-Link dropdown-toggle isChildAvailable"
-            )}
-          >
-            Services
-          </NavLink>
-          <ul
-            className="dropdown-menu"
-            aria-labelledby="ServicesnavbarDropdown"
-          >
-            {}
-            {serviceMenuList &&
-              serviceMenuList.map((item) => (
-                <li key={item.id}>
-                  <Link
-                    to={`/services/${urlStringFormat(
-                      item.services_page_title
-                    )}/`}
-                    onClick={() => {
-                      storeServiceMenuValueinCookie(item);
-                    }}
-                    className="dropdown-item"
-                  >
-                    {item.services_page_title}
-                  </Link>
-                </li>
-              ))}
-            {isAdmin ? (
-              <>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li className="pt-3">
-                  <Link 
-                    to="/services#servicesPage"
-                    className="dropdown-item btn btn-primary"
-                  >
-                    Add New Service
-                  </Link>
-                  
-                </li>
-              </>
-            ) : (
-              ""
-            )}
-          </ul>
-        </li>
-
-        <li className="nav-item">
-          <NavLink
-            to="/projects"
-            className={({ isActive }) =>
-              isActive ? "nav-Link active" : "nav-Link"
-            }
-          >
-            Projects
-          </NavLink>
-        </li>
-
-        <li className="nav-item dropdown">
-          <NavLink
-            id="KnowledgeHubnavbarDropdown"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            role="button"
-            to="khub"
-            className={useCallback(({ isActive }) =>
-              isActive
-                ? "nav-Link dropdown-toggle isChildAvailable active"
-                : "nav-Link dropdown-toggle isChildAvailable"
-            )}
-          >
-            Clients
-          </NavLink>
-          <ul
-            className="dropdown-menu"
-            aria-labelledby="KnowledgeHubnavbarDropdown"
-          >
-            <li>
-              <Link to="/casestudies" className="dropdown-item">
-                Case Studies
-              </Link>
-            </li>
-            <li>
-              <Link to="/clients" className="dropdown-item">
-                Client List
-              </Link>
-            </li>
-            <li>
-              <Link to="/news" className="dropdown-item">
-                News
-              </Link>
-            </li>
-            <li>
-              <Link to="/testimonials" className="dropdown-item">
-                Testimonials
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="nav-item">
-          <NavLink
-            to="/careers"
-            className={({ isActive }) =>
-              isActive ? "nav-Link active" : "nav-Link"
-            }
-          >
-            Careers
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink
-            to="/team"
-            className={({ isActive }) =>
-              isActive ? "nav-Link active" : "nav-Link"
-            }
-          >
-            Team
-          </NavLink>
-        </li>
-
-        <li className="nav-item dropdown">
-          <NavLink
-            id="KnowledgeHubnavbarDropdown"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            role="button"
-            to="khub"
-            className={useCallback(({ isActive }) =>
-              isActive
-                ? "nav-Link dropdown-toggle isChildAvailable active"
-                : "nav-Link dropdown-toggle isChildAvailable"
-            )}
-          >
-            Gallery
-          </NavLink>
-          <ul
-            className="dropdown-menu"
-            aria-labelledby="KnowledgeHubnavbarDropdown"
-          >
-            <li>
-              <Link to="/gallery" className="dropdown-item">
-                Image Gallery
-              </Link>
-            </li>
-            <li>
-              <Link to="/gallery" className="dropdown-item">
-                Video Gallery
-              </Link>
-            </li>
-            <li>
-              <Link to="/gallery" className="dropdown-item">
-                Projects Gallery
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="nav-item">
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive ? "nav-Link active" : "nav-Link"
-            }
-          >
-            Contact
-          </NavLink>
-        </li>
-        {isAdmin ? (
-          <li className="nav-item dropdown">
-            <NavLink
-              id="AdminSettingnavbarDropdown"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              role="button"
-              to="khub"
-              className={({ isActive }) =>
-                isActive
-                  ? "nav-Link dropdown-toggle isChildAvailable active"
-                  : "nav-Link dropdown-toggle isChildAvailable"
-              }
-            >
-              Admin Settings
-            </NavLink>
-            <ul
-              className="dropdown-menu"
-              aria-labelledby="AdminSettingnavbarDropdown"
-            >
-              <Link to="/dashboard" className="dropdown-item">
-                Dashboard
-              </Link>
-              <li>
-                {showContentPerRole(userInfo, false) ? (
-                  <>
-                    <Link to="/userAdmin" className="dropdown-item">
-                      Users
-                    </Link>
-                    <Link to="/userPermission" className="dropdown-item">
-                      User Pages Permissions
-                    </Link>
-                    <Link
-                      to="/adminPagesConfigurtion"
-                      className="dropdown-item"
-                    >
-                      Admin Pages Configurtion
-                    </Link>
-                  </>
-                ) : (
-                  ""
-                )}
-                <Link to="/contactUSList" className="dropdown-item">
-                  Contact List
-                </Link>
-                <Link to="/change_password" className="dropdown-item">
-                  Change Password
-                </Link>
-              </li>
-            </ul>
-          </li>
-        ) : (
-          ""
-        )}
-      </ul> */}
-      <ul className="navbar-nav ms-auto mb-2 mb-lg-0 menu">
-        {menuList?.map((menu) => ChildMenuContent(menu, false))}
-      </ul>
-    </>
+    <ul className="navbar-nav ms-auto mb-2 mb-lg-0 menu">
+      {menuList?.map((menu) => (
+        <ChildMenuContent menu={menu} />
+      ))}
+    </ul>
   );
 };
 

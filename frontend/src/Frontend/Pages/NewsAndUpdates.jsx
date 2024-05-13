@@ -24,7 +24,11 @@ import {
 // Styles
 import AdminBanner from "../../Admin/Components/forms/ImgTitleIntoForm-List";
 import CustomPagination from "../../Common/CustomPagination";
-import { paginationDataFormat } from "../../util/commonUtil";
+import {
+  getObjectPositionKey,
+  paginationDataFormat,
+  sortByFieldName,
+} from "../../util/commonUtil";
 import { sortCreatedDateByDesc } from "../../util/dataFormatUtil";
 import NoteComponent from "../../Common/NoteComponent";
 
@@ -57,7 +61,9 @@ const NewsAndUpdates = () => {
   });
 
   const setResponseData = (data) => {
-    setNews(data.length > 0 ? data : []);
+    const _positionKey = getObjectPositionKey(data.results[0]);
+    const _newslList = sortByFieldName(data.results, _positionKey);
+    setNews(_newslList);
     setPaginationData(paginationDataFormat(data));
     setCurrentPage(1);
   };
@@ -140,8 +146,10 @@ const NewsAndUpdates = () => {
             />
           </div>
         </div>
-        {isAdmin && <NoteComponent note="Use drag option to shuffle the Items" /> }
-        
+        {isAdmin && (
+          <NoteComponent note="Use drag option to shuffle the Items" />
+        )}
+
         <div className="row mb-5">
           {componentEdit.addNews ? (
             <div className="adminEditTestmonial">
