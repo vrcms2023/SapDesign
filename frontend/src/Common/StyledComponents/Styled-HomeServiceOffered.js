@@ -14,12 +14,24 @@ export const HomeServieOfferedStyled = styled.div`
         filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
         object-fit: cover;
         cursor: pointer;
+        transition: .9s ease;
 
         &:hover {
             -webkit-filter: grayscale(0);
             filter: none;
             border: 3px solid ${({ theme }) => theme.black};
+
+            + h4 {
+                letter-spacing: 5px;
+            }
         }
+
+        + h4 {
+           
+            letter-spacing: 0px;
+            transition: all .4s ease-in;
+        }
+        
     }
 }
 
