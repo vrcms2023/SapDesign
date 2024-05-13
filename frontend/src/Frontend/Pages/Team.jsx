@@ -292,7 +292,7 @@ const Team = () => {
           </div>
         </TeamStyled>
         <div className="row my-5">
-          {paginationData?.total_count ? (
+          {paginationData?.total_count && (
             <CustomPagination
               paginationData={paginationData}
               paginationURL={
@@ -313,8 +313,6 @@ const Team = () => {
               setResponseData={setResponseData}
               pageLoadResult={pageLoadResult}
             />
-          ) : (
-            ""
           )}
         </div>
       </div>

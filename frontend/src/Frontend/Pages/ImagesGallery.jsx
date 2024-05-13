@@ -8,10 +8,11 @@ import {
 } from "../../util/dynamicFormFields";
 import ModelBg from "../../Common/ModelBg";
 import DynamicCarousel from "../Components/DynamicCarousel";
-import { getImagePath } from "../../util/commonUtil";
+import { getImagePath, paginationDataFormat } from "../../util/commonUtil";
 import { axiosClientServiceApi } from "../../util/axiosUtil";
 import { ImageGalleryStyled } from "../../Common/StyledComponents/Styled-ImageGallery";
 import ImageGalleryComponent from "../Components/ImageGalleryComponent";
+import CustomPagination from "../../Common/CustomPagination";
 
 const ImagesGallery = () => {
   const editComponentObj = {
@@ -25,6 +26,9 @@ const ImagesGallery = () => {
   const [imageGallery, setImageGallery] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [img, setImg] = useState(null);
+  const [paginationData, setPaginationData] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageLoadResult, setPageloadResults] = useState(false);
 
   const editHandler = (name, value) => {
     SetComponentEdit((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -40,8 +44,7 @@ const ImagesGallery = () => {
         );
 
         if (response?.status === 200) {
-          let key = Object.keys(response.data);
-          setImageGallery(response.data[key]);
+          setResponseData(response?.data);
         }
       } catch (error) {
         console.log("unable to access ulr because of server is down");
@@ -65,41 +68,70 @@ const ImagesGallery = () => {
   const closeModel = () => {
     setShowModal(!showModal);
   };
+  const setResponseData = (data) => {
+    setImageGallery(data.results);
+    setPaginationData(paginationDataFormat(data));
+    setCurrentPage(1);
+  };
 
   return (
-    <ImageGalleryStyled>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12 py-5">
-            {isAdmin && hasPermission && (
-              <EditIcon editHandler={() => editHandler("gallery", true)} />
-            )}
-            {componentEdit.gallery && (
-              <div className="adminEditTestmonial">
-                <AdminBanner
-                  editHandler={editHandler}
-                  componentType="gallery"
-                  getImageListURL={`imgGallery/createImageVidoeGallery/${pageType}/`}
-                  deleteImageURL="imgGallery/updateImageVidoeGallery/"
-                  imagePostURL="imgGallery/createImageVidoeGallery/"
-                  imageUpdateURL="imgGallery/updateImageVidoeGallery/"
-                  imageIndexURL=""
-                  imageLabel="Add Image"
-                  showDescription={false}
-                  showExtraFormFields={getImageGalleryFields("imageGallery")}
-                  dimensions={imageDimensionsJson("imageGallery")}
-                />
-              </div>
-            )}
+    <>
+      <ImageGalleryStyled>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 py-5">
+              {isAdmin && hasPermission && (
+                <EditIcon editHandler={() => editHandler("gallery", true)} />
+              )}
+              {componentEdit.gallery && (
+                <div className="adminEditTestmonial">
+                  <AdminBanner
+                    editHandler={editHandler}
+                    componentType="gallery"
+                    getImageListURL={`imgGallery/createImageVidoeGallery/${pageType}/`}
+                    deleteImageURL="imgGallery/updateImageVidoeGallery/"
+                    imagePostURL="imgGallery/createImageVidoeGallery/"
+                    imageUpdateURL="imgGallery/updateImageVidoeGallery/"
+                    imageIndexURL=""
+                    imageLabel="Add Image"
+                    showDescription={false}
+                    showExtraFormFields={getImageGalleryFields("imageGallery")}
+                    dimensions={imageDimensionsJson("imageGallery")}
+                  />
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
-        <ImageGalleryComponent
-          pageType={pageType}
-          componentEdit={componentEdit}
-        />
+          <ImageGalleryComponent
+            pageType={pageType}
+            componentEdit={componentEdit}
+            imageGallery={imageGallery}
+          />
+        </div>
+      </ImageGalleryStyled>
+      <div className="row my-5">
+        {paginationData?.total_count && (
+          <CustomPagination
+            paginationData={paginationData}
+            paginationURL={
+              isAdmin
+                ? `imgGallery/createImageVidoeGallery/${pageType}/`
+                : `imgGallery/clientImageVidoeGallery/${pageType}/`
+            }
+            paginationSearchURL={
+              isAdmin
+                ? `imgGallery/createImageVidoeGallery/${pageType}/`
+                : `imgGallery/clientImageVidoeGallery/${pageType}/`
+            }
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            setResponseData={setResponseData}
+            pageLoadResult={pageLoadResult}
+          />
+        )}
       </div>
-    </ImageGalleryStyled>
+    </>
   );
 };
 export default ImagesGallery;

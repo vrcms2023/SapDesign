@@ -180,7 +180,9 @@ const Header = () => {
             ""
           )}
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {!isHideMenu && <ClientMenu serviceMenuList={serviceMenuList} />}
+            {!isHideMenu && (
+              <ClientMenu serviceMenuList={serviceMenuList} key="clientMenu" />
+            )}
           </div>
         </div>
       </nav>
@@ -203,49 +205,50 @@ export const ClientMenu = ({ serviceMenuList }) => {
 
   const ChildMenuContent = ({ menu }) => {
     return (
-      <React.Fragment key={menu.id}>
-        <li className={`nav-item ${menu.childMenu ? "dropdown" : ""}`}>
-          <NavLink
-            to={urlStringFormat(menu.page_url)}
-            className={
-              (({ isActive }) => (isActive ? "active" : ""),
-              `${menu.is_Parent ? "nav-Link" : "dropdown-item"} ${
-                menu.childMenu?.length > 0 && "dropdown-toggle isChildAvailable"
-              }`)
-            }
-            onClick={
-              menu.page_url.startsWith("/services/")
-                ? () => {
-                    getSelectedServiceMenu(menu);
-                  }
-                : ""
-            }
-            id={menu.id}
-            data-bs-toggle={`${menu.childMenu?.length > 0 ? "dropdown" : ""}`}
-            aria-expanded={`${menu.childMenu?.length > 0 ? false : true}`}
-            role={`${menu.childMenu?.length > 0 ? "button" : ""}`}
+      <li
+        className={`nav-item ${menu.childMenu ? "dropdown" : ""}`}
+        key={menu.id}
+      >
+        <NavLink
+          to={urlStringFormat(menu.page_url)}
+          className={
+            (({ isActive }) => (isActive ? "active" : ""),
+            `${menu.is_Parent ? "nav-Link" : "dropdown-item"} ${
+              menu.childMenu?.length > 0 && "dropdown-toggle isChildAvailable"
+            }`)
+          }
+          onClick={
+            menu.page_url.startsWith("/services/")
+              ? () => {
+                  getSelectedServiceMenu(menu);
+                }
+              : ""
+          }
+          id={menu.id}
+          data-bs-toggle={`${menu.childMenu?.length > 0 ? "dropdown" : ""}`}
+          aria-expanded={`${menu.childMenu?.length > 0 ? false : true}`}
+          role={`${menu.childMenu?.length > 0 ? "button" : ""}`}
+        >
+          {menu.page_label}
+        </NavLink>
+        {menu.childMenu?.length > 0 && (
+          <ul
+            className="dropdown-menu"
+            aria-labelledby={`${menu.page_label}navbarDropdown`}
           >
-            {menu.page_label}
-          </NavLink>
-          {menu.childMenu?.length > 0 && (
-            <ul
-              className="dropdown-menu"
-              aria-labelledby={`${menu.page_label}navbarDropdown`}
-            >
-              {menu.childMenu.map((childMenu) => (
-                <ChildMenuContent menu={childMenu} />
-              ))}
-            </ul>
-          )}
-        </li>
-      </React.Fragment>
+            {menu.childMenu.map((childMenu) => (
+              <ChildMenuContent menu={childMenu} key={childMenu.id} />
+            ))}
+          </ul>
+        )}
+      </li>
     );
   };
 
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0 menu">
       {menuList?.map((menu) => (
-        <ChildMenuContent menu={menu} />
+        <ChildMenuContent menu={menu} key={menu.id} />
       ))}
     </ul>
   );
