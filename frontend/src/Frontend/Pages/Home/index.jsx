@@ -266,7 +266,7 @@ const Home = () => {
               Clients
             </span>
           </div>
-          <div className="image-slider">
+          <div className="clients-image-slider">
             <div className="image-slider-track">
               {clientsList.map((client) => {
                 return <HomeClientItem client={client} key={client.id} />;

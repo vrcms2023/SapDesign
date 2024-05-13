@@ -241,7 +241,7 @@ const ClientsList = () => {
           ""
         )}
         <br />
-        <NoteComponent note="Use drag option to shuffle the Items" />
+        {isAdmin &&  <NoteComponent note="Use drag option to shuffle the Items" /> }
         <ClientStyled>
           <ClientListComponent
             clientsList={clientsList}
