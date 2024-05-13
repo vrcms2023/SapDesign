@@ -293,7 +293,7 @@ const NewsItem = ({ item, index, handleModel, DeleteNews, editHandler }) => {
         >
           <div className="col-md-12 col-lg-12 mb-4 mb-lg-0" key={item.id}>
             <NewsStyled>
-              <div className="card homeNews">
+              <div className={`card homeNews ${isAdmin ? "adminView" : ""}`} style={{ minHeight: isAdmin ? "auto" : ""}}>
                 {/* Edit News */}
                 {isAdmin && hasPermission && (
                   <div className="d-flex justify-content-end gap-2">
@@ -320,6 +320,7 @@ const NewsItem = ({ item, index, handleModel, DeleteNews, editHandler }) => {
                   </div>
                 )}
 
+                <div style={{ display: isAdmin ? "flex" : ""}}>
                 <img
                   src={getImagePath(item.path)}
                   className="img-fluid"
@@ -330,9 +331,9 @@ const NewsItem = ({ item, index, handleModel, DeleteNews, editHandler }) => {
                     title={
                       item.news_title ? item.news_title : "Update news Title"
                     }
-                    cssClass="fs-5 fw-bold lh-sm mb-2 lineClamp lc1"
+                    cssClass={` fw-bold lh-sm mb-2 lineClamp lc1 ${isAdmin ? "fs-6" : "fs-5"}`}
                   />
-                  <div className="card-text mb-4 lineClamp lc2">
+                  <div className={`card-text  lineClamp lc2 ${isAdmin ? "mb-0" : "mb-4"}`}>
                     {item.news_description ? (
                       <div
                         dangerouslySetInnerHTML={{
@@ -352,6 +353,7 @@ const NewsItem = ({ item, index, handleModel, DeleteNews, editHandler }) => {
                     handleModel={() => handleModel(item)}
                   />
                 </div>
+              </div>
               </div>
             </NewsStyled>
           </div>

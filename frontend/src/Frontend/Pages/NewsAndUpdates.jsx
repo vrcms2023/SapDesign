@@ -140,7 +140,8 @@ const NewsAndUpdates = () => {
             />
           </div>
         </div>
-        <NoteComponent note="Use drag option to shuffle the Items" />
+        {isAdmin && <NoteComponent note="Use drag option to shuffle the Items" /> }
+        
         <div className="row mb-5">
           {componentEdit.addNews ? (
             <div className="adminEditTestmonial">

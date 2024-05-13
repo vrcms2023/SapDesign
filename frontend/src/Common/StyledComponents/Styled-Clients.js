@@ -41,9 +41,30 @@ export const ClientStyled = styled.div`
       color: white;
       font-size: 20px;
       padding: 20px;
-      border-radius: 50px;
-      text-align: center;
+      border-radius: 20px;
+      height: 100%;
+      max-height: 250px;
+      overflow-y: auto;
       visibility: visible !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+
+      &::before {
+        font-size: 3.5rem;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: orange;  
+      }
+    }
+
+    p {
+      font-size: .9rem;
+      margin: 5px 0 !important;
+      font-family: poppins
     }
   
     &.overlayContainer:hover .overlay {

@@ -3,11 +3,13 @@ import styled from "styled-components";
 export const HomeClientsStyled = styled.div`
   background-color: ${({ theme }) => theme.white};
 
-.image-slider{
+
+.clients-image-slider{
     display: flex;
     // place-it 
-    // position: relative;
-    // overflow: hidden;
+    position: relative;
+    overflow: hidden;
+
     height: 100%;  
     width: 100%;
     justify-content: flex-end;

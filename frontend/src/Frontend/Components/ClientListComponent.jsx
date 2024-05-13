@@ -156,7 +156,7 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
                 )}
 
                 <div
-                  className={`details ${isAdmin ? "" : "overlay"}`}
+                  className={`details ${isAdmin ? "" : "overlay fa fa-map-marker"}`}
                   dangerouslySetInnerHTML={{
                     __html: item.client_description,
                   }}
