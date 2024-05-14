@@ -332,6 +332,18 @@ const Home = () => {
           <div className="col-md-12 d-flex justify-content-center align-items-center">
             <div className="container">
               <h2 className="mb-5 fw-bold">News</h2>
+              {isAdmin && hasPermission && (
+                <div className="text-end mb-4">
+                  <Link
+                    to="#"
+                    className="btn btn-primary"
+                    onClick={() => editHandler("addNews", true)}
+                  >
+                    Add News
+                    <i className="fa fa-plus ms-2" aria-hidden="true"></i>
+                  </Link>
+                </div>
+              )}
               <div className="row">
                 <HomeNews news={news} setNews={setNews} pagetype={pageType} />
               </div>

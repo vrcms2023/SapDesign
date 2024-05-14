@@ -318,7 +318,7 @@ const Contact = () => {
             {success && (
               <Alert
                 mesg={"Thank you for contact us"}
-                cssClass={`alert text-white w-75 mt-3 p-2 text-center bg-success`}
+                cssClass={`alert text-white w-50 mx-auto mt-3 p-2 text-center bg-success`}
               />
             )}
 
@@ -335,17 +335,17 @@ const Contact = () => {
               />
               <InputField
                 label="Email"
-                fieldName="emailid"
+                fieldName="email"
                 register={register}
-                validationObject={fieldValidation.emailid}
-                error={errors?.emailid?.message}
+                validationObject={fieldValidation.email}
+                error={errors?.email?.message}
               />
               <InputField
                 label="Phone"
-                fieldName="phonen_number"
+                fieldName="phoneNumber"
                 register={register}
-                validationObject={fieldValidation.phonen_number}
-                error={errors?.phonen_number?.message}
+                validationObject={fieldValidation.phoneNumber}
+                error={errors?.phoneNumber?.message}
               />
               <TextAreaField
                 label="Message"
