@@ -122,30 +122,33 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
     } else {
       data["created_by"] = getCookie("userName");
     }
+    data["page_isActive"] = true;
+    data["is_Admin_menu"] = true;
 
     const body = JSON.stringify(data);
-    try {
-      let response = "";
-      if (data?.id) {
-        response = await axiosServiceApi.patch(
-          `/pageMenu/updatePageMenu/${data?.id}/`,
-          body
-        );
-      } else {
-        response = await axiosServiceApi.post(
-          `/pageMenu/createPageMenu/`,
-          body
-        );
-      }
-      if (
-        (response?.status === 201 || response?.status === 200) &&
-        response?.data?.PageDetails
-      ) {
-        closeHandler();
-      }
-    } catch (error) {
-      toast.error("Unable to load user details");
-    }
+    console.log(data);
+    // try {
+    //   let response = "";
+    //   if (data?.id) {
+    //     response = await axiosServiceApi.patch(
+    //       `/pageMenu/updatePageMenu/${data?.id}/`,
+    //       body
+    //     );
+    //   } else {
+    //     response = await axiosServiceApi.post(
+    //       `/pageMenu/createPageMenu/`,
+    //       body
+    //     );
+    //   }
+    //   if (
+    //     (response?.status === 201 || response?.status === 200) &&
+    //     response?.data?.PageDetails
+    //   ) {
+    //     closeHandler();
+    //   }
+    // } catch (error) {
+    //   toast.error("Unable to load user details");
+    // }
   };
 
   // const clearField = () => {
@@ -212,20 +215,20 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
                 onChange={isParentHandler}
                 isChecked={isParentVal}
               />
-              <CheckboxField
+              {/* <CheckboxField
                 label="Active Menu"
                 fieldName={"page_isActive"}
                 register={register}
                 onChange={isActiveMenuHandler}
                 isChecked={isActiveMenu}
-              />
-              <CheckboxField
+              /> */}
+              {/* <CheckboxField
                 label="is Admin Menu"
                 fieldName={"is_Admin_menu"}
                 register={register}
                 onChange={isAdminMenuHandler}
                 isChecked={isAdminmenuActive}
-              />
+              /> */}
               <CheckboxField
                 label="is Maintainer Menu"
                 fieldName={"is_Maintainer_menu"}
