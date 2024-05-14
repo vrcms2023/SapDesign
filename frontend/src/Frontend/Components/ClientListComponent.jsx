@@ -12,7 +12,7 @@ import {
   updateArrIndex,
 } from "../../util/commonUtil";
 import useAdminLoginStatus from "../../Common/customhook/useAdminLoginStatus";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import { axiosServiceApi } from "../../util/axiosUtil";
 
 export const ClientListComponent = ({
@@ -156,7 +156,9 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
                 )}
 
                 <div
-                  className={`details ${isAdmin ? "" : "overlay fa fa-map-marker"}`}
+                  className={`details ${
+                    isAdmin ? "" : "overlay fa fa-map-marker"
+                  }`}
                   dangerouslySetInnerHTML={{
                     __html: item.client_description,
                   }}

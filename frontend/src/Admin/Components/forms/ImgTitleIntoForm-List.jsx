@@ -21,7 +21,7 @@ import {
   axiosFileUploadServiceApi,
   axiosServiceApi,
 } from "../../../util/axiosUtil";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import useAdminLoginStatus from "../../../Common/customhook/useAdminLoginStatus";
 import NoteComponent from "../../../Common/NoteComponent";
 

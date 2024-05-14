@@ -31,7 +31,7 @@ import Search from "../../Common/Search";
 import CustomPagination from "../../Common/CustomPagination";
 import { removeActiveClass } from "../../util/ulrUtil";
 import { TeamStyled } from "../../Common/StyledComponents/Styled-Team";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 
 const Team = () => {
   const editComponentObj = {
@@ -292,7 +292,7 @@ const Team = () => {
           </div>
         </TeamStyled>
         <div className="row my-5">
-          {paginationData?.total_count ? (
+          {paginationData?.total_count && (
             <CustomPagination
               paginationData={paginationData}
               paginationURL={
@@ -313,8 +313,6 @@ const Team = () => {
               setResponseData={setResponseData}
               pageLoadResult={pageLoadResult}
             />
-          ) : (
-            ""
           )}
         </div>
       </div>

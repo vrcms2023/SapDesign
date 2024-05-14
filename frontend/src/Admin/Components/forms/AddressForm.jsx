@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import { getCookie } from "../../../util/cookieUtil";
 import { axiosServiceApi } from "../../../util/axiosUtil";
 import EditAdminPopupHeader from "../EditAdminPopupHeader";

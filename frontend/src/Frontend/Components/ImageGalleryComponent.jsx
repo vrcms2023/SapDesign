@@ -5,31 +5,31 @@ import { getImagePath } from "../../util/commonUtil";
 import ModelBg from "../../Common/ModelBg";
 import DynamicCarousel from "./DynamicCarousel";
 
-const ImageGalleryComponent = ({ pageType, componentEdit }) => {
+const ImageGalleryComponent = ({ pageType, componentEdit, imageGallery }) => {
   const [show, setShow] = useState(false);
-  const [imageGallery, setImageGallery] = useState([]);
+  //const [imageGallery, setImageGallery] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [img, setImg] = useState(null);
 
-  useEffect(() => {
-    const getGalleryImages = async () => {
-      try {
-        const response = await axiosClientServiceApi.get(
-          `imgGallery/clientImageVidoeGallery/${pageType}/`
-        );
+  // useEffect(() => {
+  //   const getGalleryImages = async () => {
+  //     try {
+  //       const response = await axiosClientServiceApi.get(
+  //         `imgGallery/clientImageVidoeGallery/${pageType}/`
+  //       );
 
-        if (response?.status === 200) {
-          let key = Object.keys(response.data);
-          setImageGallery(response.data[key]);
-        }
-      } catch (error) {
-        console.log("unable to access ulr because of server is down");
-      }
-    };
-    if (!componentEdit.gallery) {
-      getGalleryImages();
-    }
-  }, [componentEdit.gallery]);
+  //       if (response?.status === 200) {
+  //         let key = Object.keys(response.data);
+  //         setImageGallery(response.data[key]);
+  //       }
+  //     } catch (error) {
+  //       console.log("unable to access ulr because of server is down");
+  //     }
+  //   };
+  //   if (!componentEdit.gallery) {
+  //     getGalleryImages();
+  //   }
+  // }, [componentEdit.gallery]);
 
   const findThumbHandler = (id) => {
     const findImg = imageGallery.find((allGallery) => allGallery.id === id);
@@ -50,7 +50,7 @@ const ImageGalleryComponent = ({ pageType, componentEdit }) => {
               <span className="fs-1">View Gallery</span>
             </div>
             <div className="row">
-              {imageGallery.length > 0 &&
+              {imageGallery?.length > 0 &&
                 imageGallery?.map((item, index) => (
                   <div className="col-sm-6 col-md-4 mb-4" key={item.id}>
                     <img
