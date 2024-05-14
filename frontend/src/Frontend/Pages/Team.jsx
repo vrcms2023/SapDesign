@@ -31,7 +31,7 @@ import Search from "../../Common/Search";
 import CustomPagination from "../../Common/CustomPagination";
 import { removeActiveClass } from "../../util/ulrUtil";
 import { TeamStyled } from "../../Common/StyledComponents/Styled-Team";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 
 const Team = () => {
   const editComponentObj = {

@@ -9,7 +9,7 @@ import DeleteDialog from "../../Common/DeleteDialog";
 import ModelBg from "../../Common/ModelBg";
 import AddEditAdminNews from "../../Admin/Components/News/index";
 import { useAdminLoginStatus } from "../../Common/customhook/useAdminLoginStatus";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 
 import {
   axiosClientServiceApi,
@@ -293,7 +293,10 @@ const NewsItem = ({ item, index, handleModel, DeleteNews, editHandler }) => {
         >
           <div className="col-md-12 col-lg-12 mb-4 mb-lg-0" key={item.id}>
             <NewsStyled>
-              <div className={`card homeNews ${isAdmin ? "adminView" : ""}`} style={{ minHeight: isAdmin ? "auto" : ""}}>
+              <div
+                className={`card homeNews ${isAdmin ? "adminView" : ""}`}
+                style={{ minHeight: isAdmin ? "auto" : "" }}
+              >
                 {/* Edit News */}
                 {isAdmin && hasPermission && (
                   <div className="d-flex justify-content-end gap-2">
@@ -320,40 +323,46 @@ const NewsItem = ({ item, index, handleModel, DeleteNews, editHandler }) => {
                   </div>
                 )}
 
-                <div style={{ display: isAdmin ? "flex" : ""}}>
-                <img
-                  src={getImagePath(item.path)}
-                  className="img-fluid"
-                  alt={item.alternitivetext}
-                />
-                <div className="card-body p-3">
-                  <Title
-                    title={
-                      item.news_title ? item.news_title : "Update news Title"
-                    }
-                    cssClass={` fw-bold lh-sm mb-2 lineClamp lc1 ${isAdmin ? "fs-6" : "fs-5"}`}
+                <div style={{ display: isAdmin ? "flex" : "" }}>
+                  <img
+                    src={getImagePath(item.path)}
+                    className="img-fluid"
+                    alt={item.alternitivetext}
                   />
-                  <div className={`card-text  lineClamp lc2 ${isAdmin ? "mb-0" : "mb-4"}`}>
-                    {item.news_description ? (
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: item.news_description,
-                        }}
-                      ></div>
-                    ) : (
-                      "update new description"
-                    )}
+                  <div className="card-body p-3">
+                    <Title
+                      title={
+                        item.news_title ? item.news_title : "Update news Title"
+                      }
+                      cssClass={` fw-bold lh-sm mb-2 lineClamp lc1 ${
+                        isAdmin ? "fs-6" : "fs-5"
+                      }`}
+                    />
+                    <div
+                      className={`card-text  lineClamp lc2 ${
+                        isAdmin ? "mb-0" : "mb-4"
+                      }`}
+                    >
+                      {item.news_description ? (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: item.news_description,
+                          }}
+                        ></div>
+                      ) : (
+                        "update new description"
+                      )}
+                    </div>
+                    {/* <p>{moment(item.created_at).format('DD-MM-YYYY hh:mm:ss')}</p> */}
+                    <Ancher
+                      AncherLabel="Read more"
+                      Ancherpath="/news"
+                      AncherClass="btn btn-more d-flex justify-content-center align-items-center gap-2"
+                      AnchersvgColor="#17427C"
+                      handleModel={() => handleModel(item)}
+                    />
                   </div>
-                  {/* <p>{moment(item.created_at).format('DD-MM-YYYY hh:mm:ss')}</p> */}
-                  <Ancher
-                    AncherLabel="Read more"
-                    Ancherpath="/news"
-                    AncherClass="btn btn-more d-flex justify-content-center align-items-center gap-2"
-                    AnchersvgColor="#17427C"
-                    handleModel={() => handleModel(item)}
-                  />
                 </div>
-              </div>
               </div>
             </NewsStyled>
           </div>
