@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 // Components
 import { axiosClientServiceApi, axiosServiceApi } from "../../util/axiosUtil";
-import { sortCreatedDateByDesc } from "../../util/dataFormatUtil";
 import { getCookie } from "../../util/cookieUtil";
 
 const Search = ({

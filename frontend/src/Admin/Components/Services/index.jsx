@@ -77,7 +77,7 @@ const AddService = ({
       } else {
         response = await axiosServiceApi.post(`/services/createService/`, data);
       }
-      if (response?.status == 201 || response?.status == 200) {
+      if (response?.status === 201 || response?.status === 200) {
         toast.success(`${serviceName} service is created `);
         setServiceName("");
         dispatch(getServiceValues());
@@ -153,7 +153,7 @@ const AddService = ({
       const response = await axiosServiceApi.delete(
         `services/updateService/${item.id}/`,
       );
-      if (response.status == 204) {
+      if (response.status === 204) {
         const list = serviceList.filter((list) => list.id !== id);
         setServiceList(list);
         toast.success(`${name} is deleted`);

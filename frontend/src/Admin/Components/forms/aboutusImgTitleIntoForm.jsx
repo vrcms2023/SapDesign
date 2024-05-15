@@ -70,7 +70,7 @@ const AboutImageInputsForm = ({
       const response = await axiosFileUploadServiceApi.delete(
         `${imageDeleteURL}${id}/`
       );
-      if (response.status == 204) {
+      if (response.status === 204) {
         setcarouseData("");
         toast.success(`Record deleted successfully`);
       }

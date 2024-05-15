@@ -11,7 +11,7 @@ const DCarousel = ({ obj, all, closeCarousel }) => {
   const uniqueImgsArray = imgs.filter(function (item, pos) {
     return imgs.indexOf(item) === pos;
   });
-  console.log(uniqueImgsArray, "uniqueImgsArray");
+
   return (
     <div
       id="carouselExampleIndicators"
