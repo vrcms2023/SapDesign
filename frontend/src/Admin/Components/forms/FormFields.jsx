@@ -227,7 +227,7 @@ export const CheckboxField = ({
 }) => {
   return (
     <div className="mb-2 row">
-      <div class="form-check">
+      <div className="form-check">
         <input
           name={fieldName}
           type="checkbox"
@@ -237,7 +237,7 @@ export const CheckboxField = ({
           className="form-check-input mr-4"
         />
         <label
-          class="form-check-label col-form-label text-start text-md-end text-capitalize"
+          className="form-check-label col-form-label text-start text-md-end text-capitalize"
           for="flexCheckDefault"
         >
           {label}

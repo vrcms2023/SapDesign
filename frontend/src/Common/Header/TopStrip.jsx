@@ -14,10 +14,10 @@ import { TopStripStyled } from "../StyledComponents/Styled-Topstrip";
 
 const TopStrip = () => {
   const [footerValues, setFooterValues] = useState([]);
-  const { isAdmin, hasPermission } = useAdminLoginStatus();
+  const { isAdmin } = useAdminLoginStatus();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { footerData, error } = useSelector((state) => state.footerData);
+  const { footerData } = useSelector((state) => state.footerData);
 
   useEffect(() => {
     if (footerData?.address?.length > 0) {

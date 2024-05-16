@@ -25,13 +25,6 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
   const [isParentVal, setisParentVal] = useState(
     editMenu ? (editMenu?.is_Parent ? true : false) : true
   );
-  const [isActiveMenu, setisActiveMenu] = useState(
-    editMenu ? (editMenu?.page_isActive ? true : false) : true
-  );
-
-  const [isAdminmenuActive, setisAdminmenuActive] = useState(
-    editMenu ? (editMenu?.is_Admin_menu ? true : false) : true
-  );
 
   const [isMaintainerMenuActive, setisMaintainermenuActive] = useState(
     editMenu ? (editMenu?.is_Admin_menu ? true : false) : true
@@ -116,12 +109,16 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
             1
           : parseInt(getSelectedParentObject.page_position) * 10 + 1;
       data["page_position"] = page_position;
+    } else {
+      data["page_position"] = menuList?.length > 0 ? menuList?.length + 1 : 1;
     }
     if (data?.id) {
       data["updated_by"] = getCookie("userName");
     } else {
       data["created_by"] = getCookie("userName");
     }
+    data["page_isActive"] = true;
+    data["is_Admin_menu"] = true;
 
     const body = JSON.stringify(data);
     try {
@@ -148,20 +145,8 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
     }
   };
 
-  // const clearField = () => {
-  //   reset();
-  // };
-
   const isParentHandler = () => {
     setisParentVal(!isParentVal);
-  };
-
-  const isActiveMenuHandler = () => {
-    setisActiveMenu(!isActiveMenu);
-  };
-
-  const isAdminMenuHandler = () => {
-    setisAdminmenuActive(!isAdminmenuActive);
   };
 
   const isMaintainerHandler = () => {
@@ -183,7 +168,7 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
         <div className="row py-0 pb-md-5">
           <div className="col-md-8 offset-md-2 mb-5 mb-md-0">
             {error ? (
-              <p className="fw-bold">{error && <Error>{error}</Error>}</p>
+              <div className="fw-bold">{error && <Error>{error}</Error>}</div>
             ) : (
               ""
             )}
@@ -212,20 +197,7 @@ const MenuForm = ({ editHandler, menuList, editMenu, componentType }) => {
                 onChange={isParentHandler}
                 isChecked={isParentVal}
               />
-              <CheckboxField
-                label="Active Menu"
-                fieldName={"page_isActive"}
-                register={register}
-                onChange={isActiveMenuHandler}
-                isChecked={isActiveMenu}
-              />
-              <CheckboxField
-                label="is Admin Menu"
-                fieldName={"is_Admin_menu"}
-                register={register}
-                onChange={isAdminMenuHandler}
-                isChecked={isAdminmenuActive}
-              />
+
               <CheckboxField
                 label="is Maintainer Menu"
                 fieldName={"is_Maintainer_menu"}

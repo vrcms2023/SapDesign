@@ -7,8 +7,6 @@ import FooterAdminFeilds from "../../Admin/Components/forms/FooterInputs";
 import ContactInputs from "../../Admin/Components/forms/ContactInputs";
 import AdminTermsPolicy from "../../Admin/Components/TermsPrivacy/index";
 import { getFooterValues } from "../../features/footer/footerActions";
-import { getCookie } from "../../util/cookieUtil";
-import { urlStringFormat } from "../../util/commonUtil";
 import { axiosClientServiceApi } from "../../util/axiosUtil";
 import { useAdminLoginStatus } from "../customhook/useAdminLoginStatus";
 import { getAddressList } from "../../features/address/addressActions";
@@ -36,24 +34,25 @@ const Footer = () => {
   const [address, setAddress] = useState({});
   const [show, setShow] = useState(false);
   const [modelShow, setModelShow] = useState(false);
-  const { isAdmin, hasPermission } = useAdminLoginStatus();
+  const { isAdmin } = useAdminLoginStatus();
   const [componentEdit, SetComponentEdit] = useState(editComponentObj);
   const [termsAndPolicyData, setTermsAndPolicyData] = useState({});
   const [termsAndConditionData, setTermsAndConditionData] = useState({});
-  const { footerData, error } = useSelector((state) => state.footerData);
+  const { footerData } = useSelector((state) => state.footerData);
   const { addressList } = useSelector((state) => state.addressList);
   const dispatch = useDispatch();
 
   const { menuList } = useSelector((state) => state.auth);
-
+  const [counter, setCounter] = useState(0);
   const date = new Date();
   const fullYear = date.getFullYear();
 
   useEffect(() => {
-    if (!componentEdit.address || footerData?.length === 0) {
+    if (!componentEdit.address || (footerData?.length === 0 && counter < 3)) {
       dispatch(getFooterValues());
+      setCounter(counter + 1);
     }
-  }, [componentEdit.address]);
+  }, [componentEdit.address, footerData.length, dispatch]);
 
   useEffect(() => {
     if (footerData?.address?.length > 0) {
@@ -62,16 +61,15 @@ const Footer = () => {
   }, [footerData]);
 
   useEffect(() => {
-    if (addressList?.length === 0) {
+    if (addressList?.length === 0 && counter < 3) {
       dispatch(getAddressList());
+      setCounter(counter + 1);
     }
-  }, []);
-
-  useEffect(() => {
     if (addressList?.length > 0) {
       setAddress(addressList[0]);
     }
-  }, [addressList]);
+  }, [dispatch, addressList, addressList.length]);
+
   const showModel = (type) => {
     if (type === "PP") {
       setTermsAndConditionData({
@@ -180,66 +178,88 @@ const Footer = () => {
             
             <div className="col-md-3 text-center text-md-start mb-3 reachUs">
               <h5 className="d-none d-sm-block">Reach Us</h5>
-              {address.phonen_number ?
-              <p className="m-0 ">
-                <i
-                  className="fa fa-phone-square fs-4 me-2"
-                  aria-hidden="true"
-                ></i>
-                {address?.phonen_number}
-              </p> : "" }
-              {address.phonen_number_2 ? 
-              <p className="m-0 ">
-                <i
-                  className="fa fa-phone-square fs-4 me-2"
-                  aria-hidden="true"
-                ></i>
-                {address?.phonen_number_2}
-              </p>: "" }
-              {address.phonen_number_3 ? 
-              <p className="m-0 ">
-                <i className="fa fa-whatsapp fs-4 me-2" aria-hidden="true"></i>
-                {address?.phonen_number_3}
-              </p>: "" }
+              {address.phonen_number ? (
+                <p className="m-0 ">
+                  <i
+                    className="fa fa-phone-square fs-4 me-2"
+                    aria-hidden="true"
+                  ></i>
+                  {address?.phonen_number}
+                </p>
+              ) : (
+                ""
+              )}
+              {address.phonen_number_2 ? (
+                <p className="m-0 ">
+                  <i
+                    className="fa fa-phone-square fs-4 me-2"
+                    aria-hidden="true"
+                  ></i>
+                  {address?.phonen_number_2}
+                </p>
+              ) : (
+                ""
+              )}
+              {address.phonen_number_3 ? (
+                <p className="m-0 ">
+                  <i
+                    className="fa fa-whatsapp fs-4 me-2"
+                    aria-hidden="true"
+                  ></i>
+                  {address?.phonen_number_3}
+                </p>
+              ) : (
+                ""
+              )}
               <br />
-              {address.emailid ? 
-              <>
-                <p className="m-0 ">
-                <i
-                  className="fa fa-envelope-o fs-4 me-2"
-                  aria-hidden="true"
-                ></i>
-                {address?.emailid}
-              </p>
-              </>
-               : "" }
-              {address.emailid_2 ? 
-              <>
-                <p className="m-0 ">
-              <i
-                className="fa fa-envelope-o fs-4 me-2"
-                aria-hidden="true"
-              ></i>
-              {address?.emailid_2}
-            </p>
-              </>
-              : "" }
-            {address.emailid_3 ? 
-              <>
-              <p className="m-0 ">
-                <i
-                  className="fa fa-envelope-o fs-4 me-2"
-                  aria-hidden="true"
-                ></i>
-                {address?.emailid_3}
-              </p>
-              </>
-              : "" }
+              {address.emailid ? (
+                <>
+                  <p className="m-0 ">
+                    <i
+                      className="fa fa-envelope-o fs-4 me-2"
+                      aria-hidden="true"
+                    ></i>
+                    {address?.emailid}
+                  </p>
+                </>
+              ) : (
+                ""
+              )}
+              {address.emailid_2 ? (
+                <>
+                  <p className="m-0 ">
+                    <i
+                      className="fa fa-envelope-o fs-4 me-2"
+                      aria-hidden="true"
+                    ></i>
+                    {address?.emailid_2}
+                  </p>
+                </>
+              ) : (
+                ""
+              )}
+              {address.emailid_3 ? (
+                <>
+                  <p className="m-0 ">
+                    <i
+                      className="fa fa-envelope-o fs-4 me-2"
+                      aria-hidden="true"
+                    ></i>
+                    {address?.emailid_3}
+                  </p>
+                </>
+              ) : (
+                ""
+              )}
             </div>
             <hr className="d-block d-md-none" />
             {
               <div className="col-md-3 pb-3 pb-md-0">
-                <img src={Logo} alt="SAP Design Studio" className="footerLogo" />
+                <img
+                  src={Logo}
+                  alt="SAP Design Studio"
+                  className="footerLogo"
+                />
                 <div className="socialLinks">
                   {/* <h5>Social Media</h5> */}
                   {footerValues.facebook_url && (

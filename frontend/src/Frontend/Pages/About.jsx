@@ -90,7 +90,7 @@ const About = () => {
 
     const deleteSection = async () => {
       const response = await axiosServiceApi.delete(
-        `/aboutus/updateAboutus/${id}/`,
+        `/aboutus/updateAboutus/${id}/`
       );
       if (response.status === 204) {
         const list = aboutList.filter((list) => list.id !== id);
@@ -212,7 +212,7 @@ const About = () => {
           <div className="row aboutPage">
             {aboutList.length > 0 ? (
               aboutList.map((item, index) => (
-                <>
+                <div key={item.id}>
                   <div
                     key={item.id}
                     className={`row mb-2 ${
@@ -276,7 +276,7 @@ const About = () => {
 
                     <div className="col-lg-6 d-none d-lg-block h-100">
                       <div className="h-100 p-3 p-md-5 py-md-4 d-flex flex-column justify-content-center align-items-center rightColumn">
-                      <Title
+                        <Title
                           title={"OUR WORK LOCATIONS"}
                           cssClass="fs-5 my-5 title"
                         />
@@ -289,7 +289,7 @@ const About = () => {
                     </div>
                   </div>
                   <hr className="border-secondary" />
-                </>
+                </div>
               ))
             ) : (
               <p className="text-center text-muted py-5">
