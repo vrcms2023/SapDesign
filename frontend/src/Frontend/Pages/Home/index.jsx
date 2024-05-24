@@ -39,6 +39,7 @@ import ServiceOfferedComponent from "../../Components/ServiceOfferedComponent";
 import { HomeClientsStyled } from "../../../Common/StyledComponents/Styled-HomeClients";
 import { sortByFieldName } from "../../../util/commonUtil";
 import { HomeClientItem } from "../../Components/HomeClientItem";
+import { TeamItem, TeamMember } from "../Team";
 
 const Home = () => {
   const editComponentObj = {
@@ -58,12 +59,35 @@ const Home = () => {
   const [show, setShow] = useState(false);
   const [news, setNews] = useState([]);
   const [clientsList, setClientsList] = useState([]);
+  const [executives, setExecutives] = useState([]);
+
+  
 
   const editHandler = (name, value) => {
     SetComponentEdit((prevFormData) => ({ ...prevFormData, [name]: value }));
     setShow(value);
     document.body.style.overflow = "hidden";
   };
+
+  useEffect(() => {
+    const getTeamMemberDetails = async () => {
+      try {
+        const response = await axiosClientServiceApi.get(
+          `/ourteam/clentViewOurTeamDetails/`
+        );
+        console.log(response, "EProfiles")
+        if (response?.status === 200) {
+          setExecutives(response.data.results);
+        }
+      } catch (error) {
+        console.log("unable to access ulr because of server is down");
+      }
+    };
+    if (!componentEdit.addSection || !componentEdit.editSection) {
+      getTeamMemberDetails();
+    }
+  }, [componentEdit.addSection, componentEdit.editSection]);
+
 
   useEffect(() => {
     removeActiveClass();
@@ -280,12 +304,7 @@ const Home = () => {
           </div>
         </HomeClientsStyled>
 
-        {/* <ClientListComponent
-          clientsList={clientsList}
-          deleteAboutSection={""}
-          editHandler={""}
-        /> */}
-
+       
         {/* Clients */}
         <div className="text-center mb-5" style={{ marginTop: "100px" }}>
           <span
@@ -320,6 +339,29 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+
+        {/* Executive Profile */}
+        <div className="text-center mb-5" style={{ marginTop: "100px" }}>
+          <span
+            className="fs-1 px-4 py-2"
+            style={{ borderBottom: "1px solid #444444" }}
+          >
+            Executive Profile
+          </span>
+        </div>
+
+        <div>
+        {executives.length > 0 ? (
+                      executives.map((item, index) => (
+                        <TeamMember item={item}  key={index} index={index} 
+                        deleteAboutSection={""} 
+                        editHandler={""}
+                        />
+                      ))
+                    ) : ""}
+        </div>
+        
 
         {/* HOME News */}
         <div className="row py-5 homeNews">
