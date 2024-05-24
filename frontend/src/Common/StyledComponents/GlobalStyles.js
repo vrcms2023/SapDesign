@@ -123,13 +123,13 @@ body {
 }
 
 .btn-more {
-  border: 1px solid ${({ theme }) => theme.gray} !important; 
-  color:${({ theme }) => theme.gray};
+  border: 1px solid ${({ theme }) => theme.lightgray} !important; 
+  color:${({ theme }) => theme.black};
 }
 .btn-more:hover {
-  background-color:${({ theme }) => theme.verylightgray}; 
-  border: 1px solid ${({ theme }) => theme.black} !important; 
-  color:${({ theme }) => theme.black};
+  background-color:${({ theme }) => theme.white}; 
+  border: 1px solid ${({ theme }) => theme.primaryColor} !important; 
+  color:${({ theme }) => theme.primaryColor};
 }
 
 .homeCareers {

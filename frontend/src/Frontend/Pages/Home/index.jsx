@@ -256,6 +256,7 @@ const Home = () => {
         )}
 
         {/* Image Gallery Carousel */}
+        
         <ImageGalleryStyled>
           <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
               <Title title="View Gallery" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
@@ -264,6 +265,24 @@ const Home = () => {
               >
               </span>
           </div>
+          <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+            {isAdmin && hasPermission && (
+                <div className="text-end mb-4">
+                  <Link
+                    to="/imagegallery"
+                    className="btn btn-primary"
+                    // onClick={() => editHandler("addNews", true)}
+                  >
+                    Goto Gallery Page
+                    <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
           <div className="row ">
             <div className="col-md-10 offset-md-1 homeGalleryCarousel">
               <div className="container">
@@ -286,6 +305,7 @@ const Home = () => {
         </ImageGalleryStyled>
 
         {/* Clients */}
+        
         <HomeClientsStyled>
         <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
             <Title title="Clients" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
@@ -295,6 +315,25 @@ const Home = () => {
             </span>
         </div>
         
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+            {isAdmin && hasPermission && (
+                <div className="text-end mb-4">
+                  <Link
+                    to="/clients"
+                    className="btn btn-primary"
+                    // onClick={() => editHandler("addNews", true)}
+                  >
+                    Goto Clients Page
+                    <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
           <div className="clients-image-slider">
             <div className="image-slider-track">
               {clientsList.map((client) => {
@@ -317,6 +356,25 @@ const Home = () => {
               style={{ borderBottom: "1px solid #444444" }}
             >
             </span>
+        </div>
+
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+            {isAdmin && hasPermission && (
+                <div className="text-end mb-4">
+                  <Link
+                    to="/testimonials"
+                    className="btn btn-primary"
+                    // onClick={() => editHandler("addNews", true)}
+                  >
+                    Goto Testimonials Page
+                    <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         
         <div className="row">
@@ -354,9 +412,30 @@ const Home = () => {
             >
             </span>
         </div>
+
+        
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+            {isAdmin && hasPermission && (
+                <div className="text-end mb-4">
+                  <Link
+                    to="/team"
+                    className="btn btn-primary"
+                    // onClick={() => editHandler("addNews", true)}
+                  >
+                    Goto Teams Page
+                    <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
         
         <TeamStyled>
         <div className="container">
+          
           <div className="row">
         
           {executives.length > 0 ? (
@@ -390,12 +469,12 @@ const Home = () => {
               {isAdmin && hasPermission && (
                 <div className="text-end mb-4">
                   <Link
-                    to="#"
+                    to="/news"
                     className="btn btn-primary"
-                    onClick={() => editHandler("addNews", true)}
+                    // onClick={() => editHandler("addNews", true)}
                   >
-                    Add News
-                    <i className="fa fa-plus ms-2" aria-hidden="true"></i>
+                    Goto News Page
+                    <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
                   </Link>
                 </div>
               )}
