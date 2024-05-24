@@ -361,7 +361,7 @@ const NewsItem = ({ item, index, handleModel, DeleteNews, editHandler }) => {
                       AncherLabel="Read more"
                       Ancherpath="/news"
                       AncherClass="btn btn-more d-flex justify-content-center align-items-center gap-2"
-                      AnchersvgColor="#17427C"
+                      AnchersvgColor="#748E31"
                       handleModel={() => handleModel(item)}
                     />
                   </div>
