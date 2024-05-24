@@ -39,6 +39,9 @@ import ServiceOfferedComponent from "../../Components/ServiceOfferedComponent";
 import { HomeClientsStyled } from "../../../Common/StyledComponents/Styled-HomeClients";
 import { sortByFieldName } from "../../../util/commonUtil";
 import { HomeClientItem } from "../../Components/HomeClientItem";
+import { TeamItem, TeamMember } from "../Team";
+import { TeamStyled } from "../../../Common/StyledComponents/Styled-Team";
+import Title from "../../../Common/Title";
 
 const Home = () => {
   const editComponentObj = {
@@ -58,12 +61,35 @@ const Home = () => {
   const [show, setShow] = useState(false);
   const [news, setNews] = useState([]);
   const [clientsList, setClientsList] = useState([]);
+  const [executives, setExecutives] = useState([]);
+
+  
 
   const editHandler = (name, value) => {
     SetComponentEdit((prevFormData) => ({ ...prevFormData, [name]: value }));
     setShow(value);
     document.body.style.overflow = "hidden";
   };
+
+  useEffect(() => {
+    const getTeamMemberDetails = async () => {
+      try {
+        const response = await axiosClientServiceApi.get(
+          `/ourteam/clentViewOurTeamDetails/`
+        );
+        console.log(response, "EProfiles")
+        if (response?.status === 200) {
+          setExecutives(response.data.results);
+        }
+      } catch (error) {
+        console.log("unable to access ulr because of server is down");
+      }
+    };
+    if (!componentEdit.addSection || !componentEdit.editSection) {
+      getTeamMemberDetails();
+    }
+  }, [componentEdit.addSection, componentEdit.editSection]);
+
 
   useEffect(() => {
     removeActiveClass();
@@ -185,14 +211,17 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="text-center mb-5" style={{ marginTop: "100px" }}>
-          <span
-            className="fs-1 px-4 py-2"
-            style={{ borderBottom: "1px solid #444444" }}
-          >
-            Services Offered
-          </span>
+
+        {/* Services Offered */}
+          
+        <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+            <Title title="Services Offered" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
+            <span className="w-25 d-block m-auto"
+              style={{ borderBottom: "1px solid #444444" }}
+            >
+            </span>
         </div>
+       
         <div className="row">
           <div className="col-md-12 carousel">
             {isAdmin && hasPermission && (
@@ -228,13 +257,12 @@ const Home = () => {
 
         {/* Image Gallery Carousel */}
         <ImageGalleryStyled>
-          <div className="text-center mb-5" style={{ marginTop: "100px" }}>
-            <span
-              className="fs-1 px-4 py-2"
-              style={{ borderBottom: "1px solid #444444" }}
-            >
-              View Gallery
-            </span>
+          <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+              <Title title="View Gallery" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
+              <span className="w-25 d-block m-auto"
+                style={{ borderBottom: "1px solid #444444" }}
+              >
+              </span>
           </div>
           <div className="row ">
             <div className="col-md-10 offset-md-1 homeGalleryCarousel">
@@ -257,15 +285,16 @@ const Home = () => {
           </div>
         </ImageGalleryStyled>
 
+        {/* Clients */}
         <HomeClientsStyled>
-          <div className="text-center mb-5" style={{ marginTop: "100px" }}>
-            <span
-              className="fs-1 px-4 py-2"
+        <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+            <Title title="Clients" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
+            <span className="w-25 d-block m-auto"
               style={{ borderBottom: "1px solid #444444" }}
             >
-              Clients
             </span>
-          </div>
+        </div>
+        
           <div className="clients-image-slider">
             <div className="image-slider-track">
               {clientsList.map((client) => {
@@ -280,21 +309,16 @@ const Home = () => {
           </div>
         </HomeClientsStyled>
 
-        {/* <ClientListComponent
-          clientsList={clientsList}
-          deleteAboutSection={""}
-          editHandler={""}
-        /> */}
-
-        {/* Clients */}
-        <div className="text-center mb-5" style={{ marginTop: "100px" }}>
-          <span
-            className="fs-1 px-4 py-2"
-            style={{ borderBottom: "1px solid #444444" }}
-          >
-            Testimonials
-          </span>
+       
+        {/* Testimonials */}
+        <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+            <Title title="Testimonials" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
+            <span className="w-25 d-block m-auto"
+              style={{ borderBottom: "1px solid #444444" }}
+            >
+            </span>
         </div>
+        
         <div className="row">
           <div className="col-md-12">
             <div className="container">
@@ -321,11 +345,48 @@ const Home = () => {
           </div>
         </div>
 
+
+        {/* Executive Profile */}
+        <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+            <Title title="Executive Profile" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
+            <span className="w-25 d-block m-auto"
+              style={{ borderBottom: "1px solid #444444" }}
+            >
+            </span>
+        </div>
+        
+        <TeamStyled>
+        <div className="container">
+          <div className="row">
+        
+          {executives.length > 0 ? (
+            executives.map((item, index) => (
+              <div className="col-md-6 text-center">
+              <TeamMember item={item}  key={index} index={index} 
+              deleteAboutSection={""} 
+              editHandler={""}
+              />
+                </div>
+            ))
+          ) : ""}
+       
+        </div>
+        </div>
+        </TeamStyled>
+        
         {/* HOME News */}
-        <div className="row py-5 homeNews">
+        <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+            <Title title="News" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
+            <span className="w-25 d-block m-auto"
+              style={{ borderBottom: "1px solid #444444" }}
+            >
+            </span>
+        </div>
+        <div className="row pb-5 homeNews">
           <div className="col-md-12 d-flex justify-content-center align-items-center">
             <div className="container">
-              <h2 className="mb-5 fw-bold">News</h2>
+            
+          
               {isAdmin && hasPermission && (
                 <div className="text-end mb-4">
                   <Link
