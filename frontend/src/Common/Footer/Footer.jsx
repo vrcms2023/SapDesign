@@ -159,7 +159,6 @@ const Footer = () => {
             </div>
             <hr className="d-block d-md-none mt-3" />
 
-            
             <div className="col-md-3 text-center text-md-start">
               {address && (
                 <>
@@ -175,7 +174,6 @@ const Footer = () => {
               )}
             </div>
 
-            
             <div className="col-md-3 text-center text-md-start mb-3 reachUs">
               <h5 className="d-none d-sm-block">Reach Us</h5>
               {address.phonen_number ? (

@@ -315,12 +315,6 @@ const Home = () => {
                   ) : (
                     ""
                   )}
-                  {/* {testimonis.length > 0 ? (
-
-              <Testimonials testimonis={testimonis} />
-            ) : (
-              ""
-            )} */}
                 </div>
               </div>
             </div>

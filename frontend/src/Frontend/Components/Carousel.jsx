@@ -24,13 +24,7 @@ const Carousel = ({ carouselState }) => {
         );
 
         if (response?.status == 200) {
-          let key = Object.keys(response.data);
-          const carouselList = sortByFieldName(
-            response.data[key],
-            "carouse_position"
-          );
-
-          setCarousel(carouselList);
+          setCarousel(response.data.results);
         }
       } catch (error) {
         console.log("unable to access ulr because of server is down");
