@@ -18,20 +18,20 @@ export const StyledMenu = styled.menu`
           content: "";
           width: 0%;
           /* height: 1px; */
-          border-bottom: 2px solid #000;
+          border-bottom: 2px solid ${({ theme }) => theme.navbarLinkActiveColor};  
           bottom: -4px;
           transition: width 0.3s;
         }
 
         &.active {
-          color:${({ theme }) => theme.black};
+          color:${({ theme }) => theme.navbarLinkActiveColor};
           
           &:before {
             position: absolute;
             content: "";
             width: 35%;
             /* height: 1px; */
-            border-bottom: 2px solid #000;
+            border-bottom: 2px solid ${({ theme }) => theme.navbarLinkActiveColor}; 
             bottom: -4px;
           }
         }
@@ -82,8 +82,8 @@ export const StyledMenu = styled.menu`
       .nav-Link {
         margin: 0 15px;
         text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: normal;
+        font-size: 0.8rem;
+        font-weight: 600;
         position: relative;
         text-transform: uppercase;
       }

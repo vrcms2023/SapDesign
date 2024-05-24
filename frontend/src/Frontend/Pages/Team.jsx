@@ -259,7 +259,7 @@ const Team = () => {
         )}
 
         <TeamStyled>
-          <div className={`${isAdmin ? "" : "teamFrontend"}`}>
+          <div className={`mb-5 ${isAdmin ? "" : "teamFrontend"}`}>
             <DragDropContext onDragEnd={onDragEnd}>
               <Droppable droppableId={"teamList"} id="teamList">
                 {(provided, snapshot) => (
@@ -291,7 +291,10 @@ const Team = () => {
             </DragDropContext>
           </div>
         </TeamStyled>
-        <div className="row my-5">
+
+        {/* Paginiation */}
+        {team.length > 4 ? (
+          <div className="row my-5">
           {paginationData?.total_count && (
             <CustomPagination
               paginationData={paginationData}
@@ -315,6 +318,8 @@ const Team = () => {
             />
           )}
         </div>
+        ) : ""}
+        
       </div>
     </>
   );
@@ -340,112 +345,6 @@ export const TeamItem = ({ item, index, deleteAboutSection, editHandler }) => {
           {...provided.dragHandleProps}
         >
           <TeamMember item={item} index={index} deleteAboutSection={deleteAboutSection} editHandler={editHandler}/>
-          {/* <div
-            key={item.id}
-            className={`mx-md-4 mx-lg-5 p-md-5 p-lg-3 memberCard ${
-              isAdmin ? "border border-warning position-relative" : ""
-            } ${index % 2 === 0 ? "normalCSS" : "flipCSS"}`}
-          >
-            {isAdmin && hasPermission && (
-              <>
-                <EditIcon
-                  editHandler={() => editHandler("editSection", true, item)}
-                />
-                <Link
-                  className="deleteSection"
-                  onClick={() => deleteAboutSection(item)}
-                >
-                  <i
-                    className="fa fa-trash-o text-danger fs-4"
-                    aria-hidden="true"
-                  ></i>
-                </Link>
-              </>
-            )}
-            <img src={getImagePath(item.path)} alt="" className="img-fluid" />
-
-            <div className="p-3 px-lg-5 text-start memberDetails">
-              {item.team_member_designation && (
-                <small className="mb-1 fw-bold">
-                  {item.team_member_designation}
-                </small>
-              )}
-
-              {item.team_member_name && (
-                <Title title={item.team_member_name} cssClass="fs-4 title " />
-              )}
-
-              <div
-                className="strengths my-3"
-                dangerouslySetInnerHTML={{
-                  __html: item.team_member_about_us,
-                }}
-              />
-
-              {item.team_member_phone_number ||
-                (item.team_member_email && <hr />)}
-
-              {item.team_member_email && (
-                <div className="mb-2">
-                  <a href={`mailto:${item.team_member_email}`}>
-                    {item.team_member_email}
-                  </a>
-                </div>
-              )}
-              {item.team_member_phone_number && (
-                <p>{item.team_member_phone_number}</p>
-              )}
-              {item.team_member_phone_number || item.team_member_email ? (
-                <hr />
-              ) : (
-                ""
-              )}
-
-              <div className="social">
-                {item.facebook_url && (
-                  <Link to={item.facebook_url} target="_blank">
-                    <i className="fa fa-facebook-square" aria-hidden="true"></i>
-                  </Link>
-                )}
-
-                {item.twitter_url && (
-                  <Link to={item.twitter_url} target="_blank">
-                    <i className="fa fa-twitter-square" aria-hidden="true"></i>
-                  </Link>
-                )}
-
-                {item.youtube_url && (
-                  <Link to={item.youtube_url} target="_blank">
-                    <i className="fa fa-youtube-play" aria-hidden="true"></i>
-                  </Link>
-                )}
-
-                {item.linkedIn_url && (
-                  <Link to={item.linkedIn_url} target="_blank">
-                    <i className="fa fa-linkedin-square" aria-hidden="true"></i>
-                  </Link>
-                )}
-
-                {item.instagram_url && (
-                  <Link to={item.instagram_url} target="_blank">
-                    <i className="fa fa-instagram" aria-hidden="true"></i>
-                  </Link>
-                )}
-
-                {item.vimeo_url && (
-                  <Link to={item.vimeo_url} target="_blank">
-                    <i className="fa fa-vimeo" aria-hidden="true"></i>
-                  </Link>
-                )}
-
-                {item.pinterest_url && (
-                  <Link to={item.pinterest_url} target="_blank">
-                    <i className="fa fa-pinterest" aria-hidden="true"></i>
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div> */}
         </div>
       )}
     </Draggable>
