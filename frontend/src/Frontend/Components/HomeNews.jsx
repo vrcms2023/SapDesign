@@ -62,12 +62,15 @@ const HomeNews = ({ addNewsState, news, setNews, pagetype }) => {
         );
         // console.log(response.data.results, "News Component");
         if (response?.status === 200) {
-          //const data = sortCreatedDateByDesc(response.data.appNews);
-
-          //setPageloadResults(true);
-          const _list = sortByFieldName(response.data.results, "news_position");
-          const data = pagetype === "home" ? _list.slice(0, 4) : _list;
-          setNews(data);
+          if (pagetype === "home") {
+            const _list = sortByFieldName(
+              response.data.results,
+              "news_position"
+            );
+            setNews(_list.slice(0, 4));
+          } else {
+            setNews(response.data);
+          }
         }
       } catch (error) {
         console.log("unable to access ulr because of server is down");
