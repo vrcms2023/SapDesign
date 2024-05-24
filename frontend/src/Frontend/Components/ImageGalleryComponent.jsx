@@ -4,6 +4,7 @@ import { getImagePath } from "../../util/commonUtil";
 
 import ModelBg from "../../Common/ModelBg";
 import DynamicCarousel from "./DynamicCarousel";
+import Title from "../../Common/Title";
 
 const ImageGalleryComponent = ({ pageType, componentEdit, imageGallery }) => {
   const [show, setShow] = useState(false);
@@ -11,25 +12,6 @@ const ImageGalleryComponent = ({ pageType, componentEdit, imageGallery }) => {
   const [showModal, setShowModal] = useState(false);
   const [img, setImg] = useState(null);
 
-  // useEffect(() => {
-  //   const getGalleryImages = async () => {
-  //     try {
-  //       const response = await axiosClientServiceApi.get(
-  //         `imgGallery/clientImageVidoeGallery/${pageType}/`
-  //       );
-
-  //       if (response?.status === 200) {
-  //         let key = Object.keys(response.data);
-  //         setImageGallery(response.data[key]);
-  //       }
-  //     } catch (error) {
-  //       console.log("unable to access ulr because of server is down");
-  //     }
-  //   };
-  //   if (!componentEdit.gallery) {
-  //     getGalleryImages();
-  //   }
-  // }, [componentEdit.gallery]);
 
   const findThumbHandler = (id) => {
     const findImg = imageGallery.find((allGallery) => allGallery.id === id);
@@ -46,9 +28,15 @@ const ImageGalleryComponent = ({ pageType, componentEdit, imageGallery }) => {
       <div className="row gallery">
         <div className="col-md-10 offset-md-1">
           <div className="container">
-            <div className="text-center my-5">
-              <span className="fs-1">View Gallery</span>
+            <div className="my-5 ">
+              <Title title="View Gallery" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
+              <span className="w-50 d-block m-auto"
+                style={{ borderBottom: "1px solid #444444" }}
+              >
+              </span>
             </div>
+           
+
             <div className="row">
               {imageGallery?.length > 0 &&
                 imageGallery?.map((item, index) => (

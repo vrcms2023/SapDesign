@@ -64,7 +64,7 @@ const ServiceOfferedComponent = ({ getBannerAPIURL, componentEdit }) => {
                       className="img-fluid"
                     />
 
-                    <h4 className="my-3 text-uppercase">{item.carouse_title}</h4>
+                    <h4 className="my-4 text-uppercase">{item.carouse_title}</h4>
                   </div>
                 ))}
             </div>

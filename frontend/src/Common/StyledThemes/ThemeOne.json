@@ -1,10 +1,10 @@
 {
-  "name": "VRCMS Theme One",
+  "name": "SAP Design Studio Theme",
   "fontFamily": "Poppins, 'Fira Sans', sans-serif, Arial, verdana",
   "background": "#ffffff",
   "bodyBgImage": "",
 
-  "textColor": "#333333",
+  "textColor": "#444444",
 
   "white": "#ffffff",
   "black": "#000000",
@@ -15,7 +15,7 @@
   "verylightgray": "#f3f3f3",
   "error": "#f23838",
 
-  "primaryColor": "#3CD9D2",
+  "primaryColor": "#748E31",
   "primaryHoverColor": "#000000",
   "secondaryColor": "#888888",
   "secondaryHoverColor": "#333333",
@@ -27,16 +27,16 @@
   "topStripTextColor": "#ffffff",
   "topStripTitleColor": "",
   "topStripLinkColor": "#ffffff",
-  "topStripLinkHoverColor": "#3CD9D2",
+  "topStripLinkHoverColor": "#748E31",
 
   "navbarBg": "#ffffff",
   "navbarTextColor": "#ffffff",
   "navbarLinkColor": "#000000",
   "navbarLinkBgColor": "#748E31",
-  "navbarLinkActiveColor": "#27AAE1",
+  "navbarLinkActiveColor": "#748E31",
   "navbarLinkHoverColor": "#748E31",
 
-  "navbarChildLinkBgColor": "#3cd9d2",
+  "navbarChildLinkBgColor": "#748E31",
   "navbarChildLinkColor": "#ffffff",
   "navbarChildLinkHoverColor": "#17427f",
 
@@ -72,7 +72,7 @@
   "newsCardTextColor": "#000000",
   "newsCardTitleColor": "#17427f",
   "newsCardLinkColor": "#17427f",
-  "newsCardLinkHoverColor": "#3cd9d2",
+  "newsCardLinkHoverColor": "#748E31",
 
   "pageBannerTextColor": "#ffffff",
   "pageBannerTitleColor": "#ffffff",

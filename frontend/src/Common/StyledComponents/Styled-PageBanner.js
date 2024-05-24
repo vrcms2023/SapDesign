@@ -29,7 +29,9 @@ export const PageBannerStyled = styled.div`
         color: ${({ theme }) => theme.pageBannerSubTitleColor};
         font-weight: normal !important;
         font-family: "PT Sans Narrow", sans-serif;
-        letter-spacing: .3rem;
+        font-size: 1.1rem;
+        letter-spacing: .2rem;
+
         text-transform: uppercase !important;
       }
       .description {

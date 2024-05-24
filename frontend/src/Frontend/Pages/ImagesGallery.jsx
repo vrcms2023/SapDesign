@@ -79,7 +79,7 @@ const ImagesGallery = () => {
       <ImageGalleryStyled>
         <div className="container">
           <div className="row">
-            <div className="col-md-12 py-5">
+            <div className="col-md-12">
               {isAdmin && hasPermission && (
                 <EditIcon editHandler={() => editHandler("gallery", true)} />
               )}
@@ -110,27 +110,36 @@ const ImagesGallery = () => {
           />
         </div>
       </ImageGalleryStyled>
-      <div className="row my-5">
-        {paginationData?.total_count && (
-          <CustomPagination
-            paginationData={paginationData}
-            paginationURL={
-              isAdmin
-                ? `imgGallery/createImageVidoeGallery/${pageType}/`
-                : `imgGallery/clientImageVidoeGallery/${pageType}/`
-            }
-            paginationSearchURL={
-              isAdmin
-                ? `imgGallery/createImageVidoeGallery/${pageType}/`
-                : `imgGallery/clientImageVidoeGallery/${pageType}/`
-            }
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-            setResponseData={setResponseData}
-            pageLoadResult={pageLoadResult}
-          />
-        )}
+
+
+      {/* Pagination */}
+
+      {imageGallery.length > 6 ? (
+        <div className="container">
+        <div className="row my-5">
+          {paginationData?.total_count && (
+            <CustomPagination
+              paginationData={paginationData}
+              paginationURL={
+                isAdmin
+                  ? `imgGallery/createImageVidoeGallery/${pageType}/`
+                  : `imgGallery/clientImageVidoeGallery/${pageType}/`
+              }
+              paginationSearchURL={
+                isAdmin
+                  ? `imgGallery/createImageVidoeGallery/${pageType}/`
+                  : `imgGallery/clientImageVidoeGallery/${pageType}/`
+              }
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+              setResponseData={setResponseData}
+              pageLoadResult={pageLoadResult}
+            />
+          )}
+        </div>
       </div>
+      ) :  ""}
+      
     </>
   );
 };

@@ -2,8 +2,6 @@ import { createGlobalStyle } from "styled-components";
 import careerBgImg from "../../Images/careers-bg.jpg";
 
 export const GlobalStyles = createGlobalStyle`
-
-
 * {
     margin:0;
     padding: 0;
@@ -97,7 +95,7 @@ body {
 }
 .btn-primary {
     background-color:${({ theme }) => theme.primaryColor}; 
-    color:${({ theme }) => theme.black};
+    color:${({ theme }) => theme.white};
 }
 .btn-primary:hover {
     background-color:${({ theme }) => theme.primaryHoverColor}; 

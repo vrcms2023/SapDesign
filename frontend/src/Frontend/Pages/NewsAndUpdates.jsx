@@ -146,7 +146,7 @@ const NewsAndUpdates = () => {
             />
           </div>
         </div>
-        {isAdmin && (
+        {isAdmin && news.length > 0 && (
           <NoteComponent note="Use drag option to shuffle the Items" />
         )}
 
