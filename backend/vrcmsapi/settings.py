@@ -38,8 +38,8 @@ if DEBUG:
 else:
     print("debug not workig")
 
-ALLOWED_HOSTS = ['sap-designstudio',"127.0.0.1"]
-#ALLOWED_HOSTS = ['127.0.0.1']
+#ALLOWED_HOSTS = ['sap-designstudio',"127.0.0.1"]
+ALLOWED_HOSTS = ['127.0.0.1']
 
 mimetypes.add_type("text/css", ".css", True)
 
