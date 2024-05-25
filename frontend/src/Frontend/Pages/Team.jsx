@@ -293,7 +293,6 @@ const Team = () => {
         </TeamStyled>
 
         {/* Paginiation */}
-        {team.length > 4 ? (
           <div className="row my-5">
             {paginationData?.total_count && (
               <CustomPagination
@@ -318,9 +317,7 @@ const Team = () => {
               />
             )}
           </div>
-        ) : (
-          ""
-        )}
+        
       </div>
     </>
   );

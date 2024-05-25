@@ -13,6 +13,7 @@ export const NewsStyled = styled.div`
 
     img {
       height: 200px;
+      width: 100%;
       object-fit: cover;
       object-position: bottom;
     }

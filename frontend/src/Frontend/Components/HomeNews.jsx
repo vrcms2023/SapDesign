@@ -163,6 +163,7 @@ const HomeNews = ({ addNewsState, news, setNews, pagetype }) => {
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId={"NewsList"} id="newsList">
           {(provided, snapshot) => (
+            <div className="container">
             <div
               className="row"
               ref={provided.innerRef}
@@ -215,6 +216,7 @@ const HomeNews = ({ addNewsState, news, setNews, pagetype }) => {
                 </div>
               )}
               {provided.placeholder}
+            </div>
             </div>
           )}
         </Droppable>
@@ -289,7 +291,7 @@ const NewsItem = ({ item, index, handleModel, DeleteNews, editHandler }) => {
     >
       {(provided) => (
         <div
-          className={`${isAdmin ? "col-12" : "col-md-3"} image`}
+          className={`${isAdmin ? "col-12" : "col-sm-6 col-lg-3"} image`}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
