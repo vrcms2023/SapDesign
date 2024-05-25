@@ -95,7 +95,18 @@ export const HomeClientsStyled = styled.div`
         }
     }
   }
+
+  & + .viewAllBtn {
+  
+    @media (max-width: 480px) {
+      width: 50%;
+      margin: auto
+    }
+  }
+  
+  
 }
+
 
 @keyframes play{
     0%{

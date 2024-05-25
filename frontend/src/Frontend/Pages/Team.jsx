@@ -404,7 +404,7 @@ export const TeamMember = ({
         )}
 
         <div
-          className="strengths my-3"
+          className="strengths my-0 my-md-3"
           dangerouslySetInnerHTML={{
             __html: item.team_member_about_us,
           }}

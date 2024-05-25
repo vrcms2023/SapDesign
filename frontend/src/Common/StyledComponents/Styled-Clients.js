@@ -78,5 +78,7 @@ export const ClientStyled = styled.div`
     gap: 15px;
     flex-wrap: wrap;
   }
+
+  
   
 `;
