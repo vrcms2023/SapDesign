@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@datobs/react-image-magnifiers": "^1.4.8",
     "@hello-pangea/dnd": "^16.6.0",
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.2.4",
