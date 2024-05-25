@@ -69,11 +69,8 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
     <div className="row py-5">
       {/* Edit News */}
 
-      <div className="col-lg-6 p-5 ABriefImg d-md-flex justify-content-center align-items-center">
-        {/* <GlassMagnifier
-          imageSrc={bannerdata?.path && getImagePath(bannerdata.path)}
-          imageAlt="Example"
-        /> */}
+      <div className="col-lg-6 p-md-5 ABriefImg d-md-flex justify-content-center align-items-center">
+       
         <GlassMagnifier
           imageSrc={bannerdata?.path && getImagePath(bannerdata.path)}
           imageAlt="Example"
@@ -83,22 +80,15 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
           magnifierBorderColor="rgba(255, 255, 255, .5)"
           square={false}
         />
-        {/* <img
-          src={
-            bannerdata?.path
-              ? getImagePath(bannerdata.path)
-              : getImagePath("/media/images/dummy-image-square.png")
-          }
-          alt=""
-          className="img-fluid"
-        /> */}
+        
       </div>
       <div className="col-12 col-lg-6 p-4 d-flex justify-content-center align-items-start flex-column position-relative briefServices">
+        
         {isAdmin && hasPermission && (
           <EditIcon editHandler={() => editHandler("homecareers", true)} />
         )}
 
-        <div className="d-flex align-items-center mb-5">
+        <div className="d-flex justify-content-center align-items-center mb-5 mx-auto ms-md-0">
           <i
             className="fa fa-angle-left text-muted fs-1 me-2"
             aria-hidden="true"

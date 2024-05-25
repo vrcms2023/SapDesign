@@ -157,7 +157,7 @@ const Footer = () => {
                 </li> */}
               </ul>
             </div>
-            <hr className="d-block d-md-none mt-3" />
+            <hr className="d-block d-md-none my-5" />
 
             <div className="col-md-3 text-center text-md-start">
               {address && (
@@ -174,10 +174,10 @@ const Footer = () => {
               )}
             </div>
 
-            <div className="col-md-3 text-center text-md-start mb-3 reachUs">
+            <div className="col-md-3 text-center text-md-start mb-0 reachUs">
               <h5 className="d-none d-sm-block">Reach Us</h5>
               {address.phonen_number ? (
-                <p className="m-0 ">
+                <p className="m-0 my-3 my-md-0">
                   <i
                     className="fa fa-phone-square fs-4 me-2"
                     aria-hidden="true"
@@ -188,7 +188,7 @@ const Footer = () => {
                 ""
               )}
               {address.phonen_number_2 ? (
-                <p className="m-0 ">
+                <p className="m-0 my-3 my-md-0">
                   <i
                     className="fa fa-phone-square fs-4 me-2"
                     aria-hidden="true"
@@ -225,7 +225,7 @@ const Footer = () => {
               )}
               {address.emailid_2 ? (
                 <>
-                  <p className="m-0 ">
+                  <p className="m-0 my-3 my-md-0 ">
                     <i
                       className="fa fa-envelope-o fs-4 me-2"
                       aria-hidden="true"
@@ -250,9 +250,9 @@ const Footer = () => {
                 ""
               )}
             </div>
-            <hr className="d-block d-md-none" />
+            <hr className="d-block d-md-none my-5" />
             {
-              <div className="col-md-3 pb-3 pb-md-0">
+              <div className="col-md-3 pb-0 ">
                 <img
                   src={Logo}
                   alt="SAP Design Studio"

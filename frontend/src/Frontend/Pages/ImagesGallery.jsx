@@ -114,7 +114,7 @@ const ImagesGallery = () => {
 
       {/* Pagination */}
 
-      {imageGallery.length > 6 ? (
+      
         <div className="container">
         <div className="row my-5">
           {paginationData?.total_count && (
@@ -138,7 +138,6 @@ const ImagesGallery = () => {
           )}
         </div>
       </div>
-      ) :  ""}
       
     </>
   );

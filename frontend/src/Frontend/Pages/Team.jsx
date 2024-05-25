@@ -293,7 +293,6 @@ const Team = () => {
         </TeamStyled>
 
         {/* Paginiation */}
-        {team.length > 4 ? (
           <div className="row my-5">
             {paginationData?.total_count && (
               <CustomPagination
@@ -318,9 +317,7 @@ const Team = () => {
               />
             )}
           </div>
-        ) : (
-          ""
-        )}
+        
       </div>
     </>
   );
@@ -340,7 +337,7 @@ export const TeamItem = ({ item, index, deleteAboutSection, editHandler }) => {
     >
       {(provided) => (
         <div
-          className="col-md-6 text-center"
+          className="col-md-6 my-4 my-md-0 text-center"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

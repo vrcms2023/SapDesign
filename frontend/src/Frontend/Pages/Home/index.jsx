@@ -461,6 +461,7 @@ const Home = () => {
             </span>
         </div>
         <div className="row pb-5 homeNews">
+          
           <div className="col-md-12 d-flex justify-content-center align-items-center">
             <div className="container">
             
@@ -477,9 +478,7 @@ const Home = () => {
                   </Link>
                 </div>
               )}
-              <div className="row">
                 <HomeNews news={news} setNews={setNews} pagetype={pageType} />
-              </div>
             </div>
           </div>
 

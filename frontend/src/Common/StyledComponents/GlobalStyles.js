@@ -37,6 +37,28 @@ body {
 .ABrief {
     background-color:${({ theme }) => theme.verylightgray}; 
     color:${({ theme }) => theme.ABriefTextColor};
+
+      position: relative;
+
+    .img-zoom-lens {
+      position: absolute;
+      border: 1px solid #000;
+      /*set the size of the lens:*/
+      width: 40px;
+      height: 40px;
+      border-radius: 50px;
+    }
+    
+    .img-zoom-result {
+      border: 1px solid #f3f3f3;
+      /*set the size of the result div:*/
+      position: absolute;
+      top: 150px;
+      left: 0px;
+      width: 150px;
+      height: 150px;
+      
+    }
 }
 .ABrief h3, .ABrief .title {border-color: ${({ theme }) =>
   theme.ABriefTitleBorderColor}; }
