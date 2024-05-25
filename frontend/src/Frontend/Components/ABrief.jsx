@@ -16,7 +16,10 @@ import ImageInputsForm from "../../Admin/Components/forms/ImgTitleIntoForm";
 import { axiosClientServiceApi } from "../../util/axiosUtil";
 // import { getImagePath } from "../../util/commonUtil";
 import { getFormDynamicFields } from "../../util/dynamicFormFields";
-
+import {
+  SideBySideMagnifier,
+  GlassMagnifier,
+} from "@datobs/react-image-magnifiers";
 // Image Import
 // import Logo from "../../../src/Images/logo.svg";
 import circleArrow from "../../../src/Images/arrow-right-circle.png";
@@ -67,7 +70,20 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
       {/* Edit News */}
 
       <div className="col-lg-6 p-5 ABriefImg d-md-flex justify-content-center align-items-center">
-        <img
+        {/* <GlassMagnifier
+          imageSrc={bannerdata?.path && getImagePath(bannerdata.path)}
+          imageAlt="Example"
+        /> */}
+        <GlassMagnifier
+          imageSrc={bannerdata?.path && getImagePath(bannerdata.path)}
+          imageAlt="Example"
+          allowOverflow={true}
+          magnifierSize="50%"
+          magnifierBorderSize={3}
+          magnifierBorderColor="rgba(255, 255, 255, .5)"
+          square={false}
+        />
+        {/* <img
           src={
             bannerdata?.path
               ? getImagePath(bannerdata.path)
@@ -75,7 +91,7 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
           }
           alt=""
           className="img-fluid"
-        />
+        /> */}
       </div>
       <div className="col-12 col-lg-6 p-4 d-flex justify-content-center align-items-start flex-column position-relative briefServices">
         {isAdmin && hasPermission && (
