@@ -16,10 +16,7 @@ import ImageInputsForm from "../../Admin/Components/forms/ImgTitleIntoForm";
 import { axiosClientServiceApi } from "../../util/axiosUtil";
 // import { getImagePath } from "../../util/commonUtil";
 import { getFormDynamicFields } from "../../util/dynamicFormFields";
-import {
-  SideBySideMagnifier,
-  GlassMagnifier,
-} from "@datobs/react-image-magnifiers";
+import { GlassMagnifier } from "@datobs/react-image-magnifiers";
 // Image Import
 // import Logo from "../../../src/Images/logo.svg";
 import circleArrow from "../../../src/Images/arrow-right-circle.png";
