@@ -14,6 +14,7 @@ const CustomPagination = ({
   pageLoadResult,
 }) => {
   const { total_count, per_page_size, next_url, previous_url } = paginationData;
+
   const userCookie = getCookie("access");
   const pageNumbers = [];
   for (let i = 0; i < Math.ceil(total_count / per_page_size); i++) {
@@ -40,45 +41,51 @@ const CustomPagination = ({
   };
 
   return (
-    <nav aria-label="Page navigation example">
-      <ul className="pagination justify-content-end">
-        <li className={`page-item ${previous_url ? "" : "disabled"}`}>
-          <Link
-            to={"#"}
-            onClick={() => getSelectedPageData(currentPage - 1)}
-            className="page-link"
-            tabIndex="-1"
-          >
-            Previous
-          </Link>
-        </li>
-        {pageNumbers.map((number) => (
-          <li
-            key={number}
-            className={`page-item ${currentPage === number ? "active" : ""}`}
-          >
-            <Link
-              className="page-link"
-              to={"#"}
-              onClick={() => getSelectedPageData(number)}
-            >
-              {number}
-            </Link>
-          </li>
-        ))}
+    <>
+      {total_count > 10 ? (
+        <nav aria-label="Page navigation example">
+          <ul className="pagination justify-content-end">
+            <li className={`page-item ${previous_url ? "" : "disabled"}`}>
+              <Link
+                to={"#"}
+                onClick={() => getSelectedPageData(currentPage - 1)}
+                className="page-link"
+                tabIndex="-1"
+              >
+                Previous
+              </Link>
+            </li>
+            {pageNumbers.map((number) => (
+              <li
+                key={number}
+                className={`page-item ${currentPage === number ? "active" : ""}`}
+              >
+                <Link
+                  className="page-link"
+                  to={"#"}
+                  onClick={() => getSelectedPageData(number)}
+                >
+                  {number}
+                </Link>
+              </li>
+            ))}
 
-        <li className={`page-item ${next_url ? "" : "disabled"}`}>
-          <Link
-            to={"#"}
-            onClick={() => getSelectedPageData(currentPage + 1)}
-            className="page-link"
-            tabIndex="-1"
-          >
-            Next
-          </Link>
-        </li>
-      </ul>
-    </nav>
+            <li className={`page-item ${next_url ? "" : "disabled"}`}>
+              <Link
+                to={"#"}
+                onClick={() => getSelectedPageData(currentPage + 1)}
+                className="page-link"
+                tabIndex="-1"
+              >
+                Next
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 export default CustomPagination;
