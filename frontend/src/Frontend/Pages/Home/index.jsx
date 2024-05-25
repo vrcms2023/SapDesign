@@ -258,7 +258,7 @@ const Home = () => {
         {/* Image Gallery Carousel */}
         
         <ImageGalleryStyled>
-          <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+          <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
               <Title title="View Gallery" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
               <span className="w-25 d-block m-auto"
                 style={{ borderBottom: "1px solid #444444" }}
@@ -295,9 +295,7 @@ const Home = () => {
             </div>
           </div>
           <div
-            className="text-center py-4 position-relative "
-            style={{ marginTop: "200px" }}
-          >
+            className="text-center py-4 position-relative galleryBtnPosition">
             <Link to="/imageGallery" className="btn btn-outline">
               View All
             </Link>
