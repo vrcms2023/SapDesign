@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { confirmAlert } from "react-confirm-alert";
+import { GlassMagnifier } from "@datobs/react-image-magnifiers";
 
 // Components
 import Title from "../../Common/Title";
@@ -280,11 +281,20 @@ const About = () => {
                           title={"OUR WORK LOCATIONS"}
                           cssClass="fs-5 my-5 title"
                         />
-                        <img
+                        <GlassMagnifier
+                          imageSrc={item?.path && getImagePath(item.path)}
+                          imageAlt="Example"
+                          allowOverflow={true}
+                          magnifierSize="50%"
+                          magnifierBorderSize={3}
+                          magnifierBorderColor="rgba(255, 255, 255, .5)"
+                          square={false}
+                        />
+                        {/* <img
                           src={getImagePath(item.path)}
                           alt=""
                           className="img-fluid"
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>
