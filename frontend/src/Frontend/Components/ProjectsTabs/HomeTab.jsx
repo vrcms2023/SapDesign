@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Title from "../../../Common/Title";
-import HomeImg from "../../../Images/project1.png";
+// import HomeImg from "../../../Images/project1.png";
 import { getCookie, setCookie, removeCookie } from "../../../util/cookieUtil";
 import { useNavigate } from "react-router-dom";
 import { getBaseURL } from "../../../util/ulrUtil";
@@ -88,7 +88,7 @@ const HomeTab = ({ project, thumbImgs, pdfs }) => {
         <div className="text-center my-5">
           <img
             src={
-              thumbImgs.length > 0 ? `${baseURL}${thumbImgs[0]?.path}` : HomeImg
+              thumbImgs.length > 0 ? `${baseURL}${thumbImgs[0]?.path}` : "HomeImg"
             }
             className="rounded img-fluid"
             alt="..."

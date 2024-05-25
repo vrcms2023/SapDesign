@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 import { Features } from "../../Common/StyledComponents/Features-Styled";
 
-// Image Imports
-import FeatureImg from "../../Images/features-img.jpg";
-import FeatureImg1 from "../../Images/features-img1.jpg";
+// // Image Imports
+// import FeatureImg from "../../Images/features-img.jpg";
+// import FeatureImg1 from "../../Images/features-img1.jpg";
 
 import shakeHands from "../../Images/shake-hands.svg";
 import globe from "../../Images/globe.svg";
@@ -35,12 +35,12 @@ const FeaturesComponent = () => {
               <p>We Help Set Priorities Correctly</p>
             </div>
             <div className="col-md-6 p-0">
-              <img src={FeatureImg1} alt="" className="decImg img-fluid" />
+              {/* <img src={FeatureImg1} alt="" className="decImg img-fluid" /> */}
             </div>
           </div>
           <div className="row">
             <div className="col-md-6 p-0">
-              <img src={FeatureImg} alt="" className="decImg img-fluid" />
+              {/* <img src={FeatureImg} alt="" className="decImg img-fluid" /> */}
             </div>
             <div className="col-6 col-md-3 box1">
               <img src={spanners} alt="" className="img-fluid" />
