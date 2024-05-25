@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import careerBgImg from "../../Images/careers-bg.jpg";
+// import careerBgImg from "../../Images/careers-bg.jpg";
 
 export const GlobalStyles = createGlobalStyle`
 * {
@@ -156,7 +156,6 @@ body {
 
 .homeCareers {
     background-color:${({ theme }) => theme.teritoryColor};
-    background-image:url(${careerBgImg});
     min-height: 500px;
     display: flex;
     justify-content: center;
