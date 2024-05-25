@@ -340,7 +340,7 @@ export const TeamItem = ({ item, index, deleteAboutSection, editHandler }) => {
     >
       {(provided) => (
         <div
-          className="col-md-6 text-center"
+          className="col-md-6 my-4 my-md-0 text-center"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

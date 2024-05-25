@@ -21,7 +21,11 @@ export const FooterStyled = styled.div`
     list-style: none;
 
     li {
-      padding: 3px 0;
+      padding: 4px 0;
+
+      @media (max-width: 576px) {
+        padding: 8px 0;
+      }
     }
   }
 
@@ -97,8 +101,8 @@ export const FooterStyled = styled.div`
         width: 50%;
       }
       i {
-        font-size: 2rem;
-        margin: 15px 9px 0;
+        font-size: 3rem;
+        margin: 24px 12px 0;
       }
     }
 

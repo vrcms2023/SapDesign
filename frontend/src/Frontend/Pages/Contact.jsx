@@ -298,7 +298,7 @@ const Contact = () => {
           <div className="col-md-12 text-center py-4">
             <Title
               title="Quick contact"
-              cssClass="text-black fs-3 fw-bold mb-4"
+              cssClass="fs-1 fw-medium text-start text-md-center py-2 text-black"
             />
           </div>
           <div className="col-md-7 position-relative">

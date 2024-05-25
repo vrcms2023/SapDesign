@@ -199,7 +199,7 @@ const ClientsList = () => {
 
         <div className="row">
           <div className="col-md-6 fs-3 mt-4 mt-md-0">
-            <Title title="Clients" cssClass="fs-1 pageTitle" />
+            <Title title="Clients" cssClass="fs-1 fw-medium py-2 text-black" />
           </div>
 
           <div className="col-md-6">
@@ -252,7 +252,10 @@ const ClientsList = () => {
             getClinetDetails={getClinetDetails}
           />
         </ClientStyled>
-        {paginationData?.total_count ? (
+
+        <div className="row">
+          <div className="col-md-12">
+          {paginationData?.total_count ? (
           <CustomPagination
             paginationData={paginationData}
             paginationURL={
@@ -276,6 +279,9 @@ const ClientsList = () => {
         ) : (
           ""
         )}
+          </div>
+        </div>
+        
       </div>
     </>
   );
