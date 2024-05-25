@@ -44,6 +44,14 @@ export const HomeServieOfferedStyled = styled.div`
     }
 }
 
+@media (max-width: 576px) {
+    .serviceOffered  {
+        img {
+            width: 90%;
+        }
+    }
+}
+
 .serviceOffered  + .dcarousel {
     width: 90vw;
     height: 90vh;

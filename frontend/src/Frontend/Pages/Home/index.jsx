@@ -214,7 +214,7 @@ const Home = () => {
 
         {/* Services Offered */}
           
-        <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+        <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
             <Title title="Services Offered" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
             <span className="w-25 d-block m-auto"
               style={{ borderBottom: "1px solid #444444" }}

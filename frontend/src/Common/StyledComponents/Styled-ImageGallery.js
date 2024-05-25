@@ -54,7 +54,7 @@ export const ImageGalleryStyled = styled.div`
         background-size: 20px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
       .container {
         margin-top: 100px;
       }
@@ -79,10 +79,14 @@ export const ImageGalleryStyled = styled.div`
   .sapHomeCarousel {
     & + .viewAllBtn {
       margin-top: 200px;
-      @media (max-width: 480px) {
-        margin-top: 50px !important; 
+      @media (max-width: 768px) {
         width: 50%;
-        margin: auto
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (max-width: 576px) {
+        margin-top: 50px; 
       }
     }
   }
