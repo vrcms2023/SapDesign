@@ -265,10 +265,11 @@ const Home = () => {
               >
               </span>
           </div>
+          {isAdmin && hasPermission && (
           <div className="container">
           <div className="row">
             <div className="col-md-12">
-            {isAdmin && hasPermission && (
+           
                 <div className="text-end mb-4">
                   <Link
                     to="/imagegallery"
@@ -279,11 +280,12 @@ const Home = () => {
                     <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
                   </Link>
                 </div>
-              )}
             </div>
           </div>
         </div>
-          <div className="row ">
+        )}
+
+          <div className="row sapHomeCarousel">
             <div className="col-md-10 offset-md-1 homeGalleryCarousel">
               <div className="container">
                 <div className="row">
@@ -295,7 +297,7 @@ const Home = () => {
             </div>
           </div>
           <div
-            className="text-center py-4 position-relative galleryBtnPosition">
+            className="text-center py-4 position-relative viewAllBtn">
             <Link to="/imageGallery" className="btn btn-outline">
               View All
             </Link>
@@ -305,7 +307,7 @@ const Home = () => {
         {/* Clients */}
         
         <HomeClientsStyled>
-        <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+        <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
             <Title title="Clients" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
             <span className="w-25 d-block m-auto"
               style={{ borderBottom: "1px solid #444444" }}
@@ -339,7 +341,7 @@ const Home = () => {
               })}
             </div>
           </div>
-          <div className="text-center py-4 position-relative viewAllBtn">
+          <div className="text-center py-4 mt-3 position-relative viewAllBtn">
             <Link to="/clients" className="btn btn-outline">
               View All
             </Link>
@@ -348,7 +350,7 @@ const Home = () => {
 
        
         {/* Testimonials */}
-        <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+        <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
             <Title title="Testimonials" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
             <span className="w-25 d-block m-auto"
               style={{ borderBottom: "1px solid #444444" }}
@@ -403,14 +405,13 @@ const Home = () => {
 
 
         {/* Executive Profile */}
-        <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+        <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
             <Title title="Executive Profile" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
             <span className="w-25 d-block m-auto"
               style={{ borderBottom: "1px solid #444444" }}
             >
             </span>
         </div>
-
         
         <div className="container">
           <div className="row">
@@ -438,7 +439,7 @@ const Home = () => {
         
           {executives.length > 0 ? (
             executives.map((item, index) => (
-              <div className="col-md-6 text-center">
+              <div className="col-md-6 my-4 my-md-0 text-center">
               <TeamMember item={item}  key={index} index={index} 
               deleteAboutSection={""} 
               editHandler={""}
@@ -452,7 +453,7 @@ const Home = () => {
         </TeamStyled>
         
         {/* HOME News */}
-        <div className="text-center mb-5 pb-5" style={{ marginTop: "100px" }}>
+        <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
             <Title title="News" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
             <span className="w-25 d-block m-auto"
               style={{ borderBottom: "1px solid #444444" }}

@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const ImageGalleryStyled = styled.div`
 
+
+
   .gallery img {
     cursor: pointer;
     border: 3px solid ${({ theme }) => theme.gray};
@@ -71,26 +73,18 @@ export const ImageGalleryStyled = styled.div`
     .carousel-item img {
       height: 280px !important;
     }
-
-    
     }
   }
 
-  .galleryBtnPosition {
-    margin-top: 200px;
-
-    @media (max-width: 480px) {
-      margin-top: 50px;
-    }
-
-    .btn {
-      width: 50%;
+  .sapHomeCarousel {
+    & + .viewAllBtn {
+      margin-top: 200px;
+      @media (max-width: 480px) {
+        margin-top: 50px !important; 
+        width: 50%;
+        margin: auto
+      }
     }
   }
-
-  .viewAllBtn {
-    margin-top: 170px
-  }
-
-    
+  
 `;
