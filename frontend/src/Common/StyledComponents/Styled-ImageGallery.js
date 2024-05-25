@@ -19,6 +19,7 @@ export const ImageGalleryStyled = styled.div`
     }
   }
 
+
   .homeGalleryCarousel {
     background: ${({ theme }) => theme.black};
     border-radius: 30px;
@@ -49,6 +50,41 @@ export const ImageGalleryStyled = styled.div`
         border: 2px solid #fff;
         border-radius: 50px;
         background-size: 20px;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin-top: 100px;
+      }
+      .carousel-control-prev, .carousel-control-next {
+        right: 20%;
+        top: -30%;
+    }
+
+    .carousel-control-prev {
+        left: 20%;
+    }
+    .carousel-control-next, .carousel-control-prev {
+      height: 10vh;
+      width: 20%;
+    }
+    .carousel-item img {
+      height: 280px !important;
+    }
+
+    
+    }
+  }
+
+  .galleryBtnPosition {
+    margin-top: 200px;
+
+    @media (max-width: 480px) {
+      margin-top: 50px;
+    }
+
+    .btn {
+      width: 50%;
     }
   }
 

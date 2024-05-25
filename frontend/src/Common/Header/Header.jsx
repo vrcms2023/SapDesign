@@ -127,11 +127,11 @@ const Header = () => {
       const navbar = document.getElementsByClassName("navbar")[0]; // Get the first element with the class name
       //const logo = document.getElementsByClassName("logo")[0]; // Get the first element with the class name
       if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
+        document.body.scrollTop > 10 ||
+        document.documentElement.scrollTop > 10
       ) {
         navbar.style.position = "fixed";
-        navbar.style.top = 0;
+        navbar.style.top = "0px";
         navbar.style.width = "100%";
         navbar.style.transition = "0.4s";
       } else {
