@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { axiosClientServiceApi } from "../../util/axiosUtil";
-import { getImagePath } from "../../util/commonUtil";
+import React, { useState } from "react";
 
+// Components
 import ModelBg from "../../Common/ModelBg";
-import DynamicCarousel from "./DynamicCarousel";
 import Title from "../../Common/Title";
+import DynamicCarousel from "./DynamicCarousel";
+import { getImagePath } from "../../util/commonUtil";
 
 const ImageGalleryComponent = ({ pageType, componentEdit, imageGallery }) => {
   const [show, setShow] = useState(false);
-  //const [imageGallery, setImageGallery] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [img, setImg] = useState(null);
 
@@ -47,18 +46,6 @@ const ImageGalleryComponent = ({ pageType, componentEdit, imageGallery }) => {
                       className="d-block w-100 img-fluid"
                       onClick={() => findThumbHandler(item.id)}
                     />
-
-                    {/* <div className="carousel-caption ">
-              {item.image_title && (
-                <h1 className="fw-bold">{item.image_title}</h1>
-              )}
-
-              {item.image_description && (
-                <p className="fw-normal description fs-5">
-                  {item.image_description}
-                </p>
-              )}
-            </div> */}
                   </div>
                 ))}
             </div>

@@ -1,18 +1,21 @@
 import React from "react";
-import { ClientStyled } from "../../Common/StyledComponents/Styled-Clients";
+import { Link } from "react-router-dom";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import { useSelector } from "react-redux";
+
+// Components
+import { ClientStyled } from "../../Common/StyledComponents/Styled-Clients";
 import SkeletonImage from "../../Common/Skeltons/SkeletonImage";
 import EditIcon from "../../Common/AdminEditIcon";
-import { Link } from "react-router-dom";
 import Title from "../../Common/Title";
+import useAdminLoginStatus from "../../Common/customhook/useAdminLoginStatus";
+
 import {
   getImagePath,
   getListStyle,
   reorder,
   updateArrIndex,
 } from "../../util/commonUtil";
-import useAdminLoginStatus from "../../Common/customhook/useAdminLoginStatus";
-import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import { axiosServiceApi } from "../../util/axiosUtil";
 
 export const ClientListComponent = ({

@@ -1,36 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import { confirmAlert } from "react-confirm-alert";
+
+// Components
 import EditIcon from "../../Common/AdminEditIcon";
 import Banner from "../../Common/Banner";
 import BriefIntroFrontend from "../../Common/BriefIntro";
+import useAdminLoginStatus from "../../Common/customhook/useAdminLoginStatus";
+import Title from "../../Common/Title";
+import DeleteDialog from "../../Common/DeleteDialog";
+import Search from "../../Common/Search";
+import CustomPagination from "../../Common/CustomPagination";
+import SkeletonImage from "../../Common/Skeltons/SkeletonImage";
+import { ClientStyled } from "../../Common/StyledComponents/Styled-Clients";
+import NoteComponent from "../../Common/NoteComponent";
+import { ClientListComponent } from "../Components/ClientListComponent";
+import AddEditAdminNews from "../../Admin/Components/News";
 import ImageInputsForm from "../../Admin/Components/forms/ImgTitleIntoForm";
 import AdminBriefIntro from "../../Admin/Components/BriefIntro/index";
 import {
   getFormDynamicFields,
   imageDimensionsJson,
 } from "../../util/dynamicFormFields";
-import useAdminLoginStatus from "../../Common/customhook/useAdminLoginStatus";
-import { axiosClientServiceApi, axiosServiceApi } from "../../util/axiosUtil";
-import {
-  getImagePath,
-  paginationDataFormat,
-  sortByFieldName,
-} from "../../util/commonUtil";
-import Title from "../../Common/Title";
-import { Link } from "react-router-dom";
-import { confirmAlert } from "react-confirm-alert";
-import DeleteDialog from "../../Common/DeleteDialog";
-import AddEditAdminNews from "../../Admin/Components/News";
-import { toast } from "react-toastify";
 
+import { axiosClientServiceApi, axiosServiceApi } from "../../util/axiosUtil";
+import {  paginationDataFormat, sortByFieldName } from "../../util/commonUtil";
 import { getClinetLogsFields } from "../../util/dynamicFormFields";
-import Search from "../../Common/Search";
-import { sortCreatedDateByDesc } from "../../util/dataFormatUtil";
-import CustomPagination from "../../Common/CustomPagination";
-import SkeletonImage from "../../Common/Skeltons/SkeletonImage";
-import { ClientStyled } from "../../Common/StyledComponents/Styled-Clients";
-import { useSelector } from "react-redux";
-import { ClientListComponent } from "../Components/ClientListComponent";
-import NoteComponent from "../../Common/NoteComponent";
+
 
 const ClientsList = () => {
   const editComponentObj = {

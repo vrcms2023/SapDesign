@@ -4,12 +4,13 @@ import styled from "styled-components";
 
 export const FooterStyled = styled.div`
   color: ${({ theme }) => theme.footerTextColor};
-  border-top: 1px solid ${({ theme }) => theme.lightgray};
+  // border-top: 1px solid ${({ theme }) => theme.lightgray};
+  background: linear-gradient(0deg, rgba(116,142,49,.6) 0%, rgba(255,255,255,1) 75%);
 
-  background-image: url(${BgSymbol});
-  background-repeat: no-repeat;
-  background-position: 120% -250px;
-  background-size: 40%;
+  // background-image: url(${BgSymbol});
+  // background-repeat: no-repeat;
+  // background-position: 120% -250px;
+  // background-size: 40%;
 
   
 

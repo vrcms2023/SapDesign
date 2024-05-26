@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import { useSelector } from "react-redux";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 
 // Components
 import Title from "../../Common/Title";
 import DeleteDialog from "../../Common/DeleteDialog";
 import ModelBg from "../../Common/ModelBg";
-import AddEditAdminNews from "../../Admin/Components/News/index";
+import Ancher from "../../Common/Ancher";
+import SkeletonNews from "../../Common/Skeltons/SkeltonNews";
 import { useAdminLoginStatus } from "../../Common/customhook/useAdminLoginStatus";
-import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import AddEditAdminNews from "../../Admin/Components/News/index";
 
 import {
   axiosClientServiceApi,
@@ -20,8 +22,7 @@ import { getNewslFields } from "../../util/dynamicFormFields";
 
 // Styles
 import { NewsStyled } from "../../Common/StyledComponents/Styled-News";
-import Ancher from "../../Common/Ancher";
-import SkeletonNews from "../../Common/Skeltons/SkeltonNews";
+
 import {
   getImagePath,
   getListStyle,

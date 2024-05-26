@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
+import { toast } from "react-toastify";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+
+// Components
 import ImageInputsForm from "../../Admin/Components/forms/ImgTitleIntoForm";
-import {
-  getFormDynamicFields,
-  getTeamMemberFields,
-  imageDimensionsJson,
-} from "../../util/dynamicFormFields";
 import Title from "../../Common/Title";
 import Banner from "../../Common/Banner";
 import EditIcon from "../../Common/AdminEditIcon";
 import BriefIntroFrontend from "../../Common/BriefIntro";
 import useAdminLoginStatus from "../../Common/customhook/useAdminLoginStatus";
+import DeleteDialog from "../../Common/DeleteDialog";
+import Search from "../../Common/Search";
+import CustomPagination from "../../Common/CustomPagination";
 import AdminBriefIntro from "../../Admin/Components/BriefIntro/index";
 import AddEditTeam from "../../Admin/Components/News";
+
+import {
+  getFormDynamicFields,
+  getTeamMemberFields,
+  imageDimensionsJson,
+} from "../../util/dynamicFormFields";
 import {
   getImagePath,
   getListStyle,
@@ -22,16 +31,11 @@ import {
   sortByFieldName,
   updateArrIndex,
 } from "../../util/commonUtil";
-import { sortCreatedDateByDesc } from "../../util/dataFormatUtil";
 import { axiosClientServiceApi, axiosServiceApi } from "../../util/axiosUtil";
-import { confirmAlert } from "react-confirm-alert";
-import DeleteDialog from "../../Common/DeleteDialog";
-import { toast } from "react-toastify";
-import Search from "../../Common/Search";
-import CustomPagination from "../../Common/CustomPagination";
 import { removeActiveClass } from "../../util/ulrUtil";
+
+// Styles
 import { TeamStyled } from "../../Common/StyledComponents/Styled-Team";
-import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 
 const Team = () => {
   const editComponentObj = {
