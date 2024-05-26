@@ -26,6 +26,7 @@ import {
 import { axiosClientServiceApi, axiosServiceApi } from "../../util/axiosUtil";
 import {  paginationDataFormat, sortByFieldName } from "../../util/commonUtil";
 import { getClinetLogsFields } from "../../util/dynamicFormFields";
+import ScrollToTop from "react-scroll-to-top";
 
 
 const ClientsList = () => {
@@ -185,8 +186,8 @@ const ClientsList = () => {
                   className="btn btn-primary px-3"
                   onClick={() => editHandler("addSection", true, {})}
                 >
-                  Add New Client{" "}
-                  <i className="fa fa-plus ms-2" aria-hidden="true"></i>
+                  Add 
+                  <i className="fa fa-plus ms-1" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
@@ -276,9 +277,9 @@ const ClientsList = () => {
           ""
         )}
           </div>
-        </div>
-        
+        </div>  
       </div>
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </>
   );
 };

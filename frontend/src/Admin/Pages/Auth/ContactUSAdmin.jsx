@@ -9,6 +9,7 @@ import Search from "../../../Common/Search";
 import CustomPagination from "../../../Common/CustomPagination";
 import { paginationDataFormat } from "../../../util/commonUtil";
 import { sortCreatedDateByDesc } from "../../../util/dataFormatUtil";
+import ScrollToTop from "react-scroll-to-top";
 
 const ContactUSAdmin = () => {
   const [userDetails, setUserDetails] = useState([]);
@@ -114,6 +115,7 @@ const ContactUSAdmin = () => {
           ""
         )}
       </div>
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </div>
   );
 };

@@ -10,6 +10,7 @@ import { logout } from "../../../features/auth/authSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { LoginStyled } from "../../../Common/StyledComponents/Styled-Login";
+import ScrollToTop from "react-scroll-to-top";
 
 const ChangePassword = () => {
   const { register, handleSubmit } = useForm();
@@ -180,6 +181,7 @@ const ChangePassword = () => {
           </div>
         </div>
       </div>
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </LoginStyled>
   );
 };

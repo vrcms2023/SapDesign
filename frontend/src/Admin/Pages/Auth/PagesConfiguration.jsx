@@ -20,6 +20,7 @@ import { showContentPerRole } from "../../../util/permissions";
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import { getMenu } from "../../../features/auth/authActions";
 import useAdminLoginStatus from "../../../Common/customhook/useAdminLoginStatus";
+import ScrollToTop from "react-scroll-to-top";
 
 const PagesConfiguration = () => {
   const editComponentObj = {
@@ -374,6 +375,7 @@ const PagesConfiguration = () => {
       </div>
 
       {show && <ModelBg />}
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </div>
   );
 };
