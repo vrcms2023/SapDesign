@@ -1,47 +1,40 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // Components
-import Ancher from "../../../Common/Ancher";
-import BriefIntroFrontend from "../../../Common/BriefIntro";
 import Carousel from "../../Components/Carousel";
 import Testimonials from "../../Components/Testimonials";
 import ModelBg from "../../../Common/ModelBg";
 import AdminBanner from "../../../Admin/Components/forms/ImgTitleIntoForm-List";
-import BriefIntroAdmin from "../../../Admin/Components/BriefIntro/";
-
 import EditIcon from "../../../Common/AdminEditIcon";
 import ABrief from "../../Components/ABrief";
-import ABriefAbout from "../../Components/ABriefAbout";
 import HomeNews from "../../Components/HomeNews";
+import { HomeClientItem } from "../../Components/HomeClientItem";
+import { TeamMember } from "../Team";
+import { TeamStyled } from "../../../Common/StyledComponents/Styled-Team";
+import Title from "../../../Common/Title";
+import { useAdminLoginStatus } from "../../../Common/customhook/useAdminLoginStatus";
+import { HomeClientsStyled } from "../../../Common/StyledComponents/Styled-HomeClients";
+import Banner from "../../../Common/Banner";
+import ServiceOfferedComponent from "../../Components/ServiceOfferedComponent";
+
+import ImageInputsForm from "../../../Admin/Components/forms/ImgTitleIntoForm";
+
 import { axiosClientServiceApi } from "../../../util/axiosUtil";
 import { removeActiveClass } from "../../../util/ulrUtil";
 import {
-  getCarouselFields,
   getFormDynamicFields,
   getTestimonialsFields,
   getserviceOfferedFields,
   imageDimensionsJson,
 } from "../../../util/dynamicFormFields";
-import ImagesGallery from "../ImagesGallery";
+import { sortByFieldName } from "../../../util/commonUtil";
 
-import { useAdminLoginStatus } from "../../../Common/customhook/useAdminLoginStatus";
 // Styles
 
 import "./Home.css";
-import Features from "../../Components/Features";
 import { ImageGalleryStyled } from "../../../Common/StyledComponents/Styled-ImageGallery";
-import { Link } from "react-router-dom";
-import Banner from "../../../Common/Banner";
-import ImageInputsForm from "../../../Admin/Components/forms/ImgTitleIntoForm";
 
-import ServiceOfferedComponent from "../../Components/ServiceOfferedComponent";
-
-import { HomeClientsStyled } from "../../../Common/StyledComponents/Styled-HomeClients";
-import { sortByFieldName } from "../../../util/commonUtil";
-import { HomeClientItem } from "../../Components/HomeClientItem";
-import { TeamItem, TeamMember } from "../Team";
-import { TeamStyled } from "../../../Common/StyledComponents/Styled-Team";
-import Title from "../../../Common/Title";
 
 const Home = () => {
   const editComponentObj = {
@@ -168,32 +161,6 @@ const Home = () => {
         ) : (
           ""
         )}
-
-        {/* Carousel */}
-        {/* <div className="row">
-          <div className="col-md-12 p-0 carousel">
-            {isAdmin && hasPermission && <EditIcon editHandler={editHandler} />}
-            <Carousel carouselState={componentEdit.carousel} />
-          </div>
-        </div> */}
-
-        {/* {componentEdit.carousel && (
-          <div className="adminEditTestmonial">
-            <AdminBanner
-              editHandler={editHandler}
-              componentType="carousel"
-              getImageListURL="carousel/createCarousel/"
-              deleteImageURL="carousel/updateCarousel/"
-              imagePostURL="carousel/createCarousel/"
-              imageUpdateURL="carousel/updateCarousel/"
-              imageIndexURL="carousel/updateCarouselindex/"
-              imageLabel="Add Carousel Image"
-              showDescription={false}
-              showExtraFormFields={getCarouselFields("carousel")}
-              dimensions={imageDimensionsJson("carousel")}
-            />
-          </div>
-        )} */}
 
         {/*  HOME Services */}
         <div className="row" style={{ background: "#f3f3f3" }}>

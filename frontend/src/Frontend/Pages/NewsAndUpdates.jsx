@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Components
-
+import { useAdminLoginStatus } from "../../Common/customhook/useAdminLoginStatus";
 import Title from "../../Common/Title";
 import Model from "../../Common/Model";
 import ModelBg from "../../Common/ModelBg";
 import Banner from "../../Common/Banner";
-import { useAdminLoginStatus } from "../../Common/customhook/useAdminLoginStatus";
 import Search from "../../Common/Search";
 import EditIcon from "../../Common/AdminEditIcon";
+import CustomPagination from "../../Common/CustomPagination";
+import NoteComponent from "../../Common/NoteComponent";
 import HomeNews from "../Components/HomeNews";
 import ImageInputsForm from "../../Admin/Components/forms/ImgTitleIntoForm";
 import AddEditAdminNews from "../../Admin/Components/News/index";
@@ -21,16 +22,12 @@ import {
   imageDimensionsJson,
 } from "../../util/dynamicFormFields";
 
-// Styles
-import AdminBanner from "../../Admin/Components/forms/ImgTitleIntoForm-List";
-import CustomPagination from "../../Common/CustomPagination";
 import {
   getObjectPositionKey,
   paginationDataFormat,
   sortByFieldName,
 } from "../../util/commonUtil";
-import { sortCreatedDateByDesc } from "../../util/dataFormatUtil";
-import NoteComponent from "../../Common/NoteComponent";
+
 
 const NewsAndUpdates = () => {
   const editComponentObj = {

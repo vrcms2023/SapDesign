@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
+
+// Componnts
 import EditIcon from "../../Common/AdminEditIcon";
 import useAdminLoginStatus from "../../Common/customhook/useAdminLoginStatus";
+import { ImageGalleryStyled } from "../../Common/StyledComponents/Styled-ImageGallery";
+import ImageGalleryComponent from "../Components/ImageGalleryComponent";
+import CustomPagination from "../../Common/CustomPagination";
 import AdminBanner from "../../Admin/Components/forms/ImgTitleIntoForm-List";
 import {
   getImageGalleryFields,
   imageDimensionsJson,
 } from "../../util/dynamicFormFields";
-import ModelBg from "../../Common/ModelBg";
-import DynamicCarousel from "../Components/DynamicCarousel";
-import { getImagePath, paginationDataFormat } from "../../util/commonUtil";
+import { paginationDataFormat } from "../../util/commonUtil";
 import { axiosClientServiceApi } from "../../util/axiosUtil";
-import { ImageGalleryStyled } from "../../Common/StyledComponents/Styled-ImageGallery";
-import ImageGalleryComponent from "../Components/ImageGalleryComponent";
-import CustomPagination from "../../Common/CustomPagination";
 
 const ImagesGallery = () => {
   const editComponentObj = {
