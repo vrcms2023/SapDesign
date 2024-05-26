@@ -21,6 +21,7 @@ import Logo from "../../Images/logo.png";
 
 // Styles
 import { FooterStyled } from "../StyledComponents/Styled-Footer";
+import Title from "../Title";
 
 const Footer = () => {
   const editComponentObj = {
@@ -118,43 +119,12 @@ const Footer = () => {
         <div className="container py-5 footerDetails">
           <div className="row">
             <div className="col-md-3 text-center text-md-start">
-              <h5 className="text-center text-md-start">Company</h5>
+              <Title title="Company" cssClass="fs-5 mb-3 fw-medium title" />
               <ul className="">
                 {menuList?.map((menu) => {
                   return <ChildMenuContent menu={menu} key={menu.id} />;
                 })}
 
-                {/* <li>
-                  <Link to="/" className="ms-0">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about">About Us</Link>
-                </li>
-                <li>
-                  <Link
-                    to={`/services/${urlStringFormat(
-                      getCookie("pageLoadServiceName")
-                    )}/`}
-                  >
-                    Services
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/careers">Careers</Link>
-                </li>
-                <li>
-                  <Link to="/news">News & Updates</Link>
-                </li>
-                <li>
-                  <Link to="/contact">Contact Us</Link>
-                </li> */}
-                {/* <li>
-                  <Link to="" onClick={showModel}>
-                    Privacy Policy
-                  </Link>
-                </li> */}
               </ul>
             </div>
             <hr className="d-block d-md-none my-5" />
@@ -162,7 +132,7 @@ const Footer = () => {
             <div className="col-md-3 text-center text-md-start">
               {address && (
                 <>
-                  <h5 className="text-center text-md-start">Address</h5>
+                  <Title title="Address" cssClass="fs-5 mb-3 fw-medium title" />
                   <p className="m-0 fw-bold">{address.company_name}</p>
                   <p className="m-0">{address.address_dr_no}</p>
                   <p className="m-0">{address.street} </p>
@@ -175,7 +145,7 @@ const Footer = () => {
             </div>
 
             <div className="col-md-3 text-center text-md-start mb-0 reachUs">
-              <h5 className="d-none d-sm-block">Reach Us</h5>
+              <Title title="Company" cssClass="fs-5 mb-3 fw-medium title" />
               {address.phonen_number ? (
                 <p className="m-0 my-3 my-md-0">
                   <i

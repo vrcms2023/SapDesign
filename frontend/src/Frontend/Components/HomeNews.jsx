@@ -339,7 +339,7 @@ const NewsItem = ({ item, index, handleModel, DeleteNews, editHandler }) => {
                       title={
                         item.news_title ? item.news_title : "Update news Title"
                       }
-                      cssClass={` fw-bold lh-sm mb-2 lineClamp lc1 ${
+                      cssClass={`fw-bold lh-sm mb-2 lineClamp lc1 ${
                         isAdmin ? "fs-6" : "fs-5"
                       }`}
                     />

@@ -131,7 +131,7 @@ const NewsAndUpdates = () => {
 
         <div className="row mb-4 py-4">
           <div className="col-md-6">
-            <Title title="News And Updates" cssClass="fs-1 fw-medium py-2 text-black" />
+            <Title title="News And Updates" cssClass="fs-2 fw-medium py-2 text-black" />
           </div>
           <div className="col-md-6">
             <Search

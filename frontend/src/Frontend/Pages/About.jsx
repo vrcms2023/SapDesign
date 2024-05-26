@@ -244,7 +244,7 @@ const About = () => {
                       {item.aboutus_title ? (
                         <Title
                           title={item.aboutus_title}
-                          cssClass="fs-2 mb-1 title"
+                          cssClass="fs-2 fw-medium py-2 text-black"
                         />
                       ) : (
                         ""
@@ -275,7 +275,7 @@ const About = () => {
                       />
                     </div>
 
-                    <div className="col-lg-6 d-none d-lg-block h-100">
+                    <div className="col-lg-6 h-100">
                       <div className="h-100 p-3 p-md-5 py-md-4 d-flex flex-column justify-content-center align-items-center rightColumn">
                         <Title
                           title={"OUR WORK LOCATIONS"}

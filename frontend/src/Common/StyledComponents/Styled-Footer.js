@@ -3,12 +3,15 @@ import BgSymbol from "../../Images/logo-symbol.svg";
 import styled from "styled-components";
 
 export const FooterStyled = styled.div`
+  color: ${({ theme }) => theme.footerTextColor};
+  border-top: 1px solid ${({ theme }) => theme.lightgray};
+
   background-image: url(${BgSymbol});
   background-repeat: no-repeat;
   background-position: 120% -250px;
   background-size: 40%;
 
-  color: ${({ theme }) => theme.footerTextColor};
+  
 
   a {
     color: ${({ theme }) => theme.footerLinkColor};
@@ -29,11 +32,11 @@ export const FooterStyled = styled.div`
     }
   }
 
-  h5 {
-    // color: ${({ theme }) => theme.footerTitleColor};
-    margin: 0 0 20px;
-    font-size: 1.6rem;
-    text-align: left
+  .title {
+    color: ${({ theme }) => theme.primaryColor};
+    // margin: 0 0 20px;
+    // font-size: 1.6rem;
+    // text-align: left
   }
 
   .reachUs p {

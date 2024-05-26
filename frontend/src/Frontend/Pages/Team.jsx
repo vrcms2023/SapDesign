@@ -217,7 +217,7 @@ const Team = () => {
 
         <div className="row mb-4 py-4">
           <div className="col-md-6 fs-3 mt-4 mt-md-0">
-            <Title title="Our Team" cssClass="fs-1 pageTitle" />
+            <Title title="Our Team" cssClass="fs-2 fw-medium py-2 text-black pageTitle" />
           </div>
 
           <div className="col-md-6 mb-4">
