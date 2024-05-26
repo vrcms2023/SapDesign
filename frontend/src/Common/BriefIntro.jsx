@@ -38,7 +38,7 @@ const BriefIntroFrontend = ({ pageType, introState }) => {
               ) : (
                 <Title
                   title={introValue?.intro_title}
-                  cssClass="mb-0 fw-bold fs-2 text-center"
+                  cssClass="fs-2 fw-medium px-4 py-2 text-black text-center"
                 />
               )}
               {introValue?.subTitle === "" ? (
@@ -46,10 +46,10 @@ const BriefIntroFrontend = ({ pageType, introState }) => {
               ) : (
                 <Title
                   title={introValue?.subTitle}
-                  cssClass="mb-3 fw-bold text-secondary text-center"
+                  cssClass="my-2 fw-medium text-secondary text-center"
                 />
               )}
-              <p className="text-center lh-md m-0 fw-medium">
+              <p className="text-center lh-md m-auto w-75 fw-medium">
                 {introValue?.intro_desc
                   ? introValue?.intro_desc
                   : "Please Update Brief Intro"}

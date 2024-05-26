@@ -66,7 +66,7 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
     <div className="row py-5">
       {/* Edit News */}
 
-      <div className="col-lg-6 p-md-5 ABriefImg d-md-flex justify-content-center align-items-center">
+      <div className="col-lg-6 p-md-2 ABriefImg d-md-flex justify-content-center align-items-center">
        
         <GlassMagnifier
           imageSrc={bannerdata?.path && getImagePath(bannerdata.path)}

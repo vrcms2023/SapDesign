@@ -29,7 +29,7 @@ const ImageGalleryComponent = ({ pageType, componentEdit, imageGallery }) => {
         <div className="col-md-10 offset-md-1">
           <div className="container">
             <div className="my-5 ">
-              <Title title="View Gallery" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
+              <Title title="View Gallery" cssClass="fs-2 fw-medium py-2 text-black text-center" />
               <span className="w-50 d-block m-auto"
                 style={{ borderBottom: "1px solid #444444" }}
               >
