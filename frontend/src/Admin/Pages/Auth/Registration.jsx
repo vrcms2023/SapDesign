@@ -13,6 +13,7 @@ import CSRFToken from "../../../Frontend/Components/CRSFToken";
 
 // CSS Styles
 import { LoginStyled } from "../../../Common/StyledComponents/Styled-Login";
+import ScrollToTop from "react-scroll-to-top";
 
 const Registration = () => {
   const [customError, setCustomError] = useState(null);
@@ -187,6 +188,7 @@ const Registration = () => {
           </form>
         </div>
       </div>
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </LoginStyled>
   );
 };

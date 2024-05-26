@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ScrollToTop from "react-scroll-to-top";
 
 // Components
 import Carousel from "../../Components/Carousel";
@@ -55,8 +56,6 @@ const Home = () => {
   const [news, setNews] = useState([]);
   const [clientsList, setClientsList] = useState([]);
   const [executives, setExecutives] = useState([]);
-
-  
 
   const editHandler = (name, value) => {
     SetComponentEdit((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -472,6 +471,7 @@ const Home = () => {
         {show && <ModelBg />}
         {/* {showEditPop && <ModelBg />} */}
       </div>
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </>
   );
 };

@@ -9,6 +9,7 @@ import { getMenuObject } from "../../../util/commonUtil";
 import Button from "../../../Common/Button";
 import Error from "../../Components/Error";
 import { isAppAccess } from "../../../util/permissions";
+import ScrollToTop from "react-scroll-to-top";
 
 const UserPagePermission = () => {
   const [userDetails, setUserDetails] = useState([]);
@@ -340,6 +341,7 @@ const UserPagePermission = () => {
           />
         </div>
       </div>
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </div>
   );
 };

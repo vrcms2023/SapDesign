@@ -27,6 +27,7 @@ import {
   paginationDataFormat,
   sortByFieldName,
 } from "../../util/commonUtil";
+import ScrollToTop from "react-scroll-to-top";
 
 
 const NewsAndUpdates = () => {
@@ -120,8 +121,8 @@ const NewsAndUpdates = () => {
               className="btn btn-primary"
               onClick={() => editHandler("addNews", true)}
             >
-              Add News
-              <i className="fa fa-plus ms-2" aria-hidden="true"></i>
+              Add
+              <i className="fa fa-plus ms-1" aria-hidden="true"></i>
             </Link>
           </div>
         )}
@@ -206,6 +207,7 @@ const NewsAndUpdates = () => {
       {showModal && <ModelBg closeModel={closeModel} />}
 
       {show && <ModelBg />}
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </>
   );
 };

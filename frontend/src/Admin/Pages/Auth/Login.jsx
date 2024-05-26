@@ -23,6 +23,7 @@ import CSRFToken from "../../../Frontend/Components/CRSFToken";
 // CSS Styles
 import { LoginStyled } from "../../../Common/StyledComponents/Styled-Login";
 import { isAppAccess } from "../../../util/permissions";
+import ScrollToTop from "react-scroll-to-top";
 
 const Login = () => {
   const { access, userInfo, error, permissions } = useSelector(
@@ -180,6 +181,7 @@ const Login = () => {
           </form>
         </div>
       </div>
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </LoginStyled>
   );
 };

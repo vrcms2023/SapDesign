@@ -9,6 +9,7 @@ import { getCookie } from "../../../util/cookieUtil";
 import { confirmAlert } from "react-confirm-alert";
 import DeleteDialog from "../../../Common/DeleteDialog";
 import { isAppAccess } from "../../../util/permissions";
+import ScrollToTop from "react-scroll-to-top";
 
 const UserAdmin = () => {
   const [userDetails, setUserDetails] = useState([]);
@@ -198,6 +199,7 @@ const UserAdmin = () => {
           </Link>
         </div> 
       </div>
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </div>
   );
 };

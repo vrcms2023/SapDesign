@@ -7,6 +7,7 @@ import Title from "../../../Common/Title";
 import Error from "../../Components/Error";
 
 import { LoginStyled } from "../../../Common/StyledComponents/Styled-Login";
+import ScrollToTop from "react-scroll-to-top";
 
 const ResetPassword = () => {
   const { register, handleSubmit } = useForm();
@@ -91,6 +92,7 @@ const ResetPassword = () => {
           </div>
         </div>
       </div>
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </LoginStyled>
   );
 };

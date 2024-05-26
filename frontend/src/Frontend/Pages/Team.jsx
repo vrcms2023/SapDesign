@@ -36,6 +36,7 @@ import { removeActiveClass } from "../../util/ulrUtil";
 
 // Styles
 import { TeamStyled } from "../../Common/StyledComponents/Styled-Team";
+import ScrollToTop from "react-scroll-to-top";
 
 const Team = () => {
   const editComponentObj = {
@@ -210,9 +211,8 @@ const Team = () => {
                   to="#"
                   className="btn btn-primary"
                   onClick={() => editHandler("addSection", true)}
-                >
-                  Add team
-                  <i className="fa fa-plus ms-2" aria-hidden="true"></i>
+                >Add 
+                  <i className="fa fa-plus ms-1" aria-hidden="true"></i>
                 </Link>
               </div>
             )}
@@ -321,8 +321,8 @@ const Team = () => {
               />
             )}
           </div>
-        
       </div>
+      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </>
   );
 };
