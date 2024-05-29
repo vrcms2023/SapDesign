@@ -38,6 +38,12 @@ export const ImageGalleryStyled = styled.div`
         border-radius: 30px;
     }
 
+    @media (min-width: 992px) {
+      .carousel-item img {
+        object-fit: fill;
+    }
+    }
+
     .carousel-control-prev, .carousel-control-next {
         right: -14%;
         top: -40%;
