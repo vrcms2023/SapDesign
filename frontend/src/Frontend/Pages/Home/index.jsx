@@ -261,10 +261,13 @@ const Home = () => {
             </div>
           )}
 
+          
+          
           <div className="row sapHomeCarousel">
             <div className="col-md-10 offset-md-1 homeGalleryCarousel">
               <div className="container">
                 <div className="row">
+                  {/* <div className="col-md-10 offset-md-1"> */}
                   <div className="col-md-10 offset-md-1">
                     <Carousel carouselState={componentEdit.carousel} />
                   </div>
