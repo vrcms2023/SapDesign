@@ -297,7 +297,7 @@ const TestimonialsList = () => {
                         <img
                           src={getImagePath(item.path)}
                           alt=""
-                          className="img-fluid rounded-circle border border-3 border-light shadow-lg img-thumbnail "
+                          className="img-fluid border border-1 border-light shadow-lg img-thumbnail "
                         />
                       </div>
                     </div>

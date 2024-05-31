@@ -118,7 +118,7 @@ const CarouselItem = ({ item, index }) => {
       <img
         src={getImagePath(item.path)}
         alt={item.alternitivetext}
-        className="d-block w-100"
+        className="d-block  m-auto shadow-lg"
       />
 
       <div className="carousel-caption ">
