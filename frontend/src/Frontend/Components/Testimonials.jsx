@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Title from "../../Common/Title";
 import { getBaseURL } from "../../util/ulrUtil";
 import { getImagePath } from "../../util/commonUtil";
+import { sampleSize } from "lodash";
 
 const Testimonials = ({ testimonis }) => {
   const editComponentObj = {
@@ -64,37 +65,48 @@ const Testimonials = ({ testimonis }) => {
       position = "lastSlide";
     }
     return (
-      <div className={`${position} article position-absolute`} key={item.id}>
-        <Title
-          title={item.testimonial_title}
-          cssClass="mb-2 fw-normal px-3 fs-2 fw-bold title"
-        />
-
+      <>
+      <div className={`${position} article position-absolute testimonialComponent`} key={item.id}>
+        
         {!item.path ? (
           <i className="fa fa-user" aria-hidden="true"></i>
         ) : (
           <img
             src={getImagePath(item.path)}
-            className="rounded-circle my-4 testimonialImg shadow-lg border border-3"
+            className="rounded-circle testimonialImg shadow-lg border border-3 border-white"
             alt="User"
           />
         )}
-        <p className="w-75 m-auto mt-3 mb-5 px-3 px-md-5 fs-6">
+        {/* <Title
+          title={item.testimonial_title}
+          cssClass="mb-2 fw-normal px-3 fs-2 fw-bold title"
+        /> */}
+
+        <p className="m-auto my-4 px-3 px-md-0 text-left" style={{
+          fontSize: ".9rem"
+        }}>
           {item.testimonial_description}
         </p>
-        <div className="d-flex justify-content-center gap-5">
-          <Link to="" onClick={() => setIndex(index + 1)}>
+        <Title
+          title={`- ${item.testimonial_title}`}
+          cssClass="mb-2 fw-medium fs-5 title"
+        />
+        <div className="d-flex justify-content-between align-items-center position-relative" style={{
+          top: "-150px"
+        }} >
+          <Link to="" onClick={() => setIndex(index + 1)} className="previous" >
             {" "}
             {/* <img src={leftArrow} alt="Previous" width="42" height="42" /> */}
-            <i className="fa fa-chevron-left fs-1" aria-hidden="true"></i>
+            <i className="fa fa-angle-left fs-1" aria-hidden="true"></i>
           </Link>
-          <Link to="" onClick={() => setIndex(index - 1)}>
+          <Link to="" onClick={() => setIndex(index - 1)} className="next">
             {" "}
             {/* <img src={rightArrow} alt="Next" width="42" height="42" /> */}
-            <i className="fa fa-chevron-right fs-1" aria-hidden="true"></i>
+            <i className="fa fa-angle-right fs-1" aria-hidden="true"></i>
           </Link>
         </div>
       </div>
+      </>
     );
   });
 

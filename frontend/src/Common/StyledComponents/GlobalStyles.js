@@ -183,33 +183,49 @@ body {
 // Testimonial Component Styles
 
 .testimonials {
-    background-color:${({ theme }) => theme.testimonialsBg}; 
-    color:${({ theme }) => theme.testimonialsTextColor};
+    // background:${({ theme }) => theme.testimonialsBg};
+    border: 1px solid ${({ theme }) => theme.lightgray};
+    background: linear-gradient(90deg, rgba(0,0,0,0.25253851540616246) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,0.2497373949579832) 100%);
+    color:${({ theme }) => theme.testimonialsLinkHoverColor};
     min-height: 530px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border-radius: 30px;
+    border-radius: 10px;
     // padding: 70px 75px !important;
 
+    .testimonialComponent {
+      width: 480px;
+    }
+
     .testimonialImg {
-        width: 125px;
-        height: 125px;
+        width: 130px;
+        height: 130px;
         object-fit: cover;
-        box-shadow: 0 5px 5px rgba(0,0,0, .5) !important
+        
       }
 
+      .next{
+        position: relative;
+        right: -100px;
+    }
+    
+    .previous{
+      position: relative;
+      left: -100px
+    }
+
       i.fa {
-        color:${({ theme }) => theme.testimonialsLinkColor};
+        color:${({ theme }) => theme.white};
 
         &:hover {
             color:${({ theme }) => theme.testimonialsLinkHoverColor};
         }
       }
 
-    .title {color:${({ theme }) => theme.testimonialsHeadingColor};}
-    p {color:${({ theme }) => theme.testimonialsTextColor};}
+    .title {color:${({ theme }) => theme.black};}
+    p {color:${({ theme }) => theme.black};}
 
     .article {
         /* top: 0;
