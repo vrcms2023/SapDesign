@@ -84,6 +84,6 @@
 
   .carousel-item img,
   .homeCarousel::after {
-    height: 50vh;
+    /* height: 50vh; */
   }
 }

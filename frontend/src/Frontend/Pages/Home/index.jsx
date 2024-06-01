@@ -112,6 +112,7 @@ const Home = () => {
         const response = await axiosClientServiceApi.get(
           `/client/getAllClientLogos/`
         );
+        console.log("Response Clients",  response)
         if (response?.status === 200) {
           const _clientList = sortByFieldName(
             response.data.results,
