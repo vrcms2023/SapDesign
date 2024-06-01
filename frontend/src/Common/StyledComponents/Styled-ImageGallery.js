@@ -5,7 +5,7 @@ export const ImageGalleryStyled = styled.div`
   .gallery img {
     cursor: pointer;
     border: 3px solid ${({ theme }) => theme.gray};
-    border-radius: 25px;
+    // border-radius: 25px;
     height: 200px;
     filter: gray; /* IE6-9 */
     -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
@@ -20,6 +20,7 @@ export const ImageGalleryStyled = styled.div`
     }
   }
 
+
   .homeGalleryCarousel {
     background: ${({ theme }) => theme.black};
     height: auto;
@@ -33,35 +34,45 @@ export const ImageGalleryStyled = styled.div`
       width: 100%;
       height: auto;
     }
+  }
+
+  // ============ Common Code for homeGalleryCarousel, Gallery Carousel ================
+
+  .dcarousel {
+    @media (max-width: 991px) {
+    .closeCarousel {
+      right: 60px
     }
 
-    .carousel-control-prev, .carousel-control-next {
-        right: -14%;
-    }
-    .carousel-control-prev {
-        left: -14%;
-    }
+    @media (max-width: 480px) {
+      top: 35vh;
 
-    .carousel-control-prev span, .carousel-control-next span {
-        border: 2px solid #fff;
-        border-radius: 50px;
-        background-size: 20px;
-    }
-
-    @media (max-width: 576px) {
-
-      .carousel-control-prev, .carousel-control-next {
-        right: -8%;
-        top: 40%;
-    }
-      .carousel-control-prev {
-          left: -8%;
-      }
-      .carousel-control-next, .carousel-control-prev {
-        height: 10vh;
-        width: 20%;
+      .closeCarousel {
+        right: 30px
       }
     }
+  }
+
+  .carousel-item img {
+    display: block;
+      width: 100%;
+      height: auto;
+  }
+  }
+
+  .carousel-control-prev, .carousel-control-next {
+    right: 0% !important;
+  }
+  .carousel-control-prev {
+      left: 0% !important;
+  }
+
+  .carousel-control-prev span, .carousel-control-next span {
+      display: none
+  }
+
+  // ============================
+
 
   .sapHomeCarousel {
     & + .viewAllBtn {
@@ -72,13 +83,11 @@ export const ImageGalleryStyled = styled.div`
       }
     }
   }
-  
 `;
 
 
 
 // ============================
-
 
 // import styled from "styled-components";
 
