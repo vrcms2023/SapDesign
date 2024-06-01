@@ -211,7 +211,8 @@ const Team = () => {
                   to="#"
                   className="btn btn-primary"
                   onClick={() => editHandler("addSection", true)}
-                >Add 
+                >
+                  Add
                   <i className="fa fa-plus ms-1" aria-hidden="true"></i>
                 </Link>
               </div>
@@ -221,7 +222,9 @@ const Team = () => {
 
         <div className="row mb-4 py-4">
           <div className="col-md-6 fs-3 mt-4 mt-md-0">
+
             <Title title="Key members" cssClass="fs-2 fw-medium py-2 text-black pageTitle" />
+
           </div>
 
           <div className="col-md-6 mb-4">
@@ -254,7 +257,9 @@ const Team = () => {
               imageUpdateURL="ourteam/UpdateOurteamDetail/"
               imageLabel="Add Image"
               showDescription={false}
-              showExtraFormFields={getTeamMemberFields()}
+              showExtraFormFields={getTeamMemberFields(
+                editCarousel?.team_member_position
+              )}
               dimensions={imageDimensionsJson("teams")}
             />
           </div>
@@ -297,32 +302,38 @@ const Team = () => {
         </TeamStyled>
 
         {/* Paginiation */}
-          <div className="row my-5">
-            {paginationData?.total_count && (
-              <CustomPagination
-                paginationData={paginationData}
-                paginationURL={
-                  isAdmin
+        <div className="row my-5">
+          {paginationData?.total_count && (
+            <CustomPagination
+              paginationData={paginationData}
+              paginationURL={
+                isAdmin
+                  ? "/ourteam/createteam/"
+                  : "/clieourteamnt/clentViewOurTeamDetails/"
+              }
+              paginationSearchURL={
+                searchQuery
+                  ? `/ourteam/OurteamSearchAPIView/${searchQuery}/`
+                  : isAdmin
                     ? "/ourteam/createteam/"
-                    : "/clieourteamnt/clentViewOurTeamDetails/"
-                }
-                paginationSearchURL={
-                  searchQuery
-                    ? `/ourteam/OurteamSearchAPIView/${searchQuery}/`
-                    : isAdmin
-                      ? "/ourteam/createteam/"
-                      : "/ourteam/clentViewOurTeamDetails/"
-                }
-                searchQuery={searchQuery}
-                setCurrentPage={setCurrentPage}
-                currentPage={currentPage}
-                setResponseData={setResponseData}
-                pageLoadResult={pageLoadResult}
-              />
-            )}
-          </div>
+                    : "/ourteam/clentViewOurTeamDetails/"
+              }
+              searchQuery={searchQuery}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+              setResponseData={setResponseData}
+              pageLoadResult={pageLoadResult}
+            />
+          )}
+        </div>
       </div>
-      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
+      <ScrollToTop
+        smooth
+        color="#fff"
+        height="20"
+        style={{ background: "#748E31" }}
+        className="shadow rounded-circle"
+      />
     </>
   );
 };

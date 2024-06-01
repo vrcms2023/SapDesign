@@ -36,7 +36,6 @@ import { sortByFieldName } from "../../../util/commonUtil";
 import "./Home.css";
 import { ImageGalleryStyled } from "../../../Common/StyledComponents/Styled-ImageGallery";
 
-
 const Home = () => {
   const editComponentObj = {
     banner: false,
@@ -69,7 +68,6 @@ const Home = () => {
         const response = await axiosClientServiceApi.get(
           `/ourteam/clentViewOurTeamDetails/`
         );
-        console.log(response, "EProfiles")
         if (response?.status === 200) {
           setExecutives(response.data.results);
         }
@@ -81,7 +79,6 @@ const Home = () => {
       getTeamMemberDetails();
     }
   }, [componentEdit.addSection, componentEdit.editSection]);
-
 
   useEffect(() => {
     removeActiveClass();
@@ -178,17 +175,22 @@ const Home = () => {
           </div>
         </div>
 
-
         {/* Services Offered */}
-          
-        <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
-            <Title title="Services Offered" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
-            <span className="w-25 d-block m-auto"
-              style={{ borderBottom: "1px solid #444444" }}
-            >
-            </span>
+
+        <div
+          className="text-center mb-5 pb-0 pb-md-5"
+          style={{ marginTop: "100px" }}
+        >
+          <Title
+            title="Services Offered"
+            cssClass="fs-1 fw-medium px-4 py-2 text-black text-center"
+          />
+          <span
+            className="w-25 d-block m-auto"
+            style={{ borderBottom: "1px solid #444444" }}
+          ></span>
         </div>
-       
+
         <div className="row">
           <div className="col-md-12 carousel">
             {isAdmin && hasPermission && (
@@ -223,34 +225,42 @@ const Home = () => {
         )}
 
         {/* Image Gallery Carousel */}
-        
+
         <ImageGalleryStyled>
-          <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
-              <Title title="View Gallery" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
-              <span className="w-25 d-block m-auto"
-                style={{ borderBottom: "1px solid #444444" }}
-              >
-              </span>
+          <div
+            className="text-center mb-5 pb-0 pb-md-5"
+            style={{ marginTop: "100px" }}
+          >
+            <Title
+              title="View Gallery"
+              cssClass="fs-1 fw-medium px-4 py-2 text-black text-center"
+            />
+            <span
+              className="w-25 d-block m-auto"
+              style={{ borderBottom: "1px solid #444444" }}
+            ></span>
           </div>
           {isAdmin && hasPermission && (
-          <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-           
-                <div className="text-end mb-4">
-                  <Link
-                    to="/imagegallery"
-                    className="btn btn-primary"
-                    // onClick={() => editHandler("addNews", true)}
-                  >
-                    Goto Gallery Page
-                    <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
-                  </Link>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="text-end mb-4">
+                    <Link
+                      to="/imagegallery"
+                      className="btn btn-primary"
+                      // onClick={() => editHandler("addNews", true)}
+                    >
+                      Goto Gallery Page
+                      <i
+                        className="fa fa-arrow-right ms-2"
+                        aria-hidden="true"
+                      ></i>
+                    </Link>
+                  </div>
                 </div>
+              </div>
             </div>
-          </div>
-        </div>
-        )}
+          )}
 
           
           
@@ -266,8 +276,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div
-            className="text-center py-4 position-relative viewAllBtn">
+          <div className="text-center py-4 position-relative viewAllBtn">
             <Link to="/imageGallery" className="btn btn-outline">
               View All
             </Link>
@@ -275,34 +284,43 @@ const Home = () => {
         </ImageGalleryStyled>
 
         {/* Clients */}
-        
+
         <HomeClientsStyled>
-        <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
-            <Title title="Clients" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
-            <span className="w-25 d-block m-auto"
+          <div
+            className="text-center mb-5 pb-0 pb-md-5"
+            style={{ marginTop: "100px" }}
+          >
+            <Title
+              title="Clients"
+              cssClass="fs-1 fw-medium px-4 py-2 text-black text-center"
+            />
+            <span
+              className="w-25 d-block m-auto"
               style={{ borderBottom: "1px solid #444444" }}
-            >
-            </span>
-        </div>
-        
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-            {isAdmin && hasPermission && (
-                <div className="text-end mb-4">
-                  <Link
-                    to="/clients"
-                    className="btn btn-primary"
-                    // onClick={() => editHandler("addNews", true)}
-                  >
-                    Goto Clients Page
-                    <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
-                  </Link>
-                </div>
-              )}
+            ></span>
+          </div>
+
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                {isAdmin && hasPermission && (
+                  <div className="text-end mb-4">
+                    <Link
+                      to="/clients"
+                      className="btn btn-primary"
+                      // onClick={() => editHandler("addNews", true)}
+                    >
+                      Goto Clients Page
+                      <i
+                        className="fa fa-arrow-right ms-2"
+                        aria-hidden="true"
+                      ></i>
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
           <div className="clients-image-slider">
             <div className="image-slider-track">
@@ -318,20 +336,25 @@ const Home = () => {
           </div>
         </HomeClientsStyled>
 
-       
         {/* Testimonials */}
-        <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
-            <Title title="Testimonials" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
-            <span className="w-25 d-block m-auto"
-              style={{ borderBottom: "1px solid #444444" }}
-            >
-            </span>
+        <div
+          className="text-center mb-5 pb-0 pb-md-5"
+          style={{ marginTop: "100px" }}
+        >
+          <Title
+            title="Testimonials"
+            cssClass="fs-1 fw-medium px-4 py-2 text-black text-center"
+          />
+          <span
+            className="w-25 d-block m-auto"
+            style={{ borderBottom: "1px solid #444444" }}
+          ></span>
         </div>
 
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-            {isAdmin && hasPermission && (
+              {isAdmin && hasPermission && (
                 <div className="text-end mb-4">
                   <Link
                     to="/testimonials"
@@ -339,14 +362,17 @@ const Home = () => {
                     // onClick={() => editHandler("addNews", true)}
                   >
                     Goto Testimonials Page
-                    <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
+                    <i
+                      className="fa fa-arrow-right ms-2"
+                      aria-hidden="true"
+                    ></i>
                   </Link>
                 </div>
               )}
             </div>
           </div>
         </div>
-        
+
         <div className="row">
           <div className="col-md-12">
             <div className="container">
@@ -373,20 +399,25 @@ const Home = () => {
           </div>
         </div>
 
-
         {/* Executive Profile */}
-        <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
-            <Title title="Executive Profile" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
-            <span className="w-25 d-block m-auto"
-              style={{ borderBottom: "1px solid #444444" }}
-            >
-            </span>
+        <div
+          className="text-center mb-5 pb-0 pb-md-5"
+          style={{ marginTop: "100px" }}
+        >
+          <Title
+            title="Executive Profile"
+            cssClass="fs-1 fw-medium px-4 py-2 text-black text-center"
+          />
+          <span
+            className="w-25 d-block m-auto"
+            style={{ borderBottom: "1px solid #444444" }}
+          ></span>
         </div>
-        
+
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-            {isAdmin && hasPermission && (
+              {isAdmin && hasPermission && (
                 <div className="text-end mb-4">
                   <Link
                     to="/team"
@@ -394,48 +425,57 @@ const Home = () => {
                     // onClick={() => editHandler("addNews", true)}
                   >
                     Goto Teams Page
-                    <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
+                    <i
+                      className="fa fa-arrow-right ms-2"
+                      aria-hidden="true"
+                    ></i>
                   </Link>
                 </div>
               )}
             </div>
           </div>
         </div>
-        
+
         <TeamStyled>
-        <div className="container">
-          
-          <div className="row">
-        
-          {executives.length > 0 ? (
-            executives.map((item, index) => (
-              <div className="col-md-6 my-4 my-md-0 text-center">
-              <TeamMember item={item}  key={index} index={index} 
-              deleteAboutSection={""} 
-              editHandler={""}
-              />
-                </div>
-            ))
-          ) : ""}
-       
-        </div>
-        </div>
+          <div className="container">
+            <div className="row">
+              {executives.length > 0
+                ? executives.map((item, index) => (
+                    <div
+                      className="col-md-6 my-4 my-md-0 text-center"
+                      key={index}
+                    >
+                      <TeamMember
+                        item={item}
+                        key={index}
+                        index={index}
+                        deleteAboutSection={""}
+                        editHandler={""}
+                      />
+                    </div>
+                  ))
+                : ""}
+            </div>
+          </div>
         </TeamStyled>
-        
+
         {/* HOME News */}
-        <div className="text-center mb-5 pb-0 pb-md-5" style={{ marginTop: "100px" }}>
-            <Title title="News" cssClass="fs-1 fw-medium px-4 py-2 text-black text-center" />
-            <span className="w-25 d-block m-auto"
-              style={{ borderBottom: "1px solid #444444" }}
-            >
-            </span>
+        <div
+          className="text-center mb-5 pb-0 pb-md-5"
+          style={{ marginTop: "100px" }}
+        >
+          <Title
+            title="News"
+            cssClass="fs-1 fw-medium px-4 py-2 text-black text-center"
+          />
+          <span
+            className="w-25 d-block m-auto"
+            style={{ borderBottom: "1px solid #444444" }}
+          ></span>
         </div>
         <div className="row pb-5 homeNews">
-          
           <div className="col-md-12 d-flex justify-content-center align-items-center">
             <div className="container">
-            
-          
               {isAdmin && hasPermission && (
                 <div className="text-end mb-4">
                   <Link
@@ -444,11 +484,14 @@ const Home = () => {
                     // onClick={() => editHandler("addNews", true)}
                   >
                     Goto News Page
-                    <i className="fa fa-arrow-right ms-2" aria-hidden="true"></i>
+                    <i
+                      className="fa fa-arrow-right ms-2"
+                      aria-hidden="true"
+                    ></i>
                   </Link>
                 </div>
               )}
-                <HomeNews news={news} setNews={setNews} pagetype={pageType} />
+              <HomeNews news={news} setNews={setNews} pagetype={pageType} />
             </div>
           </div>
 
@@ -475,7 +518,13 @@ const Home = () => {
         {show && <ModelBg />}
         {/* {showEditPop && <ModelBg />} */}
       </div>
-      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
+      <ScrollToTop
+        smooth
+        color="#fff"
+        height="20"
+        style={{ background: "#748E31" }}
+        className="shadow rounded-circle"
+      />
     </>
   );
 };
