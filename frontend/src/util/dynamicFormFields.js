@@ -206,7 +206,7 @@ export const getServiceFormFields = (id, title) => {
   };
 };
 
-export const getTeamMemberFields = () => {
+export const getTeamMemberFields = (position) => {
   return {
     team_member_name: {
       label: "Name",
@@ -232,6 +232,13 @@ export const getTeamMemberFields = () => {
       label: "About ",
       type: "richText",
       fieldName: "team_member_about_us",
+    },
+    team_member_position: {
+      label: "About ",
+      readonly: true,
+      type: "hidden",
+      value: position ? position : 0,
+      fieldName: "team_member_position",
     },
     twitter_url: {
       label: "twitter url",

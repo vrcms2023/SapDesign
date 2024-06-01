@@ -35,38 +35,38 @@ const Team = lazy(() => import("./Frontend/Pages/Team"));
 const ImagesGallery = lazy(() => import("./Frontend/Pages/ImagesGallery"));
 
 const NewsAndUpdates = lazy(() => import("./Frontend/Pages/NewsAndUpdates"));
-const TestimonialsList = lazy(() =>
-  import("./Frontend/Pages/TestimonialsList")
+const TestimonialsList = lazy(
+  () => import("./Frontend/Pages/TestimonialsList")
 );
 
 const Login = lazy(() => import("./Admin/Pages/Auth/Login"));
 const Registration = lazy(() => import("./Admin/Pages/Auth/Registration"));
 const ChangePassword = lazy(() => import("./Admin/Pages/Auth/ChangePassword"));
 const ResetPassword = lazy(() => import("./Admin/Pages/Auth/ResetPassword"));
-const ResetPasswordConfirmation = lazy(() =>
-  import("./Admin/Pages/Auth/ResetPasswordConfirmation")
+const ResetPasswordConfirmation = lazy(
+  () => import("./Admin/Pages/Auth/ResetPasswordConfirmation")
 );
 const Activation = lazy(() => import("./Admin/Pages/Auth/Activation"));
-const ResendActivationEmail = lazy(() =>
-  import("./Admin/Pages/Auth/ResendActivationEmail")
+const ResendActivationEmail = lazy(
+  () => import("./Admin/Pages/Auth/ResendActivationEmail")
 );
 
 const UserAdmin = lazy(() => import("./Admin/Pages/Auth/UserAdmin"));
-const UnauthorizedPage = lazy(() =>
-  import("./Admin/Pages/Login/UnauthorizedPage")
+const UnauthorizedPage = lazy(
+  () => import("./Admin/Pages/Login/UnauthorizedPage")
 );
 const AuthForm = lazy(() => import("./Admin/Pages/Auth/AuthForm"));
 
 const AdminNews = lazy(() => import("./Admin/Pages/Login/AdminNews"));
 const ContactUSAdmin = lazy(() => import("./Admin/Pages/Auth/ContactUSAdmin"));
-const PagesConfiguration = lazy(() =>
-  import("./Admin/Pages/Auth/PagesConfiguration")
+const PagesConfiguration = lazy(
+  () => import("./Admin/Pages/Auth/PagesConfiguration")
 );
-const UserPagePermission = lazy(() =>
-  import("./Admin/Pages/Auth/UserPagePermission")
+const UserPagePermission = lazy(
+  () => import("./Admin/Pages/Auth/UserPagePermission")
 );
-const AdminTestimonial = lazy(() =>
-  import("./Admin/Pages/Login/AdminTestimonial")
+const AdminTestimonial = lazy(
+  () => import("./Admin/Pages/Login/AdminTestimonial")
 );
 const ClientsList = lazy(() => import("./Frontend/Pages/ClientsList"));
 function App() {
@@ -75,12 +75,16 @@ function App() {
 
   const isHideMenu = HideFooterForAdmin();
 
+  useEffect(() => {
+    document.addEventListener("contextmenu", handleContextMenu);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, []);
   const handleContextMenu = (e) => {
     e.preventDefault();
     toast.error("Right Click is diabled");
   };
-
-
   return (
     <>
       <ThemeProvider theme={ThemeOne}>
@@ -98,8 +102,14 @@ function App() {
 
               <Route element={<AdminProtectedRoute />}>
                 <Route path="/userAdmin" element={<UserAdmin />} />
-                <Route path="/userPermission" element={<UserPagePermission />} />
-                <Route path="/adminPagesConfigurtion" element={<PagesConfiguration />} />
+                <Route
+                  path="/userPermission"
+                  element={<UserPagePermission />}
+                />
+                <Route
+                  path="/adminPagesConfigurtion"
+                  element={<PagesConfiguration />}
+                />
               </Route>
               <Route exact path="*" element={<PageNotFound />} />
               <Route exact path="/" element={<Home />} />
@@ -109,14 +119,34 @@ function App() {
               <Route exact path="/team" element={<Team />} />
               <Route exact path="/imagegallery" element={<ImagesGallery />} />
               <Route exact path="/news" element={<NewsAndUpdates />} />
-              <Route exact path="/testimonials" element={<TestimonialsList />} />
+              <Route
+                exact
+                path="/testimonials"
+                element={<TestimonialsList />}
+              />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/register" element={<Registration />} />
               <Route exact path="/reset_password" element={<ResetPassword />} />
-              <Route exact path="/password/reset/:uid/:token" element={<ResetPasswordConfirmation />} />
-              <Route exact path="/activate/:uid/:token" element={<Activation />} />
-              <Route exact path="/resend_activation" element={<ResendActivationEmail />} />
-              <Route exact path="/unauthorized" element={<UnauthorizedPage />} />
+              <Route
+                exact
+                path="/password/reset/:uid/:token"
+                element={<ResetPasswordConfirmation />}
+              />
+              <Route
+                exact
+                path="/activate/:uid/:token"
+                element={<Activation />}
+              />
+              <Route
+                exact
+                path="/resend_activation"
+                element={<ResendActivationEmail />}
+              />
+              <Route
+                exact
+                path="/unauthorized"
+                element={<UnauthorizedPage />}
+              />
               <Route exact path="/authForm" element={<AuthForm />} />
               <Route exact path="/adminNews" element={<AdminNews />} />
               <Route exact path="/testimonial" element={<AdminTestimonial />} />

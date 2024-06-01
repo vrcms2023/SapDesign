@@ -4,7 +4,7 @@ def get_Base_details(request):
        return {
                 'created_by': request.data["created_by"],
         }
-    
+   
 def get_original_name(request):
 
         image = request.data["path"]
@@ -20,6 +20,7 @@ def get_content_type(request):
             filename  = image.name
             return os.path.splitext(filename)[1]
         return ""
+
 
 def get_image_data_from_request(request):
         return {
@@ -86,4 +87,22 @@ def get_imageAndVidoe_data_From_request_Object(request):
         requestObj = get_image_data_from_request(request)
         requestObj['image_title'] = request.data["image_title"]
         requestObj['image_description'] = request.data["image_description"]
+        return requestObj
+
+def get_Team_data_From_request_Object(request):
+        requestObj = get_image_data_from_request(request)
+        requestObj['team_member_name'] = request.data["team_member_name"]
+        requestObj['team_member_email'] = request.data["team_member_email"]
+        requestObj['team_member_designation'] = request.data["team_member_designation"]
+        requestObj['team_member_phone_number'] = request.data["team_member_phone_number"]
+        requestObj['team_member_about_us'] = request.data["team_member_about_us"]
+        requestObj['team_member_position'] = request.data["team_member_position"]
+        requestObj['twitter_url'] = request.data["twitter_url"]
+        requestObj['facebook_url'] = request.data["facebook_url"]
+        requestObj['linkedIn_url'] = request.data["linkedIn_url"]
+        requestObj['youtube_url'] = request.data["youtube_url"]
+        requestObj['instagram_url'] = request.data["instagram_url"]
+        requestObj['vimeo_url'] = request.data["vimeo_url"]
+        requestObj['team_member_position'] = request.data["team_member_position"]
+
         return requestObj
