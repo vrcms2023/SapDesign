@@ -37,6 +37,8 @@ class CreateAppNews(generics.CreateAPIView):
         requestObj['created_by'] = request.data["created_by"]
     
         serializer = AppNewsSerializer(data=requestObj)
+        if 'path' in request.data and not request.data['path']:
+            serializer.remove_fields(['path','originalname','contentType'])
         if serializer.is_valid():
             serializer.save()
             return Response({"appNews": serializer.data}, status=status.HTTP_201_CREATED)

@@ -24,10 +24,9 @@ import {
 } from "../../util/dynamicFormFields";
 
 import { axiosClientServiceApi, axiosServiceApi } from "../../util/axiosUtil";
-import {  paginationDataFormat, sortByFieldName } from "../../util/commonUtil";
+import { paginationDataFormat, sortByFieldName } from "../../util/commonUtil";
 import { getClinetLogsFields } from "../../util/dynamicFormFields";
 import ScrollToTop from "react-scroll-to-top";
-
 
 const ClientsList = () => {
   const editComponentObj = {
@@ -68,7 +67,7 @@ const ClientsList = () => {
   const getClinetDetails = async () => {
     try {
       const response = await axiosClientServiceApi.get(
-        `/client/getAllClientLogos/`
+        `/client/getPaginatedClientLogos/`
       );
       if (response?.status === 200) {
         setResponseData(response.data);
@@ -186,7 +185,7 @@ const ClientsList = () => {
                   className="btn btn-primary px-3"
                   onClick={() => editHandler("addSection", true, {})}
                 >
-                  Add 
+                  Add
                   <i className="fa fa-plus ms-1" aria-hidden="true"></i>
                 </button>
               </div>
@@ -239,7 +238,9 @@ const ClientsList = () => {
         )}
         <br />
 
-        {isAdmin &&  clientsList.length > 0 && <NoteComponent note="Use drag option to shuffle the Items" /> }
+        {isAdmin && clientsList.length > 0 && (
+          <NoteComponent note="Use drag option to shuffle the Items" />
+        )}
         <ClientStyled>
           <ClientListComponent
             clientsList={clientsList}
@@ -252,34 +253,40 @@ const ClientsList = () => {
 
         <div className="row">
           <div className="col-md-12">
-          {paginationData?.total_count ? (
-          <CustomPagination
-            paginationData={paginationData}
-            paginationURL={
-              isAdmin
-                ? "/client/createClientLogo/"
-                : "/client/getAllClientLogos/"
-            }
-            paginationSearchURL={
-              searchQuery
-                ? `/client/searchClientLogos/${searchQuery}/`
-                : isAdmin
-                ? "/client/createClientLogo/"
-                : "/client/getAllClientLogos/"
-            }
-            searchQuery={searchQuery}
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-            setResponseData={setResponseData}
-            pageLoadResult={pageLoadResult}
-          />
-        ) : (
-          ""
-        )}
+            {paginationData?.total_count ? (
+              <CustomPagination
+                paginationData={paginationData}
+                paginationURL={
+                  isAdmin
+                    ? "/client/createClientLogo/"
+                    : "/client/getAllClientLogos/"
+                }
+                paginationSearchURL={
+                  searchQuery
+                    ? `/client/searchClientLogos/${searchQuery}/`
+                    : isAdmin
+                      ? "/client/createClientLogo/"
+                      : "/client/getAllClientLogos/"
+                }
+                searchQuery={searchQuery}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+                setResponseData={setResponseData}
+                pageLoadResult={pageLoadResult}
+              />
+            ) : (
+              ""
+            )}
           </div>
-        </div>  
+        </div>
       </div>
-      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
+      <ScrollToTop
+        smooth
+        color="#fff"
+        height="20"
+        style={{ background: "#748E31" }}
+        className="shadow rounded-circle"
+      />
     </>
   );
 };

@@ -21,7 +21,7 @@ class CreatePages(generics.CreateAPIView):
     def get(self, request, format=None):
         user = request.user
         if user.is_admin:
-            snippets = PageDetails.objects.filter(is_Admin_menu= True)
+            snippets = PageDetails.objects.all()
         else:
             snippets = PageDetails.objects.filter(is_Maintainer_menu= True)
         
