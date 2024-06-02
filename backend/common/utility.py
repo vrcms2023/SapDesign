@@ -106,3 +106,8 @@ def get_Team_data_From_request_Object(request):
         requestObj['team_member_position'] = request.data["team_member_position"]
 
         return requestObj
+
+def exclude_fields(self, fields_to_exclude=None):
+    if isinstance(fields_to_exclude, list):
+      for f in fields_to_exclude:
+          f in self.fields.fields and self.fields.fields.pop(f) or next()

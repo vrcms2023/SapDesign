@@ -40,7 +40,7 @@ const FileUpload = ({
   gallerysetState,
   galleryState,
   saveState,
-  validTypes,
+  validTypes = "image/png,image/jpeg",
   disabledFile = false,
   descriptionTitle = "Image desccription",
   titleTitle = "Title",
@@ -67,7 +67,7 @@ const FileUpload = ({
   const listofAboutSection = ["aboutDetails", "aboutVision", "aboutMission"];
   const [editorState, setEditorState] = useState("");
   const baseURL = getBaseURL();
-  const [editImg, setEditimg] = useState({});
+
   const [error, setError] = useState("");
 
   const { register, reset, handleSubmit } = useForm({
@@ -76,21 +76,6 @@ const FileUpload = ({
     }, [editImage]),
     mode: "onChange",
   });
-
-  const content = {
-    entityMap: {},
-    blocks: [
-      {
-        key: "637gr",
-        text: "Initialized from content state.",
-        type: "unstyled",
-        depth: 0,
-        inlineStyleRanges: [],
-        entityRanges: [],
-        data: {},
-      },
-    ],
-  };
 
   useEffect(() => {
     if (!editImage?.id) {
@@ -190,7 +175,10 @@ const FileUpload = ({
    */
   const creteFileObj = async () => {
     let imageURL = "";
-    if (editImage.path.split("/")[0] === "http:") {
+    if (
+      editImage.path.split("/")[0] === "http:" ||
+      editImage.path.split("/")[0] === "https:"
+    ) {
       imageURL = editImage.path;
     } else {
       imageURL = `${baseURL}${editImage.path}`;
@@ -221,7 +209,7 @@ const FileUpload = ({
         formData.append("path", files[0].file);
       } else if (editImage.path) {
         let file = await creteFileObj();
-        formData.append("path", file);
+        formData.append("path", "");
       } else if (!editImage.path) {
         setError("Please add an image ");
         return true;
@@ -427,18 +415,18 @@ const FileUpload = ({
                       editImage?.feature_description
                         ? editImage?.feature_description
                         : editImage?.news_description
-                        ? editImage?.news_description
-                        : editImage?.banner_descripiton
-                        ? editImage?.banner_descripiton
-                        : editImage?.aboutus_description
-                        ? editImage?.aboutus_description
-                        : editImage?.client_description
-                        ? editImage?.client_description
-                        : editImage?.case_studies_description
-                        ? editImage?.case_studies_description
-                        : editImage?.team_member_about_us
-                        ? editImage?.team_member_about_us
-                        : ""
+                          ? editImage?.news_description
+                          : editImage?.banner_descripiton
+                            ? editImage?.banner_descripiton
+                            : editImage?.aboutus_description
+                              ? editImage?.aboutus_description
+                              : editImage?.client_description
+                                ? editImage?.client_description
+                                : editImage?.case_studies_description
+                                  ? editImage?.case_studies_description
+                                  : editImage?.team_member_about_us
+                                    ? editImage?.team_member_about_us
+                                    : ""
                     }
                   />
                 );

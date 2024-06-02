@@ -114,7 +114,7 @@ const Home = () => {
         );
         if (response?.status === 200) {
           const _clientList = sortByFieldName(
-            response.data.results,
+            response.data.clientLogo,
             "client_position"
           );
 

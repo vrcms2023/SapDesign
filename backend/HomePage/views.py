@@ -33,8 +33,9 @@ class CarouselAPIView(generics.CreateAPIView):
      List all Carousel, or create a new Carousel.
      """
         
-     def get(self, request, category, format=None):
-        snippets = self.get_object(category)
+     def get(self, request, format=None):
+        #snippets = self.get_object(category)
+        snippets = Carousel.objects.all()
         serializer = CarouselSerializer(snippets, many=True)
         return Response({"carousel": serializer.data}, status=status.HTTP_200_OK)
         
@@ -42,6 +43,8 @@ class CarouselAPIView(generics.CreateAPIView):
         requestObj = get_carousel_data_From_request_Object(request)
         requestObj['created_by'] = request.data["created_by"]
         serializer = CarouselSerializer(data=requestObj)
+        if 'path' in request.data and not request.data['path']:
+            serializer.remove_fields(['path','originalname','contentType'])
         if serializer.is_valid():
             serializer.save()
             return Response({"carousel": serializer.data}, status=status.HTTP_201_CREATED)
@@ -69,6 +72,8 @@ class CarouselUpdateAndDeleteView(APIView):
         requestObj = get_carousel_data_From_request_Object(request)
         requestObj['updated_by'] = request.data["updated_by"]
         serializer = CarouselSerializer(snippet, data=requestObj)
+        if 'path' in request.data and not request.data['path']:
+            serializer.remove_fields(['path','originalname','contentType'])
         if serializer.is_valid():
             serializer.save()
             return Response({"carousel": serializer.data}, status=status.HTTP_200_OK)
@@ -244,6 +249,8 @@ class ClientLogoAPIView(generics.CreateAPIView):
     
      def post(self, request, format=None):
         serializer = ClientLogoSerializer(data=request.data)
+        if 'path' in request.data and not request.data['path']:
+            serializer.remove_fields(['path','originalname','contentType'])
         if serializer.is_valid():
             serializer.save()
             return Response({"clientLogo": serializer.data}, status=status.HTTP_201_CREATED)
@@ -269,6 +276,8 @@ class ClientLogoUpdateAndDeleteView(APIView):
     def patch(self, request, pk, format=None):
         snippet = self.get_object(pk)
         serializer = ClientLogoSerializer(snippet, data=request.data)
+        if 'path' in request.data and not request.data['path']:
+            serializer.remove_fields(['path','originalname','contentType'])
         if serializer.is_valid():
             serializer.save()
             return Response({"clientLogo": serializer.data}, status=status.HTTP_200_OK)
@@ -297,6 +306,19 @@ class ClientLogoImagesView(generics.CreateAPIView):
         if results is not None:
             return results
 
+        serializer = ClientLogoSerializer(snippets, many=True)
+        return Response({"clientLogo": serializer.data}, status=status.HTTP_200_OK)
+
+class AllClientLogoImagesView(generics.CreateAPIView):
+    permission_classes = [permissions.AllowAny]
+    queryset = ClientLogo.objects.all()
+    serializer_class = ClientLogoSerializer
+    """
+    List all ClientLogo, or create a new ClientLogo.
+    """
+
+    def get(self, request, format=None):
+        snippets = ClientLogo.objects.all()
         serializer = ClientLogoSerializer(snippets, many=True)
         return Response({"clientLogo": serializer.data}, status=status.HTTP_200_OK)
     

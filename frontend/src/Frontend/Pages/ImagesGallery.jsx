@@ -11,7 +11,11 @@ import {
   getImageGalleryFields,
   imageDimensionsJson,
 } from "../../util/dynamicFormFields";
-import { paginationDataFormat } from "../../util/commonUtil";
+import {
+  getObjectPositionKey,
+  paginationDataFormat,
+  sortByFieldName,
+} from "../../util/commonUtil";
 import { axiosClientServiceApi } from "../../util/axiosUtil";
 import ScrollToTop from "react-scroll-to-top";
 
@@ -70,7 +74,9 @@ const ImagesGallery = () => {
     setShowModal(!showModal);
   };
   const setResponseData = (data) => {
-    setImageGallery(data.results);
+    const _positionKey = getObjectPositionKey(data.results[0]);
+    const _newslList = sortByFieldName(data.results, _positionKey);
+    setImageGallery(_newslList);
     setPaginationData(paginationDataFormat(data));
     setCurrentPage(1);
   };
@@ -89,11 +95,11 @@ const ImagesGallery = () => {
                   <AdminBanner
                     editHandler={editHandler}
                     componentType="gallery"
-                    getImageListURL={`imgGallery/createImageVidoeGallery/${pageType}/`}
+                    getImageListURL={`imgGallery/getAllClientImageVidoeGallery/${pageType}/`}
                     deleteImageURL="imgGallery/updateImageVidoeGallery/"
                     imagePostURL="imgGallery/createImageVidoeGallery/"
                     imageUpdateURL="imgGallery/updateImageVidoeGallery/"
-                    imageIndexURL=""
+                    imageIndexURL="imgGallery/updateNewsIndex/"
                     imageLabel="Add Image"
                     showDescription={false}
                     showExtraFormFields={getImageGalleryFields("imageGallery")}
@@ -112,11 +118,9 @@ const ImagesGallery = () => {
         </div>
       </ImageGalleryStyled>
 
-
       {/* Pagination */}
 
-      
-        <div className="container">
+      <div className="container">
         <div className="row my-5">
           {paginationData?.total_count && (
             <CustomPagination
@@ -139,7 +143,13 @@ const ImagesGallery = () => {
           )}
         </div>
       </div>
-      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
+      <ScrollToTop
+        smooth
+        color="#fff"
+        height="20"
+        style={{ background: "#748E31" }}
+        className="shadow rounded-circle"
+      />
     </>
   );
 };

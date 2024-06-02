@@ -40,7 +40,7 @@ const AdminBanner = ({
   showDescription,
   showExtraFormFields,
   dimensions,
-  validTypes = "image/png,image/jpeg",
+  validTypes = "image/png,image/jpeg,image/gif",
 }) => {
   const projectID = "a62d7759-a e6b-4e49-a129-1ee208c6789d";
   const [userName, setUserName] = useState("");
@@ -240,7 +240,7 @@ const AdminCarouselItem = ({
   const { isAdmin, hasPermission } = useAdminLoginStatus();
   return (
     <Draggable
-      isDragDisabled={!isAdmin || componentType === "gallery" ? true : false}
+      isDragDisabled={!isAdmin ? true : false}
       key={item.id}
       draggableId={item.id}
       index={index}
