@@ -88,7 +88,7 @@ const NewsAndUpdates = () => {
   return (
     <>
       {/* Page Banner Component */}
-      <div className="position-relative">
+      {/* <div className="position-relative">
         {isAdmin && hasPermission && (
           <EditIcon editHandler={() => editHandler("banner", true)} />
         )}
@@ -111,7 +111,7 @@ const NewsAndUpdates = () => {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       <div className="container my-4 newsAndUpdates">
         {isAdmin && hasPermission && (

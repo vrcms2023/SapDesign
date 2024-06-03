@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getImagePath } from "../../util/commonUtil";
 
 export const HomeClientItem = ({ client }) => {
   const [hover, setHover] = useState(false);
@@ -17,7 +18,7 @@ export const HomeClientItem = ({ client }) => {
       onMouseLeave={mouseOut}
     >
       <div className="slide">
-        <img src={client.path} alt={client.client_title} key={client.id} />
+        <img src={getImagePath(client.path)} alt={client.client_title} key={client.id} />
         {hover && (
         <div
           className="position-absolute p-3 w-100 rounded-3 bg-dark text-white clientPopOver"

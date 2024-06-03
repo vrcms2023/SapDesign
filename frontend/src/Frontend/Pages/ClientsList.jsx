@@ -126,7 +126,7 @@ const ClientsList = () => {
   return (
     <>
       {/* Page Banner Component */}
-      <div className="position-relative">
+      {/* <div className="position-relative">
         {isAdmin && hasPermission && (
           <EditIcon editHandler={() => editHandler("banner", true)} />
         )}
@@ -149,10 +149,10 @@ const ClientsList = () => {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       {/* Brief Introduction */}
-      {isAdmin && hasPermission && (
+      {/* {isAdmin && hasPermission && (
         <EditIcon editHandler={() => editHandler("briefIntro", true)} />
       )}
 
@@ -171,7 +171,7 @@ const ClientsList = () => {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       {/* Add Clients */}
       <div className="container-fluid container-lg my-md-5 ">

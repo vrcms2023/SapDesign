@@ -5,12 +5,15 @@ export const ClientStyled = styled.div`
   //   display: none;
   // }
   .clientAvatar img {
-    width: 100px;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
   }
  
   .clientFrontend  {
-    border-radius: 50px;
-
+    // border-radius: 50px;
+    max-height: 250px;
+    
     .details p {
       margin: 0px
     }
@@ -33,7 +36,7 @@ export const ClientStyled = styled.div`
       bottom: 0;
       left: 0;
       background: rgb(0, 0, 0);
-      background: rgba(0, 0, 0, .8); /* Black see-through */
+      background: rgba(0, 0, 0, .6); /* Black see-through */
       color: #f1f1f1;
       width: 100%;
       transition: .5s ease;
@@ -41,7 +44,7 @@ export const ClientStyled = styled.div`
       color: white;
       font-size: 20px;
       padding: 20px;
-      border-radius: 20px;
+      // border-radius: 20px;
       height: 100%;
       max-height: 250px;
       overflow-y: auto;
@@ -62,7 +65,7 @@ export const ClientStyled = styled.div`
     }
 
     p {
-      font-size: .9rem;
+      font-size: .8rem !important;
       margin: 5px 0 !important;
       font-family: poppins
     }

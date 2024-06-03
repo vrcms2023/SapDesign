@@ -75,12 +75,12 @@ function App() {
 
   const isHideMenu = HideFooterForAdmin();
 
-  useEffect(() => {
-    document.addEventListener("contextmenu", handleContextMenu);
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("contextmenu", handleContextMenu);
+  //   return () => {
+  //     document.removeEventListener("contextmenu", handleContextMenu);
+  //   };
+  // }, []);
   const handleContextMenu = (e) => {
     e.preventDefault();
     toast.error("Right Click is diabled");
