@@ -261,14 +261,69 @@ const Home = () => {
               </div>
             </div>
           )}
+<div className="container">
+          <div className="row sapHomeCarousel">
+          <div className="col-12 p-0 homeGalleryCarousel">
+                    <Carousel carouselState={componentEdit.carousel} />
+                  </div>
+                  </div>
+            {/* <div className="col-md-10 offset-md-1 homeGalleryCarousel">
+              <div className="container">
+                <div className="row">
+                  
+                  
+                </div>
+              </div>
+            </div> */}
+          </div>
+          <div className="d-block d-lg-none text-center py-4 position-relative viewAllBtn">
+            <Link to="/imageGallery" className="btn btn-outline">
+              View All
+            </Link>
+          </div>
+        </ImageGalleryStyled>
 
-          
-          
+        {/* <ImageGalleryStyled>
+          <div
+            className="text-center mb-5 pb-0 pb-md-5"
+            style={{ marginTop: "100px" }}
+          >
+            <Title
+              title="View Gallery"
+              cssClass="fs-1 fw-medium px-4 py-2 text-black text-center"
+            />
+            <span
+              className="w-25 d-block m-auto"
+              style={{ borderBottom: "1px solid #444444" }}
+            ></span>
+          </div>
+          {isAdmin && hasPermission && (
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="text-end mb-4">
+                    <Link
+                      to="/imagegallery"
+                      className="btn btn-primary"
+                      
+                    >
+                      Goto Gallery Page
+                      <i
+                        className="fa fa-arrow-right ms-2"
+                        aria-hidden="true"
+                      ></i>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="row sapHomeCarousel">
             <div className="col-md-10 offset-md-1 homeGalleryCarousel">
               <div className="container">
                 <div className="row">
-                  {/* <div className="col-md-10 offset-md-1"> */}
+                  
                   <div className="col-md-10 offset-md-1">
                     <Carousel carouselState={componentEdit.carousel} />
                   </div>
@@ -281,7 +336,7 @@ const Home = () => {
               View All
             </Link>
           </div>
-        </ImageGalleryStyled>
+        </ImageGalleryStyled> */}
 
         {/* Clients */}
 

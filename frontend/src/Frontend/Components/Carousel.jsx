@@ -9,6 +9,7 @@ import { getImagePath, sortByFieldName } from "../../util/commonUtil";
 // Styles
 import "./Carousel.css";
 import SkeletonImage from "../../Common/Skeltons/SkeletonImage";
+import { Link } from "react-router-dom";
 
 const Carousel = ({ carouselState }) => {
   const { isLoading } = useSelector((state) => state.loader);
@@ -141,7 +142,14 @@ const CarouselItem = ({ item, index }) => {
         ) : (
           ""
         )}
+
+        <div className="d-none d-lg-block">
+        <Link to="/imageGallery" className="btn btn-primary">
+          View All
+        </Link>
       </div>
+      </div>
+      
     </div>
   );
 };
