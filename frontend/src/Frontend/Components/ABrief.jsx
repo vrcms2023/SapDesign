@@ -85,13 +85,13 @@ const ABrief = ({ title, cssClass, linkClass, moreLink, dimensions }) => {
           <EditIcon editHandler={() => editHandler("homecareers", true)} />
         )}
 
-        <div className="d-flex justify-content-center align-items-center mb-5 mx-auto ms-md-0">
+        {/* <div className="d-flex justify-content-center align-items-center mb-5 mx-auto ms-md-0">
           <i
             className="fa fa-angle-left text-muted fs-1 me-2 d-none d-md-block"
             aria-hidden="true"
           ></i>
           <Title title={"OUR WORK LOCATIONS"} cssClass={"fs-4 fw-medium"} />
-        </div>
+        </div> */}
 
         {bannerdata ? (
           <Title title={bannerdata.banner_title} cssClass={cssClass} />

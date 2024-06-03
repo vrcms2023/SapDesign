@@ -111,7 +111,7 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
       {(provided) => (
         <div
           className={`${
-            isAdmin ? "col-12 clientAdmin" : "col-md-3 clientFrontend"
+            isAdmin ? "col-12 clientAdmin" : "col-md-3 clientFrontend p-4 py-3"
           } image`}
           ref={provided.innerRef}
           {...provided.draggableProps}
@@ -122,7 +122,7 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
             className={`mb-3 ${
               isAdmin
                 ? "border border-warning mb-3 position-relative"
-                : "clientFrontend overlayContainer border p-3"
+                : "clientFrontend overlayContainer shadow-lg p-3"
             } ${index % 2 === 0 ? "normalCSS" : "flipCSS"}`}
           >
             {isAdmin && hasPermission && (
@@ -147,14 +147,14 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
                 <img
                   src={getImagePath(item.path)}
                   alt=""
-                  className="img-fluid shadow-lg img-thumbnail"
+                  className=""
                 />
               </div>
-              <div className="mt-3 d-flex justify-content-center align-items-center justify-content-md-start align-items-md-start flex-column  clientDetails ms-3">
+              <div className="mt-3 d-flex justify-content-center align-items-center flex-column clientDetails ">
                 {item.client_title && (
                   <Title
                     title={item.client_title}
-                    cssClass="fs-5 mb-2 text-center"
+                    cssClass="fs-6 mb-2 text-center"
                   />
                 )}
 

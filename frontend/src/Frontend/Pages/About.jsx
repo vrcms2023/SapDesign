@@ -117,7 +117,7 @@ const About = () => {
   return (
     <>
       {/* Page Banner Component */}
-      <div className="position-relative">
+      {/* <div className="position-relative">
         {isAdmin && hasPermission && (
           <EditIcon editHandler={() => editHandler("banner", true)} />
         )}
@@ -140,7 +140,7 @@ const About = () => {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       {/* Introduction */}
       {isAdmin && hasPermission && (
