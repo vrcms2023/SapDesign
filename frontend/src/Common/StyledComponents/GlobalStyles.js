@@ -197,6 +197,10 @@ body {
 
     .testimonialComponent {
       width: 480px;
+
+      @media (max-width: 480px) {
+        width: 300px;
+      }
     }
 
     .testimonialImg {

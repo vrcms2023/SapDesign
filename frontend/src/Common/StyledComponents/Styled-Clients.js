@@ -54,13 +54,29 @@ export const ClientStyled = styled.div`
       justify-content: center;
       align-items: center;
 
-
       &::before {
-        font-size: 3.5rem;
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        color: orange;  
+        // content: '';
+        font-size: 3rem;
+        position: sticky;
+        right: 15px !important;
+        top: -10px;
+        color: rgba(255, 165, 0, .8);  
+        display: block;
+        width: 100%;
+      }
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      &::-webkit-scrollbar-track {
+          -webkit-box-shadow: inset 0 0 6px rgba(225,242,253,0.3); 
+          border-radius: 3px;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+          -webkit-box-shadow: inset 0 0 6px rgba(232,252,187,0.5); 
       }
     }
 
