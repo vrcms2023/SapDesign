@@ -6,6 +6,11 @@ export const NewsStyled = styled.div`
     background-color: ${({ theme }) => theme.newsCardBg};
     color: ${({ theme }) => theme.newsCardTextColor};
     margin-bottom: 30px;
+    transition: all .3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     .title {
       color: ${({ theme }) => theme.newsCardTitleColor};
