@@ -426,6 +426,7 @@ const Home = () => {
               )}
             </div>
           </div>
+          
         </div>
 
         <div className="row">
@@ -451,6 +452,11 @@ const Home = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="text-center py-4 mt-3 position-relative viewAllBtn">
+            <Link to="/testimonials" className="btn btn-outline">
+              View All
+            </Link>
           </div>
         </div>
 
