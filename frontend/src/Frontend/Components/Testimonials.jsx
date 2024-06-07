@@ -37,6 +37,10 @@ const Testimonials = ({ testimonis }) => {
   }, [index]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (testimonis.length > 1) {
       let slider = setInterval(() => {
         setIndex(index + 1);
