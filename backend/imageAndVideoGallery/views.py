@@ -13,14 +13,14 @@ from common.CustomPagination import CustomPagination
 class ImageAndVideoGalleryAPIView(generics.CreateAPIView):
      permission_classes = [permissions.IsAuthenticated]
      serializer_class = imageAndVideoGallerySerializer
-     queryset = imageAndVideoGallery.objects.all()
+     queryset = imageAndVideoGallery.objects.all().order_by('news_position')
      pagination_class = CustomPagination
 
      """
      List all imageAndVideoGallery, or create a new imageAndVideoGallery.
      """
      def get(self, request, category, format=None):
-        snippets = imageAndVideoGallery.objects.filter(category = category)
+        snippets = imageAndVideoGallery.objects.filter(category = category).order_by('news_position')
         results = get_custom_paginated_data(self, snippets)
         if results is not None:
             return results
@@ -79,7 +79,7 @@ class ImageAndVideoGalleryUpdateAndDeleteView(APIView):
    
 class ClientImageAndVideoGalleryView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
-    queryset = imageAndVideoGallery.objects.all()
+    queryset = imageAndVideoGallery.objects.all().order_by('news_position')
     serializer_class = imageAndVideoGallerySerializer
     pagination_class = CustomPagination
 
@@ -88,7 +88,7 @@ class ClientImageAndVideoGalleryView(generics.CreateAPIView):
     """
 
     def get(self, request, category, format=None):
-        snippets = imageAndVideoGallery.objects.filter(category = category)
+        snippets = imageAndVideoGallery.objects.filter(category = category).order_by('news_position')
         results = get_custom_paginated_data(self, snippets)
         if results is not None:
             return results
@@ -98,7 +98,7 @@ class ClientImageAndVideoGalleryView(generics.CreateAPIView):
 
 class ClientAlImageAndVideoGalleryView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
-    queryset = imageAndVideoGallery.objects.all()
+    queryset = imageAndVideoGallery.objects.all().order_by('news_position')
     serializer_class = imageAndVideoGallerySerializer
 
     """
@@ -106,7 +106,7 @@ class ClientAlImageAndVideoGalleryView(generics.CreateAPIView):
     """
 
     def get(self, request, category, format=None):
-        snippets = imageAndVideoGallery.objects.filter(category = category)
+        snippets = imageAndVideoGallery.objects.filter(category = category).order_by('news_position')
         serializer = imageAndVideoGallerySerializer(snippets, many=True)
         return Response({"imageAndVideoGallery": serializer.data}, status=status.HTTP_200_OK)
     
