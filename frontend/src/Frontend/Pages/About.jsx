@@ -143,7 +143,7 @@ const About = () => {
       )} */}
 
       {/* Introduction */}
-      {isAdmin && hasPermission && (
+      {/* {isAdmin && hasPermission && (
         <EditIcon editHandler={() => editHandler("briefIntro", true)} />
       )}
 
@@ -162,7 +162,7 @@ const About = () => {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       <AboutPageStyled>
         <div className="container-fluid container-lg my-md-5 ">

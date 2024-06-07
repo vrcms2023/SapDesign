@@ -181,7 +181,7 @@ const Team = () => {
       )}
 
       {/* Brief Introduction */}
-      {isAdmin && hasPermission && (
+      {/* {isAdmin && hasPermission && (
         <EditIcon editHandler={() => editHandler("briefIntro", true)} />
       )}
 
@@ -200,7 +200,7 @@ const Team = () => {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       <div className="container">
         <div className="row">
@@ -220,14 +220,14 @@ const Team = () => {
           </div>
         </div>
 
-        <div className="row mb-4 py-4">
+        <div className="row mb-4 py-2">
           <div className="col-md-6 fs-3 mt-4 mt-md-0">
 
-            <Title title="Key members" cssClass="fs-2 fw-medium py-2 text-black pageTitle" />
+            <Title title="Leadership" cssClass="fs-2 fw-medium py-2 text-black pageTitle" />
 
           </div>
 
-          <div className="col-md-6 mb-4">
+          <div className="col-md-6">
             <Search
               setObject={setResponseData}
               clientSearchURL={"/ourteam/OurteamSearchAPIView/"}
