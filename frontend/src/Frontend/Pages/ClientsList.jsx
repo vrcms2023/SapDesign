@@ -248,6 +248,7 @@ const ClientsList = () => {
             deleteAboutSection={deleteAboutSection}
             editHandler={editHandler}
             getClinetDetails={getClinetDetails}
+            currentPage={currentPage}
           />
         </ClientStyled>
 
@@ -259,14 +260,14 @@ const ClientsList = () => {
                 paginationURL={
                   isAdmin
                     ? "/client/createClientLogo/"
-                    : "/client/getAllClientLogos/"
+                    : "/client/getPaginatedClientLogos/"
                 }
                 paginationSearchURL={
                   searchQuery
                     ? `/client/searchClientLogos/${searchQuery}/`
                     : isAdmin
                       ? "/client/createClientLogo/"
-                      : "/client/getAllClientLogos/"
+                      : "/client/getPaginatedClientLogos/"
                 }
                 searchQuery={searchQuery}
                 setCurrentPage={setCurrentPage}

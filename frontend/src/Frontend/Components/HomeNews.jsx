@@ -31,7 +31,14 @@ import {
   updateArrIndex,
 } from "../../util/commonUtil";
 
-const HomeNews = ({ addNewsState, news, setNews, pagetype }) => {
+const HomeNews = ({
+  addNewsState,
+  news,
+  setNews,
+  pagetype,
+  currentPage,
+  setResponseData,
+}) => {
   const location = useLocation();
   const editComponentObj = {
     news: false,
@@ -70,7 +77,7 @@ const HomeNews = ({ addNewsState, news, setNews, pagetype }) => {
             );
             setNews(_list.slice(0, 4));
           } else {
-            setNews(response.data);
+            setResponseData(response.data);
           }
         }
       } catch (error) {
@@ -126,7 +133,11 @@ const HomeNews = ({ addNewsState, news, setNews, pagetype }) => {
     if (!destination) return true;
 
     const _items = reorder(news, source.index, destination.index);
-    const _parentObjects = updateArrIndex(_items, "news_position");
+    const _parentObjects = updateArrIndex(
+      _items,
+      "news_position",
+      currentPage - 1
+    );
     const response = await updateObjectsIndex(_parentObjects);
     if (response.length > 0) {
       setNews(response);
@@ -165,59 +176,60 @@ const HomeNews = ({ addNewsState, news, setNews, pagetype }) => {
         <Droppable droppableId={"NewsList"} id="newsList">
           {(provided, snapshot) => (
             <div className="container">
-            <div
-              className="row"
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-              {...provided.droppableProps}
-            >
-              {news.length > 0 ? (
-                news.map((item, index) => {
-                  return (
-                    <NewsItem
-                      item={item}
-                      key={item.id}
-                      index={index}
-                      handleModel={handleModel}
-                      DeleteNews={DeleteNews}
-                      editHandler={editHandler}
-                    />
-                  );
-                })
-              ) : (
-                <div className="text-center">
-                  {isAdmin && hasPermission ? (
-                    <>
-                      {location.pathname === "/news" ? (
-                        <p className="text-center fs-6">
-                          Please add news items
-                        </p>
-                      ) : (
-                        <>
+              <div
+                className="row"
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {news.length > 0 ? (
+                  news.map((item, index) => {
+                    return (
+                      <NewsItem
+                        item={item}
+                        key={item.id}
+                        index={index}
+                        handleModel={handleModel}
+                        DeleteNews={DeleteNews}
+                        editHandler={editHandler}
+                      />
+                    );
+                  })
+                ) : (
+                  <div className="text-center">
+                    {isAdmin && hasPermission ? (
+                      <>
+                        {location.pathname === "/news" ? (
                           <p className="text-center fs-6">
-                            Currently there are no news items found.
+                            Please add news items
                           </p>
-                          <Ancher
-                            AncherLabel="Go To News"
-                            Ancherpath="/news"
-                            AncherClass="btn btn-secondary d-flex justify-content-center align-items-center gap-3"
-                            AnchersvgColor="#ffffff"
-                          />
-                          {/* <Link to="/news" className="btn btn-primary fs-6">
+                        ) : (
+                          <>
+                            <p className="text-center fs-6">
+                              Currently there are no news items found.
+                            </p>
+                            <Ancher
+                              AncherLabel="Go To News"
+                              Ancherpath="/news"
+                              AncherClass="btn btn-secondary d-flex justify-content-center align-items-center gap-3"
+                              AnchersvgColor="#ffffff"
+                            />
+                            {/* <Link to="/news" className="btn btn-primary fs-6">
                     Go To News
                   </Link> */}
-                        </>
-                      )}
-                    </>
-                  ) : (
-                    <p className="text-center fs-6">
-                      {!isLoading && "Currently there are no news items found."}
-                    </p>
-                  )}
-                </div>
-              )}
-              {provided.placeholder}
-            </div>
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      <p className="text-center fs-6">
+                        {!isLoading &&
+                          "Currently there are no news items found."}
+                      </p>
+                    )}
+                  </div>
+                )}
+                {provided.placeholder}
+              </div>
             </div>
           )}
         </Droppable>
