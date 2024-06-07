@@ -2,8 +2,9 @@ import React from "react";
 import { getBaseURL } from "../util/ulrUtil";
 
 const Model = ({ obj, closeModel, flag }) => {
-  // console.log(obj)
-  const baseURL = getBaseURL();
+  // console.log(obj, "Model")
+
+  // const baseURL = getBaseURL();
   // const { dec, title, cr, crm } = privacy;
 
   // const newImages = obj.imageUrls.length > 0 ? (
@@ -17,11 +18,11 @@ const Model = ({ obj, closeModel, flag }) => {
   //   ) : null;
 
   return (
-    <div className="modal d-block modal-lg" tabIndex="-1">
-      <div className="modal-dialog modal-dialog-centered">
+    <div className="modal d-block modal-lg" tabIndex="-1" style={{position: "absolute", zIndex: 9999}}>
+      <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title text-dark fw-bold">{obj.title}</h5>
+            <h5 className="modal-title text-dark fw-bold">{obj.title || obj.testimonial_title}</h5>
             <button
               type="button"
               className="btn-close"
@@ -30,12 +31,18 @@ const Model = ({ obj, closeModel, flag }) => {
               onClick={closeModel}
             ></button>
           </div>
-          <div
-            className="p-3"
-            dangerouslySetInnerHTML={{
-              __html: obj && obj.data,
-            }}
-          ></div>
+          <div className="modal-body">
+            <div className="text-center">
+            <img src={obj.path} alt="Testimonial" className="img-fluid" />
+            </div>
+            <div
+              className="p-3"
+              dangerouslySetInnerHTML={{
+                // __html: obj && obj.data,
+                __html: obj.data || obj.testimonial_description,
+              }}
+            ></div>
+          </div>
 
           {/* {obj && (
                 <div className="p-4">

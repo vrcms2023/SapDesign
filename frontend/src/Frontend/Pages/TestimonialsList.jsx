@@ -25,6 +25,8 @@ import CustomPagination from "../../Common/CustomPagination";
 import SkeletonImage from "../../Common/Skeltons/SkeletonImage";
 import { useSelector } from "react-redux";
 import { TestimonialsListPageStyled } from "../../Common/StyledComponents/Styled-TestimonialsList";
+import Model from "../../Common/Model";
+import ModelBg from "../../Common/ModelBg";
 
 const TestimonialsList = () => {
   const editComponentObj = {
@@ -42,11 +44,12 @@ const TestimonialsList = () => {
   const [clientsList, setClientsList] = useState([]);
   const [show, setShow] = useState(false);
   const [editCarousel, setEditCarousel] = useState({});
-
+  const [modelShow, setModelShow] = useState(false);
   const [paginationData, setPaginationData] = useState({});
   const [pageLoadResult, setPageloadResults] = useState(false);
   const [searchQuery, setSearchquery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [modelItem, setModelItem] = useState({})
 
   const setResponseData = (data) => {
     setClientsList(
@@ -120,10 +123,21 @@ const TestimonialsList = () => {
     });
   };
 
+  const showModel = (item) => {
+    setModelItem(item)
+    setShow(!show)
+    setModelShow(!modelShow);
+  };
+
+  const closeModel = () => {
+    setModelShow(!modelShow);
+    setShow(!show)
+  };
+
   return (
     <>
       {/* Page Banner Component */}
-      <div className="position-relative">
+      {/* <div className="position-relative">
         {isAdmin && hasPermission && (
           <EditIcon editHandler={() => editHandler("banner", true)} />
         )}
@@ -146,10 +160,10 @@ const TestimonialsList = () => {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       {/* Brief Introduction */}
-      {isAdmin && hasPermission && (
+      {/* {isAdmin && hasPermission && (
         <EditIcon editHandler={() => editHandler("briefIntro", true)} />
       )}
 
@@ -168,7 +182,7 @@ const TestimonialsList = () => {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       {/* Add Clients */}
       <div className="container-fluid container-lg my-md-5 ">
@@ -179,7 +193,7 @@ const TestimonialsList = () => {
                 {/* <span className="fw-bold me-2">Add Testimonials </span> */}
                 <button
                   type="submit"
-                  className="btn btn-primary px-3"
+                  className="btn btn-primary px-3 w-auto mt-4"
                   onClick={() => editHandler("addSection", true, {})}
                 >
                   Add New Testimonials{" "}
@@ -233,7 +247,7 @@ const TestimonialsList = () => {
         )}
 
         <TestimonialsListPageStyled>
-          <div className="testimonialsPage my-5">
+          <div className={`testimonialsPage my-5 ${!isAdmin && !hasPermission && "frontView"}`}>
             {isLoading ? (
               <div className="row">
                 {[1, 2, 3, 4].map((item, index) => (
@@ -279,7 +293,7 @@ const TestimonialsList = () => {
                       {item.testimonial_title ? (
                         <Title
                           title={item.testimonial_title}
-                          cssClass="fs-1 fw-bold mb-1"
+                          cssClass="fs-4 fw-medium mb-1"
                         />
                       ) : (
                         ""
@@ -294,13 +308,28 @@ const TestimonialsList = () => {
 
                     <div className="col-lg-2 d-none d-lg-block h-100">
                       <div className="h-100 p-3 p-md-5 py-md-4 testimonialAvatar ">
+                      <Link
+                        to=""
+                        className="text-decoration-underline"
+                        onClick={() => showModel(item)}
+                      >
                         <img
                           src={getImagePath(item.path)}
                           alt=""
                           className="img-fluid border border-1 border-light shadow-lg img-thumbnail "
                         />
+                      </Link>
+                        
                       </div>
                     </div>
+                    <Link
+                        to=""
+                        className="btn btn-outline w-auto mx-4 text-decoration-underline d-flex d-lg-none"
+                        onClick={() => showModel(item)}
+                      >
+                        More
+                      </Link>
+                    
                   </div>
                   <hr className="border-secondary" />
                 </div>
@@ -337,6 +366,16 @@ const TestimonialsList = () => {
           ""
         )}
       </div>
+      {modelShow && (
+                      <Model
+                        obj={modelItem}
+                        privacy={""}
+                        closeModel={closeModel}
+                        flag="footer"
+                      />
+                    )}
+
+      {show && <ModelBg />}
     </>
   );
 };
