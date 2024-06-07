@@ -29,7 +29,6 @@ import {
 } from "../../util/commonUtil";
 import ScrollToTop from "react-scroll-to-top";
 
-
 const NewsAndUpdates = () => {
   const editComponentObj = {
     addNews: false,
@@ -129,7 +128,10 @@ const NewsAndUpdates = () => {
 
         <div className="row mb-4 py-4">
           <div className="col-md-6">
-            <Title title="News And Updates" cssClass="fs-2 fw-medium py-2 text-black" />
+            <Title
+              title="News And Updates"
+              cssClass="fs-2 fw-medium py-2 text-black"
+            />
           </div>
           <div className="col-md-6">
             <Search
@@ -171,9 +173,11 @@ const NewsAndUpdates = () => {
           <HomeNews
             addNewsState={componentEdit.addNews}
             news={news}
-            setNews={setResponseData}
+            setNews={setNews}
+            setResponseData={setResponseData}
             setPageloadResults={setPageloadResults}
             pagetype={pageType}
+            currentPage={currentPage}
           />
           <div>
             {paginationData?.total_count ? (
@@ -188,8 +192,8 @@ const NewsAndUpdates = () => {
                   searchQuery
                     ? `appNews/searchAppNews/${searchQuery}/`
                     : isAdmin
-                    ? "/appNews/createAppNews/"
-                    : "/appNews/clientAppNews/"
+                      ? "/appNews/createAppNews/"
+                      : "/appNews/clientAppNews/"
                 }
                 searchQuery={searchQuery}
                 setCurrentPage={setCurrentPage}
@@ -207,7 +211,13 @@ const NewsAndUpdates = () => {
       {showModal && <ModelBg closeModel={closeModel} />}
 
       {show && <ModelBg />}
-      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
+      <ScrollToTop
+        smooth
+        color="#fff"
+        height="20"
+        style={{ background: "#748E31" }}
+        className="shadow rounded-circle"
+      />
     </>
   );
 };

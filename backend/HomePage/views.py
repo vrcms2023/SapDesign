@@ -230,7 +230,7 @@ class ClientHomeIntroView(generics.CreateAPIView):
 class ClientLogoAPIView(generics.CreateAPIView):
      permission_classes = [permissions.IsAuthenticated]
      serializer_class = ClientLogoSerializer
-     queryset = ClientLogo.objects.all()
+     queryset = ClientLogo.objects.all().order_by('client_position')
      pagination_class = CustomPagination
 
      """
@@ -239,7 +239,7 @@ class ClientLogoAPIView(generics.CreateAPIView):
 
 
      def get(self, request, format=None):
-        snippets = ClientLogo.objects.all()
+        snippets = ClientLogo.objects.all().order_by('client_position')
         results = get_custom_paginated_data(self, snippets)
         if results is not None:
             return results
@@ -292,16 +292,16 @@ class ClientLogoUpdateAndDeleteView(APIView):
    
 class ClientLogoImagesView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
-    queryset = ClientLogo.objects.all()
+    queryset = ClientLogo.objects.all().order_by('client_position')
     serializer_class = ClientLogoSerializer
     pagination_class = CustomPagination
-
+   
     """
     List all ClientLogo, or create a new ClientLogo.
     """
 
     def get(self, request, format=None):
-        snippets = ClientLogo.objects.all()
+        snippets = ClientLogo.objects.all().order_by('client_position')
         results = get_custom_paginated_data(self, snippets)
         if results is not None:
             return results
@@ -311,14 +311,14 @@ class ClientLogoImagesView(generics.CreateAPIView):
 
 class AllClientLogoImagesView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
-    queryset = ClientLogo.objects.all()
+    queryset = ClientLogo.objects.all().order_by('client_position')
     serializer_class = ClientLogoSerializer
     """
     List all ClientLogo, or create a new ClientLogo.
     """
 
     def get(self, request, format=None):
-        snippets = ClientLogo.objects.all()
+        snippets = ClientLogo.objects.all().order_by('client_position')
         serializer = ClientLogoSerializer(snippets, many=True)
         return Response({"clientLogo": serializer.data}, status=status.HTTP_200_OK)
     

@@ -23,6 +23,7 @@ export const ClientListComponent = ({
   setClientsList,
   deleteAboutSection,
   editHandler,
+  currentPage,
 }) => {
   const { isLoading } = useSelector((state) => state.loader);
 
@@ -31,7 +32,11 @@ export const ClientListComponent = ({
     if (!destination) return true;
 
     const _items = reorder(clientsList, source.index, destination.index);
-    const _parentObjects = updateArrIndex(_items, "client_position");
+    const _parentObjects = updateArrIndex(
+      _items,
+      "client_position",
+      currentPage - 1
+    );
     const response = await updateObjectsIndex(_parentObjects);
     if (response.length > 0) {
       setClientsList(response);
@@ -144,11 +149,7 @@ const Client = ({ item, index, editHandler, deleteAboutSection }) => {
 
             <div className={`${isAdmin ? "d-md-flex p-3" : ""}`}>
               <div className="text-center clientAvatar">
-                <img
-                  src={getImagePath(item.path)}
-                  alt=""
-                  className=""
-                />
+                <img src={getImagePath(item.path)} alt="" className="" />
               </div>
               <div className="mt-3 d-flex justify-content-center align-items-center flex-column clientDetails ">
                 {item.client_title && (
