@@ -49,11 +49,7 @@ const ClientsList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const setResponseData = (data) => {
-    setClientsList(
-      data.results.length > 0
-        ? sortByFieldName(data.results, "client_position")
-        : []
-    );
+    setClientsList(data.results);
     setPaginationData(paginationDataFormat(data));
     setCurrentPage(1);
   };
