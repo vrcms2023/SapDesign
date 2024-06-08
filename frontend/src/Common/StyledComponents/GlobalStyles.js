@@ -199,7 +199,7 @@ body {
       width: 480px;
 
       @media (max-width: 480px) {
-        width: 300px;
+        width: 250px;
       }
     }
 
@@ -210,14 +210,22 @@ body {
         
       }
 
-      .next{
+    .next{
         position: relative;
         right: -100px;
+        @media(max-width: 480px) {
+          right: 0;
+          display: none;
+        }
     }
     
     .previous{
       position: relative;
-      left: -100px
+      left: -100px;
+      @media(max-width: 480px) {
+        left: 0;
+        display: none;
+      }
     }
 
       i.fa {

@@ -55,7 +55,7 @@ export const StyledMenu = styled.menu`
       }
     
       .navbar-brand img {
-        width: 70%;
+        width: 50%;
       }
     }
 
