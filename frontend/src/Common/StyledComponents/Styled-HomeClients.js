@@ -120,6 +120,10 @@ export const HomeClientsStyled = styled.div`
             position: relative;
             overflow: hidden;
             // border: 1px solid black;
+
+            @media(max-width: 480px) {
+              height: 100px;
+            }
         }
 
         .mover-1 {
@@ -131,6 +135,10 @@ export const HomeClientsStyled = styled.div`
             left: 0;
             display: flex;
             animation: moveSlideshow 20s ease-in-out infinite;
+
+            @media(max-width: 768px) {
+              height: 100px;
+            }
         }
 
         .image-container {
@@ -142,9 +150,15 @@ export const HomeClientsStyled = styled.div`
               display: inline-block;
               vertical-align: middle;
               width: auto;
-              height: 150px;
+              height: 130px;
+              object-fit-cover;
               position: relative;
               margin: 0 25px;   
+
+              @media(max-width: 768px) {
+                width: 120px;
+                height: 100%;
+              }
           }
         }
 
