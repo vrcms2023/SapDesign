@@ -372,5 +372,5 @@ body {
     .editIcon {
       right: 0px;
       padding: 0 !important;
-    }
+    } 
 `;

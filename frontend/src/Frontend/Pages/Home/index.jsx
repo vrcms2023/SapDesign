@@ -8,6 +8,7 @@ import Testimonials from "../../Components/Testimonials";
 import ModelBg from "../../../Common/ModelBg";
 import AdminBanner from "../../../Admin/Components/forms/ImgTitleIntoForm-List";
 import EditIcon from "../../../Common/AdminEditIcon";
+import AutoScroll from "../../Components/AutoScroll/AutoScroll";
 import ABrief from "../../Components/ABrief";
 import HomeNews from "../../Components/HomeNews";
 import { HomeClientItem } from "../../Components/HomeClientItem";
@@ -313,14 +314,19 @@ const Home = () => {
               </div>
             </div>
           </div>
-
-          <div class="tech-slideshow">
+              
+             
+           <AutoScroll clients={clientsList}/>
+                
+            
+          {/* <div class="tech-slideshow">
             <div class="mover-1">
-              {clientsList.map((client) => {
+              {clientsList?.map((client) => {
                 return <HomeClientItem client={client} key={client.id} />;
+                
               })}
             </div>
-          </div>
+          </div> */}
 
           {/* <div className="clients-image-slider">
             <div className="image-slider-track">
