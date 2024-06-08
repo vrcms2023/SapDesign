@@ -377,13 +377,21 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="clients-image-slider">
-            <div className="image-slider-track">
+          <div class="tech-slideshow">
+            <div class="mover-1">
               {clientsList.map((client) => {
                 return <HomeClientItem client={client} key={client.id} />;
               })}
             </div>
           </div>
+
+          {/* <div className="clients-image-slider">
+            <div className="image-slider-track">
+              {clientsList.map((client) => {
+                return <HomeClientItem client={client} key={client.id} />;
+              })}
+            </div>
+          </div> */}
           <div className="text-center py-4 mt-3 position-relative viewAllBtn">
             <Link to="/clients" className="btn btn-outline">
               View All

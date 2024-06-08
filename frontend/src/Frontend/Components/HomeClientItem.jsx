@@ -12,24 +12,41 @@ export const HomeClientItem = ({ client }) => {
     setHover(false);
   };
   return (
-    <div
-      className="position-relative"
-      onMouseEnter={mouseOver}
-      onMouseLeave={mouseOut}
-    >
-      <div className="slide">
-        <img src={getImagePath(client.path)} alt={client.client_title} key={client.id} />
-        {hover && (
-        <div
-          className="position-absolute p-3 w-100 rounded-3 bg-dark text-white clientPopOver"
-         
-          dangerouslySetInnerHTML={{
-            __html: client?.client_description,
-          }}
-        />
-      )}
-      </div>
-      
+    <div class="image-container" onMouseEnter={mouseOver} onMouseLeave={mouseOut}>
+        <img src={getImagePath(client.path)} alt={client.client_title} key={client.id} className="shadow-sm" />
+            <div className="overlay"
+              dangerouslySetInnerHTML={{
+                __html: client?.client_description,
+              }}
+            />
+        
+          {/* {hover && (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: client?.client_description,
+              }}
+            />
+          )} */}
     </div>
+
+    // <div
+    //   className="position-relative"
+    //   onMouseEnter={mouseOver}
+    //   onMouseLeave={mouseOut}
+    // >
+    //   <div className="slide">
+    //     <img src={getImagePath(client.path)} alt={client.client_title} key={client.id} />
+    //     {hover && (
+    //     <div
+    //       className="position-absolute p-3 w-100 rounded-3 bg-dark text-white clientPopOver"
+         
+    //       dangerouslySetInnerHTML={{
+    //         __html: client?.client_description,
+    //       }}
+    //     />
+    //   )}
+    //   </div>
+      
+    // </div>
   );
 };
