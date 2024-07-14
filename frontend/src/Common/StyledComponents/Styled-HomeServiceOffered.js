@@ -52,8 +52,8 @@ export const HomeServieOfferedStyled = styled.div`
 }
 
 .serviceOffered  + .dcarousel {
-    width: 90vw;
-    height: 90vh;
+    // width: 90vw;
+    // height: 90vh;
     top: 5vh !important;
     @media(max-width: 768px) {
         top: calc(100% - 65vh) !important;
@@ -75,8 +75,8 @@ export const HomeServieOfferedStyled = styled.div`
 
     .closeCarousel{
         color: ${({ theme }) => theme.white} !important;
-        right: 0;
-        top: 0;
+        right: 10px;
+        top: 10px;
     }
 }
 

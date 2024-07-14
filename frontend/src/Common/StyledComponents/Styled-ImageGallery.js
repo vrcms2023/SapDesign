@@ -74,10 +74,9 @@ export const ImageGalleryStyled = styled.div`
   }
 
   .carousel-control-prev, .carousel-control-next {
-    right: -9% !important;
+    right: 0% !important;
   }
   .carousel-control-prev {
-      // left: 9% !important;
       left: 0% !important;
   }
 
