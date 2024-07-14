@@ -17,7 +17,6 @@ import {
   sortByFieldName,
 } from "../../util/commonUtil";
 import { axiosClientServiceApi } from "../../util/axiosUtil";
-import ScrollToTop from "react-scroll-to-top";
 
 const ImagesGallery = () => {
   const editComponentObj = {
@@ -42,6 +41,10 @@ const ImagesGallery = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const getGalleryImages = async () => {
       try {
         const response = await axiosClientServiceApi.get(
@@ -59,10 +62,6 @@ const ImagesGallery = () => {
       getGalleryImages();
     }
   }, [componentEdit.gallery]);
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
 
   const findThumbHandler = (id) => {
     const findImg = imageGallery.find((allGallery) => allGallery.id === id);
@@ -143,13 +142,7 @@ const ImagesGallery = () => {
           )}
         </div>
       </div>
-      <ScrollToTop
-        smooth
-        color="#fff"
-        height="20"
-        style={{ background: "#748E31" }}
-        className="shadow rounded-circle"
-      />
+      
     </>
   );
 };

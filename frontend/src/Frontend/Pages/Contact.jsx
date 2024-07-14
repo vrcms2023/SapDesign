@@ -38,7 +38,6 @@ import {
   TextAreaField,
 } from "../../Admin/Components/forms/FormFields";
 import { fieldValidation } from "../../util/validationUtil";
-import ScrollToTop from "react-scroll-to-top";
 
 const Contact = () => {
   const editComponentObj = {
@@ -102,9 +101,9 @@ const Contact = () => {
     }
   };
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (addressList?.length === 0) {
@@ -389,7 +388,6 @@ const Contact = () => {
 
       {show && <ModelBg />}
     </ContactPageStyled>
-    <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
     </>
   );
 };

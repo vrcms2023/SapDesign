@@ -78,6 +78,10 @@ const TestimonialsList = () => {
   }, [componentEdit.addSection, componentEdit.editSection]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
+  useEffect(() => {
     const id = document.getElementById("KnowledgeHubnavbarDropdown");
     if (id) {
       id.classList.add("active");

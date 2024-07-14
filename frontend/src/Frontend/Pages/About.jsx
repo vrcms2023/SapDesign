@@ -29,7 +29,7 @@ import { axiosClientServiceApi, axiosServiceApi } from "../../util/axiosUtil";
 
 // CSS
 import { AboutPageStyled } from "../../Common/StyledComponents/Styled-AboutPage";
-import ScrollToTop from "react-scroll-to-top";
+
 
 const About = () => {
   const editComponentObj = {
@@ -46,10 +46,10 @@ const About = () => {
   const [show, setShow] = useState(false);
   const [editCarousel, setEditCarousel] = useState({});
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   useEffect(() => {
     removeActiveClass();
   }, []);
@@ -312,7 +312,7 @@ const About = () => {
       </AboutPageStyled>
 
       {show && <ModelBg />}
-      <ScrollToTop smooth color="#fff" height="20" style={{background: "#748E31"}} className="shadow rounded-circle" />
+     
     </>
   );
 };

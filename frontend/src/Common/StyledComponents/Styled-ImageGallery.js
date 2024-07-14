@@ -77,7 +77,8 @@ export const ImageGalleryStyled = styled.div`
     right: -9% !important;
   }
   .carousel-control-prev {
-      left: 9% !important;
+      // left: 9% !important;
+      left: 0% !important;
   }
 
   .carousel-control-prev span, .carousel-control-next span {

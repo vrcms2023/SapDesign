@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { toast } from "react-toastify";
+import ScrollToTop from "react-scroll-to-top";
 
 // Components
 import LoadingSpinner from "./Common/LoadingSpinner";
@@ -75,16 +76,18 @@ function App() {
 
   const isHideMenu = HideFooterForAdmin();
 
-  useEffect(() => {
-    document.addEventListener("contextmenu", handleContextMenu);
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("contextmenu", handleContextMenu);
+  //   return () => {
+  //     document.removeEventListener("contextmenu", handleContextMenu);
+  //   };
+  // }, []);
   const handleContextMenu = (e) => {
     e.preventDefault();
     toast.error("Right Click is diabled");
   };
+
+
   return (
     <>
       <ThemeProvider theme={ThemeOne}>
@@ -157,6 +160,14 @@ function App() {
         </BrowserRouter>
       </ThemeProvider>
       <ToastContainer autoClose={2000} theme="colored" />
+
+      <ScrollToTop
+        smooth
+        color="#fff"
+        height="20"
+        style={{ background: "#748E31" }}
+        className="shadow rounded-circle"
+      />
     </>
   );
 }
