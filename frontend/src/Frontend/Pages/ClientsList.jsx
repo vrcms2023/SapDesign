@@ -26,7 +26,7 @@ import {
 import { axiosClientServiceApi, axiosServiceApi } from "../../util/axiosUtil";
 import { paginationDataFormat, sortByFieldName } from "../../util/commonUtil";
 import { getClinetLogsFields } from "../../util/dynamicFormFields";
-import ScrollToTop from "react-scroll-to-top";
+
 
 const ClientsList = () => {
   const editComponentObj = {
@@ -53,6 +53,10 @@ const ClientsList = () => {
     setPaginationData(paginationDataFormat(data));
     setCurrentPage(1);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (!componentEdit.addSection || !componentEdit.editSection) {
@@ -277,13 +281,6 @@ const ClientsList = () => {
           </div>
         </div>
       </div>
-      <ScrollToTop
-        smooth
-        color="#fff"
-        height="20"
-        style={{ background: "#748E31" }}
-        className="shadow rounded-circle"
-      />
     </>
   );
 };

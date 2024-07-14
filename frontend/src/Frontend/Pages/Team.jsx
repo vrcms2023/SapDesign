@@ -79,6 +79,10 @@ const Team = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const getTeamMemberDetails = async () => {
       try {
         const response = await axiosClientServiceApi.get(

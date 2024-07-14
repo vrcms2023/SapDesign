@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ScrollToTop from "react-scroll-to-top";
 
 // Components
 import Carousel from "../../Components/Carousel";
@@ -62,6 +61,10 @@ const Home = () => {
     setShow(value);
     document.body.style.overflow = "hidden";
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const getTeamMemberDetails = async () => {
@@ -530,13 +533,7 @@ const Home = () => {
         {show && <ModelBg />}
         {/* {showEditPop && <ModelBg />} */}
       </div>
-      <ScrollToTop
-        smooth
-        color="#fff"
-        height="20"
-        style={{ background: "#748E31" }}
-        className="shadow rounded-circle"
-      />
+      
     </>
   );
 };

@@ -27,7 +27,6 @@ import {
   paginationDataFormat,
   sortByFieldName,
 } from "../../util/commonUtil";
-import ScrollToTop from "react-scroll-to-top";
 
 const NewsAndUpdates = () => {
   const editComponentObj = {
@@ -48,6 +47,10 @@ const NewsAndUpdates = () => {
   const [pageLoadResult, setPageloadResults] = useState(false);
   const [searchQuery, setSearchquery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     removeActiveClass();
@@ -75,9 +78,6 @@ const NewsAndUpdates = () => {
     setShowModal(!showModal);
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const editHandler = (name, value) => {
     SetComponentEdit((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -211,13 +211,6 @@ const NewsAndUpdates = () => {
       {showModal && <ModelBg closeModel={closeModel} />}
 
       {show && <ModelBg />}
-      <ScrollToTop
-        smooth
-        color="#fff"
-        height="20"
-        style={{ background: "#748E31" }}
-        className="shadow rounded-circle"
-      />
     </>
   );
 };

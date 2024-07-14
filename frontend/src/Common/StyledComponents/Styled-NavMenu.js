@@ -7,6 +7,7 @@ export const StyledMenu = styled.menu`
     background-color:${({ theme }) => theme.navbarBg}; 
     // box-shadow: 0px 5px 30px #111111;
     box-shadow: 0px 5px 30px rgb(17 17 17 / 50%);
+    z-index: 9998;
     
     .navbar-toggler {
       background-color:${({ theme }) => theme.black} !important; 
