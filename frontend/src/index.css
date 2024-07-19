@@ -52,6 +52,10 @@
   position: fixed !important;
 }
 
+.modal-body {
+  color: #000;
+}
+
 .modelBg {
   position: fixed;
   top: 0;

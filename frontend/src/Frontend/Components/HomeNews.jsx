@@ -275,8 +275,9 @@ const HomeNews = ({
                 <i className="fa fa-times fs-3" aria-hidden="true"></i>
               </Link> */}
             </div>
-            <div>
-              <img className="w-100" src={obj.path} alt={obj.news_title} />
+            <div className="text-center p-3">
+              {obj.path ? <img className="rounded-1" src={obj.path} alt={obj.news_title} /> : ""}
+              
             </div>
             <div className="my-3 newsDetails">
               {obj.news_description ? (
