@@ -302,7 +302,7 @@ const Footer = () => {
             <small>&copy; {fullYear} - All rights reserved</small>
             <span className="d-inline-block  d-none d-md-block">|</span>
             <Link
-              to=""
+              to="#"
               className="text-decoration-underline"
               onClick={() => showModel("TC")}
             >
@@ -310,7 +310,7 @@ const Footer = () => {
             </Link>{" "}
             <span className="d-inline-block d-none d-md-block">|</span>
             <Link
-              to=""
+              to="#"
               className="text-decoration-underline"
               onClick={() => showModel("PP")}
             >

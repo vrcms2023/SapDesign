@@ -77,6 +77,10 @@ export const HomeServieOfferedStyled = styled.div`
         color: ${({ theme }) => theme.white} !important;
         right: 10px;
         top: 10px;
+        background: rgba(0, 0, 0, .3);
+        box-shadow: 0px 5px 15px #ddd;
+        border-radius: 25px;
+        padding: 5px 10px;
     }
 }
 

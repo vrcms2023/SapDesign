@@ -260,13 +260,20 @@ const HomeNews = ({
           <div className="newsModalWrapper p-4 bg-white shadow-lg">
             <div className="d-flex justify-content-between align-items-center gap-4 mb-1 pb-2 border-bottom">
               <Title title={obj.news_title} cssClass="fw-bold fs-6" />
-              <Link
+              <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              onClick={closeModel}
+            ></button>
+              {/* <Link
                 onClick={closeModel}
                 className="text-danger text-uppercase d-flex gap-2 justify-content-center align-items-center"
               >
                 <span className="d-none d-lg-block">Close</span>
                 <i className="fa fa-times fs-3" aria-hidden="true"></i>
-              </Link>
+              </Link> */}
             </div>
             <div>
               <img className="w-100" src={obj.path} alt={obj.news_title} />
@@ -287,7 +294,7 @@ const HomeNews = ({
       )}
       {showModelBg && <ModelBg />}
 
-      {show && <ModelBg />}
+      {/* {show && <ModelBg />} */}
     </>
   );
 };
